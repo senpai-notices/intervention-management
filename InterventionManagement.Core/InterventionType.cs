@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
-    class InterventionType
+    public class InterventionType
     {
         public String Name { get; set; }
         public double Hours { get; set; }
