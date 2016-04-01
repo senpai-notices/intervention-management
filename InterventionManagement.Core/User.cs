@@ -20,6 +20,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             Password = password;
             Name = name;
         }
+
     }
 
     public class Accountant : User
