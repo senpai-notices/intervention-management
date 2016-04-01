@@ -10,7 +10,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
     {
         private readonly List<User> _users = new List<User>();
 
-
         // public List<User> Users { get { return _users; } }
         // List cannot be same name as enclosing class
         // So I will make a manual getter instead.
@@ -25,9 +24,23 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             _users.Add(user);
         }
 
-        public void Login(string username, string password)
+        public User GetUserByUsername(string username)
         {
-            
+            return _users.FirstOrDefault(x => x.Username == username);
+        }
+
+        public User Login(string username, string password)
+        {
+            var user = GetUserByUsername(username);
+
+            if (user != null)
+            {
+                return password == user.Password ? user : null;
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
