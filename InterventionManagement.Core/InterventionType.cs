@@ -14,9 +14,28 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public InterventionType(string name, double hours, double cost)
         {
-            Name = name;
+            if (NameIsValid(name))
+            {
+                Name = name;
+            }
+            else
+            {
+                throw new InterventionNameException("The name was either empty, or missing.");
+            }
+
             Hours = hours;
             Cost = cost;
         }
+
+        private bool NameIsValid(string name)
+        {
+            return (name != null && name != "");
+        }
+    }
+
+
+    public class InterventionNameException : Exception
+    {
+        public InterventionNameException(string message) { }
     }
 }

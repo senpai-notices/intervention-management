@@ -16,5 +16,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.AreEqual(sut.Hours, 3);
             Assert.AreEqual(sut.Cost, 40);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionNameException))]
+        public void InterventionMissingNameException()
+        {
+            var sut = new InterventionType(null, 3, 40);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionNameException))]
+        public void InterventionEmptyNameException()
+        {
+            var sut = new InterventionType("", 3, 40);
+        }
     }
 }
