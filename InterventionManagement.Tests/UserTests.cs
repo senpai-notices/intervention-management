@@ -31,8 +31,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.AreEqual(sut.District, DistrictName.Sydney);
         }
 
-
-
         [TestMethod]
         public void CreateNewSiteEngineer()
         {
@@ -46,8 +44,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.AreEqual(sut.District, DistrictName.Sydney);
 
         }
-
-
-
     }
 }
