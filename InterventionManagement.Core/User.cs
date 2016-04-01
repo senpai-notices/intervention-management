@@ -30,7 +30,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         }
     }
 
-    public class DistrictStaff : User
+    public abstract class DistrictStaff : User
     {
         public double HoursApprovalLimit { get; set; }
         public double CostApprovalLimit { get; set; }
