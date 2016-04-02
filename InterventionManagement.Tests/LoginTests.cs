@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,6 +96,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.IsNull(loginAttempt);
             loginAttempt = sut.Login("lksjfo5", "some password!");
             Assert.IsNull(loginAttempt);
+        }
+
+        [TestMethod]
+        public void RejectDuplicateUsernameRegistration()
+        {
+            sut.Add(new Engineer(20, "popular", "secret", "Charlie", 6.50, 400.00,
+                DistrictName.Sydney));
+            sut.Add(new Manager(20, "popular", "secret2", "Delta", 6.50, 400.00,
+                DistrictName.Sydney));
         }
     }
 }
