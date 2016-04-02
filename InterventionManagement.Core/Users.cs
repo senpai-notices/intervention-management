@@ -12,7 +12,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         // public List<User> Users { get { return _users; } }
         // List cannot be same name as enclosing class
-        // So I will make a manual getter instead.!
+        // So I will make a manual getter instead.
 
         public List<User> GetUsers()
         {
@@ -41,16 +41,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             {
                 return null;
             }
-        }
-
-        public User Register()
-        {
-            // factory pattern? needs to dynamically? create different subtypes of user.
-        }
-
-        public bool CheckIfUniqueUsername(string username)
-        {
-            
         }
 
     }
