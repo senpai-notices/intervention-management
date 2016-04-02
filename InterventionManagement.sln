@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test- to be deleted", "Test- to be deleted", "{4EA97BF4-DE38-427C-9C77-4AAD0366775B}"
 	ProjectSection(SolutionItems) = preProject
+		Testing Stuff 2.txt = Testing Stuff 2.txt
 		TextFile1.txt = TextFile1.txt
 	EndProjectSection
 EndProject
