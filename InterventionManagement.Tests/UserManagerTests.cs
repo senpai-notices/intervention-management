@@ -10,11 +10,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {
     [TestClass]
-    public class LoginTests
+    public class UserManagerTests
     {
         private readonly UserManager _sut = new UserManager();
 
-        public LoginTests()
+        [TestInitialize]
+        public void Setup()
         {
             _sut.Add(new Accountant(11, "bernie", "123", "Bernie Sanders"));
             _sut.Add(new Accountant(12, "trump", "456", "Donald Trump"));
@@ -33,7 +34,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        public void Login_With_CorrectDetails()
+        public void Login_CorrectDetails_UsernamesMatch()
         {
 
             var loginAttempt = _sut.Login("bernie", "123");
@@ -62,7 +63,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        public void NotLogin_With_WrongPassword()
+        public void Login_WrongPassword_NullUser()
         {
             var loginAttempt = _sut.Login("bernie", "wrong");
             Assert.IsNull(loginAttempt);
@@ -75,7 +76,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        public void NotLogin_With_BlankOrWhitespaced_Password()
+        public void Login_BlankPassword_NullUser()
         {
             var loginAttempt = _sut.Login("bernie", "");
             Assert.IsNull(loginAttempt);
@@ -86,7 +87,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        public void NotLogin_With_WrongUsername()
+        public void Login_WrongUsername_NullUser()
         {
             var loginAttempt = _sut.Login("wrongusername", "some password");
             Assert.IsNull(loginAttempt);
@@ -98,6 +99,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.IsNull(loginAttempt);
         }
 
+        /*
         [TestMethod]
         public void RejectDuplicateUsernameRegistration()
         {
@@ -106,5 +108,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             _sut.Add(new Manager(20, "popular", "secret2", "Delta", 6.50, 400.00,
                 DistrictName.Sydney));
         }
+        */
     }
 }
