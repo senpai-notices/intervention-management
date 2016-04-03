@@ -18,17 +18,45 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InterventionNameException))]
-        public void InterventionMissingNameException()
+        [ExpectedException(typeof(InterventionTypeNameException))]
+        public void InterventionTypeMissingNameException()
         {
             var sut = new InterventionType(null, 3, 40);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InterventionNameException))]
-        public void InterventionEmptyNameException()
+        [ExpectedException(typeof(InterventionTypeNameException))]
+        public void InterventionTypeEmptyNameException()
         {
             var sut = new InterventionType("", 3, 40);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionTypeNumberException))]
+        public void InterventionTypeNegativeHoursException()
+        {
+            var sut = new InterventionType("Mosquito Nets", -1, 40);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionTypeNumberException))]
+        public void InterventionTypeNoHoursException()
+        {
+            var sut = new InterventionType("Mosquito Nets", 0, 40);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionTypeNumberException))]
+        public void InterventionTypeNegativeCostException()
+        {
+            var sut = new InterventionType("Mosquito Nets", 1, -40);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InterventionTypeNumberException))]
+        public void InterventionTypeNoCostException()
+        {
+            var sut = new InterventionType("Mosquito Nets", 1, 0);
         }
     }
 }

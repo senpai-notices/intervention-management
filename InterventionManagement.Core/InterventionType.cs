@@ -14,28 +14,36 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public InterventionType(string name, double hours, double cost)
         {
-            if (NameIsValid(name))
-            {
-                Name = name;
-            }
+            if (!NameIsValid(name)) throw new InterventionTypeNameException("The name was either empty, or missing.");
+            if (!NumberIsPositive(hours)) throw new InterventionTypeNumberException("Hours was not positive number");
+            if (!NumberIsPositive(cost)) throw new InterventionTypeNumberException("Cost was not positive number");
             else
             {
-                throw new InterventionNameException("The name was either empty, or missing.");
+                Name = name;
+                Hours = hours;
+                Cost = cost;
             }
-
-            Hours = hours;
-            Cost = cost;
         }
 
         private bool NameIsValid(string name)
         {
             return (name != null && name != "");
         }
+
+        private bool NumberIsPositive(double number)
+        {
+            return number > 0;
+        }
     }
 
 
-    public class InterventionNameException : Exception
+    public class InterventionTypeNameException : Exception
     {
-        public InterventionNameException(string message) { }
+        public InterventionTypeNameException(string message) { }
+    }
+
+    public class InterventionTypeNumberException : Exception
+    {
+        public InterventionTypeNumberException(string message) { }
     }
 }
