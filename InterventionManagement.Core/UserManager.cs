@@ -12,11 +12,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public List<User> Users => _users;
 
-        public List<User> GetUsers()
-        {
-            return _users;
-        }
-
         public void Add(User user)
         {
             _users.Add(user);
@@ -40,6 +35,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 return null;
             }
         }
-
     }
 }
