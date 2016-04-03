@@ -19,6 +19,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             Username = username;
             Password = password;
             Name = name;
+            
         }
 
     }
