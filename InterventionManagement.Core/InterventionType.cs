@@ -4,7 +4,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public class InterventionType
     {
-        public String Name { get; set; }
+        public string Name { get; set; }
         public double Hours { get; set; }
         public double Cost { get; set; }
 
