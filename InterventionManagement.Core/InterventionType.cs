@@ -26,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             return (name != null && name != "");
         }
 
-        private bool NumberIsPositive(double number)
+        private static bool NumberIsPositive(double number)
         {
             return number > 0;
         }
