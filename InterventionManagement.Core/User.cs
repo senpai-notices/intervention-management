@@ -11,7 +11,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         protected User(int userId, string username, string password, string name)
         {
-            // TODO Add specific expected syntax checks
+            // TODO Add specific validation checks
+            // TODO Functionise validation
             if (IntegerIsNegative(userId)) throw new UserIdIsNegativeException("UserId is negative");
             if (string.IsNullOrWhiteSpace(username))
                 throw new UsernameIsNullOrWhiteSpaceException("Username is null or white space");
@@ -47,7 +48,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public double CostApprovalLimit { get; set; }
         public DistrictName District { get; set; }
 
-        public DistrictStaff(int userId, string username, string password, string name, 
+        protected DistrictStaff(int userId, string username, string password, string name, 
             double hoursApprovalLimit, double costApprovalLimit, DistrictName district) 
             : base(userId, username, password, name)
         {
