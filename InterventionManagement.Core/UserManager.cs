@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
-    public class Users
+    public class UserManager
     {
         private readonly List<User> _users = new List<User>();
 
-        // public List<User> Users { get { return _users; } }
-        // List cannot be same name as enclosing class
-        // So I will make a manual getter instead.
+        public List<User> Users => _users;
 
         public List<User> GetUsers()
         {

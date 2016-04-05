@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ERD", "ERDTest\ERD.csproj", "{A49F4E93-100E-483A-85E3-4B85A0D84EAB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Core", "InterventionManagement.Core\InterventionManagement.Core.csproj", "{45041D80-F67C-4103-9BCA-BF0FB646C836}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Tests", "InterventionManagement.Tests\InterventionManagement.Tests.csproj", "{C662C97C-8A89-4EF6-9D56-C73D3DE2DE7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test- to be deleted", "Test- to be deleted", "{4EA97BF4-DE38-427C-9C77-4AAD0366775B}"
+	ProjectSection(SolutionItems) = preProject
+		Testing Stuff 2.txt = Testing Stuff 2.txt
+		TextFile1.txt = TextFile1.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
