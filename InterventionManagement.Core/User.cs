@@ -8,14 +8,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public abstract class User
     {
-        public int UserID { get; private set; }
+        public int UserId { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
         public string Name { get; private set; }
 
         protected User(int userId, string username, string password, string name)
         {
-            UserID = userId;
+            UserId = userId;
             Username = username;
             Password = password;
             Name = name;
