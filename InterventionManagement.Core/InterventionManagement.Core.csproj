@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DistrictName.cs" />
+    <Compile Include="Exceptions\NameRegexException.cs" />
+    <Compile Include="Exceptions\UsernameRegexException.cs" />
     <Compile Include="Exceptions\NameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\PasswordIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\UsernameIsNullOrWhiteSpaceException.cs" />

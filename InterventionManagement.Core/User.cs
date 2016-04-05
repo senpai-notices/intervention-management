@@ -20,6 +20,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 throw new PasswordIsNullOrWhiteSpaceException("Password is null or white space");
             if (string.IsNullOrWhiteSpace(name))
                 throw new NameIsNullOrWhiteSpaceException("Name is null or white space");
+            /*if (Regex.IsMatch(username, "^[a-z0-9]{3-15}")) throw new UsernameRegexException();
+            // Passes John Jones-Smith, Jr.
+            if (Regex.IsMatch(name, "/^[a-z ,.'-]+$/i")) throw new NameRegexException();*/
 
             UserId = userId;
             Username = username;

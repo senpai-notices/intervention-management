@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
@@ -18,7 +14,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         public void Setup()
         {
             _sut.Add(new Accountant(11, "bernie", "123", "Bernie Sanders"));
-            _sut.Add(new Accountant(12, "trump", "456", "Donald Trump"));
+            // _sut.Add(new Accountant(12, "jjsj", "456", "John Jones-Smith, Jr."));
             _sut.Add(new Manager(13, "funderwood", "789", "Frank Underwood", 6.50, 400.00,
                 DistrictName.RuralIndonesia));
             _sut.Add(new Manager(14, "cunderwood", "012", "Claire Underwood", 7.25, 645.00,
@@ -39,9 +35,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 
             var loginAttempt = _sut.Login("bernie", "123");
             Assert.AreEqual(loginAttempt.Username, "bernie");
-
-            loginAttempt = _sut.Login("trump", "456");
-            Assert.AreEqual(loginAttempt.Username, "trump");
 
             loginAttempt = _sut.Login("funderwood", "789");
             Assert.AreEqual(loginAttempt.Username, "funderwood");
