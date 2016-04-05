@@ -23,7 +23,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         private bool NameIsValid(string name)
         {
-            return (name != null && name != "");
+            return !string.IsNullOrEmpty(name);
         }
 
         private static bool NumberIsPositive(double number)
