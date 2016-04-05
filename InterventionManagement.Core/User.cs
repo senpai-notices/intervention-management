@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
@@ -15,10 +11,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         protected User(int userId, string username, string password, string name)
         {
+            // TODO Add specific expected syntax checks
+            if (IntegerIsNegative(userId)) throw new UserIdIsNegativeException("UserId is negative");
+            if (string.IsNullOrWhiteSpace(username))
+                throw new UsernameIsNullOrWhiteSpaceException("Username is null or white space");
+            if (string.IsNullOrWhiteSpace(password))
+                throw new PasswordIsNullOrWhiteSpaceException("Password is null or white space");
+            if (string.IsNullOrWhiteSpace(name))
+                throw new NameIsNullOrWhiteSpaceException("Name is null or white space");
+
             UserId = userId;
             Username = username;
             Password = password;
             Name = name;
+        }
+
+        private static bool IntegerIsNegative(int userId)
+        {
+            return userId < 0;
         }
 
     }
