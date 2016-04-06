@@ -14,7 +14,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         public void Setup()
         {
             _sut.Add(new Accountant(11, "bernie", "123", "Bernie Sanders"));
-            // _sut.Add(new Accountant(12, "jjsj", "456", "John Jones-Smith, Jr."));
+            //_sut.Add(new Accountant(12, "jjsj", "456", "John Jones-Smith, Jr."));
             _sut.Add(new Manager(13, "funderwood", "789", "Frank Underwood", 6.50, 400.00,
                 DistrictName.RuralIndonesia));
             _sut.Add(new Manager(14, "cunderwood", "012", "Claire Underwood", 7.25, 645.00,
@@ -92,6 +92,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.IsNull(loginAttempt);
         }
 
+        /*[TestMethod]
+        [ExpectedException(typeof(NameRegexException))]
+        public void CreateUser_Regex()
+        {
+            var test = new UserManager();
+
+            test.Add(new Accountant(42, "hello", "password", "Alex Tan=="));
+        }*/
         /*
         [TestMethod]
         public void RejectDuplicateUsernameRegistration()
