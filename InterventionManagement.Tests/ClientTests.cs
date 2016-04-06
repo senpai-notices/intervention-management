@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Tests
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {
     [TestClass]
     public class ClientTests
@@ -34,6 +34,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Tests
         {
             Client sut = new Client(1, "Steve ha", "", DistrictName.Sydney); ;
         }
-
     }
 }
