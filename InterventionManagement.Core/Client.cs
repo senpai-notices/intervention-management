@@ -8,44 +8,50 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public class Client
     {
-        public int ClientID { get; set; }
+        public int ClientId { get; set; }
+        private string _clientName;
+        private string _clientLocation;
 
         public string ClientName {
             get
-            { return ClientName; }
+            {
+                return _clientName;
+            }
 
             set
             {
-                if (value == null || !value.Any(c => char.IsLetter(c)) || value.Trim() == string.Empty)
+                _clientName = value;
+                if (string.IsNullOrWhiteSpace(_clientName) || !value.Any(char.IsLetter))
                 {
                     throw new ArgumentException("Please enter a valid name. Name must not contain numbers.");
                 }
-                ClientName = value;
+
             }
         }
 
         public string ClientLocation {
             get
-            { return ClientLocation; }
+            { return _clientLocation; }
 
             set
             {
-                if (value == null || value.Trim() == string.Empty)
+                _clientLocation = value;
+                if (string.IsNullOrWhiteSpace(_clientLocation))
                 {
                     throw new ArgumentException("Please enter a location description.");
                 }
-                ClientLocation = value;
+
             }
 
         }
         public DistrictName ClientDistrictName { get; set; }
 
-        public Client(int clientID, string Name, string location, DistrictName DistrictName)
+        public Client(int clientId, string name, string location, DistrictName districtName)
         {
-            ClientID = clientID;
-            ClientName = Name;
+            ClientId = clientId;
+            ClientName = name;
             ClientLocation = location;
-            ClientDistrictName = DistrictName;
+            ClientDistrictName = districtName;
 
         }
     }
