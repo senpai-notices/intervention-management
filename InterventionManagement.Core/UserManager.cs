@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
@@ -11,11 +8,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         private readonly List<User> _users = new List<User>();
 
         public List<User> Users => _users;
-
-        public List<User> GetUsers()
-        {
-            return _users;
-        }
 
         public void Add(User user)
         {
@@ -40,6 +32,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 return null;
             }
         }
-
     }
 }

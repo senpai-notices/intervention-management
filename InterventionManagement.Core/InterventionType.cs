@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public class InterventionType
     {
-        public String Name { get; set; }
+        public string Name { get; set; }
         public double Hours { get; set; }
         public double Cost { get; set; }
 
@@ -27,10 +23,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         private bool NameIsValid(string name)
         {
-            return (name != null && name != "");
+            return !string.IsNullOrEmpty(name);
         }
 
-        private bool NumberIsPositive(double number)
+        private static bool NumberIsPositive(double number)
         {
             return number > 0;
         }
