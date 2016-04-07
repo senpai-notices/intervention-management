@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions
 {
     [Serializable]
-    class PasswordIsNullOrWhiteSpaceException : Exception
+    public class PasswordIsNullOrWhiteSpaceException : Exception
     {
         public PasswordIsNullOrWhiteSpaceException()
         { }
