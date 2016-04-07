@@ -58,5 +58,10 @@
                   district)
         {
         }
+
+        public void CreateClient(Client client)
+        {
+            ClientManager.Add(client);
+        }
     }
 }
