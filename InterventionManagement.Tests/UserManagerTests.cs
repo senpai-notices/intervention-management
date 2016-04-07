@@ -15,17 +15,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         {
             _sut.Add(new Accountant(11, "bernie", "123", "Bernie Sanders"));
             //_sut.Add(new Accountant(12, "jjsj", "456", "John Jones-Smith, Jr."));
-            _sut.Add(new Manager(13, "funderwood", "789", "Frank Underwood", 6.50, 400.00,
+            _sut.Add(new Manager(13, "funderwood", "789", "Frank Underwood", 6.50m, 400.00m,
                 DistrictName.RuralIndonesia));
-            _sut.Add(new Manager(14, "cunderwood", "012", "Claire Underwood", 7.25, 645.00,
+            _sut.Add(new Manager(14, "cunderwood", "012", "Claire Underwood", 7.25m, 645.00m,
                 DistrictName.Sydney));
-            _sut.Add(new Engineer(15, "alex", "345", "Alex Tan", 4.50, 420.00,
+            _sut.Add(new Engineer(15, "alex", "345", "Alex Tan", 4.50m, 420.00m,
                 DistrictName.Sydney));
-            _sut.Add(new Engineer(16, "kim", "678", "Kim", 6.50, 400.00,
+            _sut.Add(new Engineer(16, "kim", "678", "Kim", 6.50m, 400.00m,
                 DistrictName.RuralIndonesia));
-            _sut.Add(new Engineer(17, "linda", "901", "Linda", 6.50, 400.00,
+            _sut.Add(new Engineer(17, "linda", "901", "Linda", 6.50m, 400.00m,
                 DistrictName.RuralIndonesia));
-            _sut.Add(new Engineer(18, "jess", "234", "Jessica", 6.50, 400.00,
+            _sut.Add(new Engineer(18, "jess", "234", "Jessica", 6.50m, 400.00m,
                 DistrictName.Sydney));
         }
 

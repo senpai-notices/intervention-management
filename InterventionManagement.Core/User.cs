@@ -1,6 +1,4 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
-
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
+﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public abstract class User
     {
@@ -11,31 +9,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         protected User(int userId, string username, string password, string name)
         {
-            // TODO Add specific validation checks
-            // TODO Functionise validation
-            if (IntegerIsNegative(userId)) throw new UserIdIsNegativeException("UserId is negative");
-            if (string.IsNullOrWhiteSpace(username))
-                throw new UsernameIsNullOrWhiteSpaceException("Username is null or white space");
-            if (string.IsNullOrWhiteSpace(password))
-                throw new PasswordIsNullOrWhiteSpaceException("Password is null or white space");
-            if (string.IsNullOrWhiteSpace(name))
-                throw new NameIsNullOrWhiteSpaceException("Name is null or white space");
-            /*if (Regex.IsMatch(username, "^[a-z0-9]{3-15}")) throw new UsernameRegexException();
-            // Passes John Jones-Smith, Jr.
-            if (Regex.IsMatch(name, "/^[a-z ,.'-]+$/i")) throw new NameRegexException();*/
-
-            UserId = userId;
-            Username = username;
-            Password = password;
-            Name = name;
-            
+            UserId = UserValidator.ValidateUserId(userId);
+            Username = UserValidator.ValidateUsername(username.Trim());
+            Password = UserValidator.ValidatePassword(password);
+            Name = UserValidator.ValidateName(name.Trim());
         }
-
-        private static bool IntegerIsNegative(int userId)
-        {
-            return userId < 0;
-        }
-
     }
 
     public class Accountant : User
@@ -48,12 +26,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
     public abstract class DistrictStaff : User
     {
-        public double HoursApprovalLimit { get; set; }
-        public double CostApprovalLimit { get; set; }
+        public decimal HoursApprovalLimit { get; set; }
+        public decimal CostApprovalLimit { get; set; }
         public DistrictName District { get; set; }
 
         protected DistrictStaff(int userId, string username, string password, string name, 
-            double hoursApprovalLimit, double costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
             : base(userId, username, password, name)
         {
             HoursApprovalLimit = hoursApprovalLimit;
@@ -65,7 +43,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
     public class Manager : DistrictStaff
     {
         public Manager(int userId, string username, string password, string name, 
-            double hoursApprovalLimit, double costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
@@ -75,7 +53,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
     public class Engineer : DistrictStaff
     {
         public Engineer(int userId, string username, string password, string name, 
-            double hoursApprovalLimit, double costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
