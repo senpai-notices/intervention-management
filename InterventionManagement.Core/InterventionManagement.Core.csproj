@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="DistrictName.cs" />
-    <Compile Include="Exceptions\NameRegexException.cs" />
-    <Compile Include="Exceptions\UsernameRegexException.cs" />
     <Compile Include="Exceptions\NameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\PasswordIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\UsernameIsNullOrWhiteSpaceException.cs" />
@@ -53,6 +51,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserManager.cs" />
+    <Compile Include="UserValidator.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
