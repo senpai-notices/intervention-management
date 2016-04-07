@@ -25,6 +25,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             : base(userId, username, password, name)
         {
         }
+
+        public void ViewDistrictStaff() { }
+        public void ChangeDistrictOfDistrictStaff() { }
+        public void ViewTotalCostsByEngineer() { }
+        public void ViewAverageCostsByEngineer() { }
+        public void ViewCostsByDistrict() { }
+        public void ViewMonthlyCostsForDistrict(DistrictName district) { }
     }
 
     public abstract class DistrictStaff : User
