@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
@@ -81,9 +80,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             */
         }
 
+        public void ViewClient()
+        {
+        }
+
         public void ViewInterventionsByClient(Client client)
         {
-            
+            // ClientManager.Clients.Where(s => s.)
         }
 
         public void EditQualityManagementInformation()
@@ -97,6 +100,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         }
 
         public void ViewCreatedInterventions()
+        { }
+
+        public void ChangeInterventionState()
         { }
 
         // http://www.thedatastack.com/2015/05/05/unit-test-a-repository-with-mocking-using-nsubstitute/

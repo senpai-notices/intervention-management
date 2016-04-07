@@ -49,6 +49,7 @@
     <Compile Include="Exceptions\ClientIdIsNegativeException.cs" />
     <Compile Include="Exceptions\UsernameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\UserIdIsNegativeException.cs" />
+    <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
     <Compile Include="InterventionType.cs" />
     <Compile Include="User.cs" />
