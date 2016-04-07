@@ -63,5 +63,30 @@
         {
             ClientManager.Add(client);
         }
+
+        public void ViewLocalClients()
+        {
+            
+        }
+
+        public void ViewInterventionsByClient(Client client)
+        {
+            
+        }
+
+        public void EditQualityManagementInformation()
+        {
+            
+        }
+
+        public void CreateIntervention()
+        {
+            
+        }
+
+        public void ViewCreatedInterventions()
+        { }
+
+        // http://www.thedatastack.com/2015/05/05/unit-test-a-repository-with-mocking-using-nsubstitute/
     }
 }
