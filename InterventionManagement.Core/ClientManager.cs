@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
-    // Should this be static?
+    // Should this be static? Static classes cannot implement interfaces
     public static class ClientManager
     {
         private static readonly List<Client> _clients = new List<Client>();
