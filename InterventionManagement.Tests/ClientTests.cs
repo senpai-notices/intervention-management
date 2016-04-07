@@ -16,9 +16,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         {
             Client sut = new Client(1, "Steve", "Ashfield", DistrictName.Sydney);
             Assert.AreEqual(1, sut.ClientId);
-            Assert.AreEqual("Steve", sut.ClientName);
-            Assert.AreEqual("Ashfield", sut.ClientLocation);
-            Assert.AreEqual(DistrictName.Sydney, sut.ClientDistrictName);
+            Assert.AreEqual("Steve", sut.Name);
+            Assert.AreEqual("Ashfield", sut.Location);
+            Assert.AreEqual(DistrictName.Sydney, sut.District);
         }
 
         [TestMethod]

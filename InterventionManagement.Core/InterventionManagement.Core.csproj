@@ -41,9 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="ClientValidator.cs" />
     <Compile Include="DistrictName.cs" />
     <Compile Include="Exceptions\NameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\PasswordIsNullOrWhiteSpaceException.cs" />
+    <Compile Include="Exceptions\ClientIdIsNegativeException.cs" />
     <Compile Include="Exceptions\UsernameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\UserIdIsNegativeException.cs" />
     <Compile Include="InterventionState.cs" />
