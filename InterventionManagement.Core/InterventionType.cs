@@ -5,10 +5,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
     public class InterventionType
     {
         public string Name { get; set; }
-        public double Hours { get; set; }
-        public double Cost { get; set; }
+        public decimal Hours { get; set; }
+        public decimal Cost { get; set; }
 
-        public InterventionType(string name, double hours, double cost)
+        public InterventionType(string name, decimal hours, decimal cost)
         {
             if (!NameIsValid(name)) throw new InterventionTypeNameException("The name was either empty, or missing.");
             if (!NumberIsPositive(hours)) throw new InterventionTypeNumberException("Hours was not positive number");
@@ -26,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             return !string.IsNullOrEmpty(name);
         }
 
-        private static bool NumberIsPositive(double number)
+        private static bool NumberIsPositive(decimal number)
         {
             return number > 0;
         }
