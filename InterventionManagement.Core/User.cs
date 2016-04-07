@@ -1,4 +1,8 @@
-﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
     public abstract class User
     {
@@ -64,9 +68,17 @@
             ClientManager.Add(client);
         }
 
-        public void ViewLocalClients()
+        // It should be void with cw but I am making this testable
+        public List<Client> ViewLocalClients()
         {
+            return ClientManager.Clients.Where(s => s.District == this.District).ToList();
             
+            /*
+            foreach (var client in result)
+            {
+                Console.WriteLine(client.Name);
+            }
+            */
         }
 
         public void ViewInterventionsByClient(Client client)
