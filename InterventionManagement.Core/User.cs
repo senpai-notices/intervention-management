@@ -69,6 +69,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
         }
 
+        // Some of these methods will be placed in under DistrictStaff
+
         public void CreateClient(Client client)
         {
             ClientManager.Add(client);
@@ -87,8 +89,41 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             */
         }
 
-        public void ViewClient()
+        // Pass client or clientId?
+        // where proposer/creator == *this and *this.district
+        public List<string> ViewClient(Client client)
         {
+            var clientDetails = new List<string>()
+            {
+                "--------------",
+                "CLIENT DETAILS",
+                "--------------",
+                client.ClientId.ToString(),
+                client.Name,
+                client.Location,
+                client.District.ToString()
+            };
+
+            var clientsFromThisUser = (from i in InterventionManager.Interventions
+                where i.ProposerId == this.UserId || i.ApproverId == this.UserId
+                select i) as List<Intervention>;
+
+            clientDetails.Add("");
+            clientDetails.Add("Interventions");
+            clientDetails.Add("-------------");
+
+            if (clientsFromThisUser != null && clientsFromThisUser.Any())
+            {
+                clientDetails.AddRange(clientsFromThisUser.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed));
+            }
+            else
+            {
+                clientDetails.Add("None");
+
+            }
+
+
+            return clientDetails;
         }
 
         public void ViewInterventionsByClient(Client client)
