@@ -1,5 +1,5 @@
-﻿using System;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
@@ -34,15 +34,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void CreateNewSiteEngineer()
         {
-            var sut = new Engineer(1, "steven", "testpassword", "Steven", 18.5, 5000, DistrictName.Sydney);
+            var sut = new Engineer(1, "steven", "testpassword", "Steven", 18.5m, 5000, DistrictName.Sydney);
             Assert.AreEqual(sut.UserId,1);
             Assert.AreEqual(sut.Username, "steven");
             Assert.AreEqual(sut.Password, "testpassword");
             Assert.AreEqual(sut.Name, "Steven");
-            Assert.AreEqual(sut.HoursApprovalLimit, 18.5);
+            Assert.AreEqual(sut.HoursApprovalLimit, 18.5m);
             Assert.AreEqual(sut.CostApprovalLimit, 5000);
             Assert.AreEqual(sut.District, DistrictName.Sydney);
-
         }
     }
 }
