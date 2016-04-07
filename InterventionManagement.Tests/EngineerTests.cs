@@ -46,35 +46,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 
             CollectionAssert.AreEqual(actual, expected);
         }
-
-        [TestMethod]
-        public void ViewClient_Normal_ClientDetailsDisplayed()
-        {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-
-            var client = new Client(1, "The Client", "24 Main St, <further description", engineer.District);
-
-            engineer.CreateClient(client);
-
-            var actual = engineer.ViewClient(client);
-
-            var expected = new List<string>()
-            {
-                "--------------",
-                "CLIENT DETAILS",
-                "--------------",
-                "1",
-                "The Client",
-                "24 Main St, <further description",
-                "Sydney",
-                "",
-                "Interventions",
-                "-------------",
-                "None"
-            };
-
-            CollectionAssert.AreEqual(actual, expected);
-        }
     }
 }
 // http://www.yegor256.com/2014/05/05/oop-alternative-to-utility-classes.html

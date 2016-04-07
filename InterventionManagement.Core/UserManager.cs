@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
-    public class UserManager : IManager<User>
+    public class UserManager
     {
         private readonly List<User> _users = new List<User>();
 
