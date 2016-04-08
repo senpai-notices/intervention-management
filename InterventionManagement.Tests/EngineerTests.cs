@@ -77,17 +77,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
-        [Ignore]
+
         [TestMethod]
         public void CreateIntervention_Normal_InterventionCreated()
         {
             var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
             var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
 
-            // Fix ctor
             var intervention = new Intervention(
-                1, 
-                new DateTime(2016,1,1), 
+                3, 
+                new DateTime(2016,2,15), 
                 InterventionState.Proposed, 
                 new List<QualityReport>(), 
                 "An Intervention",
@@ -96,18 +95,34 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 engineer.UserId,
                 -1,
                 client.ClientId);
+
+            engineer.CreateIntervention(intervention);
+
+            Assert.AreEqual(intervention, InterventionManager.Interventions.First());
         }
 
-        [Ignore]
+        [Ignore] //incomplete
         [TestMethod]
         public void ViewClient_ClientWithIntervention_ClientDetailsDisplayed()
         {
             var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
 
-            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
+            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
 
             engineer.CreateClient(client);
+
+            var intervention = new Intervention(
+                3,
+                new DateTime(2016,2,15),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "The Intervention",
+                2,
+                200,
+                engineer.UserId,
+                -1,
+                client.ClientId  
+                );
         }
     }
 }
-// http://www.yegor256.com/2014/05/05/oop-alternative-to-utility-classes.html
