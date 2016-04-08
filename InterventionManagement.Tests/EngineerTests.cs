@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -74,6 +75,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             };
 
             CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void CreateIntervention_Normal_InterventionCreated()
+        {
+            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
+
+            var intervention = new Intervention(1, new DateTime(2016,1,1), InterventionState.Proposed, new List<QualityReport>(), 1, engineer.UserId, 0, 1);
         }
 
         [Ignore]
