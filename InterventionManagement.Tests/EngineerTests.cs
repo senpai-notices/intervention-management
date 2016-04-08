@@ -79,7 +79,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 
 
         [TestMethod]
-        public void CreateIntervention_Normal_InterventionCreated()
+        public void CreateIntervention_Normal_Exists()
         {
             var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
             var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
@@ -101,7 +101,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             Assert.AreEqual(intervention, InterventionManager.Interventions.First());
         }
 
-        [Ignore] //incomplete
+        
         [TestMethod]
         public void ViewClient_ClientWithIntervention_ClientDetailsDisplayed()
         {
@@ -123,6 +123,62 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 -1,
                 client.ClientId  
                 );
+
+            engineer.CreateIntervention(intervention);
+
+            var actual = engineer.ViewClient(client);
+
+            var expected = new List<string>()
+            {
+                "--------------",
+                "CLIENT DETAILS",
+                "--------------",
+                "2",
+                "The Client",
+                "24 Main St, <further description...>",
+                "Sydney",
+                "",
+                "Interventions",
+                "-------------",
+                "3 15/02/2016"
+            };
+
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [TestMethod]
+        public void SomeQuery()
+        {
+            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+
+            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
+
+            var intervention = new Intervention(
+                3,
+                new DateTime(2016, 2, 15),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "The Intervention",
+                2,
+                200,
+                engineer.UserId,
+                -1,
+                client.ClientId
+                );
+
+            engineer.CreateClient(client);
+
+            engineer.CreateIntervention(intervention);
+
+            var iResult = from i in InterventionManager.Interventions
+                          where engineer.UserId == i.ProposerId
+                select i;
+
+            var cResult = from c in ClientManager.Clients
+                select c;
+
+            Assert.AreEqual(iResult.First(), intervention);
+            Assert.AreEqual(cResult.First(), client);
         }
     }
 }

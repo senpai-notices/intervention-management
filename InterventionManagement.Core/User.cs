@@ -76,20 +76,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             ClientManager.Add(client);
         }
 
-        // It should be void with cw but I am making this testable
         public List<Client> ViewLocalClients()
         {
             return ClientManager.Clients.Where(s => s.District == this.District).ToList();
-            
-            /*
-            foreach (var client in result)
-            {
-                Console.WriteLine(client.Name);
-            }
-            */
         }
 
-        // Pass client or clientId?
         public List<string> ViewClient(Client client)
         {
             var clientDetails = new List<string>()
@@ -102,18 +93,26 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 client.Location,
                 client.District.ToString()
             };
+/*       
+                var interventionsOfClient = (
+                from i in InterventionManager.Interventions
+                where i.ClientId == client.ClientId
+                select i
+                ) as List<Intervention>;
+*/
+// Above is the failed version of the below. I think they're the same query but the above couldn't match a result
 
-            var clientsForThisUser = (from i in InterventionManager.Interventions
-                where i.ProposerId == this.UserId || i.ApproverId == this.UserId
-                select i) as List<Intervention>;
+            var interventionsOfClient =
+                InterventionManager.Interventions.Where(i => i.ClientId == client.ClientId).ToList();
 
             clientDetails.Add("");
             clientDetails.Add("Interventions");
             clientDetails.Add("-------------");
 
-            if (clientsForThisUser != null && clientsForThisUser.Any())
+            // test when != null is removed
+            if (interventionsOfClient != null && interventionsOfClient.Any())
             {
-                clientDetails.AddRange(clientsForThisUser.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed));
+                clientDetails.AddRange(interventionsOfClient.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed.Date.ToShortDateString()));
             }
             else
             {
@@ -142,7 +141,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public void CreateIntervention(Intervention intervention)
         {
             InterventionManager.Add(intervention);
-            // proposed state always
         }
 
         public void ViewCreatedInterventions()
@@ -150,7 +148,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public void ChangeInterventionState()
         { }
-
-        // http://www.thedatastack.com/2015/05/05/unit-test-a-repository-with-mocking-using-nsubstitute/
     }
 }
