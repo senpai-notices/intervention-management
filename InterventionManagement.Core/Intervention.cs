@@ -19,5 +19,21 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public int ProposerId { get; private set; }
         public int ApproverId { get; private set; }
         public int ClientId { get; private set; }
+
+        public Intervention(int interventionId, DateTime datePerformed, InterventionState state, 
+            List<QualityReport> qualityReport, string interventionName, decimal interventionHours, 
+            decimal interventionCost, int proposerId, int approverId, int clientId)
+        {
+            InterventionId = interventionId;
+            DatePerformed = datePerformed;
+            State = state;
+            QualityReport = qualityReport;
+            InterventionName = interventionName;
+            InterventionHours = interventionHours;
+            InterventionCost = interventionCost;
+            ProposerId = proposerId;
+            ApproverId = approverId;
+            ClientId = clientId;
+        }
     }
 }
