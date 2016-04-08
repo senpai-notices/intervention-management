@@ -12,9 +12,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public List<QualityReport> QualityReport { get; private set; }
         
         //public int InterventionTypeId { get; private set; }
-        public string InterventionName { get; set; }
-        public decimal InterventionHours { get; set; }
-        public decimal InterventionCost { get; set; }
+        public string InterventionName { get; private set; }
+        public decimal InterventionHours { get; private set; }
+        public decimal InterventionCost { get; private set; }
 
         public int ProposerId { get; private set; }
         public int ApproverId { get; private set; }
