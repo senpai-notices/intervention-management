@@ -130,6 +130,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             var interventionsForClient = (from i in InterventionManager.Interventions
                           where i.ClientId == clientId
                           select i) as List<Intervention>;
+
+            // return as List<String>
         }
 
         public void EditQualityManagementInformation()
@@ -140,6 +142,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public void CreateIntervention(Intervention intervention)
         {
             InterventionManager.Add(intervention);
+            // proposed state always
         }
 
         public void ViewCreatedInterventions()
