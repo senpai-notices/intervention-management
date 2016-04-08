@@ -19,8 +19,8 @@
         <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
         <asp:TextBox ID="txt_loginPW" runat="server"></asp:TextBox>
         <br />
-        <asp:Button ID="btn_cancel" runat="server" Text="Cancel" />
-        <asp:Button ID="btn_login" runat="server" Text="Login" Height="26px" />
+        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="btn_Cancel" />
+        <asp:Button ID="Button2" runat="server" Text="Login" OnClick="btn_Login" />
     </div>
     </form>
 </body>

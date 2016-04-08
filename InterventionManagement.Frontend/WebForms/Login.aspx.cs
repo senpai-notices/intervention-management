@@ -14,14 +14,14 @@ namespace InterventionManagement.Frontend.WebForms
 
         }
 
-        protected void btn_cancel(object sender, EventArgs e)
+        protected void btn_Cancel(object sender, EventArgs e)
         {
-
+            Label1.Text = "WOOOOOOOOOOOOOO";
         }
 
-        protected void btn_cancel(object sender, EventArgs e)
+        protected void btn_Login(object sender, EventArgs e)
         {
-
+            Label2.Text = "WOOOOOOOOOOOOOO";
         }
     }
 }
