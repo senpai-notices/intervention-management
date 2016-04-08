@@ -1,6 +1,4 @@
-﻿using System;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {

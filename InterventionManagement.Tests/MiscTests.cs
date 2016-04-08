@@ -1,5 +1,4 @@
 ﻿using System.Text.RegularExpressions;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests

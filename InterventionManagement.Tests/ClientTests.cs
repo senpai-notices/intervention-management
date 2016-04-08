@@ -1,10 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {
