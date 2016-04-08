@@ -82,10 +82,20 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         public void CreateIntervention_Normal_InterventionCreated()
         {
             var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
+            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
 
             // Fix ctor
-            // var intervention = new Intervention(1, new DateTime(2016,1,1), InterventionState.Proposed, new List<QualityReport>(), 1, engineer.UserId, 0, 1);
+            var intervention = new Intervention(
+                1, 
+                new DateTime(2016,1,1), 
+                InterventionState.Proposed, 
+                new List<QualityReport>(), 
+                "An Intervention",
+                2,
+                100,
+                engineer.UserId,
+                -1,
+                client.ClientId);
         }
 
         [Ignore]
