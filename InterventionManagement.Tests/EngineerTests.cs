@@ -36,9 +36,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             engineer.CreateClient(localClient3);
 
             // Other clients created
-            ClientManager.Clients.Add(new Client(4, "Big Client", "24 Main St, <further description", DistrictName.UrbanIndonesia));
-            ClientManager.Clients.Add(new Client(5, "Smith Family", "24 Main St, <further description", DistrictName.RuralNewSouthWales));
-            ClientManager.Clients.Add(new Client(6, "Community Alpha", "24 Main St, <further description", DistrictName.UrbanPapuaNewGuineea));
+            ClientManager.Add(new Client(4, "Big Client", "24 Main St, <further description", DistrictName.UrbanIndonesia));
+            ClientManager.Add(new Client(5, "Smith Family", "24 Main St, <further description", DistrictName.RuralNewSouthWales));
+            ClientManager.Add(new Client(6, "Community Alpha", "24 Main St, <further description", DistrictName.UrbanPapuaNewGuineea));
 
             var actual = engineer.ViewLocalClients();
 
@@ -48,11 +48,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         }
 
         [TestMethod]
-        public void ViewClient_Normal_ClientDetailsDisplayed()
+        public void ViewClient_ClientWithNoInterventions_ClientDetailsDisplayed()
         {
             var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
 
-            var client = new Client(1, "The Client", "24 Main St, <further description", engineer.District);
+            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
 
             engineer.CreateClient(client);
 
@@ -65,7 +65,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 "--------------",
                 "1",
                 "The Client",
-                "24 Main St, <further description",
+                "24 Main St, <further description...>",
                 "Sydney",
                 "",
                 "Interventions",
@@ -74,6 +74,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             };
 
             CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [Ignore]
+        [TestMethod]
+        public void ViewClient_ClientWithIntervention_ClientDetailsDisplayed()
+        {
+            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+
+            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
+
+            engineer.CreateClient(client);
         }
     }
 }
