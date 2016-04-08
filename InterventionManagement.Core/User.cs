@@ -90,7 +90,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         }
 
         // Pass client or clientId?
-        // where proposer/creator == *this and *this.district
         public List<string> ViewClient(Client client)
         {
             var clientDetails = new List<string>()
@@ -104,7 +103,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 client.District.ToString()
             };
 
-            var clientsFromThisUser = (from i in InterventionManager.Interventions
+            var clientsForThisUser = (from i in InterventionManager.Interventions
                 where i.ProposerId == this.UserId || i.ApproverId == this.UserId
                 select i) as List<Intervention>;
 
@@ -112,9 +111,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             clientDetails.Add("Interventions");
             clientDetails.Add("-------------");
 
-            if (clientsFromThisUser != null && clientsFromThisUser.Any())
+            if (clientsForThisUser != null && clientsForThisUser.Any())
             {
-                clientDetails.AddRange(clientsFromThisUser.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed));
+                clientDetails.AddRange(clientsForThisUser.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed));
             }
             else
             {
@@ -122,13 +121,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
             }
 
-
             return clientDetails;
         }
 
         public void ViewInterventionsByClient(Client client)
         {
-            // ClientManager.Clients.Where(s => s.)
+            var clientId = client.ClientId;
+            var interventionsForClient = (from i in InterventionManager.Interventions
+                          where i.ClientId == clientId
+                          select i) as List<Intervention>;
         }
 
         public void EditQualityManagementInformation()
@@ -136,9 +137,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             
         }
 
-        public void CreateIntervention()
+        public void CreateIntervention(Intervention intervention)
         {
-            
+            InterventionManager.Add(intervention);
         }
 
         public void ViewCreatedInterventions()
