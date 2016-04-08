@@ -105,14 +105,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewClient_ClientWithIntervention_ClientDetailsDisplayed()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var engineer = new Engineer(31, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
 
-            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
+            var client = new Client(32, "The Client", "24 Main St, <further description...>", engineer.District);
 
             engineer.CreateClient(client);
 
             var intervention = new Intervention(
-                3,
+                33,
                 new DateTime(2016,2,15),
                 InterventionState.Proposed,
                 new List<QualityReport>(),
@@ -124,6 +124,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 client.ClientId  
                 );
 
+            
+
             engineer.CreateIntervention(intervention);
 
             var actual = engineer.ViewClient(client);
@@ -133,28 +135,88 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 "--------------",
                 "CLIENT DETAILS",
                 "--------------",
-                "2",
+                "32",
                 "The Client",
                 "24 Main St, <further description...>",
                 "Sydney",
                 "",
                 "Interventions",
                 "-------------",
-                "3 15/02/2016"
+                "33 15/02/2016"
             };
 
             CollectionAssert.AreEqual(actual, expected);
         }
 
         [TestMethod]
+        public void ViewClient_ClientWith2Interventions_ClientDetailsDisplayed()
+        {
+            var engineer = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+
+            var client = new Client(12, "The Client", "24 Main St, <further description...>", engineer.District);
+
+            engineer.CreateClient(client);
+
+            var intervention1 = new Intervention(
+                13,
+                new DateTime(2016, 2, 15),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "The Intervention",
+                2,
+                200,
+                engineer.UserId,
+                -1,
+                client.ClientId
+                );
+
+            var intervention2 = new Intervention(
+                18,
+                new DateTime(2016, 3, 20),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "Big Intervention",
+                3,
+                500,
+                engineer.UserId,
+                -1,
+                client.ClientId
+                );
+
+            engineer.CreateIntervention(intervention1);
+            engineer.CreateIntervention(intervention2);
+
+            var actual = engineer.ViewClient(client);
+
+            var expected = new List<string>()
+            {
+                "--------------",
+                "CLIENT DETAILS",
+                "--------------",
+                "12",
+                "The Client",
+                "24 Main St, <further description...>",
+                "Sydney",
+                "",
+                "Interventions",
+                "-------------",
+                "13 15/02/2016",
+                "18 20/03/2016"
+            };
+
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
+        [Ignore]
+        [TestMethod]
         public void SomeQuery()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var engineer = new Engineer(21, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
 
-            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
+            var client = new Client(22, "The Client", "24 Main St, <further description...>", engineer.District);
 
             var intervention = new Intervention(
-                3,
+                23,
                 new DateTime(2016, 2, 15),
                 InterventionState.Proposed,
                 new List<QualityReport>(),
