@@ -34,7 +34,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public void TransferADistrictStaff(int userId, DistrictName targetDistrict)
         {
-            
+            ((DistrictStaff) UserManager.GetUserById(userId)).ChangeDistrict(targetDistrict); // hope this works
         }
         public void ViewTotalCostsByEngineer() { }
         public void ViewAverageCostsByEngineer() { }
@@ -55,6 +55,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             HoursApprovalLimit = hoursApprovalLimit;
             CostApprovalLimit = costApprovalLimit;
             District = district;
+        }
+
+        public void ChangeDistrict(DistrictName targetDistrict)
+        {
+            District = targetDistrict;
         }
     }
 
