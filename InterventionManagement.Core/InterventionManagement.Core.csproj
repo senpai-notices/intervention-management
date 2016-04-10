@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="Exceptions\InterventionTemplateNumberException.cs" />
+    <Compile Include="Exceptions\InterventionTemplateNameException.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="InterventionManager.cs" />
     <Compile Include="ClientManager.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
@@ -30,16 +31,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
             return number > 0;
         }
-    }
-
-
-    public class InterventionTemplateNameException : Exception
-    {
-        public InterventionTemplateNameException(string message) { }
-    }
-
-    public class InterventionTemplateNumberException : Exception
-    {
-        public InterventionTemplateNumberException(string message) { }
     }
 }
