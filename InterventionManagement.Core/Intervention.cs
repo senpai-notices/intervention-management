@@ -12,6 +12,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public List<QualityReport> QualityReport { get; private set; }
         
         //public int InterventionTypeId { get; private set; }
+        // simplify names
         public string InterventionName { get; private set; }
         public decimal InterventionHours { get; private set; }
         public decimal InterventionCost { get; private set; }
@@ -35,5 +36,20 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             ApproverId = approverId;
             ClientId = clientId;
         }
+
+        public void ApproveIntervention()
+        {
+            State = InterventionState.Approved;
+        }
+        public void CancelIntervention()
+        {
+            State = InterventionState.Cancelled;
+        }
+
+        public void CompleteIntervention()
+        {
+            State = InterventionState.Completed;
+        }
+
     }
 }
