@@ -9,6 +9,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
     [TestClass]
     public class EngineerTests
     {
+        [TestCleanup()]
+        public void TestCleanup()
+        {
+            ClientManager.Clients.Clear();
+            InterventionManager.Interventions.Clear();
+        }
+
         [TestMethod]
         public void CreateClient_Normal_Exists()
         {
@@ -207,7 +214,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
-        [Ignore]
+        
         [TestMethod]
         public void SomeQuery()
         {
