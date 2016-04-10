@@ -56,7 +56,7 @@
     <Compile Include="EngineerTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="UserManagerTests.cs" />
-    <Compile Include="InterventionTypeTests.cs" />
+    <Compile Include="InterventionTemplateTests.cs" />
     <Compile Include="ClientTests.cs" />
     <Compile Include="UserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
