@@ -25,8 +25,7 @@ namespace InterventionManagement.Frontend.WebForms
         {
             if (ListBox1.SelectedItem != null)
             {
-                // Allowing opperation on selected item.
-                Button1.Text = ListBox1.SelectedItem.Text;
+                lbl_InterventionType.Text = ListBox1.SelectedItem.Text;
             }
         }
     }
