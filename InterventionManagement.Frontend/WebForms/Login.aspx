@@ -7,20 +7,20 @@
     <title></title>
 </head>
 <body>
-    <form id="form_Login" runat="server">
+    <form id="form_Login" runat="server" defaultbutton ="btnLogin">
     
     <div align="center">
 
     </div>    
     <div align="center">
         <asp:Label ID="Label1" runat="server" Text="Login ID"></asp:Label>
-        <asp:TextBox ID="txt_loginID" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txt_loginID" runat="server" OnTextChanged="txt_loginID_TextChanged"></asp:TextBox>
         <br />
         <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
-        <asp:TextBox ID="txt_loginPW" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="txt_loginPW" runat="server" TextMode="Password" OnTextChanged="txt_loginPW_TextChanged"></asp:TextBox>
         <br />
-        <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="btn_Cancel" />
-        <asp:Button ID="Button2" runat="server" Text="Login" OnClick="btn_Login" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btn_Cancel" />
+        <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btn_Login" />
     </div>
     </form>
 </body>
