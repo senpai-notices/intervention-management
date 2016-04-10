@@ -8,30 +8,23 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public int InterventionId { get; private set; }
         public DateTime DatePerformed { get; private set; }
         public InterventionState State { get; private set; }
+        public InterventionTemplate Template { get; private set; }
 
         public List<QualityReport> QualityReport { get; private set; }
-        
-        //public int InterventionTypeId { get; private set; }
-        // simplify names
-        public string InterventionName { get; private set; }
-        public decimal InterventionHours { get; private set; }
-        public decimal InterventionCost { get; private set; }
 
         public int ProposerId { get; private set; }
         public int ApproverId { get; private set; }
         public int ClientId { get; private set; }
 
-        public Intervention(int interventionId, DateTime datePerformed, InterventionState state, 
-            List<QualityReport> qualityReport, string interventionName, decimal interventionHours, 
-            decimal interventionCost, int proposerId, int approverId, int clientId)
+        public Intervention(int interventionId, DateTime datePerformed, InterventionState state,
+            InterventionTemplate template, List<QualityReport> qualityReport,
+            int proposerId, int approverId, int clientId)
         {
             InterventionId = interventionId;
             DatePerformed = datePerformed;
             State = state;
+            Template = template;
             QualityReport = qualityReport;
-            InterventionName = interventionName;
-            InterventionHours = interventionHours;
-            InterventionCost = interventionCost;
             ProposerId = proposerId;
             ApproverId = approverId;
             ClientId = clientId;
