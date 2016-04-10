@@ -18,6 +18,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             Password = UserValidator.ValidatePassword(password);
             Name = UserValidator.ValidateName(name.Trim());
         }
+
+        public void ChangePassword(string oldPassword, string newPassword, string confirmNewPassword)
+        {
+            if (oldPassword != Password) throw new Exception("Current password incorrect");
+            if (newPassword != confirmNewPassword) throw new Exception("New passwords do not match");
+
+            Password = newPassword;
+        }
     }
 
     public class Accountant : User
