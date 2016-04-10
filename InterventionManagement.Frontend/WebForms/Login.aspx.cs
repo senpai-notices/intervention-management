@@ -16,12 +16,16 @@ namespace InterventionManagement.Frontend.WebForms
 
         protected void btn_Cancel(object sender, EventArgs e)
         {
-            Label1.Text = "WOOOOOOOOOOOOOO";
+            
         }
 
         protected void btn_Login(object sender, EventArgs e)
         {
-            Label2.Text = "WOOOOOOOOOOOOOO";
+            if (txt_loginID.Text == "John Smith" && txt_loginPW.Text == "John Smith")
+                Response.Write("<script>alert('Success')</script>");
+            else
+                Response.Write("<script>alert('Failed')</script>");
+
         }
     }
 }
