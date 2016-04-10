@@ -28,7 +28,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         }
 
         public void ViewDistrictStaff() { }
-        public void ChangeDistrictOfDistrictStaff() { }
+        public void TransferADistrictStaff() { }
         public void ViewTotalCostsByEngineer() { }
         public void ViewAverageCostsByEngineer() { }
         public void ViewCostsByDistrict() { }
@@ -59,6 +59,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                   district)
         {
         }
+
+        public List<Intervention> ViewPendingInterventions()
+        {
+            return InterventionManager.Interventions
+                .Where(i => i.State == InterventionState.Proposed || 
+                ClientManager.GetClientById(i.ClientId).District == District)
+                .ToList();
+        }
+
+        public void ApproveIntervention(Intervention intervention)
+        {
+            intervention.ApproveIntervention(UserId);
+        }
     }
 
     public class Engineer : DistrictStaff
@@ -70,8 +83,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
         }
 
-        // Some of these methods will be placed in under DistrictStaff
-
         public void CreateClient(Client client)
         {
             ClientManager.Add(client);
@@ -79,7 +90,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public List<Client> ViewLocalClients()
         {
-            return ClientManager.Clients.Where(s => s.District == this.District).ToList();
+            return ClientManager.Clients.Where(s => s.District == District).ToList();
         }
 
         public List<string> ViewClient(Client client)
@@ -179,10 +190,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             switch (intervention.State)
             {
                 case InterventionState.Proposed:
-                    intervention.ApproveIntervention();
-                    break;
+                    throw new Exception("Intervention is not approved yet");
                 case InterventionState.Approved:
-                    throw new Exception("Intervention already approved");
+                    intervention.CompleteIntervention();
+                    break;
                 default:
                     throw new Exception("Invalid state");
             }
