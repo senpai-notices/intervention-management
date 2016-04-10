@@ -9,7 +9,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
     [TestClass]
     public class EngineerTests
     {
-        [TestCleanup()]
+        [TestCleanup]
         public void TestCleanup()
         {
             ClientManager.Clients.Clear();
