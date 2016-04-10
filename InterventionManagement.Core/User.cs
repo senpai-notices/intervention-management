@@ -27,8 +27,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
         }
 
-        public void ViewDistrictStaff() { }
-        public void TransferADistrictStaff() { }
+        public List<User> ViewDistrictStaff()
+        {
+            return UserManager.Users.Where(u => u.GetType() == typeof (DistrictStaff)).ToList(); // hope this works
+        }
+
+        public void TransferADistrictStaff(int userId, DistrictName targetDistrict)
+        {
+            
+        }
         public void ViewTotalCostsByEngineer() { }
         public void ViewAverageCostsByEngineer() { }
         public void ViewCostsByDistrict() { }
