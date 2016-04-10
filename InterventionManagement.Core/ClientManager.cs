@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
@@ -13,11 +12,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public static void Add(Client client)
         {
             _clients.Add(client);
-        }
-
-        public static Client GetClientById(int clientId)
-        {
-            return _clients.FirstOrDefault(c => c.ClientId == clientId);
         }
     }
 }

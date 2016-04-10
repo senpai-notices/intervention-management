@@ -16,12 +16,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 
         public static User GetUserByUsername(string username)
         {
-            return _users.FirstOrDefault(u => u.Username == username);
-        }
-
-        public static User GetUserById(int userId)
-        {
-            return _users.FirstOrDefault(u => u.UserId == userId);
+            return _users.FirstOrDefault(x => x.Username == username);
         }
 
         public static User Login(string username, string password)

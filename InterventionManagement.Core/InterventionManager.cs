@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
@@ -13,11 +12,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public static void Add(Intervention intervention)
         {
             _interventions.Add(intervention);
-        }
-
-        public static Intervention GetInterventionById(int interventionId)
-        {
-            return _interventions.FirstOrDefault(i => i.InterventionId == interventionId);
         }
     }
 }
