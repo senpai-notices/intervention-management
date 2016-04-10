@@ -93,15 +93,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 client.Location,
                 client.District.ToString()
             };
-/*       
-                var interventionsOfClient = (
-                from i in InterventionManager.Interventions
-                where i.ClientId == client.ClientId
-                select i
-                ) as List<Intervention>;
-*/
-// Above is the failed version of the below. I think they're the same query but the above couldn't match a result
-
+            #region old query
+            /*       
+                            var interventionsOfClient = (
+                            from i in InterventionManager.Interventions
+                            where i.ClientId == client.ClientId
+                            select i
+                            ) as List<Intervention>;
+            */
+            // Above is the failed version of the below. I think they're the same query but the above couldn't match a result
+#endregion
             var interventionsOfClient =
                 InterventionManager.Interventions.Where(i => i.ClientId == client.ClientId).ToList();
 
@@ -122,16 +123,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             return clientDetails;
         }
 
-        public void ViewInterventionsByClient(Client client)
-        {
-            var clientId = client.ClientId;
-            var interventionsForClient = (from i in InterventionManager.Interventions
-                          where i.ClientId == clientId
-                          select i) as List<Intervention>;
-
-            // return as List<String>
-        }
-
         public void EditQualityManagementInformation()
         {
             
@@ -145,7 +136,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         public void ViewCreatedInterventions()
         { }
 
-        public void ChangeInterventionState()
+        public void CancelIntervention()
+        { }
+
+        public void CompleteIntervention()
         { }
     }
 }
