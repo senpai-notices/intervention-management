@@ -3,23 +3,23 @@ using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
 {
-    public class UserManager : IManager<User>
+    public static class UserManager
     {
-        private readonly List<User> _users = new List<User>();
+        private static readonly List<User> _users = new List<User>();
 
-        public List<User> Users => _users;
+        public static List<User> Users => _users;
 
-        public void Add(User user)
+        public static void Add(User user)
         {
             _users.Add(user);
         }
 
-        public User GetUserByUsername(string username)
+        public static User GetUserByUsername(string username)
         {
             return _users.FirstOrDefault(x => x.Username == username);
         }
 
-        public User Login(string username, string password)
+        public static User Login(string username, string password)
         {
             var user = GetUserByUsername(username);
 
