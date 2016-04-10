@@ -85,7 +85,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             intervention.ApproveIntervention(UserId);
         }
 
-        public void CancelIntervention(Intervention intervention)
+        public void CancelIntervention(Intervention intervention) // interface of district staff?
         {
             intervention.CancelIntervention();
         }
