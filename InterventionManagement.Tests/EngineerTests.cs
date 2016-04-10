@@ -317,6 +317,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
+        [Ignore]
+        [TestMethod]
+        public void ChangeState()
+        {
+            
+        }
+
         [TestMethod]
         public void SomeQuery()
         {
