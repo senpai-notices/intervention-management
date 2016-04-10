@@ -53,7 +53,7 @@
     <Compile Include="Exceptions\UserIdIsNegativeException.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
-    <Compile Include="InterventionType.cs" />
+    <Compile Include="InterventionTemplate.cs" />
     <Compile Include="QualityReport.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
