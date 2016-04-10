@@ -84,6 +84,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
             intervention.ApproveIntervention(UserId);
         }
+
+        public void CancelIntervention(Intervention intervention)
+        {
+            intervention.CancelIntervention();
+        }
     }
 
     public class Engineer : DistrictStaff
