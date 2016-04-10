@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
@@ -123,23 +124,68 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             return clientDetails;
         }
 
-        public void EditQualityManagementInformation()
-        {
-            
-        }
+        public void EditQualityManagementInformation(Intervention intervention)
+        { }
 
         public void CreateIntervention(Intervention intervention)
         {
             InterventionManager.Add(intervention);
         }
 
-        public void ViewCreatedInterventions()
-        { }
+        public List<string> ViewCreatedInterventions()
+        {
+            var results = InterventionManager.Interventions.Where(i => i.ProposerId == UserId).ToList();
 
-        public void CancelIntervention()
-        { }
+            var output = new List<string>()
+            {
+                "----------------------",
+                "PREVIOUS INTERVENTIONS",
+                "----------------------"
+            };
 
-        public void CompleteIntervention()
-        { }
+            if (results.Any())
+            {
+                output.AddRange(results.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed.Date.ToShortDateString()).ToList());
+            }
+            else
+            {
+                output.Add("None");
+            }
+
+            return output;
+        }
+
+        public void CancelIntervention(Intervention intervention)
+        {
+            if (intervention.ProposerId != UserId) throw new Exception("User does not have permissions for this intervention");
+
+            switch (intervention.State)
+            {
+                case InterventionState.Proposed:
+                case InterventionState.Approved:
+                    intervention.CancelIntervention();
+                    break;
+                case InterventionState.Cancelled:
+                    throw new Exception("Intervention already cancelled");
+                default:
+                    throw new Exception("Invalid state");
+            }
+        }
+
+        public void CompleteIntervention(Intervention intervention)
+        {
+            if (intervention.ProposerId != UserId) throw new Exception("User does not have permissions for this intervention");
+
+            switch (intervention.State)
+            {
+                case InterventionState.Proposed:
+                    intervention.ApproveIntervention();
+                    break;
+                case InterventionState.Approved:
+                    throw new Exception("Intervention already approved");
+                default:
+                    throw new Exception("Invalid state");
+            }
+        }
     }
 }
