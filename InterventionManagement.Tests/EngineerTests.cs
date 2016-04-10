@@ -9,6 +9,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
     [TestClass]
     public class EngineerTests
     {
+        [TestCleanup()]
+        public void TestCleanup()
+        {
+            ClientManager.Clients.Clear();
+            InterventionManager.Interventions.Clear();
+        }
+
         [TestMethod]
         public void CreateClient_Normal_Exists()
         {
@@ -207,7 +214,116 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
+        [TestMethod]
+        public void ViewPreviousInterventions_InterventionsCreated_InterventionsDisplayed()
+        {
+            // engineer1 creates 2 clients and 2 interventions
+            var engineer1 = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var engineer2 = new Engineer(37, "joe", "password", "Joe Smith", 3.5m, 800m, DistrictName.Sydney);
+
+            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer1.District);
+            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer1.District);
+            var client3 = new Client(14, "UTS", "Broadway", engineer2.District);
+
+            var intervention1 = new Intervention(
+                13,
+                new DateTime(2016, 2, 15),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "The Intervention",
+                2,
+                200,
+                engineer1.UserId,
+                -1,
+                client1.ClientId
+                );
+
+            var intervention2 = new Intervention(
+                18,
+                new DateTime(2016, 3, 20),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "Big Intervention",
+                3,
+                500,
+                engineer1.UserId,
+                -1,
+                client2.ClientId
+                );
+
+            var intervention3 = new Intervention(
+                20,
+                new DateTime(2016, 3, 21),
+                InterventionState.Proposed,
+                new List<QualityReport>(),
+                "Fun Intervention",
+                3,
+                500,
+                engineer2.UserId,
+                -1,
+                client3.ClientId
+                );
+
+            engineer1.CreateClient(client1);
+            engineer1.CreateClient(client2);
+            engineer1.CreateIntervention(intervention1);
+            engineer1.CreateIntervention(intervention2);
+
+            engineer2.CreateClient(client3);
+            engineer2.CreateIntervention(intervention3);
+
+            var actual1 = engineer1.ViewCreatedInterventions();
+            var actual2 = engineer2.ViewCreatedInterventions();
+
+            var expected1 = new List<string>()
+            {
+                "----------------------",
+                "PREVIOUS INTERVENTIONS",
+                "----------------------",
+                "13 15/02/2016",
+                "18 20/03/2016"
+            };
+            var expected2 = new List<string>()
+            {
+                "----------------------",
+                "PREVIOUS INTERVENTIONS",
+                "----------------------",
+                "20 21/03/2016"
+            };
+
+            CollectionAssert.AreEqual(actual1, expected1);
+            CollectionAssert.AreEqual(actual2, expected2);
+        }
+
+        [TestMethod]
+        public void ViewPreviousInterventions_NoInterventions_NoneDisplayed()
+        {
+            var engineer = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer.District);
+            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer.District);
+
+            engineer.CreateClient(client1);
+            engineer.CreateClient(client2);
+
+            var actual = engineer.ViewCreatedInterventions();
+            var expected = new List<string>()
+            {
+                "----------------------",
+                "PREVIOUS INTERVENTIONS",
+                "----------------------",
+                "None"
+            };
+
+            CollectionAssert.AreEqual(actual, expected);
+        }
+
         [Ignore]
+        [TestMethod]
+        public void ChangeState()
+        {
+            
+        }
+
         [TestMethod]
         public void SomeQuery()
         {
