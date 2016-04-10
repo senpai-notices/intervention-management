@@ -34,8 +34,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             ClientId = clientId;
         }
 
-        public void ApproveIntervention()
+        public void ApproveIntervention(int approverId)
         {
+            ApproverId = approverId;
             State = InterventionState.Approved;
         }
         public void CancelIntervention()
