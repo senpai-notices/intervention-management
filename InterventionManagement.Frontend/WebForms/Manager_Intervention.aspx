@@ -8,13 +8,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+    
     <div align="center">
     
-        <asp:ListBox ID="list_Interventions" runat="server" Width="140px">
-            <asp:ListItem>Intervention 1</asp:ListItem>
-            <asp:ListItem>Intervention 2</asp:ListItem>
-            <asp:ListItem>Intervention 3</asp:ListItem>
-        </asp:ListBox>
+       <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
+  
         <br />
         <asp:Button ID="Button1" runat="server" Text="View Intervention" OnClick="ViewIntervention_Click" />
     

@@ -11,14 +11,23 @@ namespace InterventionManagement.Frontend.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                List<string> data = new List<string> { "Woop Woop 1", "Boop boop2", "Scoop Scoop", "Meep Meep" };
 
-        }
+                ListBox1.DataSource = data;
+                ListBox1.DataBind();
+
+            }
+          }
 
         protected void ViewIntervention_Click(object sender, EventArgs e)
         {
-            var tmp = list_Interventions.SelectedValue;
-
-            Button1.Text =  tmp.ToString();
+            if (ListBox1.SelectedItem != null)
+            {
+                // Allowing opperation on selected item.
+                Button1.Text = ListBox1.SelectedItem.Text;
+            }
         }
     }
 }
