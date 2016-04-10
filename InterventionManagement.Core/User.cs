@@ -109,8 +109,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             clientDetails.Add("Interventions");
             clientDetails.Add("-------------");
 
-            // test when != null is removed
-            if (interventionsOfClient != null && interventionsOfClient.Any())
+            if (interventionsOfClient.Any())
             {
                 clientDetails.AddRange(interventionsOfClient.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed.Date.ToShortDateString()));
             }
