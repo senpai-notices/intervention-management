@@ -8,7 +8,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
         public int InterventionId { get; private set; }
         public DateTime DatePerformed { get; private set; }
         public InterventionState State { get; private set; }
-        private InterventionTemplate Template { get; set; }
+
+        public string Name { get; private set; }
         public decimal Hours { get; private set; }
         public decimal Cost { get; private set; }
 
@@ -25,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
             InterventionId = interventionId;
             DatePerformed = datePerformed;
             State = state;
-            Template = template;
+            Name = template.Name;
             Hours = template.Hours;
             Cost = template.Cost;
             QualityReport = qualityReport;
