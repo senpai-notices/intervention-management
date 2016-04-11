@@ -95,8 +95,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention = new Intervention(
                 3,
                 new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                new List<QualityReport>(), 
+                new InterventionTemplate("Mosquito Nets", 10, 10), 
                 engineer.UserId,
                 -1,
                 client.ClientId);
@@ -120,7 +119,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 33,
                 new DateTime(2016,2,15),
                 new InterventionTemplate("Mosquito Nets", 10, 10),
-                new List<QualityReport>(),
                 engineer.UserId,
                 -1,
                 client.ClientId  
@@ -163,7 +161,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 13,
                 new DateTime(2016, 2, 15),
                 new InterventionTemplate("Mosquito Nets", 10, 10),
-                new List<QualityReport>(),
                 engineer.UserId,
                 -1,
                 client.ClientId
@@ -173,7 +170,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 18,
                 new DateTime(2016, 3, 20),
                 new InterventionTemplate("Mosquito Nets 2", 100, 100),
-                new List<QualityReport>(),
                 engineer.UserId,
                 -1,
                 client.ClientId
@@ -218,7 +214,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 13,
                 new DateTime(2016, 2, 15),
                 new InterventionTemplate("Mosquito Nets", 10, 10),
-                new List<QualityReport>(),
                 engineer1.UserId,
                 -1,
                 client1.ClientId
@@ -228,7 +223,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 18,
                 new DateTime(2016, 3, 20),
                 new InterventionTemplate("Mosquito Nets 2", 100, 100),
-                new List<QualityReport>(),
                 engineer1.UserId,
                 -1,
                 client2.ClientId
@@ -238,7 +232,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 20,
                 new DateTime(2016, 3, 21),
                 new InterventionTemplate("Fun Nets", 10, 10),
-                new List<QualityReport>(),
                 engineer2.UserId,
                 -1,
                 client3.ClientId
@@ -315,7 +308,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 23,
                 new DateTime(2016, 2, 15),
                 new InterventionTemplate("Mosquito Nets", 10, 10),
-                new List<QualityReport>(),
                 engineer.UserId,
                 -1,
                 client.ClientId
