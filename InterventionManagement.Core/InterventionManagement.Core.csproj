@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
-    <Compile Include="IManager.cs" />
+    <Compile Include="Exceptions\InterventionTemplateNumberException.cs" />
+    <Compile Include="Exceptions\InterventionTemplateNameException.cs" />
     <Compile Include="InterventionManager.cs" />
     <Compile Include="ClientManager.cs" />
     <Compile Include="ClientValidator.cs" />
@@ -53,7 +54,7 @@
     <Compile Include="Exceptions\UserIdIsNegativeException.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
-    <Compile Include="InterventionType.cs" />
+    <Compile Include="InterventionTemplate.cs" />
     <Compile Include="QualityReport.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

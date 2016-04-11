@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
@@ -17,6 +18,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             Password = UserValidator.ValidatePassword(password);
             Name = UserValidator.ValidateName(name.Trim());
         }
+
+        public void ChangePassword(string oldPassword, string newPassword, string confirmNewPassword)
+        {
+            if (oldPassword != Password) throw new Exception("Current password incorrect");
+            if (newPassword != confirmNewPassword) throw new Exception("New passwords do not match");
+
+            Password = newPassword;
+        }
     }
 
     public class Accountant : User
@@ -26,8 +35,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
         }
 
-        public void ViewDistrictStaff() { }
-        public void ChangeDistrictOfDistrictStaff() { }
+        public List<User> ViewDistrictStaff()
+        {
+            return UserManager.Users.Where(u => u.GetType() == typeof (DistrictStaff)).ToList(); // hope this works
+        }
+
+        public void TransferADistrictStaff(int userId, DistrictName targetDistrict)
+        {
+            ((DistrictStaff) UserManager.GetUserById(userId)).ChangeDistrict(targetDistrict); // hope this works
+        }
         public void ViewTotalCostsByEngineer() { }
         public void ViewAverageCostsByEngineer() { }
         public void ViewCostsByDistrict() { }
@@ -48,6 +64,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             CostApprovalLimit = costApprovalLimit;
             District = district;
         }
+
+        public void ChangeDistrict(DistrictName targetDistrict)
+        {
+            District = targetDistrict;
+        }
     }
 
     public class Manager : DistrictStaff
@@ -57,6 +78,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
+        }
+
+        public List<Intervention> ViewPendingInterventions()
+        {
+            return InterventionManager.Interventions
+                .Where(i => i.State == InterventionState.Proposed || 
+                ClientManager.GetClientById(i.ClientId).District == District)
+                .ToList();
+        }
+
+        public void ApproveIntervention(Intervention intervention)
+        {
+            intervention.ApproveIntervention(UserId);
+        }
+
+        public void CancelIntervention(Intervention intervention) // interface of district staff?
+        {
+            intervention.CancelIntervention();
         }
     }
 
@@ -69,27 +108,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
         {
         }
 
-        // Some of these methods will be placed in under DistrictStaff
-
         public void CreateClient(Client client)
         {
             ClientManager.Add(client);
         }
 
-        // It should be void with cw but I am making this testable
         public List<Client> ViewLocalClients()
         {
-            return ClientManager.Clients.Where(s => s.District == this.District).ToList();
-            
-            /*
-            foreach (var client in result)
-            {
-                Console.WriteLine(client.Name);
-            }
-            */
+            return ClientManager.Clients.Where(s => s.District == District).ToList();
         }
 
-        // Pass client or clientId?
         public List<string> ViewClient(Client client)
         {
             var clientDetails = new List<string>()
@@ -102,18 +130,26 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                 client.Location,
                 client.District.ToString()
             };
-
-            var clientsForThisUser = (from i in InterventionManager.Interventions
-                where i.ProposerId == this.UserId || i.ApproverId == this.UserId
-                select i) as List<Intervention>;
+            #region old query
+            /*       
+                            var interventionsOfClient = (
+                            from i in InterventionManager.Interventions
+                            where i.ClientId == client.ClientId
+                            select i
+                            ) as List<Intervention>;
+            */
+            // Above is the failed version of the below. I think they're the same query but the above couldn't match a result
+#endregion
+            var interventionsOfClient =
+                InterventionManager.Interventions.Where(i => i.ClientId == client.ClientId).ToList();
 
             clientDetails.Add("");
             clientDetails.Add("Interventions");
             clientDetails.Add("-------------");
 
-            if (clientsForThisUser != null && clientsForThisUser.Any())
+            if (interventionsOfClient.Any())
             {
-                clientDetails.AddRange(clientsForThisUser.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed));
+                clientDetails.AddRange(interventionsOfClient.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed.Date.ToShortDateString()));
             }
             else
             {
@@ -124,30 +160,68 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
             return clientDetails;
         }
 
-        public void ViewInterventionsByClient(Client client)
-        {
-            var clientId = client.ClientId;
-            var interventionsForClient = (from i in InterventionManager.Interventions
-                          where i.ClientId == clientId
-                          select i) as List<Intervention>;
-        }
-
-        public void EditQualityManagementInformation()
-        {
-            
-        }
+        public void EditQualityManagementInformation(Intervention intervention)
+        { }
 
         public void CreateIntervention(Intervention intervention)
         {
             InterventionManager.Add(intervention);
         }
 
-        public void ViewCreatedInterventions()
-        { }
+        public List<string> ViewCreatedInterventions()
+        {
+            var results = InterventionManager.Interventions.Where(i => i.ProposerId == UserId).ToList();
 
-        public void ChangeInterventionState()
-        { }
+            var output = new List<string>()
+            {
+                "----------------------",
+                "PREVIOUS INTERVENTIONS",
+                "----------------------"
+            };
 
-        // http://www.thedatastack.com/2015/05/05/unit-test-a-repository-with-mocking-using-nsubstitute/
+            if (results.Any())
+            {
+                output.AddRange(results.Select(intervention => intervention.InterventionId + " " + intervention.DatePerformed.Date.ToShortDateString()).ToList());
+            }
+            else
+            {
+                output.Add("None");
+            }
+
+            return output;
+        }
+
+        public void CancelIntervention(Intervention intervention)
+        {
+            if (intervention.ProposerId != UserId) throw new Exception("User does not have permissions for this intervention");
+
+            switch (intervention.State)
+            {
+                case InterventionState.Proposed:
+                case InterventionState.Approved:
+                    intervention.CancelIntervention();
+                    break;
+                case InterventionState.Cancelled:
+                    throw new Exception("Intervention already cancelled");
+                default:
+                    throw new Exception("Invalid state");
+            }
+        }
+
+        public void CompleteIntervention(Intervention intervention)
+        {
+            if (intervention.ProposerId != UserId) throw new Exception("User does not have permissions for this intervention");
+
+            switch (intervention.State)
+            {
+                case InterventionState.Proposed:
+                    throw new Exception("Intervention is not approved yet");
+                case InterventionState.Approved:
+                    intervention.CompleteIntervention();
+                    break;
+                default:
+                    throw new Exception("Invalid state");
+            }
+        }
     }
 }
