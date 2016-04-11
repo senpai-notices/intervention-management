@@ -19,13 +19,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
         public int ApproverId { get; private set; }
         public int ClientId { get; private set; }
 
-        public Intervention(int interventionId, DateTime datePerformed, InterventionState state,
-            InterventionTemplate template, List<QualityReport> qualityReport,
-            int proposerId, int approverId, int clientId)
+        public Intervention(int interventionId, DateTime datePerformed, InterventionTemplate template, List<QualityReport> qualityReport, int proposerId, int approverId, int clientId)
         {
             InterventionId = interventionId;
             DatePerformed = datePerformed;
-            State = state;
+            State = InterventionState.Proposed;
             Name = template.Name;
             Hours = template.Hours;
             Cost = template.Cost;

@@ -95,7 +95,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention = new Intervention(
                 3,
                 new DateTime(2016, 2, 15),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets", 10, 10),
                 new List<QualityReport>(), 
                 engineer.UserId,
@@ -120,7 +119,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention = new Intervention(
                 33,
                 new DateTime(2016,2,15),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets", 10, 10),
                 new List<QualityReport>(),
                 engineer.UserId,
@@ -164,7 +162,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention1 = new Intervention(
                 13,
                 new DateTime(2016, 2, 15),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets", 10, 10),
                 new List<QualityReport>(),
                 engineer.UserId,
@@ -175,7 +172,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention2 = new Intervention(
                 18,
                 new DateTime(2016, 3, 20),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets 2", 100, 100),
                 new List<QualityReport>(),
                 engineer.UserId,
@@ -221,7 +217,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention1 = new Intervention(
                 13,
                 new DateTime(2016, 2, 15),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets", 10, 10),
                 new List<QualityReport>(),
                 engineer1.UserId,
@@ -232,7 +227,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention2 = new Intervention(
                 18,
                 new DateTime(2016, 3, 20),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets 2", 100, 100),
                 new List<QualityReport>(),
                 engineer1.UserId,
@@ -243,7 +237,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention3 = new Intervention(
                 20,
                 new DateTime(2016, 3, 21),
-                InterventionState.Proposed,
                 new InterventionTemplate("Fun Nets", 10, 10),
                 new List<QualityReport>(),
                 engineer2.UserId,
@@ -321,7 +314,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             var intervention = new Intervention(
                 23,
                 new DateTime(2016, 2, 15),
-                InterventionState.Proposed,
                 new InterventionTemplate("Mosquito Nets", 10, 10),
                 new List<QualityReport>(),
                 engineer.UserId,
