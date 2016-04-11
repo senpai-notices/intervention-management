@@ -52,8 +52,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AccountantTests.cs" />
     <Compile Include="ClientManagerTests.cs" />
     <Compile Include="EngineerTests.cs" />
+    <Compile Include="ManagerTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="UserManagerTests.cs" />
     <Compile Include="InterventionTemplateTests.cs" />
