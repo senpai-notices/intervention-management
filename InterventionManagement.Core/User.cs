@@ -223,5 +223,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core
                     throw new Exception("Invalid state");
             }
         }
+
+        public void ApproveIntervention(Intervention intervention)
+        {
+            // TODO
+        }
     }
 }
