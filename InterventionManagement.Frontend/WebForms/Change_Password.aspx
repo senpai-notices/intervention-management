@@ -20,6 +20,8 @@
             <asp:Label ID="Label_ExistingPassword" runat="server" Text="Type your existing password to verify this change:"></asp:Label>
             <asp:TextBox ID="TextBox_ExistingPassword" runat="server"></asp:TextBox>
         </p>
+        <asp:Button ID="Button_Save" runat="server" Text="Save" />
+        <asp:Button ID="Button_Cancel" runat="server" Text="Cancel" />
     </form>
 </body>
 </html>
