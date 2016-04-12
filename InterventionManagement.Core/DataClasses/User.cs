@@ -162,12 +162,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
             return clientDetails;
         }
 
-        /*public List<QualityReport> ViewQualityReports(Intervention intervention)
+        public List<QualityReport> ViewQualityReports(Intervention intervention)
         {
-        }*/
+            return QualityReportManager.QualityReports.Where(q => q.InterventionId == intervention.InterventionId).ToList();
+        }
 
-        public void EditQualityReport(Intervention intervention, int qualityReportId, string newNotes, decimal newEffectiveLife)
+        public void EditQualityReport(int qualityReportId, string newNotes, decimal newEffectiveLife)
         {
+            QualityReportManager.Edit(qualityReportId, newNotes, newEffectiveLife);
+        }
+
+        public void AddQualityReport(QualityReport qualityReport)
+        {
+            QualityReportManager.Add(qualityReport);
         }
 
         public void CreateIntervention(Intervention intervention)

@@ -290,6 +290,82 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
+        [TestMethod]
+        public void ViewQualityReports_Normal_QualityReportsDisplayed()
+        {
+            var engineer1 = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            var engineer2 = new Engineer(37, "joe", "password", "Joe Smith", 3.5m, 800m, DistrictName.Sydney);
+
+            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer1.District);
+            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer1.District);
+            var client3 = new Client(14, "UTS", "Broadway", engineer2.District);
+
+            var intervention1 = new Intervention(
+                13,
+                new DateTime(2016, 2, 15),
+                new InterventionTemplate("Mosquito Nets", 10, 10),
+                engineer1.UserId,
+                -1,
+                client1.ClientId
+                );
+
+            var intervention2 = new Intervention(
+                18,
+                new DateTime(2016, 3, 20),
+                new InterventionTemplate("Mosquito Nets 2", 100, 100),
+                engineer1.UserId,
+                -1,
+                client2.ClientId
+                );
+
+            var intervention3 = new Intervention(
+                20,
+                new DateTime(2016, 3, 21),
+                new InterventionTemplate("Fun Nets", 10, 10),
+                engineer2.UserId,
+                -1,
+                client3.ClientId
+                );
+
+            engineer1.CreateClient(client1);
+            engineer1.CreateClient(client2);
+            engineer1.CreateIntervention(intervention1);
+            engineer1.CreateIntervention(intervention2);
+
+            engineer2.CreateClient(client3);
+            engineer2.CreateIntervention(intervention3);
+
+            var qualityReport1 = new QualityReport(71, new DateTime(2016 ,4, 1), "Notes!", 90, intervention1.InterventionId);
+            var qualityReport2 = new QualityReport(72, new DateTime(2016 ,4, 2), "Some notes!", 75, intervention2.InterventionId);
+            var qualityReport3 = new QualityReport(73, new DateTime(2016 ,4, 3), "Depreciation", 60, intervention1.InterventionId);
+            engineer1.AddQualityReport(qualityReport1);
+            engineer1.AddQualityReport(qualityReport2);
+            engineer1.AddQualityReport(qualityReport3);
+
+            var qualityReport4 = new QualityReport(74, new DateTime(2016, 4, 3), "Big notes!", 28, intervention3.InterventionId);
+            engineer2.AddQualityReport(qualityReport4);
+
+            var expected1 = new List<QualityReport>()
+            {
+                qualityReport1,
+                qualityReport3
+            };
+
+            var actual1 = engineer1.ViewQualityReports(intervention1);
+
+            CollectionAssert.AreEqual(expected1, actual1);
+
+            var expected2 = new List<QualityReport>()
+            {
+                qualityReport4
+            };
+
+            var actual2 = engineer2.ViewQualityReports(intervention3);
+            
+            CollectionAssert.AreEqual(expected2, actual2);
+
+        }
+
         [Ignore]
         [TestMethod]
         public void ChangeState()

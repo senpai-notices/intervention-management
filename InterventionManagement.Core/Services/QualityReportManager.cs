@@ -19,5 +19,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Services
         {
             return _qualityReports.FirstOrDefault(i => i.QualityReportId == qualityReportId);
         }
+
+        public static void Edit(int qualityReportId, string newNotes, decimal newEffectiveLife)
+        {
+            _qualityReports.Find(q => q.QualityReportId == qualityReportId).EditNotes(newNotes);
+            _qualityReports.Find(q => q.QualityReportId == qualityReportId).EditEffectiveLife(newEffectiveLife);
+        }
     }
 }

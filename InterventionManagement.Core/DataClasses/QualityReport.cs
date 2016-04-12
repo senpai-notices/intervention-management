@@ -20,5 +20,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
             EffectiveLife = effectiveLife;
             InterventionId = interventionId;
         }
+
+        public void EditNotes(string newNotes)
+        {
+            Notes = newNotes;
+        }
+
+        public void EditEffectiveLife(decimal newEffectiveLife)
+        {
+            EffectiveLife = newEffectiveLife;
+        }
     }
 }
