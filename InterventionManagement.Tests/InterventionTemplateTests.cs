@@ -42,7 +42,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [ExpectedException(typeof(InterventionTemplateNumberException))]
         public void InterventionTemplateNoHoursException()
         {
-            var sut = new InterventionTemplate("Mosquito Nets", 0, 40);
+            var sut = new InterventionTemplate("Mosquito Nets", -10, 40);
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [ExpectedException(typeof(InterventionTemplateNumberException))]
         public void InterventionTemplateNoCostException()
         {
-            var sut = new InterventionTemplate("Mosquito Nets", 1, 0);
+            var sut = new InterventionTemplate("Mosquito Nets", 1, -10);
         }
     }
 }
