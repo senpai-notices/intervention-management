@@ -214,6 +214,7 @@
     <Content Include="WebForms\Engineer_Clients.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <Content Include="WebForms\Manager_Intervention.aspx" />
+    <Content Include="WebForms\View_Client.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -449,6 +450,13 @@
     </Compile>
     <Compile Include="WebForms\Manager_Intervention.aspx.designer.cs">
       <DependentUpon>Manager_Intervention.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\View_Client.aspx.cs">
+      <DependentUpon>View_Client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\View_Client.aspx.designer.cs">
+      <DependentUpon>View_Client.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
