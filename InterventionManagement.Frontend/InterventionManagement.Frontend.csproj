@@ -211,6 +211,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="WebForms\Add_New_Client.aspx" />
+    <Content Include="WebForms\Change_Password.aspx" />
     <Content Include="WebForms\Engineer_Clients.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <Content Include="WebForms\Manager_Intervention.aspx" />
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="WebForms\Add_New_Client.aspx.designer.cs">
       <DependentUpon>Add_New_Client.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Change_Password.aspx.cs">
+      <DependentUpon>Change_Password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Change_Password.aspx.designer.cs">
+      <DependentUpon>Change_Password.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Engineer_Clients.aspx.cs">
       <DependentUpon>Engineer_Clients.aspx</DependentUpon>
