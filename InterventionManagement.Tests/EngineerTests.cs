@@ -10,50 +10,54 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
     [TestClass]
     public class EngineerTests
     {
-        [TestCleanup]
-        public void TestCleanup()
-        {
-            ClientManager.Clients.Clear();
-            InterventionManager.Interventions.Clear();
-            UserManager.Users.Clear();
-            QualityReportManager.QualityReports.Clear();
-        }
+        private Engineer _eAlice;
+        private Engineer _eSam;
+        private Engineer _eGeorge;
+        private Manager _mDavy;
+        private Manager _mDena;
+        private Accountant _aCarol;
+
+        private Client _client1;
+        private Client _client2;
+        private Client _client3;
+
+        private Intervention _intervention1;
+        private Intervention _intervention2;
+        private Intervention _intervention3;
+
+        private InterventionTemplate _tPortableToilet;
+        private InterventionTemplate _tHepatitis;
+        private InterventionTemplate _tStormProof;
+        private InterventionTemplate _tMosquitoNet;
+        private InterventionTemplate _tWaterPump;
+        private InterventionTemplate _tWaterFilter;
+        private InterventionTemplate _tSewerage;
+
+        private QualityReport _qualityReport1;
+        private QualityReport _qualityReport2;
+        private QualityReport _qualityReport3;
+        private QualityReport _qualityReport4;
+
 
         [TestMethod]
-        public void CreateClient_Normal_Exists()
+        public void Create_Client_Normal_Exists()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.RuralNewSouthWales);
-            var client = new Client(1, "The Client", "24 Main St, <further description", engineer.District);
-
-            engineer.CreateClient(client);
+            _eAlice.CreateClient(_client1);
 
             Assert.IsNotNull(ClientManager.Clients);
-            Assert.AreEqual(true, ClientManager.Clients.Contains(client));
-            Assert.AreEqual(client, ClientManager.Clients.First());
+            Assert.AreEqual(true, ClientManager.Clients.Contains(_client1));
+            Assert.AreEqual(_client1, ClientManager.Clients.First());
         }
 
         [TestMethod]
         public void ViewLocalClients_Normal_OnlyLocalClientsDisplayed()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
+            _eSam.CreateClient(_client2);
+            _eSam.CreateClient(_client3);
 
-            // Engineer creates (local) clients
-            var localClient1 = new Client(1, "The Client", "24 Main St, <further description", engineer.District);
-            var localClient2 = new Client(2, "Community Bravo", "24 Main St, <further description", engineer.District);
-            var localClient3 = new Client(3, "UTS Students", "24 Main St, <further description", engineer.District);
-
-            engineer.CreateClient(localClient1);
-            engineer.CreateClient(localClient2);
-            engineer.CreateClient(localClient3);
-
-            // Other clients created
-            ClientManager.Add(new Client(4, "Big Client", "24 Main St, <further description", DistrictName.UrbanIndonesia));
-            ClientManager.Add(new Client(5, "Smith Family", "24 Main St, <further description", DistrictName.RuralNewSouthWales));
-            ClientManager.Add(new Client(6, "Community Alpha", "24 Main St, <further description", DistrictName.UrbanPapuaNewGuineea));
-
-            var actual = engineer.ViewLocalClients();
-
-            var expected = new List<Client> {localClient1, localClient2, localClient3};
+            var actual = _eAlice.ViewLocalClients();
+            var expected = new List<Client>() { _client1, _client2 };
 
             CollectionAssert.AreEqual(actual, expected);
         }
@@ -61,23 +65,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewClient_ClientWithNoInterventions_ClientDetailsDisplayed()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
 
-            var client = new Client(1, "The Client", "24 Main St, <further description...>", engineer.District);
-
-            engineer.CreateClient(client);
-
-            var actual = engineer.ViewClient(client);
-
+            var actual = _eAlice.ViewClient(_client1);
             var expected = new List<string>()
             {
                 "--------------",
                 "CLIENT DETAILS",
                 "--------------",
-                "1",
+                "21",
                 "The Client",
-                "24 Main St, <further description...>",
-                "Sydney",
+                "24 Main St, blue house",
+                "RuralPapuaNewGuinea",
                 "",
                 "Interventions",
                 "-------------",
@@ -87,64 +86,34 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             CollectionAssert.AreEqual(actual, expected);
         }
 
-
         [TestMethod]
         public void CreateIntervention_Normal_Exists()
         {
-            var engineer = new Engineer(1, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-            var client = new Client(2, "The Client", "24 Main St, <further description...>", engineer.District);
+            _eAlice.CreateIntervention(_intervention1);
 
-            var intervention = new Intervention(
-                3,
-                new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10), 
-                engineer.UserId,
-                -1,
-                client.ClientId);
-
-            engineer.CreateIntervention(intervention);
-
-            Assert.AreEqual(intervention, InterventionManager.Interventions.First());
+            Assert.AreEqual(_intervention1, InterventionManager.Interventions.First());
         }
 
-        
         [TestMethod]
         public void ViewClient_ClientWithIntervention_ClientDetailsDisplayed()
         {
-            var engineer = new Engineer(31, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
+            _eAlice.CreateIntervention(_intervention1);
 
-            var client = new Client(32, "The Client", "24 Main St, <further description...>", engineer.District);
-
-            engineer.CreateClient(client);
-
-            var intervention = new Intervention(
-                33,
-                new DateTime(2016,2,15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                engineer.UserId,
-                -1,
-                client.ClientId  
-                );
-
-            
-
-            engineer.CreateIntervention(intervention);
-
-            var actual = engineer.ViewClient(client);
-
+            var actual = _eAlice.ViewClient(_client1);
             var expected = new List<string>()
             {
                 "--------------",
                 "CLIENT DETAILS",
                 "--------------",
-                "32",
+                "21",
                 "The Client",
-                "24 Main St, <further description...>",
-                "Sydney",
+                "24 Main St, blue house",
+                "RuralPapuaNewGuinea",
                 "",
                 "Interventions",
                 "-------------",
-                "33 15/02/2016"
+                "31 15/02/2016"
             };
 
             CollectionAssert.AreEqual(actual, expected);
@@ -153,49 +122,25 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewClient_ClientWith2Interventions_ClientDetailsDisplayed()
         {
-            var engineer = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
+            _eAlice.CreateIntervention(_intervention1);
+            _eAlice.CreateIntervention(_intervention2);
 
-            var client = new Client(12, "The Client", "24 Main St, <further description...>", engineer.District);
-
-            engineer.CreateClient(client);
-
-            var intervention1 = new Intervention(
-                13,
-                new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                engineer.UserId,
-                -1,
-                client.ClientId
-                );
-
-            var intervention2 = new Intervention(
-                18,
-                new DateTime(2016, 3, 20),
-                new InterventionTemplate("Mosquito Nets 2", 100, 100),
-                engineer.UserId,
-                -1,
-                client.ClientId
-                );
-
-            engineer.CreateIntervention(intervention1);
-            engineer.CreateIntervention(intervention2);
-
-            var actual = engineer.ViewClient(client);
-
+            var actual = _eAlice.ViewClient(_client1);
             var expected = new List<string>()
             {
                 "--------------",
                 "CLIENT DETAILS",
                 "--------------",
-                "12",
+                "21",
                 "The Client",
-                "24 Main St, <further description...>",
-                "Sydney",
+                "24 Main St, blue house",
+                "RuralPapuaNewGuinea",
                 "",
                 "Interventions",
                 "-------------",
-                "13 15/02/2016",
-                "18 20/03/2016"
+                "31 15/02/2016",
+                "32 16/02/2016"
             };
 
             CollectionAssert.AreEqual(actual, expected);
@@ -204,66 +149,29 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewPreviousInterventions_InterventionsCreated_InterventionsDisplayed()
         {
-            // engineer1 creates 2 clients and 2 interventions
-            var engineer1 = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-            var engineer2 = new Engineer(37, "joe", "password", "Joe Smith", 3.5m, 800m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
+            _eAlice.CreateClient(_client2);
+            _eAlice.CreateIntervention(_intervention1);
+            _eAlice.CreateIntervention(_intervention2);
+            _eSam.CreateClient(_client3);
+            _eSam.CreateIntervention(_intervention3);
 
-            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer1.District);
-            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer1.District);
-            var client3 = new Client(14, "UTS", "Broadway", engineer2.District);
-
-            var intervention1 = new Intervention(
-                13,
-                new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                engineer1.UserId,
-                -1,
-                client1.ClientId
-                );
-
-            var intervention2 = new Intervention(
-                18,
-                new DateTime(2016, 3, 20),
-                new InterventionTemplate("Mosquito Nets 2", 100, 100),
-                engineer1.UserId,
-                -1,
-                client2.ClientId
-                );
-
-            var intervention3 = new Intervention(
-                20,
-                new DateTime(2016, 3, 21),
-                new InterventionTemplate("Fun Nets", 10, 10),
-                engineer2.UserId,
-                -1,
-                client3.ClientId
-                );
-
-            engineer1.CreateClient(client1);
-            engineer1.CreateClient(client2);
-            engineer1.CreateIntervention(intervention1);
-            engineer1.CreateIntervention(intervention2);
-
-            engineer2.CreateClient(client3);
-            engineer2.CreateIntervention(intervention3);
-
-            var actual1 = engineer1.ViewCreatedInterventions();
-            var actual2 = engineer2.ViewCreatedInterventions();
-
+            var actual1 = _eAlice.ViewCreatedInterventions();
+            var actual2 = _eSam.ViewCreatedInterventions();
             var expected1 = new List<string>()
             {
                 "----------------------",
                 "PREVIOUS INTERVENTIONS",
                 "----------------------",
-                "13 15/02/2016",
-                "18 20/03/2016"
+                "31 15/02/2016",
+                "32 16/02/2016"
             };
             var expected2 = new List<string>()
             {
                 "----------------------",
                 "PREVIOUS INTERVENTIONS",
                 "----------------------",
-                "20 21/03/2016"
+                "33 17/02/2016"
             };
 
             CollectionAssert.AreEqual(actual1, expected1);
@@ -273,14 +181,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewPreviousInterventions_NoInterventions_NoneDisplayed()
         {
-            var engineer = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer.District);
-            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer.District);
+            _eAlice.CreateClient(_client1);
+            _eAlice.CreateClient(_client2);
 
-            engineer.CreateClient(client1);
-            engineer.CreateClient(client2);
-
-            var actual = engineer.ViewCreatedInterventions();
+            var actual = _eAlice.ViewCreatedInterventions();
             var expected = new List<string>()
             {
                 "----------------------",
@@ -295,115 +199,66 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void ViewQualityReports_Normal_QualityReportsDisplayed()
         {
-            var engineer1 = new Engineer(11, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-            var engineer2 = new Engineer(37, "joe", "password", "Joe Smith", 3.5m, 800m, DistrictName.Sydney);
+            _eAlice.CreateClient(_client1);
+            _eAlice.CreateClient(_client2);
+            _eAlice.CreateIntervention(_intervention1);
+            _eAlice.CreateIntervention(_intervention2);
+            _eSam.CreateClient(_client3);
+            _eSam.CreateIntervention(_intervention3);
 
-            var client1 = new Client(12, "The Client", "24 Main St, <further description...>", engineer1.District);
-            var client2 = new Client(13, "Jones Family", "4 Busy St, black house", engineer1.District);
-            var client3 = new Client(14, "UTS", "Broadway", engineer2.District);
+            _eAlice.AddQualityReport(_qualityReport1);
+            _eAlice.AddQualityReport(_qualityReport2);
+            _eAlice.AddQualityReport(_qualityReport3);
+            _eSam.AddQualityReport(_qualityReport4);
 
-            var intervention1 = new Intervention(
-                13,
-                new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                engineer1.UserId,
-                -1,
-                client1.ClientId
-                );
+            var actual1 = _eAlice.ViewQualityReports(_intervention1);
+            var actual2 = _eSam.ViewQualityReports(_intervention3);
+            var expected1 = new List<QualityReport>() { _qualityReport1, _qualityReport3 };
+            var expected2 = new List<QualityReport>() { _qualityReport4 };
 
-            var intervention2 = new Intervention(
-                18,
-                new DateTime(2016, 3, 20),
-                new InterventionTemplate("Mosquito Nets 2", 100, 100),
-                engineer1.UserId,
-                -1,
-                client2.ClientId
-                );
-
-            var intervention3 = new Intervention(
-                20,
-                new DateTime(2016, 3, 21),
-                new InterventionTemplate("Fun Nets", 10, 10),
-                engineer2.UserId,
-                -1,
-                client3.ClientId
-                );
-
-            engineer1.CreateClient(client1);
-            engineer1.CreateClient(client2);
-            engineer1.CreateIntervention(intervention1);
-            engineer1.CreateIntervention(intervention2);
-
-            engineer2.CreateClient(client3);
-            engineer2.CreateIntervention(intervention3);
-
-            var qualityReport1 = new QualityReport(71, new DateTime(2016 ,4, 1), "Notes!", 90, intervention1.InterventionId);
-            var qualityReport2 = new QualityReport(72, new DateTime(2016 ,4, 2), "Some notes!", 75, intervention2.InterventionId);
-            var qualityReport3 = new QualityReport(73, new DateTime(2016 ,4, 3), "Depreciation", 60, intervention1.InterventionId);
-            engineer1.AddQualityReport(qualityReport1);
-            engineer1.AddQualityReport(qualityReport2);
-            engineer1.AddQualityReport(qualityReport3);
-
-            var qualityReport4 = new QualityReport(74, new DateTime(2016, 4, 3), "Big notes!", 28, intervention3.InterventionId);
-            engineer2.AddQualityReport(qualityReport4);
-
-            var expected1 = new List<QualityReport>()
-            {
-                qualityReport1,
-                qualityReport3
-            };
-
-            var actual1 = engineer1.ViewQualityReports(intervention1);
-
-            CollectionAssert.AreEqual(expected1, actual1);
-
-            var expected2 = new List<QualityReport>()
-            {
-                qualityReport4
-            };
-
-            var actual2 = engineer2.ViewQualityReports(intervention3);
-            
-            CollectionAssert.AreEqual(expected2, actual2);
-
+            CollectionAssert.AreEqual(actual1, expected1);
+            CollectionAssert.AreEqual(actual2, expected2);
         }
 
-        [Ignore]
-        [TestMethod]
-        public void ChangeState()
+        [TestInitialize]
+        public void TestInitialize()
         {
-            
+            _eAlice = new Engineer(1, "alice@example.com", "password", "Alice Nelson", 50, 2000, DistrictName.RuralPapuaNewGuinea);
+            _eSam = new Engineer(2, "sam@example.com", "password", "Sam Franklin", 100, 5200, DistrictName.RuralPapuaNewGuinea);
+            _eGeorge = new Engineer(3, "george@example.com", "password", "George Glass", 10, 10000, DistrictName.Sydney);
+            _mDavy = new Manager(4, "Davy Jones", "davy@example.com", "password", 200, 50000, DistrictName.RuralPapuaNewGuinea);
+            _mDena = new Manager(5, "Dena Dittmeyer", "dena@example.com", "password", 1000, 200000, DistrictName.Sydney);
+            _aCarol = new Accountant(6, "carol@example.com", "password", "Carol Brady");
+
+            _client1 = new Client(21, "The Client", "24 Main St, blue house", DistrictName.RuralPapuaNewGuinea);
+            _client2 = new Client(22, "Community A", "24 Big Rd, black house", DistrictName.RuralPapuaNewGuinea);
+            _client3 = new Client(23, "UTS Students ", "Broadway, brown building", DistrictName.Sydney);
+
+            _tPortableToilet = new InterventionTemplate("Supply and Install Portable Toilet", 2, 600);
+            _tHepatitis = new InterventionTemplate("Hepatitis Avoidance Training", 3, 0);
+            _tStormProof = new InterventionTemplate("Supply and Install Storm-proof Home Kit", 8, 5000);
+            _tMosquitoNet = new InterventionTemplate("Supply Mosquito Net", 0, 25);
+            _tWaterPump = new InterventionTemplate("Install Water Pump", 80, 1200);
+            _tWaterFilter = new InterventionTemplate("Supply High-Volume Water Filter and Train Users", 1, 2000);
+            _tSewerage = new InterventionTemplate("Prepare Sewerage Trench", 50, 0);
+
+            _intervention1 = new Intervention(31, new DateTime(2016, 2, 15), _tMosquitoNet, _eAlice.UserId, -1, _client1.ClientId);
+            _intervention2 = new Intervention(32, new DateTime(2016, 2, 16), _tSewerage, _eAlice.UserId, -1, _client1.ClientId);
+            _intervention3 = new Intervention(33, new DateTime(2016, 2, 17), _tHepatitis, _eSam.UserId, -1, _client3.ClientId);
+
+            _qualityReport1 = new QualityReport(71, new DateTime(2016, 4, 1), "Notes!", 90, _intervention1.InterventionId);
+            _qualityReport2 = new QualityReport(72, new DateTime(2016, 4, 2), "Some notes!", 75, _intervention2.InterventionId);
+            _qualityReport3 = new QualityReport(73, new DateTime(2016, 4, 3), "Depreciation", 60, _intervention1.InterventionId);
+            _qualityReport4 = new QualityReport(74, new DateTime(2016, 4, 3), "Important notes", 28, _intervention3.InterventionId);
         }
 
-        [TestMethod]
-        public void SomeQuery()
+        [TestCleanup]
+        public void TestCleanup()
         {
-            var engineer = new Engineer(21, "johndoe", "password", "John Doe", 2.5m, 550.53m, DistrictName.Sydney);
-
-            var client = new Client(22, "The Client", "24 Main St, <further description...>", engineer.District);
-
-            var intervention = new Intervention(
-                23,
-                new DateTime(2016, 2, 15),
-                new InterventionTemplate("Mosquito Nets", 10, 10),
-                engineer.UserId,
-                -1,
-                client.ClientId
-                );
-
-            engineer.CreateClient(client);
-
-            engineer.CreateIntervention(intervention);
-
-            var iResult = from i in InterventionManager.Interventions
-                          where engineer.UserId == i.ProposerId
-                select i;
-
-            var cResult = from c in ClientManager.Clients
-                select c;
-
-            Assert.AreEqual(iResult.First(), intervention);
-            Assert.AreEqual(cResult.First(), client);
+            ClientManager.Clients.Clear();
+            InterventionManager.Interventions.Clear();
+            UserManager.Users.Clear();
+            QualityReportManager.QualityReports.Clear();
         }
     }
 }
