@@ -15,6 +15,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         {
             ClientManager.Clients.Clear();
             InterventionManager.Interventions.Clear();
+            UserManager.Users.Clear();
+            QualityReportManager.QualityReports.Clear();
         }
 
         [TestMethod]
