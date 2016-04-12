@@ -28,7 +28,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
 
         private static bool NumberIsPositive(decimal number)
         {
-            return number > 0;
+            return number >= 0;
         }
     }
 }
