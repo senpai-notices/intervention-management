@@ -162,8 +162,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
             return clientDetails;
         }
 
-        public void EditQualityManagementInformation(Intervention intervention)
-        { }
+        /*public List<QualityReport> ViewQualityReports(Intervention intervention)
+        {
+        }*/
+
+        public void EditQualityReport(Intervention intervention, int qualityReportId, string newNotes, decimal newEffectiveLife)
+        {
+        }
 
         public void CreateIntervention(Intervention intervention)
         {

@@ -14,9 +14,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
         public decimal Hours { get; private set; }
         public decimal Cost { get; private set; }
 
-        private readonly List<QualityReport> _qualityReports = new List<QualityReport>(); 
-        public List<QualityReport> QualityReports => _qualityReports; 
-
         public int ProposerId { get; private set; }
         public int ApproverId { get; private set; }
         public int ClientId { get; private set; }
@@ -48,38 +45,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
         {
             State = InterventionState.Completed;
         }
-
-        public List<QualityReport> ViewQualityReports()
-        {
-            return QualityReports;
-        }
-
-        public void AddQualityReport(QualityReport qualityReport)
-        {
-            _qualityReports.Add(qualityReport);
-        }
-
-        public void EditQualityReport(QualityReport qualityReport, string newNotes, 
-            decimal newEffectiveLife)
-        {
-            var qualityReportId = qualityReport.QualityReportId;
-            var qualityReportDateAdded = qualityReport.DateAdded;
-            var qualityReportInterventionId = qualityReport.InterventionId;
-
-            RemoveQualityReport(qualityReport);
-            AddQualityReport(new QualityReport(qualityReportId, qualityReportDateAdded, newNotes, 
-                newEffectiveLife, qualityReportInterventionId));
-        }
-
-        public void RemoveQualityReport(QualityReport qualityReport)
-        {
-            _qualityReports.Remove(qualityReport);
-        }
-
-        public QualityReport GetQualityReportById(int qualityReportId)
-        {
-            return _qualityReports.Single(q => q.QualityReportId == qualityReportId);
-        }
-
     }
 }
