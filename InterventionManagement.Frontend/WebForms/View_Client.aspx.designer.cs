@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagement.Frontend.WebForms {
+namespace InterventionManagement.Web.WebForms {
     
     
     public partial class WebForm1 {

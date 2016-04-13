@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Add_New_Client.aspx.cs" Inherits="InterventionManagement.Frontend.WebForms.Add_New_Client" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Add_New_Client.aspx.cs" Inherits="InterventionManagement.Web.WebForms.Add_New_Client" %>
 
 <!DOCTYPE html>
 

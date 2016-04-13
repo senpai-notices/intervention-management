@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace InterventionManagement.Frontend.WebForms
+namespace InterventionManagement.Web.WebForms
 {
     public partial class Add_New_Client : System.Web.UI.Page
     {

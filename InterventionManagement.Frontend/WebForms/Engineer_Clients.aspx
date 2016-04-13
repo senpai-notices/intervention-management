@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Engineer_Clients.aspx.cs" Inherits="InterventionManagement.Frontend.WebForms.Engineer_Clients" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Engineer_Clients.aspx.cs" Inherits="InterventionManagement.Web.WebForms.Engineer_Clients" %>
 
 <!DOCTYPE html>
 

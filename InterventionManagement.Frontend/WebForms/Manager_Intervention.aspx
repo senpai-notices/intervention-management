@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manager_Intervention.aspx.cs" Inherits="InterventionManagement.Frontend.WebForms.Manager_Intervention" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Manager_Intervention.aspx.cs" Inherits="InterventionManagement.Web.WebForms.Manager_Intervention" %>
 
 <!DOCTYPE html>
 

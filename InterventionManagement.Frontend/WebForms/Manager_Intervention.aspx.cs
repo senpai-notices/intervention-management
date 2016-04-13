@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace InterventionManagement.Frontend.WebForms
+namespace InterventionManagement.Web.WebForms
 {
     public partial class Manager_Intervention : System.Web.UI.Page
     {
