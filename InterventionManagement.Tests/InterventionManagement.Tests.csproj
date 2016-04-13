@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -54,6 +56,7 @@
   <ItemGroup>
     <Compile Include="AccountantTests.cs" />
     <Compile Include="ClientManagerTests.cs" />
+    <Compile Include="DataStartupTests.cs" />
     <Compile Include="EngineerTests.cs" />
     <Compile Include="ManagerTests.cs" />
     <Compile Include="MiscTests.cs" />
@@ -68,6 +71,9 @@
       <Project>{45041d80-f67c-4103-9bca-bf0fb646c836}</Project>
       <Name>InterventionManagement.Business</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
