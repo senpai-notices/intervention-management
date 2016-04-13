@@ -3,7 +3,7 @@ using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls.Resolvers;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public partial class ViewSwitcher : System.Web.UI.UserControl
     {

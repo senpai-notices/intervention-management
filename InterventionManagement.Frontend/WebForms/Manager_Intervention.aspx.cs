@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Web.UI;
 
-namespace InterventionManagement.Web.WebForms
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class Manager_Intervention : System.Web.UI.Page
     {

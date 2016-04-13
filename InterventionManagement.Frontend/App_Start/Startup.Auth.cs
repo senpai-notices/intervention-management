@@ -1,12 +1,12 @@
 ﻿using System;
-using InterventionManagement.Web.Models;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public partial class Startup {
 

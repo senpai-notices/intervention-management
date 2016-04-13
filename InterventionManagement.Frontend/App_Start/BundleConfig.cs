@@ -1,7 +1,7 @@
 ﻿using System.Web.Optimization;
 using System.Web.UI;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public class BundleConfig
     {

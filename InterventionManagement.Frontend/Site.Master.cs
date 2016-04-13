@@ -5,7 +5,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public partial class SiteMaster : MasterPage
     {

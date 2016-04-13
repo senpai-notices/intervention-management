@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InterventionManagement.Web.Account
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Account
 {
     public partial class Lockout : System.Web.UI.Page
     {

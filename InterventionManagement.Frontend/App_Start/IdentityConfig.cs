@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using InterventionManagement.Web.Models;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public class EmailService : IIdentityMessageService
     {

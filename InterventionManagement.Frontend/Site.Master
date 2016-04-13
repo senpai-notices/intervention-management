@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="InterventionManagement.Web.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.SiteMaster" %>
 
 <!DOCTYPE html>
 

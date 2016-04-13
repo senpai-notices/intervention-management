@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 
-namespace InterventionManagement.Web.Account
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Account
 {
     public partial class ResetPasswordConfirmation : Page
     {

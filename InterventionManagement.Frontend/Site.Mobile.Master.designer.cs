@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagement.Web {
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web {
     
     
     public partial class Site_Mobile {

@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="InterventionManagement.Web.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Global" Language="C#" %>

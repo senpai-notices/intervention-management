@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Password Changed" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPasswordConfirmation.aspx.cs" Inherits="InterventionManagement.Web.Account.ResetPasswordConfirmation" Async="true" %>
+﻿<%@ Page Title="Password Changed" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPasswordConfirmation.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Account.ResetPasswordConfirmation" Async="true" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
     <h2><%: Title %>.</h2>

@@ -3,7 +3,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
-namespace InterventionManagement.Web.Account
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Account
 {
     public partial class Manage : System.Web.UI.Page
     {

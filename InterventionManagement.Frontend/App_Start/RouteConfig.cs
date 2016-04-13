@@ -1,7 +1,7 @@
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
 {
     public static class RouteConfig
     {
