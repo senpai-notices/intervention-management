@@ -210,6 +210,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WebForms\Add_New_Client.aspx" />
+    <Content Include="WebForms\Engineer_Clients.aspx" />
+    <Content Include="WebForms\Login.aspx" />
+    <Content Include="WebForms\Manager_Intervention.aspx" />
+    <Content Include="WebForms\View_Client.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -417,6 +422,41 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Add_New_Client.aspx.cs">
+      <DependentUpon>Add_New_Client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Add_New_Client.aspx.designer.cs">
+      <DependentUpon>Add_New_Client.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Engineer_Clients.aspx.cs">
+      <DependentUpon>Engineer_Clients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Engineer_Clients.aspx.designer.cs">
+      <DependentUpon>Engineer_Clients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Manager_Intervention.aspx.cs">
+      <DependentUpon>Manager_Intervention.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Manager_Intervention.aspx.designer.cs">
+      <DependentUpon>Manager_Intervention.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\View_Client.aspx.cs">
+      <DependentUpon>View_Client.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\View_Client.aspx.designer.cs">
+      <DependentUpon>View_Client.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

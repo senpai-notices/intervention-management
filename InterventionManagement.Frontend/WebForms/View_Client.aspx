@@ -1,0 +1,84 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="View_Client.aspx.cs" Inherits="InterventionManagement.Frontend.WebForms.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Client Details</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <!--Page heading -->
+        <div align ="center">
+            <asp:Label ID="Label1" runat="server" Text="Client Details" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+        </div>
+        <!--End page heading -->
+
+        <!--Start client details -->
+        <div style="margin-left:30%;margin-top:5%">
+            <table style= "width: 60%; line-height: 150%;">
+                <colgroup>
+                    <col style="width:15%" /> 
+                    <col style="width:85%" />
+                </colgroup>
+                
+                <tr>
+                    <td>
+                        <asp:Label ID="Label2" runat="server" Text="Name: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
+                    </td>                    
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Label ID="Label3" runat="server" Text="Age: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lblAge" runat="server" Text=""></asp:Label>
+                    </td>    
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Label ID="Label5" runat="server" Text="Location: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td class="auto-style1">
+                        <asp:Label ID="lblLocation" runat="server" Text=""></asp:Label>
+                    </td>    
+                </tr>
+
+                <tr>
+                    <td>
+                        <asp:Label ID="Label4" runat="server" Text="District: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:Label ID="lblDistrict" runat="server" Text=""></asp:Label>
+                    </td>    
+                </tr>
+            </table>
+        </div>
+        <!-- End client details -->
+
+
+        <!-- Start data table-->
+        <div style="margin-left:20%;margin-top:5%">
+            <asp:Table ID="Table1" runat="server" GridLines="Both" Width="80%">
+                <asp:TableRow runat="server" Font-Bold="True" Height="50px" >
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Interventions</asp:TableCell>
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="40%">Intervention Details</asp:TableCell>
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Update Intervention</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+            <br />
+            <asp:Button ID="Button1" runat="server" Text="Add new intervention" />
+        </div>
+
+        
+
+        </div>
+    </form>
+</body>
+</html>
