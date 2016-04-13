@@ -1,6 +1,6 @@
 ﻿using System.Web.UI;
 
-namespace InterventionManagement.Frontend.Account
+namespace InterventionManagement.Web.Account
 {
     public partial class ResetPasswordConfirmation : Page
     {

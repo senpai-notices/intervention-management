@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Helpers;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Services;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
 {
     public abstract class User
     {

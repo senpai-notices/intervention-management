@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagement.Frontend.Account {
+namespace InterventionManagement.Web.Account {
     
     
     public partial class Login {
@@ -73,6 +73,6 @@ namespace InterventionManagement.Frontend.Account {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::InterventionManagement.Frontend.Account.OpenAuthProviders OpenAuthLogin;
+        protected global::InterventionManagement.Web.Account.OpenAuthProviders OpenAuthLogin;
     }
 }

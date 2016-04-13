@@ -1,6 +1,6 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {

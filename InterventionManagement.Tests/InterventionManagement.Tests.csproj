@@ -64,9 +64,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Core.csproj">
+    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Business.csproj">
       <Project>{45041d80-f67c-4103-9bca-bf0fb646c836}</Project>
-      <Name>InterventionManagement.Core</Name>
+      <Name>InterventionManagement.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

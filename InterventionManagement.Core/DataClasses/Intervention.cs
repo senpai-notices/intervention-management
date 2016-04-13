@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
 {
     public class Intervention
     {

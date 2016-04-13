@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Exceptions;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Helpers
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 {
     public static class ClientValidator
     {

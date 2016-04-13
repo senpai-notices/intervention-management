@@ -1,8 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using InterventionManagement.Web;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(InterventionManagement.Frontend.Startup))]
-namespace InterventionManagement.Frontend
+[assembly: OwinStartup(typeof(Startup))]
+namespace InterventionManagement.Web
 {
     public partial class Startup {
         public void Configuration(IAppBuilder app) {

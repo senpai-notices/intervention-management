@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagement.Frontend.Account {
+namespace InterventionManagement.Web.Account {
     
     
     public partial class AddPhoneNumber {

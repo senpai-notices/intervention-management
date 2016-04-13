@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Exceptions
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Exceptions
 {
     [Serializable]
     public class ClientIdIsNegativeException : Exception

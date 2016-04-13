@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InterventionManagement.Frontend {
+namespace InterventionManagement.Web {
     
     
     public partial class ViewSwitcher {

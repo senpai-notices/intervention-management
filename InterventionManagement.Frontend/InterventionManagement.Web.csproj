@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InterventionManagement.Frontend</RootNamespace>
-    <AssemblyName>InterventionManagement.Frontend</AssemblyName>
+    <RootNamespace>InterventionManagement.Web</RootNamespace>
+    <AssemblyName>InterventionManagement.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -423,9 +423,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Core.csproj">
+    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Business.csproj">
       <Project>{45041d80-f67c-4103-9bca-bf0fb646c836}</Project>
-      <Name>InterventionManagement.Core</Name>
+      <Name>InterventionManagement.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

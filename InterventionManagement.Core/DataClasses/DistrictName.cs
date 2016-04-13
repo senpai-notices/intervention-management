@@ -1,4 +1,4 @@
-﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
+﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
 {
     public enum DistrictName
     {

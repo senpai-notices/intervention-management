@@ -1,6 +1,6 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Helpers;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
 {
     public class Client
     {

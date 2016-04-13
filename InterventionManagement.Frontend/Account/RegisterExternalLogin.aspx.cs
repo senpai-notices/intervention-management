@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Web;
+using InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Owin;
-using InterventionManagement.Frontend.Models;
 
-namespace InterventionManagement.Frontend.Account
+namespace InterventionManagement.Web.Account
 {
     public partial class RegisterExternalLogin : System.Web.UI.Page
     {

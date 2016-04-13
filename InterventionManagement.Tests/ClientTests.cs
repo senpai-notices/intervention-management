@@ -1,6 +1,6 @@
 ﻿using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {

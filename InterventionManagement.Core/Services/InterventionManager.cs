@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.DataClasses;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Core.Services
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 {
     public static class InterventionManager
     {

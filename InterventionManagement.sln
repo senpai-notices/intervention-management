@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Core", "InterventionManagement.Core\InterventionManagement.Core.csproj", "{45041D80-F67C-4103-9BCA-BF0FB646C836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Business", "InterventionManagement.Core\InterventionManagement.Business.csproj", "{45041D80-F67C-4103-9BCA-BF0FB646C836}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Tests", "InterventionManagement.Tests\InterventionManagement.Tests.csproj", "{C662C97C-8A89-4EF6-9D56-C73D3DE2DE7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Frontend", "InterventionManagement.Frontend\InterventionManagement.Frontend.csproj", "{2F7BC284-3D35-4856-9B2F-66056391AA97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Web", "InterventionManagement.Frontend\InterventionManagement.Web.csproj", "{2F7BC284-3D35-4856-9B2F-66056391AA97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace InterventionManagement.Frontend.Account
+namespace InterventionManagement.Web.Account
 {
     public partial class OpenAuthProviders : System.Web.UI.UserControl
     {

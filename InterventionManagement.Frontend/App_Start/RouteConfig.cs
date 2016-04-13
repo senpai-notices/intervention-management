@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace InterventionManagement.Frontend
+namespace InterventionManagement.Web
 {
     public static class RouteConfig
     {
