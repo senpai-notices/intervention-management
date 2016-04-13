@@ -7,12 +7,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
 {
     [TestClass]
-    class DataStartupTests
+    public class DataStartupTests
     {
         [AssemblyInitialize]
         public static void SetupDataDirectory(TestContext context)
         {
-            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\UTS.Multitier.Data"));
+            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\InterventionManagement.Data"));
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
         }
 
