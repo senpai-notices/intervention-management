@@ -218,7 +218,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
                 case InterventionState.Cancelled:
                     throw new Exception("Intervention already cancelled");
                 default:
-                    throw new Exception("Invalid state");
+                    throw new Exception("Current state invalid");
             }
         }
 
@@ -234,13 +234,31 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
                     intervention.CompleteIntervention();
                     break;
                 default:
-                    throw new Exception("Invalid state");
+                    throw new Exception("Current state invalid");
             }
         }
-
+        // maybe districtstaff
         public void ApproveIntervention(Intervention intervention)
         {
-            // TODO
+            if (intervention.ProposerId != UserId) throw new Exception("User does not have permissions for this intervention");
+            if (GetType() == typeof (Manager))
+            {
+                if (ClientManager.GetClientById(intervention.ClientId).District != District)
+                {
+                    throw new Exception("This manager is in wrong district");
+                }
+            }
+
+            switch (intervention.State)
+            {
+                case InterventionState.Proposed:
+                    intervention.ApproveIntervention(UserId);
+                    break;
+                case InterventionState.Approved:
+                    throw new Exception("Intervention already approved");
+                default:
+                    throw new Exception("Current state invalid");
+            }
         }
     }
 }
