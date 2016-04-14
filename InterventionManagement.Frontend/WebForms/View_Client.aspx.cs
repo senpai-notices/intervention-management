@@ -9,8 +9,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                
-                lblAge.Text = "40";
                 lblName.Text = "Tom";
                 lblLocation.Text = "Ashfield";
                 lblDistrict.Text = "Sydney";

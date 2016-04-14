@@ -34,15 +34,6 @@
 
                 <tr>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="Age: " Font-Bold="True"></asp:Label>
-                    </td>
-                    <td>
-                        <asp:Label ID="lblAge" runat="server" Text=""></asp:Label>
-                    </td>    
-                </tr>
-
-                <tr>
-                    <td>
                         <asp:Label ID="Label5" runat="server" Text="Location: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
