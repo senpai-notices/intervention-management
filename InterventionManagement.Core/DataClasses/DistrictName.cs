@@ -4,7 +4,7 @@
     {
         UrbanIndonesia,
         RuralIndonesia,
-        UrbanPapuaNewGuineea,
+        UrbanPapuaNewGuinea,
         RuralPapuaNewGuinea,
         Sydney,
         RuralNewSouthWales
