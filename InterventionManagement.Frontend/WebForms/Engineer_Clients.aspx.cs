@@ -9,10 +9,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                List<string> data = new List<string> { "Woop Woop 1", "Boop boop2", "Scoop Scoop", "Meep Meep" };
-
+                List<string> data = new List<string> { "Woop Woop 1", "Boop boop2", "Scoop Scoop",
+                    "Meep Meep", "Boop boop2", "Scoop Scoop", "Meep Meep" };
+                data.Sort();
                 list_Clients.DataSource = data;
                 list_Clients.DataBind();
+                
             }
         }
 
