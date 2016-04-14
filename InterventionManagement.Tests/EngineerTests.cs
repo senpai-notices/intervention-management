@@ -226,8 +226,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             _eAlice = new Engineer(1, "alice@example.com", "password", "Alice Nelson", 50, 2000, DistrictName.RuralPapuaNewGuinea);
             _eSam = new Engineer(2, "sam@example.com", "password", "Sam Franklin", 100, 5200, DistrictName.RuralPapuaNewGuinea);
             _eGeorge = new Engineer(3, "george@example.com", "password", "George Glass", 10, 10000, DistrictName.Sydney);
-            _mDavy = new Manager(4, "Davy Jones", "davy@example.com", "password", 200, 50000, DistrictName.RuralPapuaNewGuinea);
-            _mDena = new Manager(5, "Dena Dittmeyer", "dena@example.com", "password", 1000, 200000, DistrictName.Sydney);
+            _mDavy = new Manager(4, "davy@example.com", "password", "Davy Jones", 200, 50000, DistrictName.RuralPapuaNewGuinea);
+            _mDena = new Manager(5, "dena@example.com", "password", "Dena Dittmeyer", 1000, 200000, DistrictName.Sydney);
             _aCarol = new Accountant(6, "carol@example.com", "password", "Carol Brady");
 
             _client1 = new Client(21, "The Client", "24 Main St, blue house", DistrictName.RuralPapuaNewGuinea);
