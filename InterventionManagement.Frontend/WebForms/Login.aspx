@@ -1,13 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Login" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Login" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Login</title>
-</head>
-<body>
-    <form id="form_Login" runat="server" defaultbutton ="btnLogin">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     
     <div  style ="margin-top:5%;"align="center">
         <asp:Label ID="Label3" runat="server" Text="ENET Care" Font-Bold="True" Font-Size="X-Large"></asp:Label>
@@ -22,6 +15,4 @@
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btn_Cancel" />
         <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btn_Login" />
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
