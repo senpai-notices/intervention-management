@@ -1,19 +1,6 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Add_New_Client.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Add_New_Client" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Add_New_Client.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Add_New_Client" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Add new client</title>
-    <style>
-        .centerblock {
-            margin-left:30%;
-            margin-top:5%;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
         <div align ="center">
             <asp:Label ID="Label1" runat="server" Text="Add new client" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
         </div>
@@ -33,6 +20,4 @@
             <asp:Button ID="btn_Cancel" runat="server" Text="Cancel and Go Back" OnClick="btn_Cancel_Click"/>
         
         </div>
-    </form>
-</body>
-</html>
+</asp:Content>
