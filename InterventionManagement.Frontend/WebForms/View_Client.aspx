@@ -3,26 +3,26 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
         <!--Page heading -->
-        <div align ="center">
+        <div align="center">
             <asp:Label ID="Label1" runat="server" Text="Client Details" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
         </div>
         <!--End page heading -->
 
         <!--Start client details -->
-        <div style="margin-left:30%;margin-top:5%">
-            <table style= "width: 60%; line-height: 150%;">
+        <div style="margin-left: 30%; margin-top: 5%">
+            <table style="width: 60%; line-height: 150%;">
                 <colgroup>
-                    <col style="width:15%" /> 
-                    <col style="width:85%" />
+                    <col style="width: 15%" />
+                    <col style="width: 85%" />
                 </colgroup>
-                
+
                 <tr>
                     <td>
                         <asp:Label ID="Label2" runat="server" Text="Name: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
                         <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
-                    </td>                    
+                    </td>
                 </tr>
 
                 <tr>
@@ -31,7 +31,7 @@
                     </td>
                     <td class="auto-style1">
                         <asp:Label ID="lblLocation" runat="server" Text=""></asp:Label>
-                    </td>    
+                    </td>
                 </tr>
 
                 <tr>
@@ -40,7 +40,7 @@
                     </td>
                     <td>
                         <asp:Label ID="lblDistrict" runat="server" Text=""></asp:Label>
-                    </td>    
+                    </td>
                 </tr>
             </table>
         </div>
@@ -48,9 +48,9 @@
 
 
         <!-- Start data table-->
-        <div style="margin-left:20%;margin-top:5%">
+        <div style="margin-left: 20%; margin-top: 5%">
             <asp:Table ID="Table1" runat="server" GridLines="Both" Width="80%">
-                <asp:TableRow runat="server" Font-Bold="True" Height="50px" >
+                <asp:TableRow runat="server" Font-Bold="True" Height="50px">
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Interventions</asp:TableCell>
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="40%">Intervention Details</asp:TableCell>
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Update Intervention</asp:TableCell>
@@ -60,7 +60,7 @@
             <asp:Button ID="Button1" runat="server" Text="Add new intervention" />
         </div>
 
-        
 
-        </div>
+
+    </div>
 </asp:Content>
