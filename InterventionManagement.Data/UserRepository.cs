@@ -14,7 +14,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data
             {
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"select * from [dbo].[User]";
+                    cmd.CommandText = @"select * from [dbo].[User] where [UserId] = {0};";
 
                     cmd.CommandText = string.Format(cmd.CommandText, userId.ToString());
                     var reader = cmd.ExecuteReader();
