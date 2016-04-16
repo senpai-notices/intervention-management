@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Busi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Tests", "InterventionManagement.Tests\InterventionManagement.Tests.csproj", "{C662C97C-8A89-4EF6-9D56-C73D3DE2DE7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Web", "InterventionManagement.Frontend\InterventionManagement.Web.csproj", "{2F7BC284-3D35-4856-9B2F-66056391AA97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Web", "InterventionManagement.Web\InterventionManagement.Web.csproj", "{2F7BC284-3D35-4856-9B2F-66056391AA97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Data", "InterventionManagement.Data\InterventionManagement.Data.csproj", "{8CAD5523-7938-46F7-AFB7-2BA9092D6352}"
 EndProject
