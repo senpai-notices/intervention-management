@@ -11,8 +11,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
         public void Configuration(IAppBuilder app) {
             ConfigureAuth(app);
 
-            // Added
-            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\au.edu.uts.ASDF.ENETCare.InterventionManagement.Data"));
+            // Database
+            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\InterventionManagement.Data"));
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
         }
