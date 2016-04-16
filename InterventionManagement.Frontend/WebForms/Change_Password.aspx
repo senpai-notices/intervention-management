@@ -1,15 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Change_Password.aspx.cs" Inherits="InterventionManagement.Frontend.WebForms.Change_Password" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Change_Password.aspx.cs" Inherits="InterventionManagement.Web.WebForms.Change_Password" %>
 
-<!DOCTYPE html>
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
     <div>
-    
         <asp:Label ID="Label_NewPasswordExplanation" runat="server" Text="Enter your new password:"></asp:Label>
         <asp:TextBox ID="TextBox_NewPassword1" runat="server"></asp:TextBox>
     
@@ -22,6 +15,4 @@
         </p>
         <asp:Button ID="Button_Save" runat="server" Text="Save" OnClick="Button_Save_OnClick" />
         <asp:Button ID="Button_Cancel" runat="server" Text="Cancel" OnClick="Button_Cancel_OnClick" />
-    </form>
-</body>
-</html>
+</asp:Content>
