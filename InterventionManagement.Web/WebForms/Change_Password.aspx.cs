@@ -24,7 +24,7 @@ namespace InterventionManagement.Web.WebForms
         lblMessage.Text will notify user the result*/
         protected void Button_Save_OnClick(object sender, EventArgs e)
         {           
-            var user = User.Identity.GetUserId();
+            var userID = User.Identity.GetUserId();
             
             if (TextBox_NewPassword1.Text != TextBox_NewPassword2.Text)
             {
@@ -33,10 +33,11 @@ namespace InterventionManagement.Web.WebForms
             else
             {
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                if (manager.CheckPassword(manager.FindById(user), TextBox_ExistingPassword.Text))
+                if (manager.CheckPassword(manager.FindById(userID), TextBox_ExistingPassword.Text))
                 {
-                    manager.RemovePassword(user);
-                    manager.AddPassword(user, TextBox_NewPassword1.Text);
+                    
+                    manager.RemovePassword(userID);                   
+                    manager.AddPassword(userID, TextBox_NewPassword1.Text);
                     lblMessage.Text = "Your password has been changed.";
                 } else
                     lblMessage.Text = "Your current password is incorrect.";
