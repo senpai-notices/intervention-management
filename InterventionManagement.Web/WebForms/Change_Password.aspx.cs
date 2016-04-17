@@ -1,4 +1,8 @@
-﻿using System;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,25 +16,33 @@ namespace InterventionManagement.Web.WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
 
+                
         }
-
+        /*When Save button is clicked, it will first check if the new passwords match and then if
+        they match, it will check if the current password is correct.
+        After performing all the verification, it will remove the old password and add the new password in.
+        lblMessage.Text will notify user the result*/
         protected void Button_Save_OnClick(object sender, EventArgs e)
-        {
+        {           
+            var user = User.Identity.GetUserId();
+            
             if (TextBox_NewPassword1.Text != TextBox_NewPassword2.Text)
             {
-                // new passwords do not match error
+                lblMessage.Text = "New passwords do not match.";
             }
             else
             {
-                if (TextBox_ExistingPassword.Text != "user's current password")
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                if (manager.CheckPassword(manager.FindById(user), TextBox_ExistingPassword.Text))
                 {
-                    // old password is wrong error
-                }
-                else
-                {
-                    // new password saved
-                }
+                    manager.RemovePassword(user);
+                    manager.AddPassword(user, TextBox_NewPassword1.Text);
+                    lblMessage.Text = "Your password has been changed.";
+                } else
+                    lblMessage.Text = "Your current password is incorrect.";
+
             }
+            lblMessage.Visible = true;
         }
 
         protected void Button_Cancel_OnClick(object sender, EventArgs e)

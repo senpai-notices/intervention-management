@@ -30,21 +30,22 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
            
            if (IsValid)
             {
-                // Validate the user password
+                //Get all the users
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doen't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
                 
-                var user = manager.FindByName(txt_loginID.Text);
+                var user = manager.FindByName(txt_loginID.Text); //Get a user by its ID
                 if (user != null)
                 {
                     if (manager.CheckPassword(user, txt_loginPW.Text))
                     {
                         signinManager.SignIn(user, false, false);
                         Response.Redirect("/WebForms/View_Client.aspx");
-                        
+                    }
+                    else
+                    {
+                        Label5.Text = "Invalid username or password.";
+                        Label5.Visible = true;
                     }
                 }
                 }
