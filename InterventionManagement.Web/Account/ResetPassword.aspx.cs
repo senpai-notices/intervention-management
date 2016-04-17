@@ -30,6 +30,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Account
                     return;
                 }
                 var result = manager.ResetPassword(user.Id, code, Password.Text);
+                
                 if (result.Succeeded)
                 {
                     Response.Redirect("~/Account/ResetPasswordConfirmation");

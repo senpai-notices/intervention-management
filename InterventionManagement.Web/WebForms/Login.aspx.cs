@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Web;
+using System.Web.UI;
+using Microsoft.AspNet.Identity.Owin;
+
+using Microsoft.AspNet.Identity;
+
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -16,25 +22,32 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         protected void btn_Login(object sender, EventArgs e)
         {
-            if (txt_loginID.Text == "John Smith" && txt_loginPW.Text == "John Smith")
+            LogIn();
+
+        }
+        protected void LogIn()
+        {
+           
+           if (IsValid)
             {
-                Response.Write("<script>alert('Success')</script>");
-                Session["login"] = txt_loginID.Text; 
-                Response.Redirect("~/WebForms/Manager_Intervention.aspx");
+                // Validate the user password
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+
+                // This doen't count login failures towards account lockout
+                // To enable password failures to trigger lockout, change to shouldLockout: true
+                
+                var user = manager.FindByName(txt_loginID.Text);
+                if (user != null)
+                {
+                    if (manager.CheckPassword(user, txt_loginPW.Text))
+                    {
+                        signinManager.SignIn(user, false, false);
+                        Response.Redirect("/WebForms/View_Client.aspx");
+                        
+                    }
+                }
+                }
             }
-            else
-                Response.Write("<script>alert('Failed')</script>");
-
-        }
-
-        protected void txt_loginPW_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void txt_loginID_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
-}

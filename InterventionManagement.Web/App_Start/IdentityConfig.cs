@@ -43,7 +43,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                RequireUniqueEmail = false
             };
 
             // Configure validation logic for passwords
