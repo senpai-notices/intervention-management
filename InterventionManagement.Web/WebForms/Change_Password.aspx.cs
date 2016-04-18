@@ -28,7 +28,7 @@ namespace InterventionManagement.Web.WebForms
             
             if (TextBox_NewPassword1.Text != TextBox_NewPassword2.Text)
             {
-                lblMessage.Text = "New passwords do not match.";
+                lblMessage.Text = "New passwords do not match."; 
             }
             else
             {
