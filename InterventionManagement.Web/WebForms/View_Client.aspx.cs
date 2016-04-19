@@ -9,7 +9,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                lblName.Text = "Tom";
+                if (Session["selected"] != null)
+                    lblName.Text = Session["selected"].ToString();
+                else
+                    lblName.Text = "Sample name";
                 lblLocation.Text = "Ashfield";
                 lblDistrict.Text = "Sydney";
             }
