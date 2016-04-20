@@ -75,9 +75,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SqlScripts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -86,6 +84,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Content Include="SqlScripts\Inserts.sql" />
+    <Content Include="SqlScripts\Tables.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Business.csproj">
