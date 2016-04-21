@@ -489,12 +489,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Business.csproj">
-      <Project>{45041d80-f67c-4103-9bca-bf0fb646c836}</Project>
-      <Name>InterventionManagement.Business</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InterventionManagement.Data\InterventionManagement.Data.csproj">
-      <Project>{8CAD5523-7938-46F7-AFB7-2BA9092D6352}</Project>
+      <Project>{8cad5523-7938-46f7-afb7-2ba9092d6352}</Project>
       <Name>InterventionManagement.Data</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
+﻿namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 {
     public enum InterventionState
     {

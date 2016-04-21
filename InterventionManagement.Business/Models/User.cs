@@ -4,7 +4,7 @@ using System.Linq;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 {
     public abstract class User
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 {

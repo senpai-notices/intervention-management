@@ -1,6 +1,6 @@
 ﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Exceptions;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 {
     public class InterventionTemplate
     {

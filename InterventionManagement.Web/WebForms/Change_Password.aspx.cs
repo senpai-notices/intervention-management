@@ -1,15 +1,9 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
+﻿using System;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
-namespace InterventionManagement.Web.WebForms
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class Change_Password : System.Web.UI.Page
     {

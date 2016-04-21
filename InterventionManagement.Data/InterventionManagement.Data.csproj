@@ -75,7 +75,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -88,8 +87,8 @@
     <Content Include="SqlScripts\Tables.sql" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Core\InterventionManagement.Business.csproj">
-      <Project>{45041D80-F67C-4103-9BCA-BF0FB646C836}</Project>
+    <ProjectReference Include="..\InterventionManagement.Business\InterventionManagement.Business.csproj">
+      <Project>{45041d80-f67c-4103-9bca-bf0fb646c836}</Project>
       <Name>InterventionManagement.Business</Name>
     </ProjectReference>
   </ItemGroup>

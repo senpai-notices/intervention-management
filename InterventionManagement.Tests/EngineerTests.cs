@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataClasses;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
