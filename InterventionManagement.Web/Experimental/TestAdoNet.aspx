@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestAdoNet.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.TestAdoNet" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TestAdoNet.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Experimental.TestAdoNet" %>
 
 <!DOCTYPE html>
 

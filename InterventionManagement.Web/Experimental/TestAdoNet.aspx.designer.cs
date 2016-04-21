@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web {
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Experimental {
     
     
     public partial class TestAdoNet {

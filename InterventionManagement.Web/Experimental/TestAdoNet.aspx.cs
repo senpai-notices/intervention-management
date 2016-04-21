@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Experimental
 {
     public partial class TestAdoNet : System.Web.UI.Page
     {

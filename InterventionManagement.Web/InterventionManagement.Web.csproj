@@ -210,7 +210,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestAdoNet.aspx" />
+    <Content Include="Experimental\TestAdoNet.aspx" />
     <Content Include="WebForms\Add_New_Client.aspx" />
     <Content Include="WebForms\Change_Password.aspx" />
     <Content Include="WebForms\Engineer_Clients.aspx" />
@@ -421,11 +421,11 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="TestAdoNet.aspx.cs">
+    <Compile Include="Experimental\TestAdoNet.aspx.cs">
       <DependentUpon>TestAdoNet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TestAdoNet.aspx.designer.cs">
+    <Compile Include="Experimental\TestAdoNet.aspx.designer.cs">
       <DependentUpon>TestAdoNet.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
