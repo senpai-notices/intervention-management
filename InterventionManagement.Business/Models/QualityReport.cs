@@ -7,12 +7,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
         public int QualityReportId { get; private set; }
         public DateTime DateAdded { get; private set; }
         public string Notes { get; private set; }
-        public decimal EffectiveLife { get; private set; }
+        public int EffectiveLife { get; private set; }
 
         // FK
         public int InterventionId { get; private set; }
 
-        public QualityReport(int qualityReportId, DateTime dateAdded, string notes, decimal effectiveLife, int interventionId)
+        public QualityReport(int qualityReportId, DateTime dateAdded, string notes, int effectiveLife, int interventionId)
         {
             QualityReportId = qualityReportId;
             DateAdded = dateAdded;
@@ -26,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
             Notes = newNotes;
         }
 
-        public void EditEffectiveLife(decimal newEffectiveLife)
+        public void EditEffectiveLife(int newEffectiveLife)
         {
             EffectiveLife = newEffectiveLife;
         }

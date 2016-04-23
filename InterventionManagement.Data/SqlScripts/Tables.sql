@@ -21,8 +21,8 @@ CREATE TABLE [dbo].[Accountant]
 CREATE TABLE [dbo].[Manager]
 (
 	[ManagerId] INT NOT NULL PRIMARY KEY, 
-    [HoursApprovalLimit] DECIMAL NOT NULL, 
-    [CostApprovalLimit] DECIMAL NOT NULL, 
+    [HoursApprovalLimit] INT NOT NULL, 
+    [CostApprovalLimit] INT NOT NULL, 
     [DistrictId] INT NOT NULL, 
     CONSTRAINT [FK_Manager_User] FOREIGN KEY ([ManagerId]) REFERENCES [User]([UserId]), 
     CONSTRAINT [FK_Manager_District] FOREIGN KEY ([DistrictId]) REFERENCES [District]([DistrictId])
@@ -31,8 +31,8 @@ CREATE TABLE [dbo].[Manager]
 CREATE TABLE [dbo].[Engineer]
 (
 	[EngineerId] INT NOT NULL PRIMARY KEY, 
-    [HoursApprovalLimit] DECIMAL NOT NULL, 
-    [CostApprovalLimit] DECIMAL NOT NULL, 
+    [HoursApprovalLimit] INT NOT NULL, 
+    [CostApprovalLimit] INT NOT NULL, 
     [DistrictId] INT NOT NULL, 
     CONSTRAINT [FK_Engineer_User] FOREIGN KEY ([EngineerId]) REFERENCES [User]([UserId]), 
     CONSTRAINT [FK_Engineer_District] FOREIGN KEY ([DistrictId]) REFERENCES [District]([DistrictId])
@@ -48,8 +48,8 @@ CREATE TABLE [dbo].[InterventionTemplate]
 (
 	[InterventionTemplateId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] VARCHAR(50) NOT NULL, 
-    [Hours] DECIMAL NOT NULL, 
-    [Cost] DECIMAL NOT NULL
+    [Hours] INT NOT NULL, 
+    [Cost] INT NOT NULL
 )
 
 CREATE TABLE [dbo].[Client]
@@ -66,8 +66,8 @@ CREATE TABLE [dbo].[Intervention] (
     [DatePerformed]       DATE         NOT NULL,
     [InterventionStateId] INT          NOT NULL,
     [Name]                VARCHAR (50) NOT NULL,
-    [Hours]               DECIMAL (18) NOT NULL,
-    [Cost]                DECIMAL (18) NOT NULL,
+    [Hours]               INT          NOT NULL,
+    [Cost]                INT          NOT NULL,
     [ProposerId]          INT          NOT NULL,
     [ApproverId]          INT          NULL,
     [ClientId]            INT          NOT NULL,
@@ -83,7 +83,7 @@ CREATE TABLE [dbo].[QualityReport]
 	[QualityReportId] INT NOT NULL PRIMARY KEY IDENTITY, 
     [DateAdded] DATE NOT NULL, 
     [Notes] VARCHAR(100) NOT NULL, 
-    [EffectiveLife] DECIMAL NOT NULL, 
+    [EffectiveLife] INT NOT NULL, 
     [InterventionId] INT NOT NULL, 
     CONSTRAINT [FK_QualityReport_Intervention] FOREIGN KEY (InterventionId) REFERENCES [Intervention](InterventionId)
 )

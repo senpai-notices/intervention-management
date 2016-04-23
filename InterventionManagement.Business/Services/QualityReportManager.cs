@@ -20,7 +20,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             return _qualityReports.FirstOrDefault(i => i.QualityReportId == qualityReportId);
         }
 
-        public static void Edit(int qualityReportId, string newNotes, decimal newEffectiveLife)
+        public static void Edit(int qualityReportId, string newNotes, int newEffectiveLife)
         {
             _qualityReports.Find(q => q.QualityReportId == qualityReportId).EditNotes(newNotes);
             _qualityReports.Find(q => q.QualityReportId == qualityReportId).EditEffectiveLife(newEffectiveLife);

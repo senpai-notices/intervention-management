@@ -54,12 +54,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 
     public abstract class DistrictStaff : User
     {
-        public decimal HoursApprovalLimit { get; set; }
-        public decimal CostApprovalLimit { get; set; }
+        public int HoursApprovalLimit { get; set; } // private set?
+        public int CostApprovalLimit { get; set; }
         public District District { get; set; }
 
         protected DistrictStaff(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
+            int hoursApprovalLimit, int costApprovalLimit, District district) 
             : base(userId, username, password, name)
         {
             HoursApprovalLimit = hoursApprovalLimit;
@@ -75,8 +75,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 
     public class Manager : DistrictStaff
     {
-        public Manager(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
+        public Manager(int userId, string username, string password, string name,
+            int hoursApprovalLimit, int costApprovalLimit, District district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
@@ -103,8 +103,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
 
     public class Engineer : DistrictStaff
     {
-        public Engineer(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
+        public Engineer(int userId, string username, string password, string name,
+            int hoursApprovalLimit, int costApprovalLimit, District district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
@@ -167,7 +167,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
             return QualityReportManager.QualityReports.Where(q => q.InterventionId == intervention.InterventionId).ToList();
         }
 
-        public void EditQualityReport(int qualityReportId, string newNotes, decimal newEffectiveLife)
+        public void EditQualityReport(int qualityReportId, string newNotes, int newEffectiveLife)
         {
             QualityReportManager.Edit(qualityReportId, newNotes, newEffectiveLife);
         }

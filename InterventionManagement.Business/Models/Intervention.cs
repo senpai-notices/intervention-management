@@ -9,8 +9,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
         public InterventionState State { get; private set; }
 
         public string Name { get; private set; }
-        public decimal Hours { get; private set; }
-        public decimal Cost { get; private set; }
+        public int Hours { get; private set; }
+        public int Cost { get; private set; }
 
         public int ProposerId { get; private set; }
         public int ApproverId { get; private set; }
