@@ -10,18 +10,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestMethod]
         public void CreateClient_ValidFields_NewClient()
         {
-            Client sut = new Client(1, "Steve", "Ashfield", DistrictName.Sydney);
+            Client sut = new Client(1, "Steve", "Ashfield", District.Sydney);
             Assert.AreEqual(1, sut.ClientId);
             Assert.AreEqual("Steve", sut.Name);
             Assert.AreEqual("Ashfield", sut.Location);
-            Assert.AreEqual(DistrictName.Sydney, sut.District);
+            Assert.AreEqual(District.Sydney, sut.District);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Please enter a valid name. Name must not contain numbers.")]
         public void CreateClient_EmptyName_ThrowsException()
         {
-            Client sut = new Client(1, "", "Ashfield", DistrictName.Sydney); 
+            Client sut = new Client(1, "", "Ashfield", District.Sydney); 
             
         }
 
@@ -29,7 +29,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [ExpectedException(typeof(ArgumentException), "Please enter a valid name. Name must not contain numbers.")]
         public void CreateClient_NumericName_ThrowsException()
         {
-            Client sut = new Client(1, "0395430", "Ashfield", DistrictName.Sydney);
+            Client sut = new Client(1, "0395430", "Ashfield", District.Sydney);
 
         }
 
@@ -37,7 +37,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [ExpectedException(typeof(ArgumentException), "Please enter a valid location description.")]
         public void CreateClient_EmptyLocation_ThrowsExceptionn()
         {
-            Client sut = new Client(1, "Steve ha", "", DistrictName.Sydney); ;
+            Client sut = new Client(1, "Steve ha", "", District.Sydney); ;
         }
     }
 }

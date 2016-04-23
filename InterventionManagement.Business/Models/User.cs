@@ -42,24 +42,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
             return UserManager.Users.Where(u => u.GetType() == typeof (DistrictStaff)).ToList(); // hope this works
         }
 
-        public void TransferADistrictStaff(int userId, DistrictName targetDistrict)
+        public void TransferADistrictStaff(int userId, District targetDistrict)
         {
             ((DistrictStaff) UserManager.GetUserById(userId)).ChangeDistrict(targetDistrict); // hope this works
         }
         public void ViewTotalCostsByEngineer() { }
         public void ViewAverageCostsByEngineer() { }
         public void ViewCostsByDistrict() { }
-        public void ViewMonthlyCostsForDistrict(DistrictName district) { }
+        public void ViewMonthlyCostsForDistrict(District district) { }
     }
 
     public abstract class DistrictStaff : User
     {
         public decimal HoursApprovalLimit { get; set; }
         public decimal CostApprovalLimit { get; set; }
-        public DistrictName District { get; set; }
+        public District District { get; set; }
 
         protected DistrictStaff(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
             : base(userId, username, password, name)
         {
             HoursApprovalLimit = hoursApprovalLimit;
@@ -67,7 +67,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
             District = district;
         }
 
-        public void ChangeDistrict(DistrictName targetDistrict)
+        public void ChangeDistrict(District targetDistrict)
         {
             District = targetDistrict;
         }
@@ -76,7 +76,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
     public class Manager : DistrictStaff
     {
         public Manager(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {
@@ -104,7 +104,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
     public class Engineer : DistrictStaff
     {
         public Engineer(int userId, string username, string password, string name, 
-            decimal hoursApprovalLimit, decimal costApprovalLimit, DistrictName district) 
+            decimal hoursApprovalLimit, decimal costApprovalLimit, District district) 
             : base(userId, username, password, name, hoursApprovalLimit, costApprovalLimit, 
                   district)
         {

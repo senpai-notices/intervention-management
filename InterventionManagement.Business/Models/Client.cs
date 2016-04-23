@@ -7,9 +7,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models
         public int ClientId { get; private set; }
         public string Name { get; private set; }
         public string Location { get; private set; }
-        public DistrictName District { get; private set; }
+        public District District { get; private set; }
 
-        public Client(int clientId, string name, string location, DistrictName district)
+        public Client(int clientId, string name, string location, District district)
         {
             ClientId = ClientValidator.ValidateClientId(clientId);
             Name = ClientValidator.ValidateName(name.Trim());

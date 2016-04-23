@@ -223,16 +223,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            _eAlice = new Engineer(1, "alice@example.com", "password", "Alice Nelson", 50, 2000, DistrictName.RuralPapuaNewGuinea);
-            _eSam = new Engineer(2, "sam@example.com", "password", "Sam Franklin", 100, 5200, DistrictName.RuralPapuaNewGuinea);
-            _eGeorge = new Engineer(3, "george@example.com", "password", "George Glass", 10, 10000, DistrictName.Sydney);
-            _mDavy = new Manager(4, "davy@example.com", "password", "Davy Jones", 200, 50000, DistrictName.RuralPapuaNewGuinea);
-            _mDena = new Manager(5, "dena@example.com", "password", "Dena Dittmeyer", 1000, 200000, DistrictName.Sydney);
+            _eAlice = new Engineer(1, "alice@example.com", "password", "Alice Nelson", 50, 2000, District.RuralPapuaNewGuinea);
+            _eSam = new Engineer(2, "sam@example.com", "password", "Sam Franklin", 100, 5200, District.RuralPapuaNewGuinea);
+            _eGeorge = new Engineer(3, "george@example.com", "password", "George Glass", 10, 10000, District.Sydney);
+            _mDavy = new Manager(4, "davy@example.com", "password", "Davy Jones", 200, 50000, District.RuralPapuaNewGuinea);
+            _mDena = new Manager(5, "dena@example.com", "password", "Dena Dittmeyer", 1000, 200000, District.Sydney);
             _aCarol = new Accountant(6, "carol@example.com", "password", "Carol Brady");
 
-            _client1 = new Client(21, "The Client", "24 Main St, blue house", DistrictName.RuralPapuaNewGuinea);
-            _client2 = new Client(22, "Community A", "24 Big Rd, black house", DistrictName.RuralPapuaNewGuinea);
-            _client3 = new Client(23, "UTS Students ", "Broadway, brown building", DistrictName.Sydney);
+            _client1 = new Client(21, "The Client", "24 Main St, blue house", District.RuralPapuaNewGuinea);
+            _client2 = new Client(22, "Community A", "24 Big Rd, black house", District.RuralPapuaNewGuinea);
+            _client3 = new Client(23, "UTS Students ", "Broadway, brown building", District.Sydney);
 
             _tPortableToilet = new InterventionTemplate("Supply and Install Portable Toilet", 2, 600);
             _tHepatitis = new InterventionTemplate("Hepatitis Avoidance Training", 3, 0);

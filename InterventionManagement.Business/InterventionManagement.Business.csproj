@@ -46,7 +46,7 @@
     <Compile Include="Services\InterventionManager.cs" />
     <Compile Include="Services\ClientManager.cs" />
     <Compile Include="Helpers\ClientValidator.cs" />
-    <Compile Include="Models\DistrictName.cs" />
+    <Compile Include="Models\District.cs" />
     <Compile Include="Exceptions\NameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\PasswordIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\ClientIdIsNegativeException.cs" />
