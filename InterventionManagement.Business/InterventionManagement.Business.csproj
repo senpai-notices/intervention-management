@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models2\Client2.cs" />
+    <Compile Include="Models2\District2.cs" />
+    <Compile Include="Models2\Intervention2.cs" />
+    <Compile Include="Models2\InterventionState2.cs" />
+    <Compile Include="Models2\InterventionTemplate2.cs" />
+    <Compile Include="Models2\QualityReport2.cs" />
+    <Compile Include="Models2\User2.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Exceptions\InterventionTemplateNumberException.cs" />
     <Compile Include="Exceptions\InterventionTemplateNameException.cs" />
