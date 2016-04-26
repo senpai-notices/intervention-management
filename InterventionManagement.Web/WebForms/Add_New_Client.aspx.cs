@@ -45,6 +45,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             ClientTableAdapter cta = new ClientTableAdapter();
             cta.Update(clients);
             // end the demo section
+            // testing FillByClientId
+            Response.Write("<script>alert('" + "testing fillbyclientid method" + "')</script>");
+
+            clients = new ClientTableAdapter().GetDataByClientId(10);
+            foreach (ClientDataSet.ClientRow clientRow in clients)
+            {
+                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
+            }
+            // end test 2
 
             if (validName)
             {
