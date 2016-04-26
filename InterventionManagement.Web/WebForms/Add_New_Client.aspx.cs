@@ -2,6 +2,7 @@
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.ClientDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -27,6 +28,25 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
             }
+
+            ClientDataSet.ClientRow testRow = clients.NewClientRow();
+            testRow.Location = "test location";
+            testRow.Name = "John Smithy";
+            testRow.DistrictId = 5;
+            testRow.ClientId = 10;
+
+            clients.Rows.Add(testRow);
+            Response.Write("<script>alert('" + "new row added" + "')</script>");
+            foreach (ClientDataSet.ClientRow clientRow in clients)
+            {
+                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
+            }
+            // demo 1 end
+            // demo 2 start
+            ClientTableAdapter cta = new ClientTableAdapter();
+            cta.Update(clients);
+            //ClientDataSet cds = ClientDataSet.
+            //DbDataAdapter.Update();
             // end the demo section
 
             if (validName)
