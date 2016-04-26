@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="DataSets\ClientDataSet.cs">
+      <DependentUpon>ClientDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\ClientDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

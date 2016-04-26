@@ -34,7 +34,7 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ClientId, Name, Location, DistrictId FROM dbo.Client</CommandText>
                     <Parameters />
                   </DbCommand>

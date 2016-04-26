@@ -758,15 +758,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.District
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[District] ([Name]) VALUES (@Name);\r\nSELECT DistrictId, Name FR" +
-                "OM District WHERE (DistrictId = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[District] ([Name]) VALUES (@Name);\nSELECT DistrictId, Name FRO" +
+                "M District WHERE (DistrictId = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[District] SET [Name] = @Name WHERE (([DistrictId] = @Original_Distr" +
-                "ictId) AND ([Name] = @Original_Name));\r\nSELECT DistrictId, Name FROM District WH" +
-                "ERE (DistrictId = @DistrictId)";
+                "ictId) AND ([Name] = @Original_Name));\nSELECT DistrictId, Name FROM District WHE" +
+                "RE (DistrictId = @DistrictId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DistrictId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DistrictId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -791,13 +791,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.District
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT DistrictId, Name FROM dbo.District\r\nWHERE DistrictId = @DistrictId";
+            this._commandCollection[1].CommandText = "SELECT DistrictId, Name FROM dbo.District\nWHERE DistrictId = @DistrictId";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DistrictId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "DistrictId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO [dbo].[District] ([Name]) VALUES (@Name);\r\nSELECT DistrictId, Name FR" +
-                "OM District WHERE (DistrictId = SCOPE_IDENTITY())";
+            this._commandCollection[2].CommandText = "INSERT INTO [dbo].[District] ([Name]) VALUES (@Name);\nSELECT DistrictId, Name FRO" +
+                "M District WHERE (DistrictId = SCOPE_IDENTITY())";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
