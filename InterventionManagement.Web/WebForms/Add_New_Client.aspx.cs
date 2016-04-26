@@ -41,12 +41,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
             }
-            // demo 1 end
-            // demo 2 start
+            
             ClientTableAdapter cta = new ClientTableAdapter();
             cta.Update(clients);
-            //ClientDataSet cds = ClientDataSet.
-            //DbDataAdapter.Update();
             // end the demo section
 
             if (validName)
