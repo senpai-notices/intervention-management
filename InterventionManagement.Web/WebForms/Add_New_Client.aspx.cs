@@ -1,4 +1,6 @@
-﻿using System;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.ClientDataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
@@ -18,6 +20,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         protected void btn_CreateClient_Click(object sender, EventArgs e)
         {
             bool validName = !String.IsNullOrWhiteSpace(txt_Name.Text);
+
+            // showing that we can access data from typed datasets
+            ClientDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
+            foreach (ClientDataSet.ClientRow clientRow in clients)
+            {
+                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
+            }
+            // end the demo section
 
             if (validName)
             {
