@@ -101,8 +101,8 @@
     <Content Include="Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-    <Content Include="SqlScripts\Inserts.sql" />
-    <Content Include="SqlScripts\Tables.sql" />
+    <EmbeddedResource Include="SqlScripts\Script0002-InsertData.sql" />
+    <EmbeddedResource Include="SqlScripts\Script0001-CreateTables.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterventionManagement.Business\InterventionManagement.Business.csproj">
