@@ -4,9 +4,9 @@ using System.Configuration;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data
 {
-    public class MDFDatabaseInitializer
+    public class DbUpHelper
     {
-        public void InitializeDatabaseUsingDbUp()
+        public void InitializeDatabase()
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
 

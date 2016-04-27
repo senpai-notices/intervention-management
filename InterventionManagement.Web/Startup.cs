@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 using Microsoft.Owin;
 using Owin;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data;//remove
+//using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data;//remove
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
@@ -18,7 +19,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
             // Debug to test db initializer
-            new MDFDatabaseInitializer().InitializeDatabaseUsingDbUp();
+            new DatabaseInitializer();
         }
     }
 }
