@@ -4,7 +4,6 @@ using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 using Microsoft.Owin;
 using Owin;
-//using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data;//remove
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
@@ -18,8 +17,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web
             string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\InterventionManagement.Data"));
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
-            // Debug to test db initializer
-            new DatabaseInitializer();
+            // Initialize the database
+            new DatabaseInitializer().InitializeDatabase();
         }
     }
 }

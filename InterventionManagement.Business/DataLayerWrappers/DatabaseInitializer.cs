@@ -4,6 +4,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class DatabaseInitializer
     {
+        // wrapper around the DbUpHelper class, to separate the Web layer from the Data layer
         public void InitializeDatabase()
         {
             new DbUpHelper().InitializeDatabase();
