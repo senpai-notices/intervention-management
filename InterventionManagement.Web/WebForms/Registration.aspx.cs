@@ -22,19 +22,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            //var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            //var user = new ApplicationUser() { UserName = txtUsername.Text };
-            //IdentityResult result = manager.Create(user, txtPassword.Text);
             //if (result.Succeeded)
             //{
-            //    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-            //    //string code = manager.GenerateEmailConfirmationToken(user.Id);
-            //    //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-            //    //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
-
             //    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-            //    //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             //    Response.Redirect("/Webforms/Add_New_Client.aspx");
             //}
             //else
