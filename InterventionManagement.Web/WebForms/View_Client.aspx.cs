@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Web;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity.Owin;
+using System.Diagnostics;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -12,11 +15,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 if (Session["selected"] != null)
                     lblName.Text = Session["selected"].ToString();
                 else
-                    lblName.Text = "Sample name";
-                lblLocation.Text = "Ashfield";
-                lblDistrict.Text = "Sydney";
+                {
+                    //    lblName.Text = "Sample name";
+                    //lblLocation.Text = "Ashfield";
+                    //lblDistrict.Text = "Sydney";
+                    //Debug.WriteLine("debugwriteline" + User.Identity.Name);
+                    lblName.Text = User.Identity.Name;
+                    lblLocation.Text = User.IsInRole("Accountant") ? "true" : "false";
+                    lblDistrict.Text = "sydney";
+                }
             }
-
 
             //Update button will be add automatically
             for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions of that client 

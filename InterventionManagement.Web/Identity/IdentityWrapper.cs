@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
+using System.Web.UI;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity
 {
@@ -55,11 +56,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity
             }
         }
 
-        public void SignIn(
-            UserManager<ApplicationUser> userManager,
-            ApplicationSignInManager signInManager,
-            string username,
-            string password)
+        public void SignIn(ApplicationUserManager userManager, ApplicationSignInManager signInManager, string username, string password)
         {
             var user = userManager.FindByName(username);
             if (user != null)
@@ -70,7 +67,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity
                 }
                 else
                 {
-                    // throw exception
+                    //throw exception
                 }
             }
         }
