@@ -28,24 +28,22 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
             }
         }
 
-        public void CreateUser()
+        public void CreateUser(string username, string password, string roleName)
         {
-            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>());
-            //var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
-            ////var myinfo = new MyUserInfo() { FirstName = "Pranav", LastName = "Rastogi" };
-            //string name = "Admin";
-            //string password = "123456";
-            //string test = "test";
+            var context = new ApplicationDbContext();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-            ////Create Role Test and User Test
-            //RoleManager.Create(new IdentityRole(test));
-            //UserManager.Create(new ApplicationUser() { UserName = test });
-
-            ////Create Role Admin if it does not exist
-            //if (!RoleManager.RoleExists(name))
-            //{
-            //    var roleresult = RoleManager.Create(new IdentityRole(name));
-            //}
+            //To Do: validate username, pw and role
+            var user = new ApplicationUser() { UserName = username };
+            IdentityResult createUser = userManager.Create(user, password);
+            if (createUser.Succeeded)
+            {
+            }
+            else
+            {
+                // throw exception
+            }
         }
     }
 }

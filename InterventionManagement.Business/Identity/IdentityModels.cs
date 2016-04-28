@@ -11,12 +11,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
 
     public class ApplicationUser : IdentityUser
     {
-        // HomeTown will be stored in the same table as Users
-        public string HomeTown { get; set; }
-        //public virtual ICollection<ToDo> ToDoes { get; set; }
 
-        // FirstName & LastName will be stored in a different table called MyUserInfo
-        //public virtual MyUserInfo MyUserInfo { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
