@@ -11,7 +11,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
     public class IdentityWrapper
     {
         // encapsulates Identity functions
-        public IdentityWrapper()
+        public IdentityWrapper(
+            ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            UserManager<ApplicationSignInManager> signInManager)
         {
 
         }
@@ -55,8 +58,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
 
         public void SignIn()
         {
-            var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            //var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
         }
     }
 }
