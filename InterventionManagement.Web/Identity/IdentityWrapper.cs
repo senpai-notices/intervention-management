@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity
 {
     public class IdentityWrapper
     {
         // encapsulates Identity functions
-        public IdentityWrapper(
-            ApplicationDbContext context,
-            UserManager<ApplicationUser> userManager,
-            UserManager<ApplicationSignInManager> signInManager)
+        public IdentityWrapper()
         {
 
         }
@@ -56,10 +55,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
             }
         }
 
-        public void SignIn()
+        public void SignIn(
+            UserManager<ApplicationUser> userManager,
+            ApplicationSignInManager signInManager,
+            string username,
+            string password)
         {
-            //var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            //var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            var user = userManager.FindByName(username);
+            if (user != null)
+            {
+                if (userManager.CheckPassword(user, password))
+                {
+                    signInManager.SignIn(user, false, false);
+                }
+                else
+                {
+                    // throw exception
+                }
+            }
         }
     }
 }

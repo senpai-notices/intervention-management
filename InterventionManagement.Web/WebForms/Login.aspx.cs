@@ -4,7 +4,8 @@ using System.Web.UI;
 using Microsoft.AspNet.Identity.Owin;
 
 using Microsoft.AspNet.Identity;
-
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -27,28 +28,32 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         }
         protected void LogIn()
         {
-           
-           if (IsValid)
+
+            if (IsValid)
             {
                 //Get all the users
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-                
-                var user = manager.FindByName(txt_loginID.Text); //Get a user by its ID
-                if (user != null)
-                {
-                    if (manager.CheckPassword(user, txt_loginPW.Text))
-                    {
-                        signinManager.SignIn(user, false, false);
-                        Response.Redirect("/WebForms/View_Client.aspx");
-                    }
-                    else
-                    {
-                        Label5.Text = "Invalid username or password.";
-                        Label5.Visible = true;
-                    }
-                }
-                }
+                var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                string username = txt_loginID.Text;
+                string password = txt_loginPW.Text;
+
+                new IdentityWrapper().SignIn(userManager, signInManager, username, password);
+
+                //var user = manager.FindByName(txt_loginID.Text); //Get a user by its ID
+                //if (user != null)
+                //{
+                //    if (manager.CheckPassword(user, txt_loginPW.Text))
+                //    {
+                //        signinManager.SignIn(user, false, false);
+                //        Response.Redirect("/WebForms/View_Client.aspx");
+                //    }
+                //    else
+                //    {
+                //        Label5.Text = "Invalid username or password.";
+                //        Label5.Visible = true;
+                //    }
+                //}
             }
         }
     }
+}

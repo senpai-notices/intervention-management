@@ -86,8 +86,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataLayerWrappers\DatabaseInitializer.cs" />
-    <Compile Include="Identity\IdentityModels.cs" />
-    <Compile Include="Identity\IdentityWrapper.cs" />
     <Compile Include="Models2\Client2.cs" />
     <Compile Include="Models2\District2.cs" />
     <Compile Include="Models2\Intervention2.cs" />

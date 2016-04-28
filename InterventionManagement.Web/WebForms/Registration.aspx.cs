@@ -10,6 +10,7 @@ using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
