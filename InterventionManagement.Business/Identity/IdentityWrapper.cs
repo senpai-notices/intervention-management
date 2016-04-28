@@ -14,13 +14,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
 
         public void InitializeRoles()
         {
-            //var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
-            //RoleManager.Create(new IdentityRole("EngineerX"));
-            //RoleManager.Create(new IdentityRole("ManagerX"));
-            //RoleManager.Create(new IdentityRole("AccountantX"));
-            TryInitializeRole("EngineerX");
-            TryInitializeRole("ManagerX");
-            TryInitializeRole("AccountantX");
+            TryInitializeRole("Engineer");
+            TryInitializeRole("Manager");
+            TryInitializeRole("Accountant");
         }
 
         private void TryInitializeRole(string roleName)
