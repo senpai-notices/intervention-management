@@ -38,8 +38,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
             //To Do: validate username, pw and role
             var user = new ApplicationUser() { UserName = username };
             IdentityResult createUser = userManager.Create(user, password);
+
             if (createUser.Succeeded)
             {
+                userManager.AddToRole(user.Id, roleName);
             }
             else
             {
