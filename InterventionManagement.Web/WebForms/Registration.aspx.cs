@@ -33,7 +33,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             //}
             string username = txtUsername.Text;
             string password = txtPassword.Text;
-            string roleName = "Engineer";//remove hardcode
+            string roleName = DropDownList_Roles.SelectedItem.ToString();
             new IdentityWrapper().CreateUser(username, password, roleName);
         }
     }

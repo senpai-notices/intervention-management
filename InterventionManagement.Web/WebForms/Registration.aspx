@@ -17,7 +17,16 @@
         <br /><br />
         <asp:Label ID="Label4" runat="server" Text="Confirm Password: "></asp:Label>
         <asp:TextBox ID="txtConfirm" runat="server" TextMode="Password"></asp:TextBox>
-        <br /><br />
+        <br />
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationDropDownBoxRolesConnection %>" SelectCommand="SELECT [Name] FROM [Roles]"></asp:SqlDataSource>
+        <div>
+        </div>
+        <asp:Label ID="LabelRole" runat="server" Text="Role:"></asp:Label>
+        <asp:DropDownList ID="DropDownList_Roles" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Name">
+        </asp:DropDownList>
+        <br />
+         <div>
+        </div>
          <asp:Button ID="btnRegister" runat="server" Text="Register" OnClick="btnRegister_Click" />
      </div>
 
