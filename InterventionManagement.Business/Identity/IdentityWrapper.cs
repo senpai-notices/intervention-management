@@ -11,6 +11,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
     public class IdentityWrapper
     {
         // encapsulates Identity functions
+        public IdentityWrapper()
+        {
+
+        }
 
         public void InitializeRoles()
         {
@@ -47,6 +51,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
             {
                 // throw exception
             }
+        }
+
+        public void SignIn()
+        {
+            var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
         }
     }
 }
