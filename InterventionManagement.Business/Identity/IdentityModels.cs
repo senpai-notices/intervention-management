@@ -16,7 +16,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base("Database", throwIfV1Schema: false)
+        public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
