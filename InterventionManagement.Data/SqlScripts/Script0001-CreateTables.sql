@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[District]
 (
 	[DistrictId] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Name] VARCHAR(50) NOT NULL
+    [Name] VARCHAR(100) NOT NULL
 )
 
 CREATE TABLE [dbo].[User]
