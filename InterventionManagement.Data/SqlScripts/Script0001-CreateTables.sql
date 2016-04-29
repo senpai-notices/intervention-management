@@ -12,12 +12,6 @@ CREATE TABLE [dbo].[User]
     [Name] VARCHAR(50) NOT NULL 
 )
 
-CREATE TABLE [dbo].[Accountant]
-(
-	[AccountantId] INT NOT NULL PRIMARY KEY, 
-    CONSTRAINT [FK_Accountant_User] FOREIGN KEY ([AccountantId]) REFERENCES [User]([UserId]) 
-)
-
 CREATE TABLE [dbo].[Manager]
 (
 	[ManagerId] INT NOT NULL PRIMARY KEY, 
