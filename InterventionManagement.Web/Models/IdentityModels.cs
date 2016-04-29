@@ -40,7 +40,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
-
+            modelBuilder.Entity<ApplicationUser>().Property(x => x.UserName).HasMaxLength(40);
 
 
         }
