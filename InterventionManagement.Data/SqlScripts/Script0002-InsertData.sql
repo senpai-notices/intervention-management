@@ -1,9 +1,10 @@
 ﻿SET IDENTITY_INSERT [dbo].[District] ON
-INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (1, N'UrbanIndonesia')
-INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (2, N'RuralIndonesia')
-INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (3, N'UrbanPapuaNewGuinea')
-INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (4, N'RuralPapuaNewGuinea')
+INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (1, N'Urban Indonesia')
+INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (2, N'Rural Indonesia')
+INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (3, N'Urban Papua New Guinea')
+INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (4, N'Rural Papua New Guinea')
 INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (5, N'Sydney')
+INSERT INTO [dbo].[District] ([DistrictId], [Name]) VALUES (6, N'Rural New South Wales')
 SET IDENTITY_INSERT [dbo].[District] OFF
 
 SET IDENTITY_INSERT [dbo].[InterventionState] ON
@@ -12,17 +13,6 @@ INSERT INTO [dbo].[InterventionState] ([InterventionStateId], [InterventionState
 INSERT INTO [dbo].[InterventionState] ([InterventionStateId], [InterventionStateName]) VALUES (3, N'Completed')
 INSERT INTO [dbo].[InterventionState] ([InterventionStateId], [InterventionStateName]) VALUES (4, N'Cancelled')
 SET IDENTITY_INSERT [dbo].[InterventionState] OFF
-
-SET IDENTITY_INSERT [dbo].[User] ON
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (1, N'alice@example.com', N'password', N'Alice Nelson')
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (2, N'sam@example.com', N'password', N'Sam Franklin')
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (3, N'george@example.com', N'password', N'George Glass')
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (4, N'davy@example.com', N'password', N'Davy Jones')
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (5, N'dena@example.com', N'password', N'Dena Dittmeyer')
-INSERT INTO [dbo].[User] ([UserId], [Username], [Password], [Name]) VALUES (6, N'carol@example.com', N'password', N'Carol Brady')
-SET IDENTITY_INSERT [dbo].[User] OFF
-
-INSERT INTO [dbo].[Accountant] ([AccountantId]) VALUES (6)
 
 INSERT INTO [dbo].[Manager] ([ManagerId], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (4, CAST(200 AS Decimal(18, 0)), CAST(50000 AS Decimal(18, 0)), 4)
 INSERT INTO [dbo].[Manager] ([ManagerId], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (5, CAST(1000 AS Decimal(18, 0)), CAST(200000 AS Decimal(18, 0)), 5)
