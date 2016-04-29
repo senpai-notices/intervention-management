@@ -68,7 +68,7 @@ CREATE TABLE [dbo].[Intervention]
 	[RemainingLife] INT NOT NULL,
 	[DateOfLastVisit] DATE NULL,
     CONSTRAINT [FK_Intervention_InterventionState] FOREIGN KEY ([InterventionStateId]) REFERENCES [dbo].[InterventionState] ([InterventionStateId]),
-    CONSTRAINT [FK_Intervention_Proposer] FOREIGN KEY ([ProposerId]) REFERENCES [dbo].[Engineer] ([Username]),
-    CONSTRAINT [FK_Intervention_Approver] FOREIGN KEY ([ApproverId]) REFERENCES [dbo].[Manager] ([Username]),
+    CONSTRAINT [FK_Intervention_Proposer] FOREIGN KEY ([ProposerId]) REFERENCES [dbo].[Engineer] ([EngineerUsername]),
+    CONSTRAINT [FK_Intervention_Approver] FOREIGN KEY ([ApproverId]) REFERENCES [dbo].[Manager] ([ManagerUsername]),
     CONSTRAINT [FK_Intervention_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId])
 );
