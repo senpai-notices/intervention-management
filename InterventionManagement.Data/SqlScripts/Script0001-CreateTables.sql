@@ -6,36 +6,34 @@
 
 CREATE TABLE [dbo].[User]
 (
-	[UserId] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Username] VARCHAR(50) NOT NULL, 
-    [Password] VARCHAR(200) NOT NULL, 
-    [Name] VARCHAR(50) NOT NULL 
+    [Username] VARCHAR(40) NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(100) NOT NULL 
 )
 
 CREATE TABLE [dbo].[Manager]
 (
-	[ManagerId] INT NOT NULL PRIMARY KEY, 
+	[ManagerUsername] VARCHAR(40) NOT NULL PRIMARY KEY, 
     [HoursApprovalLimit] INT NOT NULL, 
     [CostApprovalLimit] INT NOT NULL, 
     [DistrictId] INT NOT NULL, 
-    CONSTRAINT [FK_Manager_User] FOREIGN KEY ([ManagerId]) REFERENCES [User]([UserId]), 
+    CONSTRAINT [FK_Manager_User] FOREIGN KEY ([ManagerUsername]) REFERENCES [User]([Username]), 
     CONSTRAINT [FK_Manager_District] FOREIGN KEY ([DistrictId]) REFERENCES [District]([DistrictId])
 )
 
 CREATE TABLE [dbo].[Engineer]
 (
-	[EngineerId] INT NOT NULL PRIMARY KEY, 
+	[EngineerUsername] VARCHAR(40) NOT NULL PRIMARY KEY, 
     [HoursApprovalLimit] INT NOT NULL, 
     [CostApprovalLimit] INT NOT NULL, 
     [DistrictId] INT NOT NULL, 
-    CONSTRAINT [FK_Engineer_User] FOREIGN KEY ([EngineerId]) REFERENCES [User]([UserId]), 
+    CONSTRAINT [FK_Engineer_User] FOREIGN KEY ([EngineerUsername]) REFERENCES [User]([Username]), 
     CONSTRAINT [FK_Engineer_District] FOREIGN KEY ([DistrictId]) REFERENCES [District]([DistrictId])
 )
 
 CREATE TABLE [dbo].[InterventionState]
 (
 	[InterventionStateId] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [InterventionStateName] VARCHAR(50) NOT NULL
+    [InterventionStateName] VARCHAR(100) NOT NULL
 )
 
 CREATE TABLE [dbo].[InterventionTemplate]
