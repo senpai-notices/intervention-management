@@ -60,7 +60,7 @@
             <asp:Button ID="Button1" runat="server" Text="Add new intervention" />
         </div>
 
-
+        <!-- End data table-->
 
     </div>
 </asp:Content>

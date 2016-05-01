@@ -5,8 +5,15 @@
         <asp:Label ID="Label1" runat="server" Text="Current Interventions" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
     </div>
 
-     <div style="margin-left: 30%; margin-top: 5%">
-
+    <div style="margin-left: 20%; margin-top: 5%">
+            <asp:Table ID="Table1" runat="server" GridLines="Both" Width="80%">
+                <asp:TableRow runat="server" Font-Bold="True" Height="50px">
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Interventions</asp:TableCell>
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="40%">Intervention Details</asp:TableCell>
+                    <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Update Intervention</asp:TableCell>
+                </asp:TableRow>
+            </asp:Table>
+            <br />
 
      </div>
 
