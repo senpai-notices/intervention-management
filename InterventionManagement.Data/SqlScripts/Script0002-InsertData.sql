@@ -30,6 +30,6 @@ INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES
 INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (3, N'David Bowie', N'Cloud 1, Heaven', 5)
 SET IDENTITY_INSERT [dbo].[Client] OFF
 
---SET IDENTITY_INSERT [dbo].[Intervention] ON
---INSERT INTO [dbo].[Intervention] ([InterventionId], [InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerId], [ApproverId], [ClientId], [Notes], [RemainingLife], [DateOfLastVisit]) VALUES (1, 1, N'2016-01-01', 1, CAST(0 AS Decimal(18, 0)), CAST(25 AS Decimal(18, 0)), 1, 1, 1, NULL, 100, N'2016-01-02')
---SET IDENTITY_INSERT [dbo].[Intervention] OFF
+SET IDENTITY_INSERT [dbo].[Intervention] ON
+INSERT INTO [dbo].[Intervention] ([InterventionId],	[InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerId], [ApproverId], [ClientId], [Notes],	[RemainingLife], [DateOfLastVisit]) VALUES (1, 1, '2016-01-01', 1, CAST(25 AS Decimal(18, 0)), CAST(25 AS Decimal(18, 0)), 1, 1, 1, N'Example Intervention', 100, '2016-01-02')
+SET IDENTITY_INSERT [dbo].[Intervention] OFF
