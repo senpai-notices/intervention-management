@@ -67,6 +67,7 @@ CREATE TABLE [dbo].[Intervention]
 	[Notes] VARCHAR(2000) NULL,
 	[RemainingLife] INT NOT NULL,
 	[DateOfLastVisit] DATE NULL,
+	CONSTRAINT [FK_Intervention_InterventionTemplate] FOREIGN KEY ([InterventionTemplateId]) REFERENCES [dbo].[InterventionTemplate] ([InterventionTemplateId]),
     CONSTRAINT [FK_Intervention_InterventionState] FOREIGN KEY ([InterventionStateId]) REFERENCES [dbo].[InterventionState] ([InterventionStateId]),
     CONSTRAINT [FK_Intervention_Proposer] FOREIGN KEY ([ProposerId]) REFERENCES [dbo].[Engineer] ([EngineerUsername]),
     CONSTRAINT [FK_Intervention_Approver] FOREIGN KEY ([ApproverId]) REFERENCES [dbo].[Manager] ([ManagerUsername]),
