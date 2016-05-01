@@ -216,6 +216,7 @@
     <Content Include="WebForms\Login.aspx" />
     <Content Include="WebForms\Manager_Intervention.aspx" />
     <Content Include="WebForms\Registration.aspx" />
+    <Content Include="WebForms\Update_Intervention_Details.aspx" />
     <Content Include="WebForms\View_Client.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -469,6 +470,13 @@
     </Compile>
     <Compile Include="WebForms\Registration.aspx.designer.cs">
       <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForms\Update_Intervention_Details.aspx.cs">
+      <DependentUpon>Update_Intervention_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForms\Update_Intervention_Details.aspx.designer.cs">
+      <DependentUpon>Update_Intervention_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\View_Client.aspx.cs">
       <DependentUpon>View_Client.aspx</DependentUpon>
