@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 using Microsoft.AspNet.Identity;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
