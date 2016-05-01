@@ -4,7 +4,6 @@ using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 using Microsoft.Owin;
 using Owin;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Identity;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
 
 [assembly: OwinStartup(typeof(Startup))]
