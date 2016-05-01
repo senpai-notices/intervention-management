@@ -82,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DistrictDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSets\MainDataSet.cs">
+      <DependentUpon>MainDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSets\MainDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
