@@ -9541,7 +9541,7 @@ SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId" +
@@ -9556,6 +9556,20 @@ SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateI
                 "= @clientId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"SELECT        InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit
+FROM            Intervention
+WHERE        (InterventionId = @interventionId)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@interventionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT        InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit
+FROM            Intervention
+WHERE        (ProposerUsername = @proposerUsername)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@proposerUsername", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9603,6 +9617,68 @@ SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateI
         public virtual MainDataSet.InterventionDataTable GetDataBy_ClientId(int clientId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId));
+            MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy_InterventionId(MainDataSet.InterventionDataTable dataTable, int interventionId) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(interventionId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MainDataSet.InterventionDataTable GetDataBy_InterventionId(int interventionId) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(interventionId));
+            MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy_ProposerUsername(MainDataSet.InterventionDataTable dataTable, string proposerUsername) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((proposerUsername == null)) {
+                throw new global::System.ArgumentNullException("proposerUsername");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(proposerUsername));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MainDataSet.InterventionDataTable GetDataBy_ProposerUsername(string proposerUsername) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((proposerUsername == null)) {
+                throw new global::System.ArgumentNullException("proposerUsername");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(proposerUsername));
+            }
             MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
