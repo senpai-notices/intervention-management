@@ -10,8 +10,8 @@
     <Shape ID="DesignTable:User" ZOrder="15" X="994" Y="31" Height="115" Width="170" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:District" ZOrder="14" X="971" Y="772" Height="115" Width="186" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Engineer" ZOrder="13" X="791" Y="202" Height="153" Width="195" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
-    <Shape ID="DesignTable:InterventionState" ZOrder="12" X="429" Y="93" Height="115" Width="246" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
-    <Shape ID="DesignTable:InterventionTemplate" ZOrder="8" X="403" Y="650" Height="153" Width="271" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:InterventionState" ZOrder="12" X="429" Y="93" Height="134" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:InterventionTemplate" ZOrder="8" X="395" Y="714" Height="153" Width="271" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:Manager" ZOrder="11" X="979" Y="372" Height="153" Width="196" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
     <Shape ID="DesignTable:Roles" ZOrder="10" X="1644" Y="246" Height="115" Width="176" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Users" ZOrder="9" X="1656" Y="562" Height="305" Width="176" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
@@ -151,7 +151,7 @@
       <RoutePoints>
         <Point>
           <X>532</X>
-          <Y>208</Y>
+          <Y>227</Y>
         </Point>
         <Point>
           <X>532</X>
@@ -162,11 +162,11 @@
     <Connector ID="DesignRelation:FK_Intervention_InterventionTemplate" ZOrder="2" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>449</X>
-          <Y>650</Y>
+          <X>441</X>
+          <Y>714</Y>
         </Point>
         <Point>
-          <X>449</X>
+          <X>441</X>
           <Y>527</Y>
         </Point>
         <Point>
