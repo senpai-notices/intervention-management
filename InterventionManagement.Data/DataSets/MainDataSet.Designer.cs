@@ -32,8 +32,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         
         private EngineerDataTable tableEngineer;
         
-        private InterventionDataTable tableIntervention;
-        
         private InterventionStateDataTable tableInterventionState;
         
         private InterventionTemplateDataTable tableInterventionTemplate;
@@ -46,11 +44,21 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         
         private UserRolesDataTable tableUserRoles;
         
+        private InterventionDataTable tableIntervention;
+        
         private global::System.Data.DataRelation relationFK_Client_District;
         
         private global::System.Data.DataRelation relationFK_Engineer_District;
         
         private global::System.Data.DataRelation relationFK_Engineer_User;
+        
+        private global::System.Data.DataRelation relationFK_Manager_District;
+        
+        private global::System.Data.DataRelation relationFK_Manager_User;
+        
+        private global::System.Data.DataRelation _relationFK_dbo_UserRoles_dbo_Roles_RoleId;
+        
+        private global::System.Data.DataRelation _relationFK_dbo_UserRoles_dbo_Users_UserId;
         
         private global::System.Data.DataRelation relationFK_Intervention_Approver;
         
@@ -61,14 +69,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         private global::System.Data.DataRelation relationFK_Intervention_InterventionTemplate;
         
         private global::System.Data.DataRelation relationFK_Intervention_Proposer;
-        
-        private global::System.Data.DataRelation relationFK_Manager_District;
-        
-        private global::System.Data.DataRelation relationFK_Manager_User;
-        
-        private global::System.Data.DataRelation _relationFK_dbo_UserRoles_dbo_Roles_RoleId;
-        
-        private global::System.Data.DataRelation _relationFK_dbo_UserRoles_dbo_Users_UserId;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -110,9 +110,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 if ((ds.Tables["Engineer"] != null)) {
                     base.Tables.Add(new EngineerDataTable(ds.Tables["Engineer"]));
                 }
-                if ((ds.Tables["Intervention"] != null)) {
-                    base.Tables.Add(new InterventionDataTable(ds.Tables["Intervention"]));
-                }
                 if ((ds.Tables["InterventionState"] != null)) {
                     base.Tables.Add(new InterventionStateDataTable(ds.Tables["InterventionState"]));
                 }
@@ -130,6 +127,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 }
                 if ((ds.Tables["UserRoles"] != null)) {
                     base.Tables.Add(new UserRolesDataTable(ds.Tables["UserRoles"]));
+                }
+                if ((ds.Tables["Intervention"] != null)) {
+                    base.Tables.Add(new InterventionDataTable(ds.Tables["Intervention"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -193,16 +193,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public InterventionDataTable Intervention {
-            get {
-                return this.tableIntervention;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public InterventionStateDataTable InterventionState {
             get {
                 return this.tableInterventionState;
@@ -256,6 +246,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         public UserRolesDataTable UserRoles {
             get {
                 return this.tableUserRoles;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public InterventionDataTable Intervention {
+            get {
+                return this.tableIntervention;
             }
         }
         
@@ -338,9 +338,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 if ((ds.Tables["Engineer"] != null)) {
                     base.Tables.Add(new EngineerDataTable(ds.Tables["Engineer"]));
                 }
-                if ((ds.Tables["Intervention"] != null)) {
-                    base.Tables.Add(new InterventionDataTable(ds.Tables["Intervention"]));
-                }
                 if ((ds.Tables["InterventionState"] != null)) {
                     base.Tables.Add(new InterventionStateDataTable(ds.Tables["InterventionState"]));
                 }
@@ -358,6 +355,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 }
                 if ((ds.Tables["UserRoles"] != null)) {
                     base.Tables.Add(new UserRolesDataTable(ds.Tables["UserRoles"]));
+                }
+                if ((ds.Tables["Intervention"] != null)) {
+                    base.Tables.Add(new InterventionDataTable(ds.Tables["Intervention"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -416,12 +416,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                     this.tableEngineer.InitVars();
                 }
             }
-            this.tableIntervention = ((InterventionDataTable)(base.Tables["Intervention"]));
-            if ((initTable == true)) {
-                if ((this.tableIntervention != null)) {
-                    this.tableIntervention.InitVars();
-                }
-            }
             this.tableInterventionState = ((InterventionStateDataTable)(base.Tables["InterventionState"]));
             if ((initTable == true)) {
                 if ((this.tableInterventionState != null)) {
@@ -458,18 +452,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                     this.tableUserRoles.InitVars();
                 }
             }
+            this.tableIntervention = ((InterventionDataTable)(base.Tables["Intervention"]));
+            if ((initTable == true)) {
+                if ((this.tableIntervention != null)) {
+                    this.tableIntervention.InitVars();
+                }
+            }
             this.relationFK_Client_District = this.Relations["FK_Client_District"];
             this.relationFK_Engineer_District = this.Relations["FK_Engineer_District"];
             this.relationFK_Engineer_User = this.Relations["FK_Engineer_User"];
+            this.relationFK_Manager_District = this.Relations["FK_Manager_District"];
+            this.relationFK_Manager_User = this.Relations["FK_Manager_User"];
+            this._relationFK_dbo_UserRoles_dbo_Roles_RoleId = this.Relations["FK_dbo.UserRoles_dbo.Roles_RoleId"];
+            this._relationFK_dbo_UserRoles_dbo_Users_UserId = this.Relations["FK_dbo.UserRoles_dbo.Users_UserId"];
             this.relationFK_Intervention_Approver = this.Relations["FK_Intervention_Approver"];
             this.relationFK_Intervention_Client = this.Relations["FK_Intervention_Client"];
             this.relationFK_Intervention_InterventionState = this.Relations["FK_Intervention_InterventionState"];
             this.relationFK_Intervention_InterventionTemplate = this.Relations["FK_Intervention_InterventionTemplate"];
             this.relationFK_Intervention_Proposer = this.Relations["FK_Intervention_Proposer"];
-            this.relationFK_Manager_District = this.Relations["FK_Manager_District"];
-            this.relationFK_Manager_User = this.Relations["FK_Manager_User"];
-            this._relationFK_dbo_UserRoles_dbo_Roles_RoleId = this.Relations["FK_dbo.UserRoles_dbo.Roles_RoleId"];
-            this._relationFK_dbo_UserRoles_dbo_Users_UserId = this.Relations["FK_dbo.UserRoles_dbo.Users_UserId"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,8 +488,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
             base.Tables.Add(this.tableDistrict);
             this.tableEngineer = new EngineerDataTable();
             base.Tables.Add(this.tableEngineer);
-            this.tableIntervention = new InterventionDataTable();
-            base.Tables.Add(this.tableIntervention);
             this.tableInterventionState = new InterventionStateDataTable();
             base.Tables.Add(this.tableInterventionState);
             this.tableInterventionTemplate = new InterventionTemplateDataTable();
@@ -502,6 +500,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
             base.Tables.Add(this.tableUsers);
             this.tableUserRoles = new UserRolesDataTable();
             base.Tables.Add(this.tableUserRoles);
+            this.tableIntervention = new InterventionDataTable();
+            base.Tables.Add(this.tableIntervention);
             this.relationFK_Client_District = new global::System.Data.DataRelation("FK_Client_District", new global::System.Data.DataColumn[] {
                         this.tableDistrict.DistrictIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableClient.DistrictIdColumn}, false);
@@ -514,26 +514,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                         this.tableUser.UsernameColumn}, new global::System.Data.DataColumn[] {
                         this.tableEngineer.EngineerUsernameColumn}, false);
             this.Relations.Add(this.relationFK_Engineer_User);
-            this.relationFK_Intervention_Approver = new global::System.Data.DataRelation("FK_Intervention_Approver", new global::System.Data.DataColumn[] {
-                        this.tableManager.ManagerUsernameColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIntervention.ApproverIdColumn}, false);
-            this.Relations.Add(this.relationFK_Intervention_Approver);
-            this.relationFK_Intervention_Client = new global::System.Data.DataRelation("FK_Intervention_Client", new global::System.Data.DataColumn[] {
-                        this.tableClient.ClientIdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIntervention.ClientIdColumn}, false);
-            this.Relations.Add(this.relationFK_Intervention_Client);
-            this.relationFK_Intervention_InterventionState = new global::System.Data.DataRelation("FK_Intervention_InterventionState", new global::System.Data.DataColumn[] {
-                        this.tableInterventionState.InterventionStateIdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIntervention.InterventionStateIdColumn}, false);
-            this.Relations.Add(this.relationFK_Intervention_InterventionState);
-            this.relationFK_Intervention_InterventionTemplate = new global::System.Data.DataRelation("FK_Intervention_InterventionTemplate", new global::System.Data.DataColumn[] {
-                        this.tableInterventionTemplate.InterventionTemplateIdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIntervention.InterventionTemplateIdColumn}, false);
-            this.Relations.Add(this.relationFK_Intervention_InterventionTemplate);
-            this.relationFK_Intervention_Proposer = new global::System.Data.DataRelation("FK_Intervention_Proposer", new global::System.Data.DataColumn[] {
-                        this.tableEngineer.EngineerUsernameColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIntervention.ProposerIdColumn}, false);
-            this.Relations.Add(this.relationFK_Intervention_Proposer);
             this.relationFK_Manager_District = new global::System.Data.DataRelation("FK_Manager_District", new global::System.Data.DataColumn[] {
                         this.tableDistrict.DistrictIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableManager.DistrictIdColumn}, false);
@@ -550,6 +530,26 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                         this.tableUsers.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableUserRoles.UserIdColumn}, false);
             this.Relations.Add(this._relationFK_dbo_UserRoles_dbo_Users_UserId);
+            this.relationFK_Intervention_Approver = new global::System.Data.DataRelation("FK_Intervention_Approver", new global::System.Data.DataColumn[] {
+                        this.tableManager.ManagerUsernameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIntervention.ApproverUsernameColumn}, false);
+            this.Relations.Add(this.relationFK_Intervention_Approver);
+            this.relationFK_Intervention_Client = new global::System.Data.DataRelation("FK_Intervention_Client", new global::System.Data.DataColumn[] {
+                        this.tableClient.ClientIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIntervention.ClientIdColumn}, false);
+            this.Relations.Add(this.relationFK_Intervention_Client);
+            this.relationFK_Intervention_InterventionState = new global::System.Data.DataRelation("FK_Intervention_InterventionState", new global::System.Data.DataColumn[] {
+                        this.tableInterventionState.InterventionStateIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIntervention.InterventionStateIdColumn}, false);
+            this.Relations.Add(this.relationFK_Intervention_InterventionState);
+            this.relationFK_Intervention_InterventionTemplate = new global::System.Data.DataRelation("FK_Intervention_InterventionTemplate", new global::System.Data.DataColumn[] {
+                        this.tableInterventionTemplate.InterventionTemplateIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIntervention.InterventionTemplateIdColumn}, false);
+            this.Relations.Add(this.relationFK_Intervention_InterventionTemplate);
+            this.relationFK_Intervention_Proposer = new global::System.Data.DataRelation("FK_Intervention_Proposer", new global::System.Data.DataColumn[] {
+                        this.tableEngineer.EngineerUsernameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIntervention.ProposerUsernameColumn}, false);
+            this.Relations.Add(this.relationFK_Intervention_Proposer);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -573,12 +573,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeEngineer() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeIntervention() {
             return false;
         }
         
@@ -615,6 +609,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeUserRoles() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeIntervention() {
             return false;
         }
         
@@ -686,9 +686,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         public delegate void EngineerRowChangeEventHandler(object sender, EngineerRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void InterventionRowChangeEventHandler(object sender, InterventionRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void InterventionStateRowChangeEventHandler(object sender, InterventionStateRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -705,6 +702,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void UserRolesRowChangeEventHandler(object sender, UserRolesRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void InterventionRowChangeEventHandler(object sender, InterventionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1841,448 +1841,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "EngineerDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class InterventionDataTable : global::System.Data.TypedTableBase<InterventionRow> {
-            
-            private global::System.Data.DataColumn columnInterventionId;
-            
-            private global::System.Data.DataColumn columnInterventionTemplateId;
-            
-            private global::System.Data.DataColumn columnDatePerformed;
-            
-            private global::System.Data.DataColumn columnInterventionStateId;
-            
-            private global::System.Data.DataColumn columnHours;
-            
-            private global::System.Data.DataColumn columnCost;
-            
-            private global::System.Data.DataColumn columnProposerId;
-            
-            private global::System.Data.DataColumn columnApproverId;
-            
-            private global::System.Data.DataColumn columnClientId;
-            
-            private global::System.Data.DataColumn columnNotes;
-            
-            private global::System.Data.DataColumn columnRemainingLife;
-            
-            private global::System.Data.DataColumn columnDateOfLastVisit;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionDataTable() {
-                this.TableName = "Intervention";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal InterventionDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected InterventionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InterventionIdColumn {
-                get {
-                    return this.columnInterventionId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InterventionTemplateIdColumn {
-                get {
-                    return this.columnInterventionTemplateId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DatePerformedColumn {
-                get {
-                    return this.columnDatePerformed;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InterventionStateIdColumn {
-                get {
-                    return this.columnInterventionStateId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn HoursColumn {
-                get {
-                    return this.columnHours;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CostColumn {
-                get {
-                    return this.columnCost;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ProposerIdColumn {
-                get {
-                    return this.columnProposerId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ApproverIdColumn {
-                get {
-                    return this.columnApproverId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ClientIdColumn {
-                get {
-                    return this.columnClientId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn NotesColumn {
-                get {
-                    return this.columnNotes;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RemainingLifeColumn {
-                get {
-                    return this.columnRemainingLife;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DateOfLastVisitColumn {
-                get {
-                    return this.columnDateOfLastVisit;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRow this[int index] {
-                get {
-                    return ((InterventionRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InterventionRowChangeEventHandler InterventionRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InterventionRowChangeEventHandler InterventionRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InterventionRowChangeEventHandler InterventionRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event InterventionRowChangeEventHandler InterventionRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddInterventionRow(InterventionRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRow AddInterventionRow(InterventionTemplateRow parentInterventionTemplateRowByFK_Intervention_InterventionTemplate, System.DateTime DatePerformed, InterventionStateRow parentInterventionStateRowByFK_Intervention_InterventionState, int Hours, int Cost, EngineerRow parentEngineerRowByFK_Intervention_Proposer, ManagerRow parentManagerRowByFK_Intervention_Approver, ClientRow parentClientRowByFK_Intervention_Client, string Notes, int RemainingLife, System.DateTime DateOfLastVisit) {
-                InterventionRow rowInterventionRow = ((InterventionRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        DatePerformed,
-                        null,
-                        Hours,
-                        Cost,
-                        null,
-                        null,
-                        null,
-                        Notes,
-                        RemainingLife,
-                        DateOfLastVisit};
-                if ((parentInterventionTemplateRowByFK_Intervention_InterventionTemplate != null)) {
-                    columnValuesArray[1] = parentInterventionTemplateRowByFK_Intervention_InterventionTemplate[0];
-                }
-                if ((parentInterventionStateRowByFK_Intervention_InterventionState != null)) {
-                    columnValuesArray[3] = parentInterventionStateRowByFK_Intervention_InterventionState[0];
-                }
-                if ((parentEngineerRowByFK_Intervention_Proposer != null)) {
-                    columnValuesArray[6] = parentEngineerRowByFK_Intervention_Proposer[0];
-                }
-                if ((parentManagerRowByFK_Intervention_Approver != null)) {
-                    columnValuesArray[7] = parentManagerRowByFK_Intervention_Approver[0];
-                }
-                if ((parentClientRowByFK_Intervention_Client != null)) {
-                    columnValuesArray[8] = parentClientRowByFK_Intervention_Client[0];
-                }
-                rowInterventionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowInterventionRow);
-                return rowInterventionRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRow FindByInterventionId(int InterventionId) {
-                return ((InterventionRow)(this.Rows.Find(new object[] {
-                            InterventionId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                InterventionDataTable cln = ((InterventionDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new InterventionDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnInterventionId = base.Columns["InterventionId"];
-                this.columnInterventionTemplateId = base.Columns["InterventionTemplateId"];
-                this.columnDatePerformed = base.Columns["DatePerformed"];
-                this.columnInterventionStateId = base.Columns["InterventionStateId"];
-                this.columnHours = base.Columns["Hours"];
-                this.columnCost = base.Columns["Cost"];
-                this.columnProposerId = base.Columns["ProposerId"];
-                this.columnApproverId = base.Columns["ApproverId"];
-                this.columnClientId = base.Columns["ClientId"];
-                this.columnNotes = base.Columns["Notes"];
-                this.columnRemainingLife = base.Columns["RemainingLife"];
-                this.columnDateOfLastVisit = base.Columns["DateOfLastVisit"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnInterventionId = new global::System.Data.DataColumn("InterventionId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInterventionId);
-                this.columnInterventionTemplateId = new global::System.Data.DataColumn("InterventionTemplateId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInterventionTemplateId);
-                this.columnDatePerformed = new global::System.Data.DataColumn("DatePerformed", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDatePerformed);
-                this.columnInterventionStateId = new global::System.Data.DataColumn("InterventionStateId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInterventionStateId);
-                this.columnHours = new global::System.Data.DataColumn("Hours", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnHours);
-                this.columnCost = new global::System.Data.DataColumn("Cost", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCost);
-                this.columnProposerId = new global::System.Data.DataColumn("ProposerId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProposerId);
-                this.columnApproverId = new global::System.Data.DataColumn("ApproverId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnApproverId);
-                this.columnClientId = new global::System.Data.DataColumn("ClientId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnClientId);
-                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNotes);
-                this.columnRemainingLife = new global::System.Data.DataColumn("RemainingLife", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRemainingLife);
-                this.columnDateOfLastVisit = new global::System.Data.DataColumn("DateOfLastVisit", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDateOfLastVisit);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnInterventionId}, true));
-                this.columnInterventionId.AutoIncrement = true;
-                this.columnInterventionId.AutoIncrementSeed = -1;
-                this.columnInterventionId.AutoIncrementStep = -1;
-                this.columnInterventionId.AllowDBNull = false;
-                this.columnInterventionId.ReadOnly = true;
-                this.columnInterventionId.Unique = true;
-                this.columnInterventionTemplateId.AllowDBNull = false;
-                this.columnDatePerformed.AllowDBNull = false;
-                this.columnInterventionStateId.AllowDBNull = false;
-                this.columnHours.AllowDBNull = false;
-                this.columnCost.AllowDBNull = false;
-                this.columnProposerId.AllowDBNull = false;
-                this.columnProposerId.MaxLength = 40;
-                this.columnApproverId.MaxLength = 40;
-                this.columnClientId.AllowDBNull = false;
-                this.columnNotes.MaxLength = 2000;
-                this.columnRemainingLife.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRow NewInterventionRow() {
-                return ((InterventionRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new InterventionRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(InterventionRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.InterventionRowChanged != null)) {
-                    this.InterventionRowChanged(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.InterventionRowChanging != null)) {
-                    this.InterventionRowChanging(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.InterventionRowDeleted != null)) {
-                    this.InterventionRowDeleted(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.InterventionRowDeleting != null)) {
-                    this.InterventionRowDeleting(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveInterventionRow(InterventionRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                MainDataSet ds = new MainDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "InterventionDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4201,6 +3759,448 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class InterventionDataTable : global::System.Data.TypedTableBase<InterventionRow> {
+            
+            private global::System.Data.DataColumn columnInterventionId;
+            
+            private global::System.Data.DataColumn columnInterventionTemplateId;
+            
+            private global::System.Data.DataColumn columnDatePerformed;
+            
+            private global::System.Data.DataColumn columnInterventionStateId;
+            
+            private global::System.Data.DataColumn columnHours;
+            
+            private global::System.Data.DataColumn columnCost;
+            
+            private global::System.Data.DataColumn columnProposerUsername;
+            
+            private global::System.Data.DataColumn columnApproverUsername;
+            
+            private global::System.Data.DataColumn columnClientId;
+            
+            private global::System.Data.DataColumn columnNotes;
+            
+            private global::System.Data.DataColumn columnRemainingLife;
+            
+            private global::System.Data.DataColumn columnDateOfLastVisit;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionDataTable() {
+                this.TableName = "Intervention";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal InterventionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected InterventionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InterventionIdColumn {
+                get {
+                    return this.columnInterventionId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InterventionTemplateIdColumn {
+                get {
+                    return this.columnInterventionTemplateId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DatePerformedColumn {
+                get {
+                    return this.columnDatePerformed;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn InterventionStateIdColumn {
+                get {
+                    return this.columnInterventionStateId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn HoursColumn {
+                get {
+                    return this.columnHours;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CostColumn {
+                get {
+                    return this.columnCost;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProposerUsernameColumn {
+                get {
+                    return this.columnProposerUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApproverUsernameColumn {
+                get {
+                    return this.columnApproverUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ClientIdColumn {
+                get {
+                    return this.columnClientId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NotesColumn {
+                get {
+                    return this.columnNotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn RemainingLifeColumn {
+                get {
+                    return this.columnRemainingLife;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DateOfLastVisitColumn {
+                get {
+                    return this.columnDateOfLastVisit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRow this[int index] {
+                get {
+                    return ((InterventionRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event InterventionRowChangeEventHandler InterventionRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event InterventionRowChangeEventHandler InterventionRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event InterventionRowChangeEventHandler InterventionRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event InterventionRowChangeEventHandler InterventionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddInterventionRow(InterventionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRow AddInterventionRow(InterventionTemplateRow parentInterventionTemplateRowByFK_Intervention_InterventionTemplate, System.DateTime DatePerformed, InterventionStateRow parentInterventionStateRowByFK_Intervention_InterventionState, int Hours, int Cost, EngineerRow parentEngineerRowByFK_Intervention_Proposer, ManagerRow parentManagerRowByFK_Intervention_Approver, ClientRow parentClientRowByFK_Intervention_Client, string Notes, int RemainingLife, System.DateTime DateOfLastVisit) {
+                InterventionRow rowInterventionRow = ((InterventionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        DatePerformed,
+                        null,
+                        Hours,
+                        Cost,
+                        null,
+                        null,
+                        null,
+                        Notes,
+                        RemainingLife,
+                        DateOfLastVisit};
+                if ((parentInterventionTemplateRowByFK_Intervention_InterventionTemplate != null)) {
+                    columnValuesArray[1] = parentInterventionTemplateRowByFK_Intervention_InterventionTemplate[0];
+                }
+                if ((parentInterventionStateRowByFK_Intervention_InterventionState != null)) {
+                    columnValuesArray[3] = parentInterventionStateRowByFK_Intervention_InterventionState[0];
+                }
+                if ((parentEngineerRowByFK_Intervention_Proposer != null)) {
+                    columnValuesArray[6] = parentEngineerRowByFK_Intervention_Proposer[0];
+                }
+                if ((parentManagerRowByFK_Intervention_Approver != null)) {
+                    columnValuesArray[7] = parentManagerRowByFK_Intervention_Approver[0];
+                }
+                if ((parentClientRowByFK_Intervention_Client != null)) {
+                    columnValuesArray[8] = parentClientRowByFK_Intervention_Client[0];
+                }
+                rowInterventionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowInterventionRow);
+                return rowInterventionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRow FindByInterventionId(int InterventionId) {
+                return ((InterventionRow)(this.Rows.Find(new object[] {
+                            InterventionId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                InterventionDataTable cln = ((InterventionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new InterventionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnInterventionId = base.Columns["InterventionId"];
+                this.columnInterventionTemplateId = base.Columns["InterventionTemplateId"];
+                this.columnDatePerformed = base.Columns["DatePerformed"];
+                this.columnInterventionStateId = base.Columns["InterventionStateId"];
+                this.columnHours = base.Columns["Hours"];
+                this.columnCost = base.Columns["Cost"];
+                this.columnProposerUsername = base.Columns["ProposerUsername"];
+                this.columnApproverUsername = base.Columns["ApproverUsername"];
+                this.columnClientId = base.Columns["ClientId"];
+                this.columnNotes = base.Columns["Notes"];
+                this.columnRemainingLife = base.Columns["RemainingLife"];
+                this.columnDateOfLastVisit = base.Columns["DateOfLastVisit"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnInterventionId = new global::System.Data.DataColumn("InterventionId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInterventionId);
+                this.columnInterventionTemplateId = new global::System.Data.DataColumn("InterventionTemplateId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInterventionTemplateId);
+                this.columnDatePerformed = new global::System.Data.DataColumn("DatePerformed", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatePerformed);
+                this.columnInterventionStateId = new global::System.Data.DataColumn("InterventionStateId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInterventionStateId);
+                this.columnHours = new global::System.Data.DataColumn("Hours", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHours);
+                this.columnCost = new global::System.Data.DataColumn("Cost", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCost);
+                this.columnProposerUsername = new global::System.Data.DataColumn("ProposerUsername", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProposerUsername);
+                this.columnApproverUsername = new global::System.Data.DataColumn("ApproverUsername", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApproverUsername);
+                this.columnClientId = new global::System.Data.DataColumn("ClientId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnClientId);
+                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNotes);
+                this.columnRemainingLife = new global::System.Data.DataColumn("RemainingLife", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRemainingLife);
+                this.columnDateOfLastVisit = new global::System.Data.DataColumn("DateOfLastVisit", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDateOfLastVisit);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnInterventionId}, true));
+                this.columnInterventionId.AutoIncrement = true;
+                this.columnInterventionId.AutoIncrementSeed = -1;
+                this.columnInterventionId.AutoIncrementStep = -1;
+                this.columnInterventionId.AllowDBNull = false;
+                this.columnInterventionId.ReadOnly = true;
+                this.columnInterventionId.Unique = true;
+                this.columnInterventionTemplateId.AllowDBNull = false;
+                this.columnDatePerformed.AllowDBNull = false;
+                this.columnInterventionStateId.AllowDBNull = false;
+                this.columnHours.AllowDBNull = false;
+                this.columnCost.AllowDBNull = false;
+                this.columnProposerUsername.AllowDBNull = false;
+                this.columnProposerUsername.MaxLength = 40;
+                this.columnApproverUsername.MaxLength = 40;
+                this.columnClientId.AllowDBNull = false;
+                this.columnNotes.MaxLength = 2000;
+                this.columnRemainingLife.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRow NewInterventionRow() {
+                return ((InterventionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new InterventionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(InterventionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.InterventionRowChanged != null)) {
+                    this.InterventionRowChanged(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.InterventionRowChanging != null)) {
+                    this.InterventionRowChanging(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.InterventionRowDeleted != null)) {
+                    this.InterventionRowDeleted(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.InterventionRowDeleting != null)) {
+                    this.InterventionRowDeleting(this, new InterventionRowChangeEvent(((InterventionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveInterventionRow(InterventionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                MainDataSet ds = new MainDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "InterventionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class ClientRow : global::System.Data.DataRow {
@@ -4499,259 +4499,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 else {
                     return ((InterventionRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Intervention_Proposer"])));
                 }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class InterventionRow : global::System.Data.DataRow {
-            
-            private InterventionDataTable tableIntervention;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal InterventionRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableIntervention = ((InterventionDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int InterventionId {
-                get {
-                    return ((int)(this[this.tableIntervention.InterventionIdColumn]));
-                }
-                set {
-                    this[this.tableIntervention.InterventionIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int InterventionTemplateId {
-                get {
-                    return ((int)(this[this.tableIntervention.InterventionTemplateIdColumn]));
-                }
-                set {
-                    this[this.tableIntervention.InterventionTemplateIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime DatePerformed {
-                get {
-                    return ((global::System.DateTime)(this[this.tableIntervention.DatePerformedColumn]));
-                }
-                set {
-                    this[this.tableIntervention.DatePerformedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int InterventionStateId {
-                get {
-                    return ((int)(this[this.tableIntervention.InterventionStateIdColumn]));
-                }
-                set {
-                    this[this.tableIntervention.InterventionStateIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Hours {
-                get {
-                    return ((int)(this[this.tableIntervention.HoursColumn]));
-                }
-                set {
-                    this[this.tableIntervention.HoursColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int Cost {
-                get {
-                    return ((int)(this[this.tableIntervention.CostColumn]));
-                }
-                set {
-                    this[this.tableIntervention.CostColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ProposerId {
-                get {
-                    return ((string)(this[this.tableIntervention.ProposerIdColumn]));
-                }
-                set {
-                    this[this.tableIntervention.ProposerIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string ApproverId {
-                get {
-                    try {
-                        return ((string)(this[this.tableIntervention.ApproverIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ApproverId\' in table \'Intervention\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableIntervention.ApproverIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int ClientId {
-                get {
-                    return ((int)(this[this.tableIntervention.ClientIdColumn]));
-                }
-                set {
-                    this[this.tableIntervention.ClientIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Notes {
-                get {
-                    try {
-                        return ((string)(this[this.tableIntervention.NotesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Notes\' in table \'Intervention\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableIntervention.NotesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int RemainingLife {
-                get {
-                    return ((int)(this[this.tableIntervention.RemainingLifeColumn]));
-                }
-                set {
-                    this[this.tableIntervention.RemainingLifeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public System.DateTime DateOfLastVisit {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableIntervention.DateOfLastVisitColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DateOfLastVisit\' in table \'Intervention\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableIntervention.DateOfLastVisitColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ManagerRow ManagerRow {
-                get {
-                    return ((ManagerRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Approver"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Approver"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ClientRow ClientRow {
-                get {
-                    return ((ClientRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Client"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Client"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionStateRow InterventionStateRow {
-                get {
-                    return ((InterventionStateRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_InterventionState"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_InterventionState"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionTemplateRow InterventionTemplateRow {
-                get {
-                    return ((InterventionTemplateRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_InterventionTemplate"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_InterventionTemplate"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EngineerRow EngineerRow {
-                get {
-                    return ((EngineerRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Proposer"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Proposer"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsApproverIdNull() {
-                return this.IsNull(this.tableIntervention.ApproverIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetApproverIdNull() {
-                this[this.tableIntervention.ApproverIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsNotesNull() {
-                return this.IsNull(this.tableIntervention.NotesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetNotesNull() {
-                this[this.tableIntervention.NotesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDateOfLastVisitNull() {
-                return this.IsNull(this.tableIntervention.DateOfLastVisitColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDateOfLastVisitNull() {
-                this[this.tableIntervention.DateOfLastVisitColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5316,6 +5063,259 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class InterventionRow : global::System.Data.DataRow {
+            
+            private InterventionDataTable tableIntervention;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal InterventionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableIntervention = ((InterventionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int InterventionId {
+                get {
+                    return ((int)(this[this.tableIntervention.InterventionIdColumn]));
+                }
+                set {
+                    this[this.tableIntervention.InterventionIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int InterventionTemplateId {
+                get {
+                    return ((int)(this[this.tableIntervention.InterventionTemplateIdColumn]));
+                }
+                set {
+                    this[this.tableIntervention.InterventionTemplateIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DatePerformed {
+                get {
+                    return ((global::System.DateTime)(this[this.tableIntervention.DatePerformedColumn]));
+                }
+                set {
+                    this[this.tableIntervention.DatePerformedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int InterventionStateId {
+                get {
+                    return ((int)(this[this.tableIntervention.InterventionStateIdColumn]));
+                }
+                set {
+                    this[this.tableIntervention.InterventionStateIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Hours {
+                get {
+                    return ((int)(this[this.tableIntervention.HoursColumn]));
+                }
+                set {
+                    this[this.tableIntervention.HoursColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Cost {
+                get {
+                    return ((int)(this[this.tableIntervention.CostColumn]));
+                }
+                set {
+                    this[this.tableIntervention.CostColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProposerUsername {
+                get {
+                    return ((string)(this[this.tableIntervention.ProposerUsernameColumn]));
+                }
+                set {
+                    this[this.tableIntervention.ProposerUsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ApproverUsername {
+                get {
+                    try {
+                        return ((string)(this[this.tableIntervention.ApproverUsernameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ApproverUsername\' in table \'Intervention\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIntervention.ApproverUsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ClientId {
+                get {
+                    return ((int)(this[this.tableIntervention.ClientIdColumn]));
+                }
+                set {
+                    this[this.tableIntervention.ClientIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Notes {
+                get {
+                    try {
+                        return ((string)(this[this.tableIntervention.NotesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Notes\' in table \'Intervention\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIntervention.NotesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int RemainingLife {
+                get {
+                    return ((int)(this[this.tableIntervention.RemainingLifeColumn]));
+                }
+                set {
+                    this[this.tableIntervention.RemainingLifeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime DateOfLastVisit {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableIntervention.DateOfLastVisitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateOfLastVisit\' in table \'Intervention\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIntervention.DateOfLastVisitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ManagerRow ManagerRow {
+                get {
+                    return ((ManagerRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Approver"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Approver"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ClientRow ClientRow {
+                get {
+                    return ((ClientRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Client"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Client"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionStateRow InterventionStateRow {
+                get {
+                    return ((InterventionStateRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_InterventionState"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_InterventionState"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionTemplateRow InterventionTemplateRow {
+                get {
+                    return ((InterventionTemplateRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_InterventionTemplate"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_InterventionTemplate"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EngineerRow EngineerRow {
+                get {
+                    return ((EngineerRow)(this.GetParentRow(this.Table.ParentRelations["FK_Intervention_Proposer"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Intervention_Proposer"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApproverUsernameNull() {
+                return this.IsNull(this.tableIntervention.ApproverUsernameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApproverUsernameNull() {
+                this[this.tableIntervention.ApproverUsernameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNotesNull() {
+                return this.IsNull(this.tableIntervention.NotesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNotesNull() {
+                this[this.tableIntervention.NotesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDateOfLastVisitNull() {
+                return this.IsNull(this.tableIntervention.DateOfLastVisitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDateOfLastVisitNull() {
+                this[this.tableIntervention.DateOfLastVisitColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -5437,40 +5437,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EngineerRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class InterventionRowChangeEvent : global::System.EventArgs {
-            
-            private InterventionRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRowChangeEvent(InterventionRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public InterventionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5675,6 +5641,40 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public UserRolesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class InterventionRowChangeEvent : global::System.EventArgs {
+            
+            private InterventionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRowChangeEvent(InterventionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public InterventionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -7109,539 +7109,6 @@ SELECT EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId FROM 
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int HoursApprovalLimit, int CostApprovalLimit, int DistrictId, string Original_EngineerUsername, int Original_HoursApprovalLimit, int Original_CostApprovalLimit, int Original_DistrictId) {
             return this.Update(Original_EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId, Original_EngineerUsername, Original_HoursApprovalLimit, Original_CostApprovalLimit, Original_DistrictId);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class InterventionTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public InterventionTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Intervention";
-            tableMapping.ColumnMappings.Add("InterventionId", "InterventionId");
-            tableMapping.ColumnMappings.Add("InterventionTemplateId", "InterventionTemplateId");
-            tableMapping.ColumnMappings.Add("DatePerformed", "DatePerformed");
-            tableMapping.ColumnMappings.Add("InterventionStateId", "InterventionStateId");
-            tableMapping.ColumnMappings.Add("Hours", "Hours");
-            tableMapping.ColumnMappings.Add("Cost", "Cost");
-            tableMapping.ColumnMappings.Add("ProposerId", "ProposerId");
-            tableMapping.ColumnMappings.Add("ApproverId", "ApproverId");
-            tableMapping.ColumnMappings.Add("ClientId", "ClientId");
-            tableMapping.ColumnMappings.Add("Notes", "Notes");
-            tableMapping.ColumnMappings.Add("RemainingLife", "RemainingLife");
-            tableMapping.ColumnMappings.Add("DateOfLastVisit", "DateOfLastVisit");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Intervention] WHERE (([InterventionId] = @Original_InterventionId) AND ([InterventionTemplateId] = @Original_InterventionTemplateId) AND ([DatePerformed] = @Original_DatePerformed) AND ([InterventionStateId] = @Original_InterventionStateId) AND ([Hours] = @Original_Hours) AND ([Cost] = @Original_Cost) AND ([ProposerId] = @Original_ProposerId) AND ((@IsNull_ApproverId = 1 AND [ApproverId] IS NULL) OR ([ApproverId] = @Original_ApproverId)) AND ([ClientId] = @Original_ClientId) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([RemainingLife] = @Original_RemainingLife) AND ((@IsNull_DateOfLastVisit = 1 AND [DateOfLastVisit] IS NULL) OR ([DateOfLastVisit] = @Original_DateOfLastVisit)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProposerId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ApproverId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ApproverId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateOfLastVisit", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Intervention] ([InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerId], [ApproverId], [ClientId], [Notes], [RemainingLife], [DateOfLastVisit]) VALUES (@InterventionTemplateId, @DatePerformed, @InterventionStateId, @Hours, @Cost, @ProposerId, @ApproverId, @ClientId, @Notes, @RemainingLife, @DateOfLastVisit);
-SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerId, ApproverId, ClientId, Notes, RemainingLife, DateOfLastVisit FROM Intervention WHERE (InterventionId = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProposerId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApproverId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Intervention] SET [InterventionTemplateId] = @InterventionTemplateId, [DatePerformed] = @DatePerformed, [InterventionStateId] = @InterventionStateId, [Hours] = @Hours, [Cost] = @Cost, [ProposerId] = @ProposerId, [ApproverId] = @ApproverId, [ClientId] = @ClientId, [Notes] = @Notes, [RemainingLife] = @RemainingLife, [DateOfLastVisit] = @DateOfLastVisit WHERE (([InterventionId] = @Original_InterventionId) AND ([InterventionTemplateId] = @Original_InterventionTemplateId) AND ([DatePerformed] = @Original_DatePerformed) AND ([InterventionStateId] = @Original_InterventionStateId) AND ([Hours] = @Original_Hours) AND ([Cost] = @Original_Cost) AND ([ProposerId] = @Original_ProposerId) AND ((@IsNull_ApproverId = 1 AND [ApproverId] IS NULL) OR ([ApproverId] = @Original_ApproverId)) AND ([ClientId] = @Original_ClientId) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([RemainingLife] = @Original_RemainingLife) AND ((@IsNull_DateOfLastVisit = 1 AND [DateOfLastVisit] IS NULL) OR ([DateOfLastVisit] = @Original_DateOfLastVisit)));
-SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerId, ApproverId, ClientId, Notes, RemainingLife, DateOfLastVisit FROM Intervention WHERE (InterventionId = @InterventionId)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProposerId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApproverId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProposerId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ApproverId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ApproverId", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateOfLastVisit", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.Properties.Settings.Default.DatabaseConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId" +
-                ", Hours, Cost, ProposerId, ApproverId, ClientId, Notes, RemainingLife, DateOfLas" +
-                "tVisit FROM dbo.Intervention";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(MainDataSet.InterventionDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MainDataSet.InterventionDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet.InterventionDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(MainDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Intervention");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_InterventionId, int Original_InterventionTemplateId, System.DateTime Original_DatePerformed, int Original_InterventionStateId, int Original_Hours, int Original_Cost, string Original_ProposerId, string Original_ApproverId, int Original_ClientId, string Original_Notes, int Original_RemainingLife, global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_InterventionId));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_InterventionTemplateId));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_DatePerformed));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_InterventionStateId));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Hours));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Cost));
-            if ((Original_ProposerId == null)) {
-                throw new global::System.ArgumentNullException("Original_ProposerId");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_ProposerId));
-            }
-            if ((Original_ApproverId == null)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ApproverId));
-            }
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_ClientId));
-            if ((Original_Notes == null)) {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Notes));
-            }
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_RemainingLife));
-            if ((Original_DateOfLastVisit.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_DateOfLastVisit.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int InterventionTemplateId, System.DateTime DatePerformed, int InterventionStateId, int Hours, int Cost, string ProposerId, string ApproverId, int ClientId, string Notes, int RemainingLife, global::System.Nullable<global::System.DateTime> DateOfLastVisit) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(InterventionTemplateId));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(DatePerformed));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(InterventionStateId));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Hours));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Cost));
-            if ((ProposerId == null)) {
-                throw new global::System.ArgumentNullException("ProposerId");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ProposerId));
-            }
-            if ((ApproverId == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ApproverId));
-            }
-            this.Adapter.InsertCommand.Parameters[7].Value = ((int)(ClientId));
-            if ((Notes == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Notes));
-            }
-            this.Adapter.InsertCommand.Parameters[9].Value = ((int)(RemainingLife));
-            if ((DateOfLastVisit.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(DateOfLastVisit.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int InterventionTemplateId, 
-                    System.DateTime DatePerformed, 
-                    int InterventionStateId, 
-                    int Hours, 
-                    int Cost, 
-                    string ProposerId, 
-                    string ApproverId, 
-                    int ClientId, 
-                    string Notes, 
-                    int RemainingLife, 
-                    global::System.Nullable<global::System.DateTime> DateOfLastVisit, 
-                    int Original_InterventionId, 
-                    int Original_InterventionTemplateId, 
-                    System.DateTime Original_DatePerformed, 
-                    int Original_InterventionStateId, 
-                    int Original_Hours, 
-                    int Original_Cost, 
-                    string Original_ProposerId, 
-                    string Original_ApproverId, 
-                    int Original_ClientId, 
-                    string Original_Notes, 
-                    int Original_RemainingLife, 
-                    global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit, 
-                    int InterventionId) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(InterventionTemplateId));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(DatePerformed));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(InterventionStateId));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Hours));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Cost));
-            if ((ProposerId == null)) {
-                throw new global::System.ArgumentNullException("ProposerId");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ProposerId));
-            }
-            if ((ApproverId == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ApproverId));
-            }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ClientId));
-            if ((Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Notes));
-            }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(RemainingLife));
-            if ((DateOfLastVisit.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(DateOfLastVisit.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_InterventionId));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_InterventionTemplateId));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_DatePerformed));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_InterventionStateId));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Hours));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Cost));
-            if ((Original_ProposerId == null)) {
-                throw new global::System.ArgumentNullException("Original_ProposerId");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_ProposerId));
-            }
-            if ((Original_ApproverId == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_ApproverId));
-            }
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_ClientId));
-            if ((Original_Notes == null)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Notes));
-            }
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_RemainingLife));
-            if ((Original_DateOfLastVisit.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((System.DateTime)(Original_DateOfLastVisit.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(InterventionId));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    int InterventionTemplateId, 
-                    System.DateTime DatePerformed, 
-                    int InterventionStateId, 
-                    int Hours, 
-                    int Cost, 
-                    string ProposerId, 
-                    string ApproverId, 
-                    int ClientId, 
-                    string Notes, 
-                    int RemainingLife, 
-                    global::System.Nullable<global::System.DateTime> DateOfLastVisit, 
-                    int Original_InterventionId, 
-                    int Original_InterventionTemplateId, 
-                    System.DateTime Original_DatePerformed, 
-                    int Original_InterventionStateId, 
-                    int Original_Hours, 
-                    int Original_Cost, 
-                    string Original_ProposerId, 
-                    string Original_ApproverId, 
-                    int Original_ClientId, 
-                    string Original_Notes, 
-                    int Original_RemainingLife, 
-                    global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit) {
-            return this.Update(InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerId, ApproverId, ClientId, Notes, RemainingLife, DateOfLastVisit, Original_InterventionId, Original_InterventionTemplateId, Original_DatePerformed, Original_InterventionStateId, Original_Hours, Original_Cost, Original_ProposerId, Original_ApproverId, Original_ClientId, Original_Notes, Original_RemainingLife, Original_DateOfLastVisit, Original_InterventionId);
         }
     }
     
@@ -9862,6 +9329,573 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class InterventionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public InterventionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Intervention";
+            tableMapping.ColumnMappings.Add("InterventionId", "InterventionId");
+            tableMapping.ColumnMappings.Add("InterventionTemplateId", "InterventionTemplateId");
+            tableMapping.ColumnMappings.Add("DatePerformed", "DatePerformed");
+            tableMapping.ColumnMappings.Add("InterventionStateId", "InterventionStateId");
+            tableMapping.ColumnMappings.Add("Hours", "Hours");
+            tableMapping.ColumnMappings.Add("Cost", "Cost");
+            tableMapping.ColumnMappings.Add("ProposerUsername", "ProposerUsername");
+            tableMapping.ColumnMappings.Add("ApproverUsername", "ApproverUsername");
+            tableMapping.ColumnMappings.Add("ClientId", "ClientId");
+            tableMapping.ColumnMappings.Add("Notes", "Notes");
+            tableMapping.ColumnMappings.Add("RemainingLife", "RemainingLife");
+            tableMapping.ColumnMappings.Add("DateOfLastVisit", "DateOfLastVisit");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Intervention] WHERE (([InterventionId] = @Original_InterventionId) AND ([InterventionTemplateId] = @Original_InterventionTemplateId) AND ([DatePerformed] = @Original_DatePerformed) AND ([InterventionStateId] = @Original_InterventionStateId) AND ([Hours] = @Original_Hours) AND ([Cost] = @Original_Cost) AND ([ProposerUsername] = @Original_ProposerUsername) AND ((@IsNull_ApproverUsername = 1 AND [ApproverUsername] IS NULL) OR ([ApproverUsername] = @Original_ApproverUsername)) AND ([ClientId] = @Original_ClientId) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([RemainingLife] = @Original_RemainingLife) AND ((@IsNull_DateOfLastVisit = 1 AND [DateOfLastVisit] IS NULL) OR ([DateOfLastVisit] = @Original_DateOfLastVisit)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProposerUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerUsername", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ApproverUsername", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ApproverUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateOfLastVisit", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Intervention] ([InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerUsername], [ApproverUsername], [ClientId], [Notes], [RemainingLife], [DateOfLastVisit]) VALUES (@InterventionTemplateId, @DatePerformed, @InterventionStateId, @Hours, @Cost, @ProposerUsername, @ApproverUsername, @ClientId, @Notes, @RemainingLife, @DateOfLastVisit);
+SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit FROM Intervention WHERE (InterventionId = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProposerUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApproverUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Intervention] SET [InterventionTemplateId] = @InterventionTemplateId, [DatePerformed] = @DatePerformed, [InterventionStateId] = @InterventionStateId, [Hours] = @Hours, [Cost] = @Cost, [ProposerUsername] = @ProposerUsername, [ApproverUsername] = @ApproverUsername, [ClientId] = @ClientId, [Notes] = @Notes, [RemainingLife] = @RemainingLife, [DateOfLastVisit] = @DateOfLastVisit WHERE (([InterventionId] = @Original_InterventionId) AND ([InterventionTemplateId] = @Original_InterventionTemplateId) AND ([DatePerformed] = @Original_DatePerformed) AND ([InterventionStateId] = @Original_InterventionStateId) AND ([Hours] = @Original_Hours) AND ([Cost] = @Original_Cost) AND ([ProposerUsername] = @Original_ProposerUsername) AND ((@IsNull_ApproverUsername = 1 AND [ApproverUsername] IS NULL) OR ([ApproverUsername] = @Original_ApproverUsername)) AND ([ClientId] = @Original_ClientId) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ([RemainingLife] = @Original_RemainingLife) AND ((@IsNull_DateOfLastVisit = 1 AND [DateOfLastVisit] IS NULL) OR ([DateOfLastVisit] = @Original_DateOfLastVisit)));
+SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit FROM Intervention WHERE (InterventionId = @InterventionId)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProposerUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ApproverUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionTemplateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionTemplateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DatePerformed", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DatePerformed", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_InterventionStateId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionStateId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Hours", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Hours", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Cost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Cost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProposerUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProposerUsername", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ApproverUsername", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ApproverUsername", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ApproverUsername", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ClientId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_RemainingLife", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RemainingLife", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_DateOfLastVisit", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DateOfLastVisit", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DateOfLastVisit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InterventionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "InterventionId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.Properties.Settings.Default.DatabaseConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT InterventionId, InterventionTemplateId, DatePerformed, InterventionStateId" +
+                ", Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLif" +
+                "e, DateOfLastVisit FROM dbo.Intervention";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        InterventionId, InterventionTemplateId, DatePerformed, Intervention" +
+                "StateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, Remai" +
+                "ningLife, DateOfLastVisit\r\nFROM            Intervention\r\nWHERE        (ClientId " +
+                "= @clientId)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ClientId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(MainDataSet.InterventionDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual MainDataSet.InterventionDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy_ClientId(MainDataSet.InterventionDataTable dataTable, int clientId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MainDataSet.InterventionDataTable GetDataBy_ClientId(int clientId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId));
+            MainDataSet.InterventionDataTable dataTable = new MainDataSet.InterventionDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet.InterventionDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(MainDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Intervention");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_InterventionId, int Original_InterventionTemplateId, System.DateTime Original_DatePerformed, int Original_InterventionStateId, int Original_Hours, int Original_Cost, string Original_ProposerUsername, string Original_ApproverUsername, int Original_ClientId, string Original_Notes, int Original_RemainingLife, global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_InterventionId));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_InterventionTemplateId));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_DatePerformed));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_InterventionStateId));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Hours));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Cost));
+            if ((Original_ProposerUsername == null)) {
+                throw new global::System.ArgumentNullException("Original_ProposerUsername");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_ProposerUsername));
+            }
+            if ((Original_ApproverUsername == null)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_ApproverUsername));
+            }
+            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_ClientId));
+            if ((Original_Notes == null)) {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_Notes));
+            }
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_RemainingLife));
+            if ((Original_DateOfLastVisit.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((System.DateTime)(Original_DateOfLastVisit.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int InterventionTemplateId, System.DateTime DatePerformed, int InterventionStateId, int Hours, int Cost, string ProposerUsername, string ApproverUsername, int ClientId, string Notes, int RemainingLife, global::System.Nullable<global::System.DateTime> DateOfLastVisit) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(InterventionTemplateId));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(DatePerformed));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(InterventionStateId));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Hours));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Cost));
+            if ((ProposerUsername == null)) {
+                throw new global::System.ArgumentNullException("ProposerUsername");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(ProposerUsername));
+            }
+            if ((ApproverUsername == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(ApproverUsername));
+            }
+            this.Adapter.InsertCommand.Parameters[7].Value = ((int)(ClientId));
+            if ((Notes == null)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Notes));
+            }
+            this.Adapter.InsertCommand.Parameters[9].Value = ((int)(RemainingLife));
+            if ((DateOfLastVisit.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((System.DateTime)(DateOfLastVisit.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int InterventionTemplateId, 
+                    System.DateTime DatePerformed, 
+                    int InterventionStateId, 
+                    int Hours, 
+                    int Cost, 
+                    string ProposerUsername, 
+                    string ApproverUsername, 
+                    int ClientId, 
+                    string Notes, 
+                    int RemainingLife, 
+                    global::System.Nullable<global::System.DateTime> DateOfLastVisit, 
+                    int Original_InterventionId, 
+                    int Original_InterventionTemplateId, 
+                    System.DateTime Original_DatePerformed, 
+                    int Original_InterventionStateId, 
+                    int Original_Hours, 
+                    int Original_Cost, 
+                    string Original_ProposerUsername, 
+                    string Original_ApproverUsername, 
+                    int Original_ClientId, 
+                    string Original_Notes, 
+                    int Original_RemainingLife, 
+                    global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit, 
+                    int InterventionId) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(InterventionTemplateId));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(DatePerformed));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(InterventionStateId));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Hours));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Cost));
+            if ((ProposerUsername == null)) {
+                throw new global::System.ArgumentNullException("ProposerUsername");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(ProposerUsername));
+            }
+            if ((ApproverUsername == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(ApproverUsername));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ClientId));
+            if ((Notes == null)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Notes));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(RemainingLife));
+            if ((DateOfLastVisit.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((System.DateTime)(DateOfLastVisit.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_InterventionId));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_InterventionTemplateId));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((System.DateTime)(Original_DatePerformed));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_InterventionStateId));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Hours));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Cost));
+            if ((Original_ProposerUsername == null)) {
+                throw new global::System.ArgumentNullException("Original_ProposerUsername");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_ProposerUsername));
+            }
+            if ((Original_ApproverUsername == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_ApproverUsername));
+            }
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_ClientId));
+            if ((Original_Notes == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Notes));
+            }
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_RemainingLife));
+            if ((Original_DateOfLastVisit.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((System.DateTime)(Original_DateOfLastVisit.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(InterventionId));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int InterventionTemplateId, 
+                    System.DateTime DatePerformed, 
+                    int InterventionStateId, 
+                    int Hours, 
+                    int Cost, 
+                    string ProposerUsername, 
+                    string ApproverUsername, 
+                    int ClientId, 
+                    string Notes, 
+                    int RemainingLife, 
+                    global::System.Nullable<global::System.DateTime> DateOfLastVisit, 
+                    int Original_InterventionId, 
+                    int Original_InterventionTemplateId, 
+                    System.DateTime Original_DatePerformed, 
+                    int Original_InterventionStateId, 
+                    int Original_Hours, 
+                    int Original_Cost, 
+                    string Original_ProposerUsername, 
+                    string Original_ApproverUsername, 
+                    int Original_ClientId, 
+                    string Original_Notes, 
+                    int Original_RemainingLife, 
+                    global::System.Nullable<global::System.DateTime> Original_DateOfLastVisit) {
+            return this.Update(InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit, Original_InterventionId, Original_InterventionTemplateId, Original_DatePerformed, Original_InterventionStateId, Original_Hours, Original_Cost, Original_ProposerUsername, Original_ApproverUsername, Original_ClientId, Original_Notes, Original_RemainingLife, Original_DateOfLastVisit, Original_InterventionId);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -9881,8 +9915,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
         
         private EngineerTableAdapter _engineerTableAdapter;
         
-        private InterventionTableAdapter _interventionTableAdapter;
-        
         private InterventionStateTableAdapter _interventionStateTableAdapter;
         
         private InterventionTemplateTableAdapter _interventionTemplateTableAdapter;
@@ -9894,6 +9926,8 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
         private UsersTableAdapter _usersTableAdapter;
         
         private UserRolesTableAdapter _userRolesTableAdapter;
+        
+        private InterventionTableAdapter _interventionTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -9963,20 +9997,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
             }
             set {
                 this._engineerTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public InterventionTableAdapter InterventionTableAdapter {
-            get {
-                return this._interventionTableAdapter;
-            }
-            set {
-                this._interventionTableAdapter = value;
             }
         }
         
@@ -10066,6 +10086,20 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public InterventionTableAdapter InterventionTableAdapter {
+            get {
+                return this._interventionTableAdapter;
+            }
+            set {
+                this._interventionTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -10099,10 +10133,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                             && (this._engineerTableAdapter.Connection != null))) {
                     return this._engineerTableAdapter.Connection;
                 }
-                if (((this._interventionTableAdapter != null) 
-                            && (this._interventionTableAdapter.Connection != null))) {
-                    return this._interventionTableAdapter.Connection;
-                }
                 if (((this._interventionStateTableAdapter != null) 
                             && (this._interventionStateTableAdapter.Connection != null))) {
                     return this._interventionStateTableAdapter.Connection;
@@ -10126,6 +10156,10 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                 if (((this._userRolesTableAdapter != null) 
                             && (this._userRolesTableAdapter.Connection != null))) {
                     return this._userRolesTableAdapter.Connection;
+                }
+                if (((this._interventionTableAdapter != null) 
+                            && (this._interventionTableAdapter.Connection != null))) {
+                    return this._interventionTableAdapter.Connection;
                 }
                 return null;
             }
@@ -10152,9 +10186,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                 if ((this._engineerTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._interventionTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._interventionStateTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -10171,6 +10202,9 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                     count = (count + 1);
                 }
                 if ((this._userRolesTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._interventionTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -10265,21 +10299,21 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._interventionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Intervention.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._interventionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._userRolesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.UserRoles.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._userRolesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._interventionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Intervention.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._interventionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -10365,19 +10399,19 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._interventionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Intervention.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._interventionTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._userRolesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.UserRoles.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._userRolesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._interventionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Intervention.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._interventionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -10391,19 +10425,19 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(MainDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._userRolesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.UserRoles.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._userRolesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._interventionTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Intervention.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._interventionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._userRolesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.UserRoles.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._userRolesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -10538,11 +10572,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._interventionTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._interventionTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._interventionStateTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._interventionStateTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -10570,6 +10599,11 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
             }
             if (((this._userRolesTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._userRolesTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._interventionTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._interventionTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -10641,15 +10675,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                         adaptersWithAcceptChangesDuringUpdate.Add(this._engineerTableAdapter.Adapter);
                     }
                 }
-                if ((this._interventionTableAdapter != null)) {
-                    revertConnections.Add(this._interventionTableAdapter, this._interventionTableAdapter.Connection);
-                    this._interventionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._interventionTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._interventionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._interventionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._interventionTableAdapter.Adapter);
-                    }
-                }
                 if ((this._interventionStateTableAdapter != null)) {
                     revertConnections.Add(this._interventionStateTableAdapter, this._interventionStateTableAdapter.Connection);
                     this._interventionStateTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -10702,6 +10727,15 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                     if (this._userRolesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._userRolesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._userRolesTableAdapter.Adapter);
+                    }
+                }
+                if ((this._interventionTableAdapter != null)) {
+                    revertConnections.Add(this._interventionTableAdapter, this._interventionTableAdapter.Connection);
+                    this._interventionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._interventionTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._interventionTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._interventionTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._interventionTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -10778,10 +10812,6 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                     this._engineerTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._engineerTableAdapter]));
                     this._engineerTableAdapter.Transaction = null;
                 }
-                if ((this._interventionTableAdapter != null)) {
-                    this._interventionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._interventionTableAdapter]));
-                    this._interventionTableAdapter.Transaction = null;
-                }
                 if ((this._interventionStateTableAdapter != null)) {
                     this._interventionStateTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._interventionStateTableAdapter]));
                     this._interventionStateTableAdapter.Transaction = null;
@@ -10805,6 +10835,10 @@ SELECT Id, Email, EmailConfirmed, PasswordHash, SecurityStamp, PhoneNumber, Phon
                 if ((this._userRolesTableAdapter != null)) {
                     this._userRolesTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._userRolesTableAdapter]));
                     this._userRolesTableAdapter.Transaction = null;
+                }
+                if ((this._interventionTableAdapter != null)) {
+                    this._interventionTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._interventionTableAdapter]));
+                    this._interventionTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
