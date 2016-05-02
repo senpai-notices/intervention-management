@@ -11,11 +11,6 @@
         
          <div style="margin-left: 30%; margin-top: 5%">
             <asp:DropDownList ID="DistrictDropDownList" runat="server" DataTextField="DistrictName" DataValueField="DistrictName" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
-                <asp:ListItem>5</asp:ListItem>
             </asp:DropDownList>
             <br />
             <br />
