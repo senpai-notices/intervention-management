@@ -30,18 +30,13 @@ INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES
 INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (3, N'David Bowie', N'Cloud 1, Heaven', 5)
 SET IDENTITY_INSERT [dbo].[Client] OFF
 
-SET IDENTITY_INSERT [dbo].[User] ON
-INSERT INTO [dbo].[User] ([Username], [Name]) VALUES (N'Debug', N'Test User')
-SET IDENTITY_INSERT [dbo].[User] OFF
+INSERT INTO [dbo].[User] ([Username], [Name]) VALUES (N'DebugEngineer', N'Engineer for testing')
+INSERT INTO [dbo].[User] ([Username], [Name]) VALUES (N'DebugManager', N'Manager for testing')
 
-SET IDENTITY_INSERT [dbo].[Engineer] ON
-INSERT INTO [dbo].[Engineer] ([EngineerUsername], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (N'Debug', 30, 30, 3)
-SET IDENTITY_INSERT [dbo].[Engineer] OFF
+INSERT INTO [dbo].[Engineer] ([EngineerUsername], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (N'DebugEngineer', 10, 10, 1)
 
-SET IDENTITY_INSERT [dbo].[Manager] ON
-INSERT INTO [dbo].[Engineer] ([ManagerUsername], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (N'Debug', 30, 30, 3)
-SET IDENTITY_INSERT [dbo].[Manager] OFF
+INSERT INTO [dbo].[Manager] ([ManagerUsername], [HoursApprovalLimit], [CostApprovalLimit], [DistrictId]) VALUES (N'DebugManager', 20, 20, 2)
 
 SET IDENTITY_INSERT [dbo].[Intervention] ON
-INSERT INTO [dbo].[Intervention] ([InterventionId],	[InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerId], [ApproverId], [ClientId], [Notes],	[RemainingLife], [DateOfLastVisit]) VALUES (1, 1, '2016-01-01', 1, CAST(25 AS Decimal(18, 0)), CAST(25 AS Decimal(18, 0)), N'Debug', N'Debug', 1, N'Example Intervention', 100, '2016-01-02')
+INSERT INTO [dbo].[Intervention] ([InterventionId],	[InterventionTemplateId], [DatePerformed], [InterventionStateId], [Hours], [Cost], [ProposerUsername], [ApproverUsername], [ClientId], [Notes],	[RemainingLife], [DateOfLastVisit]) VALUES (1, 1, '2016-01-01', 1, CAST(25 AS Decimal(18, 0)), CAST(25 AS Decimal(18, 0)), N'DebugEngineer', N'DebugManager', 1, N'Example Intervention', 100, '2016-01-02')
 SET IDENTITY_INSERT [dbo].[Intervention] OFF
