@@ -2,11 +2,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div align="center">
-        <asp:Label ID="Label1" runat="server" Text="Current Interventions" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+        <asp:Label ID="lblTitle" runat="server" Text="Current Interventions" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
     </div>
 
     <div style="margin-left: 20%; margin-top: 5%">
-            <asp:Table ID="Table1" runat="server" GridLines="Both" Width="80%">
+            <asp:Table ID="InterventionTable" runat="server" GridLines="Both" Width="80%">
                 <asp:TableRow runat="server" Font-Bold="True" Height="50px">
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Interventions</asp:TableCell>
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="40%">Intervention Details</asp:TableCell>

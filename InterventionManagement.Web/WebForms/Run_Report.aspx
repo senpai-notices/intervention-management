@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div align="center">
-        <asp:Label ID="Label1" runat="server" Text="My report" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+        <asp:Label ID="lblTitle" runat="server" Text="My report" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
     </div>
 
 
@@ -14,7 +14,7 @@
         </asp:DropDownList>
 
         <asp:Label ID="lblName" runat="server" Text="Select Name "></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:DropDownList ID="NameDropDownList" runat="server">
             <asp:ListItem>Sample district or engineer name</asp:ListItem>
             <asp:ListItem>Sample district or engineer name</asp:ListItem>
         </asp:DropDownList>

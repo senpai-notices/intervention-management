@@ -2,11 +2,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div align="center">
-            <asp:Label ID="Label1" runat="server" Text="Manage your account" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+            <asp:Label ID="lblTitle" runat="server" Text="Manage your account" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
         </div>
     <div style="margin-left: 30%; margin-top: 5%">
     <div>
-        <asp:Label ID="lblMessage" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lblMessage" runat="server" Text="" Visible="False"></asp:Label>
         
     </div>
     <br />

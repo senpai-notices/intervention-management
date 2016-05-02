@@ -69,6 +69,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             //Put it in Session
         }
 
+        protected void btnAddIntervention_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

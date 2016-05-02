@@ -2,20 +2,20 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
      <div style="margin-top: 5%;" align="center">
-        <asp:Label ID="Label1" runat="server" Text="Register" Font-Bold="True" Font-Size="X-Large"></asp:Label>        
+        <asp:Label ID="lblTitle" runat="server" Text="Register" Font-Bold="True" Font-Size="X-Large"></asp:Label>        
     </div>
     <div style="margin-top: 5%;" align="center">
-        <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lblError" runat="server" Text="Label"></asp:Label>
     </div>
     <div style="margin-top: 5%;" align="center">
             
-        <asp:Label ID="Label2" runat="server" Text="Username: "></asp:Label>
+        <asp:Label ID="lblUsername" runat="server" Text="Username: "></asp:Label>
         <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox>
         <br /><br />
-        <asp:Label ID="Label3" runat="server" Text="Password: "></asp:Label>
+        <asp:Label ID="lblPassword" runat="server" Text="Password: "></asp:Label>
         <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
         <br /><br />
-        <asp:Label ID="Label4" runat="server" Text="Confirm Password: "></asp:Label>
+        <asp:Label ID="lblConfirmPassword" runat="server" Text="Confirm Password: "></asp:Label>
         <asp:TextBox ID="txtConfirm" runat="server" TextMode="Password"></asp:TextBox>
         <br />
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RegistrationDropDownBoxRolesConnection %>" SelectCommand="SELECT [Name] FROM [Roles]"></asp:SqlDataSource>

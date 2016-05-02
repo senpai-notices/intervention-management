@@ -16,7 +16,7 @@
         <b>Location Description:</b>
         <br />
         <br />
-        <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine" Height="150px" Width="500px"></asp:TextBox>
+        <asp:TextBox ID="txtLocation" runat="server" TextMode="MultiLine" Height="150px" Width="500px"></asp:TextBox>
         <br />
         <br />
         <br />

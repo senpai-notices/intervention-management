@@ -5,7 +5,7 @@
         <div>
         <!--Page heading -->
         <div align="center">
-            <asp:Label ID="Label1" runat="server" Text="Add new Intervention" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
+            <asp:Label ID="lblTitle" runat="server" Text="Add new Intervention" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
         </div>
         <!--End page heading -->
 
@@ -28,7 +28,7 @@
 
                 <tr>
                     <td>
-                        <asp:Label ID="Label5" runat="server" Text="Cost: " Font-Bold="True"></asp:Label>
+                        <asp:Label ID="lblCost" runat="server" Text="Cost: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
                         <asp:TextBox ID="txtCost" runat="server"></asp:TextBox>
@@ -37,7 +37,7 @@
 
                 <tr>
                     <td>
-                        <asp:Label ID="Label4" runat="server" Text="Status: " Font-Bold="True"></asp:Label>
+                        <asp:Label ID="lblStatus" runat="server" Text="Status: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
                        <asp:DropDownList ID="DropDownListStatus" runat="server"></asp:DropDownList>
@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="Label3" runat="server" Text="Client: " Font-Bold="True"></asp:Label>
+                        <asp:Label ID="lblClient" runat="server" Text="Client: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
                        <asp:DropDownList ID="DropDownListClient" runat="server"></asp:DropDownList>
