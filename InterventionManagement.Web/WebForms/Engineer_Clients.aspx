@@ -10,7 +10,7 @@
         <!--End page heading -->
         
          <div style="margin-left: 30%; margin-top: 5%">
-            <asp:DropDownList ID="DistrictDropDownList" runat="server" DataTextField="DistrictName" DataValueField="DistrictName" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+            <asp:DropDownList ID="DistrictDropDownList" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True">
             </asp:DropDownList>
             <br />
             <br />

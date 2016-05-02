@@ -10,6 +10,9 @@
 
 #pragma warning disable 1591
 
+using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
+
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
     
     
@@ -1878,6 +1881,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 }
                 xs.Add(dsSchema);
                 return type;
+            }
+
+            public static implicit operator EngineerDataTable(EngineerTableAdapter v)
+            {
+                throw new NotImplementedException();
             }
         }
         
