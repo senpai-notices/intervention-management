@@ -11,7 +11,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions 
             {
-                Table1.Rows.Add(addTableRow(i, "This is intervention name " + i, "this is intervention details " + i));
+                InterventionTable.Rows.Add(addTableRow(i, "This is intervention name " + i, "this is intervention details " + i));
             }
         }
 

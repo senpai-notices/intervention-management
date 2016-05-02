@@ -19,7 +19,7 @@
 
                 <tr>
                     <td>
-                        <asp:Label ID="Label2" runat="server" Text="Type: " Font-Bold="True"></asp:Label>
+                        <asp:Label ID="lblType" runat="server" Text="Type: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
                         <asp:DropDownList ID="DropDownListType" runat="server"></asp:DropDownList>

@@ -21,7 +21,7 @@
 
         <br />
         <br />
-            <asp:Table ID="Table1" runat="server" GridLines="Both" Width="80%">
+            <asp:Table ID="ReportTable" runat="server" GridLines="Both" Width="80%">
                 <asp:TableRow runat="server" Font-Bold="True" Height="50px">
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="30%">Name</asp:TableCell>
                     <asp:TableCell runat="server" BorderColor="Black" BorderStyle="Solid" Width="20%">Average cost</asp:TableCell>

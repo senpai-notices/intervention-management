@@ -29,7 +29,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             //Update button will be add automatically
             for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions of that client 
             {
-                Table1.Rows.Add(addTableRow(i,"This is intervention name "+i, "this is intervention details "+i));
+                InterventionTable.Rows.Add(addTableRow(i,"This is intervention name "+i, "this is intervention details "+i));
             }
             
         }

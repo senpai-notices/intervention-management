@@ -13,7 +13,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions of that client 
             {
-                Table1.Rows.Add(addTableRow(i, "This is name 1 " + i, "this is average cost " + i,"Sample total cost"));
+                ReportTable.Rows.Add(addTableRow(i, "This is name 1 " + i, "this is average cost " + i,"Sample total cost"));
             }
         }
         protected TableRow addTableRow(int ID, string Name, string averageCost, string totalCost)
