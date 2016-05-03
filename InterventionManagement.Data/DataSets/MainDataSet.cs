@@ -22,3 +22,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainData
     {
     }
 }
+
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters
+{
+
+
+    public partial class EngineerTableAdapter
+    {
+    }
+}
