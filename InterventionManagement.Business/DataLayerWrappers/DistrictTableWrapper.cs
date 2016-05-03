@@ -29,11 +29,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return district;
         }
 
-        public int getDistrictIdForDistrict(string name)
+        public List<string> getDistrictsAndIdsList()
         {
-            var ids = new DistrictTableAdapter().GetDataBy_DistrictName(name);
-            int id = (int)ids.Rows[0]["DistrictId"];
-            return id;
+            List<string> districtNames = new List<string>();
+            var districts = new DistrictTableAdapter().GetData();
+
+            foreach (var district in districts)
+            {
+                districtNames.Add(district.DistrictId.ToString() + " " + district.Name.ToString());
+            }
+
+            return districtNames;
         }
     }
     

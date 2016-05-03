@@ -13,3 +13,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainData
     public partial class ClientTableAdapter {
     }
 }
+
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.MainDataSetTableAdapters {
+    
+    
+    public partial class DistrictTableAdapter {
+    }
+}

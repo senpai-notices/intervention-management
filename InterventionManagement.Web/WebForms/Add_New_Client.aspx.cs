@@ -24,7 +24,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         private void fillDistrictList()
         {
-            var districts = new DistrictTableWrapper().getDistrictsList();
+            var districts = new DistrictTableWrapper().getDistrictsAndIdsList();
             dropList_District.DataSource = districts;
             dropList_District.DataBind();
         }
@@ -49,11 +49,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         private int getDistrictIdForSelectedDistrict()
         {
-            // assumes district names are unique
-            string name = dropList_District.SelectedItem.ToString();
-            Response.Write("<script>alert('" + name + "')</script>");
-
-            return new DistrictTableWrapper().getDistrictIdForDistrict(name);
+            string idAndName = dropList_District.SelectedItem.ToString();
+            string idString = idAndName.Split(null)[0];
+            int id = Convert.ToInt32(idString);
+            return id;
         }
     }
 }
