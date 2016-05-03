@@ -39,11 +39,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if (validName)
             {
                 new ClientTableWrapper().addClient(name, location, districtId);
+                showMessage("Client created successfully");
             }
             else
             {
-                string message = "Error: The client's name cannot be blank";
-                Response.Write("<script>alert('" + message + "')</script>");
+                showMessage("Client not created, the client name cannot be blank");
             }
         }
 
@@ -53,6 +53,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             string idString = idAndName.Split(null)[0];
             int id = Convert.ToInt32(idString);
             return id;
+        }
+
+        private void showMessage(string message)
+        {
+            Response.Write("<script>alert('" + message + "')</script>");
         }
     }
 }
