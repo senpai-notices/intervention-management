@@ -8,24 +8,20 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
 {
-    class InterventionTableWrapper
+    public class InterventionTableWrapper
     {
-        public List<string> getInterventions()
-        {
-            List<string> namelist = new List<string>();
-            MainDataSet.InterventionDataTable interventions = new InterventionTableAdapter().GetData();
-            MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
-            return namelist;
-        }
 
-        public void getInterventionsByManager(string username)
+
+        public string getInterventionsByManager(string username)
         {
             var interventions = new InterventionTableAdapter().GetDataBy_GetInterventionsByManager(username);
-
+            var InterventionTemplate = new InterventionTemplateTableAdapter().GetDataBy_InterventionTemplateId(1);
+            String interventionName = "";
             foreach (var row in interventions)
             {
-                var placeholder = row.Notes;
-            }
+                interventionName = row.Notes;
+            }   
+            return interventionName;
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.UI;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
@@ -11,11 +13,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                
-                for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions 
-                {
-                    InterventionTable.Rows.Add(addTableRow(i, "This is intervention name " + i, "this is intervention details " + i));
-                }
+                var interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);
+                lblTitle.Text = interventions;
             }
         }
 
