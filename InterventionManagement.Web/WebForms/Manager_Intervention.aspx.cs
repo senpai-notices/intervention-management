@@ -13,8 +13,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                var interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);
-                lblTitle.Text = interventions;
+                Dictionary<int, KeyValuePair<string, string>> interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);
+                
+                foreach (var details in interventions)
+                {
+                    //InterventionTable.Rows.Add(addTableRow(3, details.Key,details.Value));
+                    InterventionTable.Rows.Add(addTableRow(details.Key, details.Value.Key,details.Value.Value));
+                }
+
             }
         }
 
