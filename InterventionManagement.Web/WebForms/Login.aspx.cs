@@ -40,7 +40,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 try
                 {
                     new IdentityWrapper().SignIn(userManager, signInManager, username, password);
-                    Response.Redirect("/WebForms/View_Client.aspx");
+                        Response.Redirect("/WebForms/UserRoleCheck.aspx");
                 }
                 catch
                 {

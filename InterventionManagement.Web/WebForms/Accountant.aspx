@@ -16,7 +16,7 @@
                 </asp:TableRow>
             </asp:Table>
             <br />
-            <asp:Button ID="btnRunReport" runat="server" Text="Run report" />
+            <asp:Button ID="btnRunReport" runat="server" Text="Run report" OnClick="btnRunReport_Click" />
             <asp:Button ID="btnSaveChange" runat="server" Text="Save change" />
         </div>
 </asp:Content>
