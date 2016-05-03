@@ -15,7 +15,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 dropList_District.DataSource = new List<string> { "Spot A", "Banlands B", "Middle o Nowhere C", "Neverland D" };
                 dropList_District.DataBind();
             }
-
+              
         }
 
         protected void btn_CreateClient_Click(object sender, EventArgs e)
