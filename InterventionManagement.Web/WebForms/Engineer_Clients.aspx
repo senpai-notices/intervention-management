@@ -10,18 +10,12 @@
         <!--End page heading -->
         
          <div style="margin-left: 30%; margin-top: 5%">
-            <asp:DropDownList ID="DistrictDropDownList" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True">
-            </asp:DropDownList>
+             <asp:Label ID="Label_DistrictPrompt" runat="server" Text="District: "></asp:Label>
+             <asp:Label ID="Label_District" runat="server" Text="null"></asp:Label>
             <br />
             <br />
         
         <div class="centerblock" style="width: 40%; margin-top: 0px;">
-            <asp:ListBox ID="list_Clients" runat="server" Width="100%" DataSourceID="ClientList" DataTextField="Name" DataValueField="Name"></asp:ListBox>
-            <asp:SqlDataSource ID="ClientList" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\R\Source\Repos\InterventionManagement\InterventionManagement.Data\Database.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Name] FROM [Client] WHERE ([DistrictId] = @DistrictId)">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="DistrictDropDownList" Name="DistrictId" PropertyName="SelectedValue" Type="Int32" />
-                </SelectParameters>
-            </asp:SqlDataSource>
             <br />
         </div>
         <div class="centerblock">

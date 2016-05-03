@@ -14,7 +14,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if (!IsPostBack)
             {
 
-                var districts = new DistrictWrapper().getDistricts();
+                var districts = new DistrictTableWrapper().getDistrictsList();
 
                 foreach (var district in districts)
                 {

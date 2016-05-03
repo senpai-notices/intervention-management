@@ -22,31 +22,22 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// DistrictDropDownList control.
+        /// Label_DistrictPrompt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DistrictDropDownList;
+        protected global::System.Web.UI.WebControls.Label Label_DistrictPrompt;
         
         /// <summary>
-        /// list_Clients control.
+        /// Label_District control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox list_Clients;
-        
-        /// <summary>
-        /// ClientList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ClientList;
+        protected global::System.Web.UI.WebControls.Label Label_District;
         
         /// <summary>
         /// btn_ViewClient control.
