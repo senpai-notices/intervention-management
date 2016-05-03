@@ -1,23 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Models;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 {
     public static class InterventionManager
     {
-        private static readonly List<Intervention> _interventions = new List<Intervention>();
+        //private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
 
-        public static List<Intervention> Interventions => _interventions;
-
-        public static void Add(Intervention intervention)
+        
+        public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername)
         {
-            _interventions.Add(intervention);
+            //TODO: Finish AddNewIntervention (Uncomment Code when Methods are implemented).
+            bool approvalRequired = InterventionValidator.RequiresApproval(engineerUsername, InterventionTypeID);
+            
+            // _intervention.AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername, approvalRequired);            
         }
 
-        public static Intervention GetInterventionById(int interventionId)
-        {
-            return _interventions.FirstOrDefault(i => i.InterventionId == interventionId);
-        }
     }
 }
