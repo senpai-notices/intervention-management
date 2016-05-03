@@ -6,6 +6,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class EngineerTableWrapper
     {
+        #region DEPRECATED
+        [Obsolete()]
         public void addEngineer(string username, int hoursApprovalLimit, int costApprovalLimit, int districtId, string name)
         {
             // add a user to the user table first (Engineer primary key has constraint to require User with same primary key)
@@ -25,8 +27,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             // update the database
             new EngineerTableAdapter().Update(engineers);
         }
+        #endregion
 
-        public MainDataSet.EngineerDataTable GetEngineer()
+        public MainDataSet.EngineerDataTable GetEngineers()
         {
             return new EngineerTableAdapter().GetData();
         }
@@ -38,7 +41,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
         public void InsertEngineer(string username, string name, int hours, int cost, int districtId)
         {
-            new EngineerTableAdapter().InsertEngineer(username, name, hours, cost, districtId);
+            var dataTable = GetEngineerByEngineerUsername(username);
+
+            if (dataTable.Rows.Count == 0)
+            {
+                new EngineerTableAdapter().InsertEngineer(username, name, hours, cost, districtId);
+            }
+            else
+            {
+                throw new Exception("Duplicate username.");
+            }
         }
 
         public void DeleteEngineer(string username)
