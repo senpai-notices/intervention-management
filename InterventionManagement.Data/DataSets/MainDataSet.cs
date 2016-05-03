@@ -14,9 +14,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainData
     }
 }
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.MainDataSetTableAdapters {
-    
-    
-    public partial class DistrictTableAdapter {
+namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters
+{
+
+
+    public partial class DistrictTableAdapter
+    {
     }
 }

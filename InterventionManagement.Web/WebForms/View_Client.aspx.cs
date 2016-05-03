@@ -18,13 +18,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 var interventions = new InterventionTableAdapter().GetDataBy_ClientId(1);
 
                 if (Session["ClientId"] != null)
+                {
                     lblName.Text = Session["ClientId"].ToString();
+                }
                 else
                 {
-                    //    lblName.Text = "Sample name";
-                    //lblLocation.Text = "Ashfield";
-                    //lblDistrict.Text = "Sydney";
-                    //Debug.WriteLine("debugwriteline" + User.Identity.Name);
                     lblName.Text = User.Identity.Name;
                     lblLocation.Text = User.IsInRole("Accountant") ? "true" : "false";
                     lblDistrict.Text = "sydney";
