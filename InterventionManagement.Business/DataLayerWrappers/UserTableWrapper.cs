@@ -7,6 +7,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
     {
         public void addUser(string username, string name)
         {
+            // add a new user
             MainDataSet.UserDataTable users = new UserTableAdapter().GetData();
             MainDataSet.UserRow newUser = users.NewUserRow();
 
@@ -15,6 +16,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             users.Rows.Add(newUser);
 
+            // update the database
             new UserTableAdapter().Update(users);
         }
     }

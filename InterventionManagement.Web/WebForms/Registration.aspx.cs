@@ -42,6 +42,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 new EngineerTableWrapper().addEngineer(username, 1, 1, 1, "Named");
             }
+            else if (roleName == "Manager")
+            {
+                new ManagerTableWrapper().addManager(username, 1, 1, 1, "Named");
+            }
+            else if (roleName == "Accountant")
+            {
+                new UserTableWrapper().addUser(username, "Named");
+            }
         }
     }
 }
