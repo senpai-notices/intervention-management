@@ -60,6 +60,7 @@
     <Compile Include="EngineerTests.cs" />
     <Compile Include="ManagerTests.cs" />
     <Compile Include="MiscTests.cs" />
+    <Compile Include="NewTests.cs" />
     <Compile Include="UserManagerTests.cs" />
     <Compile Include="InterventionTemplateTests.cs" />
     <Compile Include="ClientTests.cs" />
