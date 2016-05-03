@@ -370,3 +370,46 @@ AS
 		PRINT 'UpdateInterventionState failed.'
 	END CATCH
 GO
+
+/* BELOW are reports i havent implemented yet - VERY UNSURE if it works. also is it okay to use this in a TableView? */
+/* these use joins, which i dont know much about. i just adapted it from an example. grand total and monthly total may use nesting? */
+/*
+CREATE PROCEDURE [dbo].[ReportTotalCostsByEngineer]
+AS
+	SELECT [dbo].[User].Name, SUM([dbo].[Intervention].Hours) AS TotalHours, SUM([dbo].[Intervention].Cost) AS TotalCost
+	FROM ([dbo].[User]
+	INNER JOIN [dbo].[Intervention]
+	ON [dbo].[User].Username=[dbo].[Intervention].ProposerUsername)
+	GROUP BY [dbo].[User].Name
+	ORDER BY [dbo].[User].Name ASC
+GO
+
+CREATE PROCEDURE [dbo].[ReportAverageCostsByEngineer]
+AS
+	SELECT [dbo].[User].Name, AVG([dbo].[Intervention].Hours) AS AverageHours, AVG([dbo].[Intervention].Cost) AS AverageCost
+	FROM ([dbo].[User]
+	INNER JOIN [dbo].[Intervention]
+	ON [dbo].[User].Username=[dbo].[Intervention].ProposerUsername)
+	GROUP BY [dbo].[User].Name
+	ORDER BY [dbo].[User].Name ASC
+GO
+
+CREATE PROCEDURE [dbo].[ReportCostsByDistrict]
+AS
+	SELECT [dbo].[District].Name, SUM([dbo].[Intervention].Hours) AS TotalHours, SUM([dbo].[Intervention].Cost) AS TotalCost
+	FROM (([dbo].[District]
+	INNER JOIN [dbo].[Intervention]
+	ON [dbo].[District].DistrictId=[dbo].[Client].DistrictId)
+	INNER JOIN [dbo].[Intervention]
+	ON [dbo].[Intervention].DistrictId=[dbo].[Client].DistrictId)
+	GROUP BY [dbo].[District].Name
+	ORDER BY [dbo].[District].DistrictId ASC
+	/* GRAND TOTAL CODE GOES HERE */
+GO
+
+CREATE PROCEDURE [dbo].[ReportMonthlyCostsForDistrict]
+	@districtId INT
+AS
+
+GO
+*/
