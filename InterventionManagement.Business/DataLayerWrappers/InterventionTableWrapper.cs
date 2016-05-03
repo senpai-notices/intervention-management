@@ -18,5 +18,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return namelist;
         }
 
+        public void getInterventionsByManager(string username)
+        {
+            var interventions = new InterventionTableAdapter().GetDataBy_GetInterventionsByManager(username);
+
+            foreach (var row in interventions)
+            {
+                var placeholder = row.Notes;
+            }
+        }
     }
 }
