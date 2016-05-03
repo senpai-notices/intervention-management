@@ -217,7 +217,7 @@
     <Content Include="WebForms\Engineer_Clients.aspx" />
     <Content Include="WebForms\Login.aspx" />
     <Content Include="WebForms\Manager_Intervention.aspx" />
-    <Content Include="WebForms\NotLoggedIn.aspx" />
+    <Content Include="WebForms\Not_Logged_In.aspx" />
     <Content Include="WebForms\Registration.aspx" />
     <Content Include="WebForms\Run_Report.aspx" />
     <Content Include="WebForms\Update_Intervention_Details.aspx" />
@@ -482,12 +482,12 @@
     <Compile Include="WebForms\Manager_Intervention.aspx.designer.cs">
       <DependentUpon>Manager_Intervention.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\NotLoggedIn.aspx.cs">
-      <DependentUpon>NotLoggedIn.aspx</DependentUpon>
+    <Compile Include="WebForms\Not_Logged_In.aspx.cs">
+      <DependentUpon>Not_Logged_In.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\NotLoggedIn.aspx.designer.cs">
-      <DependentUpon>NotLoggedIn.aspx</DependentUpon>
+    <Compile Include="WebForms\Not_Logged_In.aspx.designer.cs">
+      <DependentUpon>Not_Logged_In.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Registration.aspx.cs">
       <DependentUpon>Registration.aspx</DependentUpon>

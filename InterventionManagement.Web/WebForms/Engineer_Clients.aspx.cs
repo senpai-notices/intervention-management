@@ -7,25 +7,30 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (User.IsInRole("Engineer"))
             {
-                /* List<string> data = new List<string> { "Woop Woop 1", "Boop boop2", "Scoop Scoop",
-                     "Meep Meep", "Boop boop2", "Scoop Scoop", "Meep Meep" };
-                 data.Sort();
-                 list_Clients.DataSource = data;
-                 list_Clients.DataBind();*/
-                //MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter();
-                //DistrictDataSet.DistrictDataTable districts = new DistrictTableAdapter
-                var districts = new Data.DataSets.MainDataSetTableAdapters.DistrictTableAdapter()
-                    .GetDataBy_GetDistrictByEngineerUsername("DebugEngineer");                
+                if (!IsPostBack)
+                {
+                    /* List<string> data = new List<string> { "Woop Woop 1", "Boop boop2", "Scoop Scoop",
+                         "Meep Meep", "Boop boop2", "Scoop Scoop", "Meep Meep" };
+                     data.Sort();
+                     list_Clients.DataSource = data;
+                     list_Clients.DataBind();*/
+                    //MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter();
+                    //DistrictDataSet.DistrictDataTable districts = new DistrictTableAdapter
+                    var districts = new Data.DataSets.MainDataSetTableAdapters.DistrictTableAdapter()
+                        .GetDataBy_GetDistrictByEngineerUsername("DebugEngineer");
 
-                 foreach(var district in districts)
-                 {
-                    ListItem i = new ListItem(district.Name.ToString(), "");
-                    DistrictDropDownList.Items.Add(i);
-                 }                 
-
-
+                    foreach (var district in districts)
+                    {
+                        ListItem i = new ListItem(district.Name.ToString(), "");
+                        DistrictDropDownList.Items.Add(i);
+                    }
+                }
+            }
+            else
+            {
+                Response.Redirect("/WebForms/Not_Logged_In.aspx");
             }
         }
 

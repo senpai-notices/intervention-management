@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
-
+using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -23,13 +15,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
 
                 var districts = new DistrictWrapper().getDistricts();
-                
+
                 foreach (var district in districts)
                 {
                     ListItem i = new ListItem(district.ToString());
                     DistrictDropDownList.Items.Add(i);
                 }
-
             }
         }
 
@@ -43,25 +34,36 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string roleName = DropDownList_Roles.SelectedItem.ToString();
-            
-            new IdentityWrapper().CreateUser(username, password, roleName);
-            if (roleName == "Engineer")
-            {
-                new EngineerTableWrapper().addEngineer(username, approvalHours, approvalCost, districtID, name);
-            }
-            else if (roleName == "Manager")
-            {
-                new ManagerTableWrapper().addManager(username, approvalHours, approvalCost, districtID, name);
-            }
-            else if (roleName == "Accountant")
-            {
-                new UserTableWrapper().addUser(username, name);
-            }
-        }
 
-        protected void DropDownList_Roles_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            try
+            {
+                IdentityWrapper identity = new IdentityWrapper();
+                identity.CreateUser(username, password, roleName);
 
+                // create additional tables required
+                if (roleName == "Engineer")
+                {
+                    new EngineerTableWrapper().addEngineer(username, approvalHours, approvalCost, districtID, name);
+                }
+                else if (roleName == "Manager")
+                {
+                    new ManagerTableWrapper().addManager(username, approvalHours, approvalCost, districtID, name);
+                }
+                else if (roleName == "Accountant")
+                {
+                    new UserTableWrapper().addUser(username, name);
+                }
+
+                // sign in this new user
+                var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                identity.SignIn(userManager, signInManager, username, password);
+                Response.Redirect("/WebForms/View_Client.aspx");
+            }
+            catch (Exception exception)
+            {
+                // do something
+            }
         }
     }
 }
