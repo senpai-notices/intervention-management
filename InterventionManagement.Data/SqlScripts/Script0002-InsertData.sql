@@ -25,9 +25,9 @@ INSERT INTO [dbo].[InterventionTemplate] ([InterventionTemplateId], [Name], [Est
 SET IDENTITY_INSERT [dbo].[InterventionTemplate] OFF
 
 SET IDENTITY_INSERT [dbo].[Client] ON
-INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (1, N'Jane Doe', N'1 Main Street, (Blue House)', 6)
-INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (2, N'Josiah and Ruth Family', N'1 Tropical Street', 3)
-INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (3, N'David Bowie', N'Cloud 1, Heaven', 5)
+INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (1, N'Jane Doe', N'1 Main Street, (Blue House)', 1)
+INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (2, N'Josiah and Ruth Family', N'1 Tropical Street', 1)
+INSERT INTO [dbo].[Client] ([ClientId], [Name], [Location], [DistrictId]) VALUES (3, N'David Bowie', N'Cloud 1, Heaven', 1)
 SET IDENTITY_INSERT [dbo].[Client] OFF
 
 INSERT INTO [dbo].[User] ([Username], [Name]) VALUES (N'DebugEngineer', N'Engineer for testing')
