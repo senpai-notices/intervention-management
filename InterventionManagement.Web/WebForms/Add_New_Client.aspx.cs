@@ -1,8 +1,6 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -10,65 +8,55 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (User.IsInRole("Engineer"))
             {
-                dropList_District.DataSource = new List<string> { "Spot A", "Banlands B", "Middle o Nowhere C", "Neverland D" };
-                dropList_District.DataBind();
+                if (!IsPostBack)
+                {
+                    // set controls to show relevant data
+                    fillDistrictList();
+                }
             }
-              
+            else
+            {
+                Response.Redirect("/WebForms/Not_Logged_In.aspx");
+            }
+        }
+
+        private void fillDistrictList()
+        {
+            var districts = new DistrictTableWrapper().getDistrictsAndIdsList();
+            dropList_District.DataSource = districts;
+            dropList_District.DataBind();
         }
 
         protected void btn_CreateClient_Click(object sender, EventArgs e)
         {
-            bool validName = !String.IsNullOrWhiteSpace(txt_Name.Text);
-
-            // showing that we can access data from typed datasets
-            MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
-            foreach (MainDataSet.ClientRow clientRow in clients)
-            {
-                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
-            }
-
-            MainDataSet.ClientRow testRow = clients.NewClientRow();
-            testRow.Location = "test location";
-            testRow.Name = "John Smithy";
-            testRow.DistrictId = 5;
-            //testRow.ClientId = 10;// dont need this line, autogenerates Ids
-
-            clients.Rows.Add(testRow);
-            Response.Write("<script>alert('" + "new row added" + "')</script>");
-            foreach (MainDataSet.ClientRow clientRow in clients)
-            {
-                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
-            }
-            
-            ClientTableAdapter cta = new ClientTableAdapter();
-            cta.Update(clients);
-            // end the demo section
-            // testing FillByClientId
-            Response.Write("<script>alert('" + "testing fillbyclientid method" + "')</script>");
-
-            //clients = new ClientTableAdapter().GetDataByClientId(10);
-            foreach (MainDataSet.ClientRow clientRow in clients)
-            {
-                Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
-            }
-            // end test 2
+            string name = txt_Name.Text;
+            string location = txtLocation.Text;
+            int districtId = getDistrictIdForSelectedDistrict();
+            bool validName = !String.IsNullOrWhiteSpace(name);
 
             if (validName)
             {
-                string message = "New Client Created. Name = " + txt_Name.Text + " District = " + dropList_District.SelectedItem.Text;
-                Response.Write("<script>alert('" + message + "')</script>");
+                new ClientTableWrapper().addClient(name, location, districtId);
+                showMessage("Client created successfully");
             }
             else
             {
-                string message = "Error: Invalid Input into fields";
-                Response.Write("<script>alert('" + message + "')</script>");
+                showMessage("Client not created, the client name cannot be blank");
             }
         }
-        protected void btn_Cancel_Click(object sender, EventArgs e)
+
+        private int getDistrictIdForSelectedDistrict()
         {
-            string message = "Cancelled.. Redirecting to previous page";
+            string idAndName = dropList_District.SelectedItem.ToString();
+            string idString = idAndName.Split(null)[0];
+            int id = Convert.ToInt32(idString);
+            return id;
+        }
+
+        private void showMessage(string message)
+        {
             Response.Write("<script>alert('" + message + "')</script>");
         }
     }
