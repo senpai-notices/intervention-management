@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Add_new_Intervention.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Add_new_Intervention" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Add_New_Intervention.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Add_new_Intervention" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div>
@@ -22,7 +22,7 @@
                         <asp:Label ID="lblType" runat="server" Text="Type: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="DropDownListType" runat="server"></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownListType" runat="server" OnSelectedIndexChanged="DropDownListType_SelectedIndexChanged"></asp:DropDownList>
                     </td>
                 </tr>
 
@@ -72,4 +72,5 @@
 
 
 
+    </div>
 </asp:content>

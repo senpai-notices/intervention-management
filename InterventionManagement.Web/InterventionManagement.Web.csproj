@@ -212,7 +212,7 @@
     </Content>
     <Content Include="WebForms\Accountant.aspx" />
     <Content Include="WebForms\Add_New_Client.aspx" />
-    <Content Include="WebForms\Add_new_Intervention.aspx" />
+    <Content Include="WebForms\Add_New_Intervention.aspx" />
     <Content Include="WebForms\Change_Password.aspx" />
     <Content Include="WebForms\Engineer_Clients.aspx" />
     <Content Include="WebForms\Login.aspx" />
@@ -447,12 +447,12 @@
     <Compile Include="WebForms\Add_New_Client.aspx.designer.cs">
       <DependentUpon>Add_New_Client.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForms\Add_new_Intervention.aspx.cs">
-      <DependentUpon>Add_new_Intervention.aspx</DependentUpon>
+    <Compile Include="WebForms\Add_New_Intervention.aspx.cs">
+      <DependentUpon>Add_New_Intervention.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForms\Add_new_Intervention.aspx.designer.cs">
-      <DependentUpon>Add_new_Intervention.aspx</DependentUpon>
+    <Compile Include="WebForms\Add_New_Intervention.aspx.designer.cs">
+      <DependentUpon>Add_New_Intervention.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForms\Change_Password.aspx.cs">
       <DependentUpon>Change_Password.aspx</DependentUpon>
