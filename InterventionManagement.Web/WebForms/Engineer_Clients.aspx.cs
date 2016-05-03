@@ -21,18 +21,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 }
             }
             else
-                    {
+            {
                 Response.Redirect("/WebForms/Not_Logged_In.aspx");
-                    }
-                }
+            }
+        }
 
         private void fillClientListForUser(string username)
         {
-            List<string> clients = new ClientTableWrapper().getClientsForEngineer(username);
-            foreach (var clientName in clients)
-            {
-                ListBox_Clients.Items.Add(clientName);
-            }
+            List<string> clients = new ClientTableWrapper().getClientIdAndNameListForEngineer(username);
+            ListBox_Clients.DataSource = clients;
+            ListBox_Clients.DataBind();
+
             if (clients.Count > 0)
             {
                 ListBox_Clients.SelectedIndex = 0;

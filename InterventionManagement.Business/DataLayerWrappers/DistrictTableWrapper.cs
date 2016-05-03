@@ -28,6 +28,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             return district;
         }
+
+        public List<string> getDistrictsAndIdsList()
+        {
+            List<string> districtNames = new List<string>();
+            var districts = new DistrictTableAdapter().GetData();
+
+            foreach (var district in districts)
+            {
+                districtNames.Add(district.DistrictId.ToString() + " " + district.Name.ToString());
+            }
+
+            return districtNames;
+        }
     }
     
 }

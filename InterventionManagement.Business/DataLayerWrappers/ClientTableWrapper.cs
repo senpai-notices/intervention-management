@@ -21,7 +21,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             new ClientTableAdapter().Update(clients);
         }
 
-        public List<string> getClientsForEngineer(string username)
+        public List<string> getClientIdAndNameListForEngineer(string username)
         {
             List<string> clientNames = new List<string>();
             var clients = new ClientTableAdapter().GetDataBy_GetClientsByEngineerUsername(username);
