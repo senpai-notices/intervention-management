@@ -28,6 +28,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             return district;
         }
+
+        public int getDistrictIdForDistrict(string name)
+        {
+            var ids = new DistrictTableAdapter().GetDataBy_DistrictName(name);
+            int id = (int)ids.Rows[0]["DistrictId"];
+            return id;
+        }
     }
     
 }

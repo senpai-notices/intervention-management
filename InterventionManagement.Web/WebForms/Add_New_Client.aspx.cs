@@ -12,8 +12,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 if (!IsPostBack)
                 {
-                    dropList_District.DataSource = new List<string> { "Spot A", "Banlands B", "Middle o Nowhere C", "Neverland D" };
-                    dropList_District.DataBind();
+                    // set controls to show relevant data
+                    fillDistrictList();
                 }
             }
             else
@@ -25,33 +25,35 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         private void fillDistrictList()
         {
             var districts = new DistrictTableWrapper().getDistrictsList();
-
-            foreach (var district in districts)
-            {
-                //ListItem i = new ListItem(district.ToString());
-                //DistrictDropDownList.Items.Add(i);
-            }
+            dropList_District.DataSource = districts;
+            dropList_District.DataBind();
         }
 
         protected void btn_CreateClient_Click(object sender, EventArgs e)
         {
-            bool validName = !String.IsNullOrWhiteSpace(txt_Name.Text);
+            string name = txt_Name.Text;
+            string location = txtLocation.Text;
+            int districtId = getDistrictIdForSelectedDistrict();
+            bool validName = !String.IsNullOrWhiteSpace(name);
 
             if (validName)
             {
-                string message = "New Client Created. Name = " + txt_Name.Text + " District = " + dropList_District.SelectedItem.Text;
-                Response.Write("<script>alert('" + message + "')</script>");
+                new ClientTableWrapper().addClient(name, location, districtId);
             }
             else
             {
-                string message = "Error: Invalid Input into fields";
+                string message = "Error: The client's name cannot be blank";
                 Response.Write("<script>alert('" + message + "')</script>");
             }
         }
-        protected void btn_Cancel_Click(object sender, EventArgs e)
+
+        private int getDistrictIdForSelectedDistrict()
         {
-            string message = "Cancelled.. Redirecting to previous page";
-            Response.Write("<script>alert('" + message + "')</script>");
+            // assumes district names are unique
+            string name = dropList_District.SelectedItem.ToString();
+            Response.Write("<script>alert('" + name + "')</script>");
+
+            return new DistrictTableWrapper().getDistrictIdForDistrict(name);
         }
     }
 }
