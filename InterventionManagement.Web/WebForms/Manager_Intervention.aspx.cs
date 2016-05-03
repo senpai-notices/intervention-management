@@ -9,14 +9,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions 
+            if (!IsPostBack)
             {
-                InterventionTable.Rows.Add(addTableRow(i, "This is intervention name " + i, "this is intervention details " + i));
+                
+                for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions 
+                {
+                    InterventionTable.Rows.Add(addTableRow(i, "This is intervention name " + i, "this is intervention details " + i));
+                }
             }
         }
 
 
-        protected System.Web.UI.WebControls.TableRow addTableRow(int ID, string InterventionName, string InterventionDetails)
+        protected TableRow addTableRow(int ID, string InterventionName, string InterventionDetails)
         {
             Button approveButton = new Button();
             Button removeButton = new Button();
