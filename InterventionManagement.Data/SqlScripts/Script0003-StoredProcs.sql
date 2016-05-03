@@ -56,7 +56,7 @@ MANAGER
 */
 
 /*
-USER
+USER (Accountant)
 */
 
 CREATE PROCEDURE [dbo].[GetUserByUsername]
@@ -152,8 +152,86 @@ AS
 GO
 
 CREATE PROCEDURE [dbo].[GetClientByDistrictId]
-	@DistrictId INT
+	@districtId INT
 AS
 	SELECT * FROM [dbo].[Client]
-	WHERE (DistrictId = @DistrictId)
+	WHERE (DistrictId = @districtId)
+GO
+
+/*
+INTERVENTION
+*/
+
+CREATE PROCEDURE [dbo].[GetInterventionById]
+	@id INT
+AS
+	SELECT * FROM [dbo].[Intervention]
+	WHERE InterventionId = @id
+GO
+
+CREATE PROCEDURE [dbo].[InsertIntervention]
+	@templateId INT, @datePerformed DATE, @stateId INT, @hours INT, @cost INT, @proposerUser VARCHAR(40), @approverUser VARCHAR(40), @clientId INT, @notes VARCHAR(2000), @remainingLife INT, @dateOfLastVisit DATE
+
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		INSERT INTO [dbo].[Intervention](InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit)
+
+		VALUES(@templateId, @datePerformed, @stateId, @hours, @cost, @proposerUser, @approverUser, @clientId, @notes, @remainingLife, @dateOfLastVisit)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'InsertIntervention failed.'
+	END CATCH
+GO
+
+CREATE PROCEDURE [dbo].[DeleteIntervention]
+	@Original_Id INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+	
+		DELETE FROM [dbo].[Intervention]
+			WHERE (InterventionId = @Original_Id)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'DeleteIntervention failed.'
+	END CATCH
+GO
+
+CREATE PROCEDURE [dbo].[GetInterventionByClientId]
+	@clientId INT
+AS
+	SELECT * FROM [dbo].[Intervention]
+	WHERE (ClientId = @clientId)
+GO
+
+CREATE PROCEDURE [dbo].[GetInterventionByProposerUser]
+	@proposerUser VARCHAR(40)
+AS
+	SELECT * FROM [dbo].[Intervention]
+	WHERE (ProposerUsername = @proposerUser)
+GO
+
+CREATE PROCEDURE [dbo].[GetInterventionByApproverUser]
+	@approverUser VARCHAR(40)
+AS
+	SELECT * FROM [dbo].[Intervention]
+	WHERE (ApproverUsername = @approverUser)
+GO
+
+CREATE PROCEDURE [dbo].[GetInterventionByProposed]
+AS
+	SELECT * FROM [dbo].[Intervention]
+	WHERE (InterventionStateId = 1)
 GO
