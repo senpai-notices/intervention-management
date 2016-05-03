@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
-
-
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
