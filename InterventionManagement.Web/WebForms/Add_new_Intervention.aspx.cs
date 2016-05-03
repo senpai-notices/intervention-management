@@ -15,9 +15,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if (User.IsInRole("Engineer"))
             {
                 // set controls to show relevant data
+                fillInterventionTypeDropDown();
                 fillStatusDropDownWithPending();
                 fillClientDropDown();
-                txtDate.Text = DateTime.Now.ToString("dd/mm/yyyy");
+                txtDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
             }
             else
             {
@@ -25,9 +26,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
+        private void fillInterventionTypeDropDown()
+        {
+            DropDownListIntervention.DataSource = new InterventionTemplateTableWrapper().getTemplateIdAndNameList();
+            DropDownListIntervention.DataBind();
+        }
         private void fillStatusDropDownWithPending()
         {
-            DropDownListStatus.DataSource = new List<string>() { "Pending" };
+            DropDownListStatus.DataSource = new List<string>() { "1 Pending" };
             DropDownListStatus.DataBind();
         }
 
@@ -59,7 +65,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int hours = Convert.ToInt32(txtHours.Text);
             string notes = txtNote.Text;
             int remainingLife = Convert.ToInt32(txtRemaining.Text);
-            DateTime date = getDateFromTextBox();
+            DateTime datePerformed = getDateFromTextBox();
+
+            int interventionTemplateId = getIdFromIdAndNameString(DropDownListIntervention.SelectedItem.ToString());
+            int interventionStateId = getIdFromIdAndNameString(DropDownListStatus.SelectedItem.ToString());
+            int clientId = getIdFromIdAndNameString(DropDownListClient.SelectedItem.ToString());
+
+            string username = User.Identity.Name;
+            new InterventionTableWrapper().addIntervention(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife, datePerformed);
         }
 
         private DateTime getDateFromTextBox()
@@ -69,7 +82,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int day = Convert.ToInt32(dateSplit[0]);
             int month = Convert.ToInt32(dateSplit[1]);
             int year = Convert.ToInt32(dateSplit[2]);
+            //Response.Write("<script>alert('" + day.ToString() + month.ToString() + year.ToString() + "')</script>");
             return new DateTime(year, month, day);
+        }
+        private int getIdFromIdAndNameString(string idAndName)
+        {
+            return Convert.ToInt32(idAndName.Split(null)[0]);
         }
     }
 }
