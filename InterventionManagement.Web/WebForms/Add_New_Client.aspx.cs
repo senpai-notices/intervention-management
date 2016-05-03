@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -18,6 +19,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             else
             {
                 Response.Redirect("/WebForms/Not_Logged_In.aspx");
+            }
+        }
+
+        private void fillDistrictList()
+        {
+            var districts = new DistrictTableWrapper().getDistrictsList();
+
+            foreach (var district in districts)
+            {
+                //ListItem i = new ListItem(district.ToString());
+                //DistrictDropDownList.Items.Add(i);
             }
         }
 
