@@ -10,7 +10,7 @@
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms {
     
     
-    public partial class Add_new_Intervention {
+    public partial class Add_New_Intervention {
         
         /// <summary>
         /// lblTitle control.
