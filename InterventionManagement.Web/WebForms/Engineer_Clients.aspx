@@ -21,8 +21,6 @@
         </div>
         <div class="centerblock">
 
-            <asp:Button ID="btn_ViewClient" runat="server" Text="View Client" OnClick="btn_ViewClient_Click" />
-
             <asp:Button ID="selectedClient" runat="server" OnClick="selectedClient_Click" Text="View selected client" Width="156px" />
 
             <asp:Button ID="btn_NewClient" runat="server" Text="New Client" OnClick="btn_NewClient_Click" />

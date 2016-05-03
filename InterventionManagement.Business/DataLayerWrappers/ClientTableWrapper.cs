@@ -28,7 +28,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             foreach (var client in clients)
             {
-                clientNames.Add(client.Name.ToString());
+                clientNames.Add(client.ClientId.ToString() + " " + client.Name.ToString());
             }
 
             return clientNames;
