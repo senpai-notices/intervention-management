@@ -6,7 +6,7 @@ CREATE PROCEDURE [dbo].[GetEngineerByEngineerUsername]
 	@username varchar(40)
 AS
 	SELECT * FROM [dbo].Engineer
-	WHERE EngineerUsername like @username
+	WHERE EngineerUsername = @username
 GO
 
 CREATE PROCEDURE [dbo].[InsertEngineer]
@@ -52,6 +52,10 @@ AS
 GO
 
 /*
+MANAGER
+*/
+
+/*
 USER
 */
 
@@ -59,7 +63,7 @@ CREATE PROCEDURE [dbo].[GetUserByUsername]
 	@username varchar(40)
 AS
 	SELECT * FROM [dbo].[User]
-	WHERE Username like @username
+	WHERE Username = @username
 GO
 
 CREATE PROCEDURE [dbo].[InsertUser]
@@ -96,4 +100,60 @@ AS
 		ROLLBACK TRAN Main
 		PRINT 'DeleteUser failed.'
 	END CATCH
+GO
+
+/*
+CLIENT
+*/
+
+CREATE PROCEDURE [dbo].[GetClientById]
+	@id INT
+AS
+	SELECT * FROM [dbo].[Client]
+	WHERE ClientId = @id
+GO
+
+CREATE PROCEDURE [dbo].[InsertClient]
+	@name VARCHAR(100), @location VARCHAR(150), @districtId INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		INSERT INTO [dbo].[Client](Name, Location, DistrictId)
+		VALUES(@name, @location, @districtId)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'InsertClient failed.'
+	END CATCH
+GO
+
+CREATE PROCEDURE [dbo].[DeleteClient]
+	@Original_Id INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+	
+		DELETE FROM [dbo].[Client]
+			WHERE (ClientId = @Original_Id)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'DeleteClient failed.'
+	END CATCH
+GO
+
+CREATE PROCEDURE [dbo].[GetClientByDistrictId]
+	@DistrictId INT
+AS
+	SELECT * FROM [dbo].[Client]
+	WHERE (DistrictId = @DistrictId)
 GO
