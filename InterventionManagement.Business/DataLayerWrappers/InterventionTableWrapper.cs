@@ -7,6 +7,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class InterventionTableWrapper
     {
+#region deprecated
         public void addIntervention
             (
             int interventionTemplateId,
@@ -41,6 +42,50 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             // update the database
             new InterventionTableAdapter().Update(interventions);
+        }
+        #endregion
+
+        public MainDataSet.InterventionDataTable GetInterventions()
+        {
+            return new InterventionTableAdapter().GetData();
+        }
+
+        public MainDataSet.InterventionDataTable GetInterventionById(int id)
+        {
+            return new InterventionTableAdapter().GetDataBy_InterventionId(id);
+        }
+
+        public void InsertIntervention(int templateId, DateTime datePerformed, int stateId, int hours, int cost, 
+            string proposerUsername, string approverUsername, int clientId, string notes, int remainingLife, 
+            DateTime dateOfLastVisit)
+        {
+            new InterventionTableAdapter().InsertIntervention(templateId, datePerformed, stateId, hours, 
+                cost, proposerUsername, approverUsername, clientId, notes, remainingLife, dateOfLastVisit);
+        }
+
+        public void DeleteIntervention(int id)
+        {
+            new InterventionTableAdapter().DeleteIntervention(id);
+        }
+
+        public MainDataSet.InterventionDataTable GetInterventionByClientId(int id)
+        {
+            return new InterventionTableAdapter().GetDataBy_ClientId(id);
+        }
+
+        public MainDataSet.InterventionDataTable GetInterventionByProposerUser(string proposer)
+        {
+            return new InterventionTableAdapter().GetDataBy_ProposerUser(proposer);
+        }
+
+        public MainDataSet.InterventionDataTable GetInterventionByApproverUser(string approver)
+        {
+            return new InterventionTableAdapter().GetDataBy_ApproverUser(approver);
+        }
+
+        public MainDataSet.InterventionDataTable GetInterventionByProposed()
+        {
+            return new InterventionTableAdapter().GetDataBy_Proposed();
         }
     }
 }
