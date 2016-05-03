@@ -17,8 +17,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 var interventions = new InterventionTableAdapter().GetDataBy_ClientId(1);
 
-                if (Session["selected"] != null)
-                    lblName.Text = Session["selected"].ToString();
+                if (Session["ClientId"] != null)
+                    lblName.Text = Session["ClientId"].ToString();
                 else
                 {
                     //    lblName.Text = "Sample name";
