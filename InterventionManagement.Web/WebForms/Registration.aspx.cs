@@ -10,6 +10,8 @@ using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -34,7 +36,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string roleName = DropDownList_Roles.SelectedItem.ToString();
+
             new IdentityWrapper().CreateUser(username, password, roleName);
+            if (roleName == "Engineer")
+            {
+                new EngineerTableWrapper().addEngineer(username, 1, 1, 1, "Named");
+            }
         }
     }
 }

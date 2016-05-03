@@ -88,6 +88,7 @@
     <Compile Include="DataLayerWrappers\ClientTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\DatabaseInitializer.cs" />
     <Compile Include="DataLayerWrappers\EngineerTableWrapper.cs" />
+    <Compile Include="DataLayerWrappers\UserTableWrapper.cs" />
     <Compile Include="Models2\Client2.cs" />
     <Compile Include="Models2\District2.cs" />
     <Compile Include="Models2\Intervention2.cs" />

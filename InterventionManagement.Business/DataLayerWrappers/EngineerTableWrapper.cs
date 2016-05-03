@@ -3,10 +3,14 @@ using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetT
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
 {
-    class EngineerTableWrapper
+    public class EngineerTableWrapper
     {
-        public void addEngineer(string username, int hoursApprovalLimit, int costApprovalLimit, int districtId)
+        public void addEngineer(string username, int hoursApprovalLimit, int costApprovalLimit, int districtId, string name)
         {
+            // add a user to the user table first (Engineer primary key has constraint to require User with same primary key)
+            new UserTableWrapper().addUser(username, name);
+
+            // add a new engineer
             MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter().GetData();
             MainDataSet.EngineerRow newEngineer = engineers.NewEngineerRow();
 
@@ -17,6 +21,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             engineers.Rows.Add(newEngineer);
 
+            // update the database
             new EngineerTableAdapter().Update(engineers);
         }
     }
