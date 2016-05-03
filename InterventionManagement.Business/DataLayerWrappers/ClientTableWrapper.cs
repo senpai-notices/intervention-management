@@ -33,5 +33,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 
             return clientNames;
         }
+
+        public string getClientNameByClientId(int clientId)
+        {
+            var clientDataTable = new ClientTableAdapter().GetDataBy_ClientId(clientId);
+            var client = clientDataTable.Rows[0]["Name"].ToString();
+            return client;
+        }
     }
 }

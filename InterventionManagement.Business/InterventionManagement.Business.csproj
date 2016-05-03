@@ -89,6 +89,7 @@
     <Compile Include="DataLayerWrappers\DatabaseInitializer.cs" />
     <Compile Include="DataLayerWrappers\DistrictTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\EngineerTableWrapper.cs" />
+    <Compile Include="DataLayerWrappers\InterventionStateTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\ManagerTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\UserTableWrapper.cs" />
     <Compile Include="Exceptions\InterventionTemplateNumberException.cs" />
