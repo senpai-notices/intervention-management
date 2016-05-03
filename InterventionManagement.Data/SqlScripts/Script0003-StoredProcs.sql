@@ -25,3 +25,24 @@ AS
 		PRINT 'InsertEngineer failed.'
 	END CATCH
 GO
+
+CREATE PROCEDURE [dbo].[DeleteEngineer]
+	@Original_Username varchar(40)
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		DELETE FROM [dbo].[Engineer]
+			WHERE (EngineerUsername = @Original_Username)
+	
+		DELETE FROM [dbo].[User]
+			WHERE (Username = @Original_Username)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'DeleteEngineer failed.'
+	END CATCH
+GO
