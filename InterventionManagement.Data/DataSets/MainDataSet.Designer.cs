@@ -882,8 +882,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnClientId}, true));
                 this.columnClientId.AutoIncrement = true;
-                this.columnClientId.AutoIncrementSeed = -1;
-                this.columnClientId.AutoIncrementStep = -1;
+                this.columnClientId.AutoIncrementSeed = 1;
                 this.columnClientId.AllowDBNull = false;
                 this.columnClientId.ReadOnly = true;
                 this.columnClientId.Unique = true;
@@ -5910,9 +5909,14 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy_ClientId(MainDataSet.ClientDataTable dataTable, int clientId) {
+        public virtual int FillBy_ClientId(MainDataSet.ClientDataTable dataTable, global::System.Nullable<int> clientId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId));
+            if ((clientId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -5924,9 +5928,14 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual MainDataSet.ClientDataTable GetDataBy_ClientId(int clientId) {
+        public virtual MainDataSet.ClientDataTable GetDataBy_ClientId(global::System.Nullable<int> clientId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId));
+            if ((clientId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(clientId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             MainDataSet.ClientDataTable dataTable = new MainDataSet.ClientDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -5991,8 +6000,13 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ClientId));
+        public virtual int Delete(global::System.Nullable<int> Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId) {
+            if ((Original_ClientId.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ClientId.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
@@ -6060,7 +6074,7 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Location, int DistrictId, int Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId, int ClientId) {
+        public virtual int Update(string Name, string Location, int DistrictId, global::System.Nullable<int> Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId, global::System.Nullable<int> ClientId) {
             if ((Name == null)) {
                 throw new global::System.ArgumentNullException("Name");
             }
@@ -6074,7 +6088,12 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Location));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(DistrictId));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ClientId));
+            if ((Original_ClientId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_ClientId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
@@ -6088,7 +6107,12 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Original_Location));
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_DistrictId));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ClientId));
+            if ((ClientId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(ClientId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6109,7 +6133,7 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Name, string Location, int DistrictId, int Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId) {
+        public virtual int Update(string Name, string Location, int DistrictId, global::System.Nullable<int> Original_ClientId, string Original_Name, string Original_Location, int Original_DistrictId) {
             return this.Update(Name, Location, DistrictId, Original_ClientId, Original_Name, Original_Location, Original_DistrictId, Original_ClientId);
         }
     }

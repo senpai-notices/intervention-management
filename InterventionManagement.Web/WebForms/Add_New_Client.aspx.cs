@@ -1,5 +1,5 @@
 ﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.ClientDataSetTableAdapters;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -23,21 +23,21 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             bool validName = !String.IsNullOrWhiteSpace(txt_Name.Text);
 
             // showing that we can access data from typed datasets
-            ClientDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
-            foreach (ClientDataSet.ClientRow clientRow in clients)
+            MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
+            foreach (MainDataSet.ClientRow clientRow in clients)
             {
                 Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
             }
 
-            ClientDataSet.ClientRow testRow = clients.NewClientRow();
+            MainDataSet.ClientRow testRow = clients.NewClientRow();
             testRow.Location = "test location";
             testRow.Name = "John Smithy";
             testRow.DistrictId = 5;
-            testRow.ClientId = 10;
+            //testRow.ClientId = 10;
 
             clients.Rows.Add(testRow);
             Response.Write("<script>alert('" + "new row added" + "')</script>");
-            foreach (ClientDataSet.ClientRow clientRow in clients)
+            foreach (MainDataSet.ClientRow clientRow in clients)
             {
                 Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
             }
@@ -48,8 +48,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             // testing FillByClientId
             Response.Write("<script>alert('" + "testing fillbyclientid method" + "')</script>");
 
-            clients = new ClientTableAdapter().GetDataByClientId(10);
-            foreach (ClientDataSet.ClientRow clientRow in clients)
+            //clients = new ClientTableAdapter().GetDataByClientId(10);
+            foreach (MainDataSet.ClientRow clientRow in clients)
             {
                 Response.Write("<script>alert('" + clientRow.Name + clientRow.Location + "')</script>");
             }
