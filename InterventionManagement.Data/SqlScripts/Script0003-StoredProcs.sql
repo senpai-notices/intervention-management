@@ -15,7 +15,7 @@ AS
 		INSERT INTO [dbo].[User](Username, Name)
 		VALUES(@username, @name)
 
-		INSERT INTO [dbo].[Engineer](EngineerUsername, CostApprovalLimit, HoursApprovalLimit, DistrictId)
+		INSERT INTO [dbo].[Engineer](EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId)
 		VALUES(@username, @hours, @cost, @districtId)
 
 		COMMIT TRAN Main
