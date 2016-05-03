@@ -17,8 +17,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             {
                 var interventions = new InterventionTableAdapter().GetDataBy_ClientId(1);
 
-                if (Session["selected"] != null)
-                    lblName.Text = Session["selected"].ToString();
+                if (Session["ClientId"] != null)
+                    lblName.Text = Session["ClientId"].ToString();
                 else
                 {
                     //    lblName.Text = "Sample name";
@@ -74,10 +74,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" +"You have clicked intervention "+ click.ID + "');", true);
             //Make sure we gather everything we need in that before going to next page
             //Put it in Session
+            Response.Redirect("/WebForms/Update_Intervention_Details.aspx");
         }
 
         protected void btnAddIntervention_Click(object sender, EventArgs e)
         {
+            Response.Redirect("/WebForms/Add_New_Intervention.aspx");
 
         }
     }

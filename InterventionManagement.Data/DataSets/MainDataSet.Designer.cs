@@ -5862,7 +5862,7 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ClientId, Name, Location, DistrictId FROM dbo.Client";
@@ -5879,6 +5879,14 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
                 "        (DistrictId = @districtId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@districtId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "DistrictId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT        Client.ClientId, Client.Name, Client.Location, Client.DistrictId\r\nF" +
+                "ROM            Client INNER JOIN\r\n                         Engineer ON Engineer." +
+                "DistrictId = Client.DistrictId\r\nWHERE        (Engineer.EngineerUsername = @engin" +
+                "eerUsername)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@engineerUsername", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "EngineerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5962,6 +5970,42 @@ SELECT ClientId, Name, Location, DistrictId FROM Client WHERE (ClientId = @Clien
         public virtual MainDataSet.ClientDataTable GetDataBy_DistrictId(int districtId) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(districtId));
+            MainDataSet.ClientDataTable dataTable = new MainDataSet.ClientDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy_GetClientsByEngineerUsername(MainDataSet.ClientDataTable dataTable, string engineerUsername) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((engineerUsername == null)) {
+                throw new global::System.ArgumentNullException("engineerUsername");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(engineerUsername));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual MainDataSet.ClientDataTable GetDataBy_GetClientsByEngineerUsername(string engineerUsername) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((engineerUsername == null)) {
+                throw new global::System.ArgumentNullException("engineerUsername");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(engineerUsername));
+            }
             MainDataSet.ClientDataTable dataTable = new MainDataSet.ClientDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

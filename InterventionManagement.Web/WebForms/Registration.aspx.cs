@@ -14,7 +14,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if (!IsPostBack)
             {
 
-                var districts = new DistrictWrapper().getDistricts();
+                var districts = new DistrictTableWrapper().getDistrictsList();
 
                 foreach (var district in districts)
                 {
@@ -58,7 +58,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
                 identity.SignIn(userManager, signInManager, username, password);
-                Response.Redirect("/WebForms/View_Client.aspx");
+                Response.Redirect("/WebForms/UserRoleCheck.aspx");
             }
             catch (Exception exception)
             {
