@@ -66,14 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="DataSets\DistrictDataSet.cs">
-      <DependentUpon>DistrictDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSets\DistrictDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DistrictDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="DataSets\MainDataSet.cs">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </Compile>
@@ -110,17 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DataSets\DistrictDataSet.xsc">
-      <DependentUpon>DistrictDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\DistrictDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DistrictDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="DataSets\DistrictDataSet.xss">
-      <DependentUpon>DistrictDataSet.xsd</DependentUpon>
-    </None>
     <None Include="DataSets\MainDataSet.xsc">
       <DependentUpon>MainDataSet.xsd</DependentUpon>
     </None>
