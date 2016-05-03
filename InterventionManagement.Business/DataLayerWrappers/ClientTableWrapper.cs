@@ -6,23 +6,20 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class ClientTableWrapper
     {
-        //public void addEngineer(string username, int hoursApprovalLimit, int costApprovalLimit, int districtId, string name)
-        //{
+        public void addClient(string name, string location, int districtId)
+        {
+            MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
+            MainDataSet.ClientRow newClient = clients.NewClientRow();
 
-        //    // add a new engineer
-        //    MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter().GetData();
-        //    MainDataSet.EngineerRow newEngineer = engineers.NewEngineerRow();
+            newClient.Name = name;
+            newClient.Location = location;
+            newClient.DistrictId = districtId;
 
-        //    newEngineer.EngineerUsername = username;
-        //    newEngineer.HoursApprovalLimit = hoursApprovalLimit;
-        //    newEngineer.CostApprovalLimit = costApprovalLimit;
-        //    newEngineer.DistrictId = districtId;
+            clients.Rows.Add(newClient);
 
-        //    engineers.Rows.Add(newEngineer);
-
-        //    // update the database
-        //    new EngineerTableAdapter().Update(engineers);
-        //}
+            // update the database
+            new ClientTableAdapter().Update(clients);
+        }
 
         public List<string> getClientsForEngineer(string username)
         {
