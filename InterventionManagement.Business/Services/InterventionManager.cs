@@ -13,10 +13,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         
         public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
         {
-            //TODO: Finish AddNewIntervention (Uncomment Code when Methods are implemented).
-           // bool approvalRequired = InterventionValidator.RequiresApproval(username, InterventionTypeID);
+            //TODO: Finish AddNewIntervention.
             
-            // _intervention.AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername, approvalRequired);            
+            if(cost >= 0 && hours >= 0)
+            {
+               // TODO: Add State to new Intervention
+               // _intervention.AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername);
+            }
+
         }
 
         public static bool UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
@@ -33,9 +37,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             return true;
         }
 
-        public static void ApproveIntervention(int InterventionID, string username)
+        public static void ApproveIntervention(int InterventionID, string username, string userRole)
         {
-            InterventionValidator.RequiresApproval(username, InterventionID);
+            // Users from same district can interact with an Interventions. (Webforms ensures this)
+            // 
+            if(userRole.Equals("Manager") || InterventionValidator.VerifyProposerUsername(InterventionID,username))
+            {
+               if(InterventionValidator.CanApprove(InterventionID, username, userRole))
+                {
+
+                }
+                // _intervention.ApproveInterventionByID(InterventionID, DateTime.Today);
+            }
+
         } 
 
     }
