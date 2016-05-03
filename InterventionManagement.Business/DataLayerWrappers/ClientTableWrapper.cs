@@ -62,5 +62,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
         {
             new ClientTableAdapter().DeleteClient(id);
         }
+
+        public MainDataSet.ClientDataTable GetClientByDistrictId(int districtId)
+        {
+            return new ClientTableAdapter().GetDataBy_DistrictId(districtId);
+        }
     }
 }
