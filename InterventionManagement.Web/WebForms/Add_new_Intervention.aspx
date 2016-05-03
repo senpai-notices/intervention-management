@@ -22,7 +22,8 @@
                         <asp:Label ID="lblType" runat="server" Text="Type: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
-                        <asp:DropDownList ID="DropDownListType" runat="server" OnSelectedIndexChanged="DropDownListType_SelectedIndexChanged"></asp:DropDownList>
+                        <asp:DropDownList ID="DropDownListType" runat="server"></asp:DropDownList>
+                        <!-- Removed the following: OnSelectedIndexChanged="DropDownListType_SelectedIndexChanged" -->
                     </td>
                 </tr>
 
