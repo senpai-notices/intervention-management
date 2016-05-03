@@ -157,6 +157,42 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms {
         protected global::System.Web.UI.WebControls.TextBox txtLastDate;
         
         /// <summary>
+        /// lblProposer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProposer;
+        
+        /// <summary>
+        /// txtProposer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProposer;
+        
+        /// <summary>
+        /// lblApprover control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApprover;
+        
+        /// <summary>
+        /// txtApprover control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApprover;
+        
+        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>

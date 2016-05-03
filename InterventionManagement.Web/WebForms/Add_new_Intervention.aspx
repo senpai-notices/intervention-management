@@ -83,6 +83,23 @@
 
                 <tr>
                     <td>
+                        <asp:Label ID="lblProposer" runat="server" Text="Proposer: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtProposer" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="lblApprover" runat="server" Text="Approver: " Font-Bold="True"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="txtApprover" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
                         <asp:Label ID="lblStatus" runat="server" Text="Status: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
