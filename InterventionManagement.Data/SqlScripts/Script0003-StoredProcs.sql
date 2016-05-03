@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetEngineerByUsername]
+﻿CREATE PROCEDURE [dbo].[GetEngineerByEngineerUsername]
 	@username varchar(40)
 AS
 	SELECT * FROM [dbo].Engineer
