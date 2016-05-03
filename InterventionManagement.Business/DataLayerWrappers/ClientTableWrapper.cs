@@ -1,16 +1,37 @@
-﻿using System;
+﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
 {
-    class ClientTableWrapper
+    public class ClientTableWrapper
     {
-        public ClientTableWrapper()
+        public void addClient(string name, string location, int districtId)
         {
+            MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
+            MainDataSet.ClientRow newClient = clients.NewClientRow();
 
+            newClient.Name = name;
+            newClient.Location = location;
+            newClient.DistrictId = districtId;
+
+            clients.Rows.Add(newClient);
+
+            // update the database
+            new ClientTableAdapter().Update(clients);
+        }
+
+        public List<string> getClientsForEngineer(string username)
+        {
+            List<string> clientNames = new List<string>();
+            var clients = new ClientTableAdapter().GetDataBy_GetClientsByEngineerUsername(username);
+
+            foreach (var client in clients)
+            {
+                clientNames.Add(client.ClientId.ToString() + " " + client.Name.ToString());
+            }
+
+            return clientNames;
         }
     }
 }

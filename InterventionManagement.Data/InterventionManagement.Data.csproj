@@ -99,6 +99,7 @@
   <ItemGroup>
     <EmbeddedResource Include="SqlScripts\Script0002-InsertData.sql" />
     <EmbeddedResource Include="SqlScripts\Script0001-CreateTables.sql" />
+    <EmbeddedResource Include="SqlScripts\Script0003-StoredProcs.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

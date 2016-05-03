@@ -68,5 +68,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             //Put it in Session
         }
 
+        protected void btnRunReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/WebForms/Run_Report.aspx");
+        }
     }
 }
