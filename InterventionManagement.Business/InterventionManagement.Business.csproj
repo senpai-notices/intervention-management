@@ -91,33 +91,15 @@
     <Compile Include="DataLayerWrappers\EngineerTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\ManagerTableWrapper.cs" />
     <Compile Include="DataLayerWrappers\UserTableWrapper.cs" />
-    <Compile Include="Models2\Client2.cs" />
-    <Compile Include="Models2\District2.cs" />
-    <Compile Include="Models2\Intervention2.cs" />
-    <Compile Include="Models2\InterventionState2.cs" />
-    <Compile Include="Models2\InterventionTemplate2.cs" />
-    <Compile Include="Models2\QualityReport2.cs" />
-    <Compile Include="Models2\User2.cs" />
-    <Compile Include="Models\Client.cs" />
     <Compile Include="Exceptions\InterventionTemplateNumberException.cs" />
     <Compile Include="Exceptions\InterventionTemplateNameException.cs" />
-    <Compile Include="Services\InterventionManager.cs" />
-    <Compile Include="Services\ClientManager.cs" />
     <Compile Include="Helpers\ClientValidator.cs" />
-    <Compile Include="Models\District.cs" />
     <Compile Include="Exceptions\NameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\PasswordIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\ClientIdIsNegativeException.cs" />
     <Compile Include="Exceptions\UsernameIsNullOrWhiteSpaceException.cs" />
     <Compile Include="Exceptions\UserIdIsNegativeException.cs" />
-    <Compile Include="Models\Intervention.cs" />
-    <Compile Include="Models\InterventionState.cs" />
-    <Compile Include="Models\InterventionTemplate.cs" />
-    <Compile Include="Models\QualityReport.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\QualityReportManager.cs" />
-    <Compile Include="Services\UserManager.cs" />
     <Compile Include="Helpers\UserValidator.cs" />
   </ItemGroup>
   <ItemGroup>
