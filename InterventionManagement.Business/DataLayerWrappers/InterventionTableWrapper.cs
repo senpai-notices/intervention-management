@@ -87,5 +87,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
         {
             return new InterventionTableAdapter().GetDataBy_Proposed();
         }
+
+        public void UpdateQualityManagement(int id, string notes, int remainingLife)
+        {
+            new InterventionTableAdapter().UpdateQualityManagement(id, notes, remainingLife);
+        }
+
+        public void UpdateInterventionManagementState(int id, int targetState)
+        {
+            new InterventionTableAdapter().UpdateInterventionState(id, targetState);
+        }
     }
 }

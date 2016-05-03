@@ -51,6 +51,27 @@ AS
 	END CATCH
 GO
 
+CREATE PROCEDURE [dbo].[UpdateEngineerDistrict]
+	@username varchar(40), @targetDistrict INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		UPDATE [dbo].[Engineer]
+		SET DistrictId = @targetDistrict
+		WHERE (EngineerUsername = @username)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'UpdateEngineerDistrict failed.'
+	END CATCH
+GO
+
 /*
 MANAGER
 */
@@ -101,6 +122,27 @@ AS
 	BEGIN CATCH
 		ROLLBACK TRAN Main
 		PRINT 'DeleteManager failed.'
+	END CATCH
+GO
+
+CREATE PROCEDURE [dbo].[UpdateManagerDistrict]
+	@username varchar(40), @targetDistrict INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		UPDATE [dbo].[Manager]
+		SET DistrictId = @targetDistrict
+		WHERE (ManagerUsername = @username)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'UpdateManagerDistrict failed.'
 	END CATCH
 GO
 
@@ -283,4 +325,48 @@ CREATE PROCEDURE [dbo].[GetInterventionByProposed]
 AS
 	SELECT * FROM [dbo].[Intervention]
 	WHERE (InterventionStateId = 1)
+GO
+
+
+CREATE PROCEDURE [dbo].[UpdateQualityManagement]
+	@id INT, @notes VARCHAR(2000), @remainingLife INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		UPDATE [dbo].[Intervention]
+		SET Notes = @notes, RemainingLife = @remainingLife
+		WHERE (InterventionId = @id)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'UpdateQualityManagement failed.'
+	END CATCH
+GO
+
+/*this could also be used for approveintervention*/
+CREATE PROCEDURE [dbo].[UpdateInterventionState]
+	@id INT, @targetState INT
+AS
+	BEGIN TRY
+
+		BEGIN TRAN Main
+
+		SET NOCOUNT ON
+	
+		UPDATE [dbo].[Intervention]
+		SET InterventionStateId = @targetState
+		WHERE (InterventionId = @id)
+
+		COMMIT TRAN Main
+	END TRY
+	BEGIN CATCH
+		ROLLBACK TRAN Main
+		PRINT 'UpdateInterventionState failed.'
+	END CATCH
 GO

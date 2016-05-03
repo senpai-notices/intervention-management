@@ -56,5 +56,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
         {
             new ManagerTableAdapter().DeleteManager(username);
         }
+
+        public void UpdateManagerDistrict(string username, int targetDistrict)
+        {
+            new ManagerTableAdapter().UpdateManagerDistrict(username, targetDistrict);
+        }
     }
 }
