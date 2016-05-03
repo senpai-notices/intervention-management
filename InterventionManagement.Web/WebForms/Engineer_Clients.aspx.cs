@@ -39,11 +39,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
-        protected void btn_ViewClient_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btn_NewClient_Click(object sender, EventArgs e)
         {
             Response.Redirect("/WebForms/Add_New_Client.aspx");
