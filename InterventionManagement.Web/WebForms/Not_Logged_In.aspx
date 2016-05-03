@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NotLoggedIn.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.NotLoggedIn" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Not_Logged_In.aspx.cs" Inherits="au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms.Not_Logged_In" %>
 
 <!DOCTYPE html>
 

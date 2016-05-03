@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
-    public partial class NotLoggedIn : System.Web.UI.Page
+    public partial class Not_Logged_In : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
