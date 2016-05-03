@@ -24,19 +24,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 //MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter();
                 //DistrictDataSet.DistrictDataTable districts = new DistrictTableAdapter
                 var districts = new Data.DataSets.MainDataSetTableAdapters.DistrictTableAdapter()
-                    .GetDataBy_GetDistrictByEngineerUsername("DebugEngineer");
-                
+                    .GetDataBy_GetDistrictByEngineerUsername("DebugEngineer");                
 
                  foreach(var district in districts)
                  {
                     ListItem i = new ListItem(district.Name.ToString(), "");
                     DistrictDropDownList.Items.Add(i);
-                 }
-                  
-
-
-
-
+                 }                 
 
 
             }

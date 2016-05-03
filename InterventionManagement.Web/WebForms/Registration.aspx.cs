@@ -41,7 +41,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             new IdentityWrapper().CreateUser(username, password, roleName);
             if (roleName == "Engineer")
             {
-                MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter();
+                MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter().GetData();
                 MainDataSet.EngineerRow engineerRow = engineers.NewEngineerRow();
                 engineerRow.EngineerUsername = username;
                 engineerRow.DistrictId = 3;

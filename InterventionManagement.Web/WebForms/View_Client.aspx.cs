@@ -3,6 +3,8 @@ using System.Web;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity.Owin;
 using System.Diagnostics;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -10,8 +12,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
+                var interventions = new InterventionTableAdapter().GetDataBy_ClientId(1);
+
                 if (Session["selected"] != null)
                     lblName.Text = Session["selected"].ToString();
                 else
@@ -24,14 +29,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                     lblLocation.Text = User.IsInRole("Accountant") ? "true" : "false";
                     lblDistrict.Text = "sydney";
                 }
+                //Update button will be add automatically
+                foreach (var intervention in interventions)
+                {
+                    InterventionTable.Rows.Add(addTableRow(intervention.InterventionId, intervention.Notes,
+                         "Cost: "+ intervention.Cost.ToString()+"<br>" +"Hours: "+ intervention.Hours.ToString()));
+                }
             }
 
-            //Update button will be add automatically
-            for (int i = 0; i < 4; i++) //<----Change number 4 to the number of interventions of that client 
-            {
-                InterventionTable.Rows.Add(addTableRow(i,"This is intervention name "+i, "this is intervention details "+i));
-            }
-            
+           
+
         }
 
         protected TableRow addTableRow(int ID, string InterventionName, string InterventionDetails)
