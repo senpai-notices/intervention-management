@@ -10,9 +10,6 @@
 
 #pragma warning disable 1591
 
-using System;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
-
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
     
     
@@ -1880,11 +1877,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets {
                 }
                 xs.Add(dsSchema);
                 return type;
-            }
-
-            public static implicit operator EngineerDataTable(EngineerTableAdapter v)
-            {
-                throw new NotImplementedException();
             }
         }
         
@@ -7100,10 +7092,10 @@ SELECT EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId FROM 
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId" +
-                "\r\nFROM            Engineer\r\nWHERE        (EngineerUsername = @engineerUsername)";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@engineerUsername", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "EngineerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].CommandText = "dbo.GetEngineerByEngineerUsername";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7134,13 +7126,13 @@ SELECT EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillBy_EngineerUsername(MainDataSet.EngineerDataTable dataTable, string engineerUsername) {
+        public virtual int FillBy_EngineerUsername(MainDataSet.EngineerDataTable dataTable, string username) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((engineerUsername == null)) {
-                throw new global::System.ArgumentNullException("engineerUsername");
+            if ((username == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(engineerUsername));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(username));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -7153,13 +7145,13 @@ SELECT EngineerUsername, HoursApprovalLimit, CostApprovalLimit, DistrictId FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual MainDataSet.EngineerDataTable GetDataBy_EngineerUsername(string engineerUsername) {
+        public virtual MainDataSet.EngineerDataTable GetDataBy_EngineerUsername(string username) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((engineerUsername == null)) {
-                throw new global::System.ArgumentNullException("engineerUsername");
+            if ((username == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(engineerUsername));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(username));
             }
             MainDataSet.EngineerDataTable dataTable = new MainDataSet.EngineerDataTable();
             this.Adapter.Fill(dataTable);

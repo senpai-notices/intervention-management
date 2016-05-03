@@ -24,5 +24,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             // update the database
             new EngineerTableAdapter().Update(engineers);
         }
+
+        public MainDataSet.EngineerDataTable GetEngineer()
+        {
+            return new EngineerTableAdapter().GetData();
+        }
+
+        public MainDataSet.EngineerDataTable GetEngineerByEngineerUsername(string username)
+        {
+            return new EngineerTableAdapter().GetDataBy_EngineerUsername(username);
+        }
     }
 }
