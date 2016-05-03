@@ -10073,7 +10073,7 @@ FROM            Intervention INNER JOIN
                          Client ON Client.ClientId = Intervention.ClientId INNER JOIN
                          Manager ON Manager.DistrictId = Client.DistrictId INNER JOIN
                          InterventionTemplate ON Intervention.InterventionTemplateId = InterventionTemplate.InterventionTemplateId
-WHERE        (Manager.ManagerUsername = @managerUsername)";
+WHERE        (Manager.ManagerUsername = @managerUsername) AND (Intervention.InterventionStateId = 1)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@managerUsername", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "ManagerUsername", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
