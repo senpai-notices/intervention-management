@@ -21,37 +21,44 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-
-        }
+                // pass
+            }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            //if (result.Succeeded)
-            //{
-            //    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-            //    Response.Redirect("/Webforms/Add_New_Client.aspx");
-            //}
-            //else
-            //{
-            //    Label5.Text = result.Errors.FirstOrDefault();
-            //}
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string roleName = DropDownList_Roles.SelectedItem.ToString();
 
-            new IdentityWrapper().CreateUser(username, password, roleName);
-            if (roleName == "Engineer")
+            try
             {
-                new EngineerTableWrapper().addEngineer(username, 1, 1, 1, "Named");
+                IdentityWrapper identity = new IdentityWrapper();
+                identity.CreateUser(username, password, roleName);
+
+                // create additional tables required
+                if (roleName == "Engineer")
+                {
+                    new EngineerTableWrapper().addEngineer(username, 1, 1, 1, "Named");
+                }
+                else if (roleName == "Manager")
+                {
+                    new ManagerTableWrapper().addManager(username, 1, 1, 1, "Named");
+                }
+                else if (roleName == "Accountant")
+                {
+                    new UserTableWrapper().addUser(username, "Named");
+                }
+
+                // sign in this new user
+                var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+                identity.SignIn(userManager, signInManager, username, password);
+                Response.Redirect("/WebForms/View_Client.aspx");
             }
-            else if (roleName == "Manager")
+            catch (Exception exception)
             {
-                new ManagerTableWrapper().addManager(username, 1, 1, 1, "Named");
-            }
-            else if (roleName == "Accountant")
-            {
-                new UserTableWrapper().addUser(username, "Named");
+                // do something
             }
         }
     }
