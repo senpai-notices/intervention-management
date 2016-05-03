@@ -19,7 +19,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+        }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)

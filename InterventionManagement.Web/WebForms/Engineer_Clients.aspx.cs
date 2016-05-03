@@ -1,5 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
+
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
+
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.DistrictDataSetTableAdapters;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
+using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -14,7 +21,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                  data.Sort();
                  list_Clients.DataSource = data;
                  list_Clients.DataBind();*/
-                
+                //MainDataSet.EngineerDataTable engineers = new EngineerTableAdapter();
+                //DistrictDataSet.DistrictDataTable districts = new DistrictTableAdapter
+                var districts = new Data.DataSets.MainDataSetTableAdapters.DistrictTableAdapter()
+                    .GetDataBy_GetDistrictByEngineerUsername("DebugEngineer");                
+
+                 foreach(var district in districts)
+                 {
+                    ListItem i = new ListItem(district.Name.ToString(), "");
+                    DistrictDropDownList.Items.Add(i);
+                 }                 
+
+
             }
         }
 

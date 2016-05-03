@@ -3,30 +3,26 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div>
+        <!--Page heading -->
         <div align="center">
-            <asp:Label ID="Label1" runat="server" Text="List of clients" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
-            <br />
-            <br />
-            <br />
+            <asp:Label ID="lblTitle" runat="server" Text="My Clients" Font-Bold="True" Font-Size="XX-Large"></asp:Label>
         </div>
-        <div>
-            <asp:DropDownList ID="DropDownList1" runat="server" DataTextField="DistrictName" DataValueField="DistrictName" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
-                <asp:ListItem>5</asp:ListItem>
+        <!--End page heading -->
+        
+         <div style="margin-left: 30%; margin-top: 5%">
+            <asp:DropDownList ID="DistrictDropDownList" runat="server" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged" AppendDataBoundItems="True">
             </asp:DropDownList>
             <br />
             <br />
-        </div>
+        
         <div class="centerblock" style="width: 40%; margin-top: 0px;">
             <asp:ListBox ID="list_Clients" runat="server" Width="100%" DataSourceID="ClientList" DataTextField="Name" DataValueField="Name"></asp:ListBox>
             <asp:SqlDataSource ID="ClientList" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\R\Source\Repos\InterventionManagement\InterventionManagement.Data\Database.mdf;Integrated Security=True" ProviderName="System.Data.SqlClient" SelectCommand="SELECT [Name] FROM [Client] WHERE ([DistrictId] = @DistrictId)">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="DropDownList1" Name="DistrictId" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="DistrictDropDownList" Name="DistrictId" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:SqlDataSource>
+            <br />
         </div>
         <div class="centerblock">
 
@@ -38,5 +34,7 @@
 
         </div>
 
+    </div>
+        </div>
     </div>
 </asp:Content>

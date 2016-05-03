@@ -10,7 +10,7 @@
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms {
     
     
-    public partial class Engineer_Clients {
+    public partial class Accountant {
         
         /// <summary>
         /// lblTitle control.
@@ -22,57 +22,30 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms {
         protected global::System.Web.UI.WebControls.Label lblTitle;
         
         /// <summary>
-        /// DistrictDropDownList control.
+        /// AccountantTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DistrictDropDownList;
+        protected global::System.Web.UI.WebControls.Table AccountantTable;
         
         /// <summary>
-        /// list_Clients control.
+        /// btnRunReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox list_Clients;
+        protected global::System.Web.UI.WebControls.Button btnRunReport;
         
         /// <summary>
-        /// ClientList control.
+        /// btnSaveChange control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource ClientList;
-        
-        /// <summary>
-        /// btn_ViewClient control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_ViewClient;
-        
-        /// <summary>
-        /// selectedClient control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button selectedClient;
-        
-        /// <summary>
-        /// btn_NewClient control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_NewClient;
+        protected global::System.Web.UI.WebControls.Button btnSaveChange;
     }
 }

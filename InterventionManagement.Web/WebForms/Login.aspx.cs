@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 using Microsoft.AspNet.Identity;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Identity;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -45,8 +46,8 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 {
                     //catch sign in failed exception
                     //placeholder error message
-                    Label5.Text = "Invalid username or password.";
-                    Label5.Visible = true;
+                    lblError.Text = "Invalid username or password.";
+                    lblError.Visible = true;
                 }
             }
         }

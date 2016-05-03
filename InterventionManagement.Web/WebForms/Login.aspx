@@ -3,19 +3,19 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <div style="margin-top: 5%;" align="center">
-        <asp:Label ID="Label3" runat="server" Text="ENET Care" Font-Bold="True" Font-Size="X-Large"></asp:Label>
+        <asp:Label ID="lblTitle" runat="server" Text="ENET Care" Font-Bold="True" Font-Size="X-Large"></asp:Label>
         
     </div>
     <div style="margin-top: 5%;" align="center">
-        <asp:Label ID="Label5" runat="server" Text="Label" Visible="False"></asp:Label>
+        <asp:Label ID="lblError" runat="server" Text="Label" Visible="False"></asp:Label>
     </div>
     <div style="margin-top: 5%;" align="center">
-        <asp:Label ID="Label1" runat="server" Text="Login ID: "></asp:Label>
+        <asp:Label ID="lblUsername" runat="server" Text="Login ID: "></asp:Label>
         <asp:TextBox ID="txt_loginID" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_loginID" ErrorMessage="  Username is required"></asp:RequiredFieldValidator>
         <br />
         <br />
-        <asp:Label ID="Label2" runat="server" Text="Password: "></asp:Label>
+        <asp:Label ID="lblPassword" runat="server" Text="Password: "></asp:Label>
         <asp:TextBox ID="txt_loginPW" runat="server" TextMode="Password"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txt_loginPW" ErrorMessage="  Password is required"></asp:RequiredFieldValidator>
         <br /><br />
