@@ -16,6 +16,7 @@
             <br />
         
         <div class="centerblock" style="width: 40%; margin-top: 0px;">
+            <asp:ListBox ID="ListBox_Clients" runat="server" Width="373px"></asp:ListBox>
             <br />
         </div>
         <div class="centerblock">

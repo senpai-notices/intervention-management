@@ -1,5 +1,6 @@
 ﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 using System;
+using System.Collections.Generic;
 using System.Web.UI.WebControls;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
@@ -13,12 +14,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 if (!IsPostBack)
                 {
                     string username = User.Identity.Name;
+
+                    // set the controls to show relevant data
                     Label_District.Text = new DistrictTableWrapper().getDistrictForUser(username);
+                    fillClientListForUser(username);
                 }
             }
             else
             {
                 Response.Redirect("/WebForms/Not_Logged_In.aspx");
+            }
+        }
+
+        private void fillClientListForUser(string username)
+        {
+            List<string> clients = new ClientTableWrapper().getClientsForEngineer(username);
+            foreach (var clientName in clients)
+            {
+                ListBox_Clients.Items.Add(clientName);
             }
         }
 
