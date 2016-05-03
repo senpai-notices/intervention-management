@@ -17,6 +17,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 // set controls to show relevant data
                 fillStatusDropDownWithPending();
                 fillClientDropDown();
+                txtDate.Text = DateTime.Now.ToString("dd/mm/yyyy");
             }
             else
             {
@@ -24,13 +25,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
-        public void fillStatusDropDownWithPending()
+        private void fillStatusDropDownWithPending()
         {
             DropDownListStatus.DataSource = new List<string>() { "Pending" };
             DropDownListStatus.DataBind();
         }
 
-        public void fillClientDropDown()
+        private void fillClientDropDown()
         {
             List<string> contents;
 
@@ -50,6 +51,25 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
             DropDownListClient.DataSource = contents;
             DropDownListClient.DataBind();
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            int cost = Convert.ToInt32(txtCost.Text);
+            int hours = Convert.ToInt32(txtHours.Text);
+            string notes = txtNote.Text;
+            int remainingLife = Convert.ToInt32(txtRemaining.Text);
+            DateTime date = getDateFromTextBox();
+        }
+
+        private DateTime getDateFromTextBox()
+        {
+            string dateString = txtDate.Text;
+            string[] dateSplit = dateString.Split('-');
+            int day = Convert.ToInt32(dateSplit[0]);
+            int month = Convert.ToInt32(dateSplit[1]);
+            int year = Convert.ToInt32(dateSplit[2]);
+            return new DateTime(year, month, day);
         }
     }
 }

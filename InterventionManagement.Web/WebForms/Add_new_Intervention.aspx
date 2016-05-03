@@ -32,7 +32,7 @@
                     <td>
                         <!--<asp:DropDownList ID="DropDownListType" runat="server"></asp:DropDownList>-->
                         <!-- Removed the following: OnSelectedIndexChanged="DropDownListType_SelectedIndexChanged" -->
-                        <asp:TextBox ID="txtNote" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNote" runat="server" Width="500px"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -59,7 +59,7 @@
                         <asp:Label ID="lblRemaining" runat="server" Text="Remaining Life: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
-                        <asp:TextBox ID="txtRemaining" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRemaining" runat="server">100</asp:TextBox>
                     </td>
                 </tr>
 
@@ -74,28 +74,22 @@
 
                  <tr>
                     <td>
-                        <asp:Label ID="lblLastDate" runat="server" Text="Date of last visit " Font-Bold="True"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                     <td>
-                        <asp:TextBox ID="txtLastDate" runat="server"></asp:TextBox>
-                    </td>
+                        &nbsp;</td>
                 </tr>
 
                 <tr>
                     <td>
-                        <asp:Label ID="lblProposer" runat="server" Text="Proposer: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtProposer" runat="server"></asp:TextBox>
-                    </td>
+                        &nbsp;</td>
                 </tr>
                 <tr>
                     <td>
-                        <asp:Label ID="lblApprover" runat="server" Text="Approver: " Font-Bold="True"></asp:Label>
-                    </td>
+                        &nbsp;</td>
                     <td>
-                        <asp:TextBox ID="txtApprover" runat="server"></asp:TextBox>
-                    </td>
+                        &nbsp;</td>
                 </tr>
 
                 <tr>
@@ -118,7 +112,7 @@
             </table>
             <br />
             <br />
-            <asp:Button ID="btnAdd" runat="server" Text="Add Intervention" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add Intervention" OnClick="btnAdd_Click" />
         </div>
         <!-- End client details -->
 
