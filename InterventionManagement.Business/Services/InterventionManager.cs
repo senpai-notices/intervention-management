@@ -11,10 +11,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         //private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
 
         
-        public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername)
+        public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
         {
             //TODO: Finish AddNewIntervention (Uncomment Code when Methods are implemented).
-            bool approvalRequired = InterventionValidator.RequiresApproval(engineerUsername, InterventionTypeID);
+           // bool approvalRequired = InterventionValidator.RequiresApproval(username, InterventionTypeID);
             
             // _intervention.AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername, approvalRequired);            
         }
@@ -32,6 +32,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
             return true;
         }
+
+        public static void ApproveIntervention(int InterventionID, string username)
+        {
+            InterventionValidator.RequiresApproval(username, InterventionID);
+        } 
 
     }
 }
