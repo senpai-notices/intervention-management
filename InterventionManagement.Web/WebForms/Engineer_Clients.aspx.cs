@@ -21,10 +21,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 }
             }
             else
-                    {
+            {
                 Response.Redirect("/WebForms/Not_Logged_In.aspx");
-                    }
-                }
+            }
+        }
 
         private void fillClientListForUser(string username)
         {

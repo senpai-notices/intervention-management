@@ -1,8 +1,5 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -10,12 +7,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (User.IsInRole("Engineer"))
             {
-                dropList_District.DataSource = new List<string> { "Spot A", "Banlands B", "Middle o Nowhere C", "Neverland D" };
-                dropList_District.DataBind();
+                if (!IsPostBack)
+                {
+                    dropList_District.DataSource = new List<string> { "Spot A", "Banlands B", "Middle o Nowhere C", "Neverland D" };
+                    dropList_District.DataBind();
+                }
             }
-              
+            else
+            {
+                Response.Redirect("/WebForms/Not_Logged_In.aspx");
+            }
         }
 
         protected void btn_CreateClient_Click(object sender, EventArgs e)
