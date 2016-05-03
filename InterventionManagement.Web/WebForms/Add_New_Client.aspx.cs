@@ -33,7 +33,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             testRow.Location = "test location";
             testRow.Name = "John Smithy";
             testRow.DistrictId = 5;
-            //testRow.ClientId = 10;
+            //testRow.ClientId = 10;// dont need this line, autogenerates Ids
 
             clients.Rows.Add(testRow);
             Response.Write("<script>alert('" + "new row added" + "')</script>");
