@@ -66,7 +66,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 string errorMessage = "Please select a client first";
                 Response.Write("<script>alert('" + errorMessage + "')</script>");
             }
-
         }
     }
 }
