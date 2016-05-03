@@ -1,4 +1,5 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
+﻿using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
@@ -33,6 +34,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
         public MainDataSet.EngineerDataTable GetEngineerByEngineerUsername(string username)
         {
             return new EngineerTableAdapter().GetDataBy_EngineerUsername(username);
+        }
+
+        public void InsertEngineer(string username, string name, int hours, int cost, int districtId)
+        {
+            new EngineerTableAdapter().InsertEngineer(username, name, hours, cost, districtId);
+        }
+
+        public void DeleteEngineer(string username)
+        {
+            new EngineerTableAdapter().DeleteEngineer(username);
         }
     }
 }
