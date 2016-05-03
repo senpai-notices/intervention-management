@@ -22,37 +22,46 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if (!IsPostBack)
             {
 
-        }
+                var districts = new DistrictWrapper().getDistricts();
+                
+                foreach (var district in districts)
+                {
+                    ListItem i = new ListItem(district.ToString());
+                    DistrictDropDownList.Items.Add(i);
+                }
+
+            }
         }
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            //if (result.Succeeded)
-            //{
-            //    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-            //    Response.Redirect("/Webforms/Add_New_Client.aspx");
-            //}
-            //else
-            //{
-            //    Label5.Text = result.Errors.FirstOrDefault();
-            //}
+            int approvalHours = Convert.ToInt32(txtHours.Text);
+            int approvalCost = Convert.ToInt32(txtCost.Text);
+            int districtID = DistrictDropDownList.SelectedIndex + 1;
+
+            string name = txtName.Text;      
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string roleName = DropDownList_Roles.SelectedItem.ToString();
-
+            
             new IdentityWrapper().CreateUser(username, password, roleName);
             if (roleName == "Engineer")
             {
-                new EngineerTableWrapper().addEngineer(username, 1, 1, 1, "Named");
+                new EngineerTableWrapper().addEngineer(username, approvalHours, approvalCost, districtID, name);
             }
             else if (roleName == "Manager")
             {
-                new ManagerTableWrapper().addManager(username, 1, 1, 1, "Named");
+                new ManagerTableWrapper().addManager(username, approvalHours, approvalCost, districtID, name);
             }
             else if (roleName == "Accountant")
             {
-                new UserTableWrapper().addUser(username, "Named");
+                new UserTableWrapper().addUser(username, name);
             }
+        }
+
+        protected void DropDownList_Roles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
