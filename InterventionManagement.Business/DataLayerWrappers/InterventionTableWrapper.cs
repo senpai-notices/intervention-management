@@ -17,5 +17,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
             return namelist;
         }
+
     }
 }
