@@ -74,10 +74,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" +"You have clicked intervention "+ click.ID + "');", true);
             //Make sure we gather everything we need in that before going to next page
             //Put it in Session
+            Response.Redirect("/WebForms/Update_Intervention_Details.aspx");
         }
 
         protected void btnAddIntervention_Click(object sender, EventArgs e)
         {
+            Response.Redirect("/WebForms/Add_New_Intervention.aspx");
 
         }
     }

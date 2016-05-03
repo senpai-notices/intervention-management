@@ -21,10 +21,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 }
             }
             else
-            {
+                    {
                 Response.Redirect("/WebForms/Not_Logged_In.aspx");
-            }
-        }
+                    }
+                }
 
         private void fillClientListForUser(string username)
         {
@@ -46,23 +46,23 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         protected void btn_NewClient_Click(object sender, EventArgs e)
         {
-           
+            Response.Redirect("/WebForms/Add_New_Client.aspx");
 
         }
 
         protected void selectedClient_Click(object sender, EventArgs e)
         {
             if (ListBox_Clients.SelectedIndex != -1)
-            {
+        {
                 // save selected clientId to session
                 string selectedClientName = ListBox_Clients.SelectedItem.ToString();
                 string[] split = selectedClientName.Split(null);
                 Session["ClientId"] = split[0].ToString();
 
                 Response.Redirect("/WebForms/View_Client.aspx");
-            }
+        }
             else
-            {
+        {
                 string errorMessage = "Please select a client first";
                 Response.Write("<script>alert('" + errorMessage + "')</script>");
             }
