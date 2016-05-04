@@ -18,7 +18,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
                     _clients.addClient(name, location, districtID);
                 }
                 //Invalid Client Data
-                Console.WriteLine(e.Message);
+                //Console.WriteLine(e.Message);
         }
     }
 }
