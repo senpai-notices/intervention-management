@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using System.Linq;
-using System.Text;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
-using System.Threading.Tasks;
-using System.Data;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
 {
@@ -48,14 +43,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             // update the database
             new InterventionTableAdapter().Update(interventions);
         }
-    }
-}
-
-
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers
-{
-    public class InterventionTableWrapper
-    {
 
         public Dictionary<int, KeyValuePair<string, string>> getInterventionsByManager(string username)
         {
@@ -69,20 +56,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
                                       intervention.InterventionTemplateId equals template.InterventionTemplateId
                                       select template.Name;
 
-            foreach(var interventionName in Interventiondetails)
+            foreach (var interventionName in Interventiondetails)
             {
                 foreach (var interventionInfo in interventions)
-                {      
+                {
                     string interventionData = "Cost: " + interventionInfo.Cost.ToString()
                         + "<br>" + "Hours: " + interventionInfo.Hours.ToString() + "<br>" +
                         "Note: " + interventionInfo.Notes;
-                    details.Add(interventionInfo.InterventionId, new KeyValuePair<string,string>(interventionName.ToString(),interventionData));
-                }                           
+                    details.Add(interventionInfo.InterventionId, new KeyValuePair<string, string>(interventionName.ToString(), interventionData));
+                }
             }
 
             return details;
         }
-
-        
     }
 }
