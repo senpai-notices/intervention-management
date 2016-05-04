@@ -6,6 +6,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class DistrictTableWrapper
     {
+        /// <summary>
+        /// This method will get all the district names and put it in a list
+        /// </summary>
+        /// <returns>a list of distric names</returns>
         public List<string> getDistrictsList()
         {
             List<string> districtNames = new List<string>();

@@ -13,10 +13,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
                 
         }
-        /*When Save button is clicked, it will first check if the new passwords match and then if
-        they match, it will check if the current password is correct.
-        After performing all the verification, it will remove the old password and add the new password in.
-        lblMessage.Text will notify user the result*/
+        /// <summary>
+        /// When Save button is clicked, it will first check if the new passwords match and then if
+        /// they match, it will check if the current password is correct.
+        /// After performing all the verification, it will remove the old password and add the new password in.
+        /// lblMessage.Text will notify user the result
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         protected void Button_Save_OnClick(object sender, EventArgs e)
         {           
             var userID = User.Identity.GetUserId();

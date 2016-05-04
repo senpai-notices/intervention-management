@@ -9,22 +9,33 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class Manager_Intervention : System.Web.UI.Page
     {
+        /// <summary>
+        /// When the page is loaded, it will retrieve the intervention(s) that needed to be approved
+        /// and put it in the table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                Dictionary<int, KeyValuePair<string, string>> interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);
-                
+                Dictionary<int, KeyValuePair<string, string>> interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);               
                 foreach (var details in interventions)
                 {
-                    //InterventionTable.Rows.Add(addTableRow(3, details.Key,details.Value));
                     InterventionTable.Rows.Add(addTableRow(details.Key, details.Value.Key,details.Value.Value));
                 }
 
             }
         }
 
-
+        /// <summary>
+        /// This method will add a table row to the main table
+        /// The table row will take 3 parameters and add them to the main table
+        /// </summary>
+        /// <param name="ID"> Id of the intervention</param>
+        /// <param name="InterventionName">Name of the intervention</param>
+        /// <param name="InterventionDetails">Details of the intervention</param>
+        /// <returns>A table row that contains data</returns>
         protected TableRow addTableRow(int ID, string InterventionName, string InterventionDetails)
         {
             Button approveButton = new Button();
@@ -42,7 +53,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             approveButton.Click += new EventHandler(this.button_Click);
             removeButton.Click += new EventHandler(this.removeButton_Click);
             removeButton.ID = ID.ToString();
-            approveButton.ID = ID.ToString(); //<---- Assign intervention name to ID so we can extract later
+            approveButton.ID = ID.ToString(); // Assign intervention name to ID so we can extract later
 
             name.Text = InterventionName;
             details.Text = InterventionDetails;
@@ -56,22 +67,33 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
             return tr;
         }
-
+        /// <summary>
+        /// TO BE IMPLEMENTED
+        /// When the approve button is clicked, it will get the ID of the intervention
+        /// and change its status to 'Approved'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void button_Click(object sender, EventArgs e)
         {
-            //Test only
+
             Button click = sender as Button; //click.ID will contain the intervention name which can be used
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "You have clicked intervention " + click.ID + "');", true);
-            //Make sure we gather everything we need in that before going to next page
-            //Put it in Session
+
         }
+
+        /// <summary>
+        /// TO BE IMPLEMENTED
+        /// When the approve button is clicked, it will get the ID of the intervention
+        /// and change its status to 'Cancelled'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void removeButton_Click(object sender, EventArgs e)
         {
-            //Test only
             Button click = sender as Button; //click.ID will contain the intervention name which can be used
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "You have removed intervention " + click.ID + "');", true);
-            //Make sure we gather everything we need in that before going to next page
-            //Put it in Session
+
         }
     }
 }

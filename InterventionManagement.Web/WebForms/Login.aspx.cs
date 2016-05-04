@@ -26,6 +26,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             LogIn();
 
         }
+        /// <summary>
+        /// This method will check the username and password the user and then redirect them
+        /// to 'UserRoleCheck.aspx' to check the role of that user and then redirect them to a corresponding dashboard
+        /// </summary>
         protected void LogIn()
         {
 

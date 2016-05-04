@@ -10,6 +10,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        /// <summary>
+        /// When the page is loaded, it will add the interventions associated with the client
+        /// to a table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -27,18 +33,23 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                     lblLocation.Text = User.IsInRole("Accountant") ? "true" : "false";
                     lblDistrict.Text = "sydney";
                 }
-                //Update button will be add automatically
+                
                 foreach (var intervention in interventions)
                 {
                     InterventionTable.Rows.Add(addTableRow(intervention.InterventionId, intervention.Notes,
                          "Cost: "+ intervention.Cost.ToString()+"<br>" +"Hours: "+ intervention.Hours.ToString()));
                 }
-            }
-
-           
-
+            }          
         }
 
+        /// <summary>
+        /// This method will add a table row to the main table
+        /// The table row will take 3 parameters and add them to the main table
+        /// </summary>
+        /// <param name="ID">Id of the intervention</param>
+        /// <param name="InterventionName">Name of the intervention</param>
+        /// <param name="InterventionDetails">Details of the intervention</param>
+        /// <returns>A table row that contains data</returns>
         protected TableRow addTableRow(int ID, string InterventionName, string InterventionDetails)
         {
             Button updateButton = new Button();
@@ -65,13 +76,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             return tr;
         }
 
+        /// <summary>
+        /// TO BE IMPLEMENTED
+        /// When the 'Update Intervention' button is clicked, it will redirect user to a new page
+        /// to modify the selected intervention of the client
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void button_Click(object sender, EventArgs e)
         {
-            //Test only
+
             Button click = sender as Button; //click.ID will contain the intervention name which can be used
             ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" +"You have clicked intervention "+ click.ID + "');", true);
-            //Make sure we gather everything we need in that before going to next page
-            //Put it in Session
+
             Response.Redirect("/WebForms/Update_Intervention_Details.aspx");
         }
 

@@ -6,6 +6,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class Add_New_Client : System.Web.UI.Page
     {
+        /// <summary>
+        /// When the page is loaded, if the user is in role engineer then 
+        /// it will display a list of district
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (User.IsInRole("Engineer"))
@@ -22,6 +28,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
+        /// <summary>
+        /// Get all districts
+        /// </summary>
         private void fillDistrictList()
         {
             var districts = new DistrictTableWrapper().getDistrictsAndIdsList();
@@ -29,6 +38,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             dropList_District.DataBind();
         }
 
+        /// <summary>
+        /// This button click event will get details from the textboxes and 
+        /// create a client accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btn_CreateClient_Click(object sender, EventArgs e)
         {
             string name = txt_Name.Text;
@@ -47,6 +62,11 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
+
+        /// <summary>
+        /// Return district ID of the selected district
+        /// </summary>
+        /// <returns>Id of the district</returns>
         private int getDistrictIdForSelectedDistrict()
         {
             string idAndName = dropList_District.SelectedItem.ToString();
@@ -55,6 +75,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             return id;
         }
 
+        /// <summary>
+        /// User message
+        /// </summary>
+        /// <param name="message"></param>
         private void showMessage(string message)
         {
             Response.Write("<script>alert('" + message + "')</script>");

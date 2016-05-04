@@ -7,6 +7,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
     public partial class Engineer_Clients : System.Web.UI.Page
     {
+        /// <summary>
+        /// When the page is loaded, it will check if the user is in role 'Engineer' or not
+        /// It will display a list of client to the user if the user is an angineer
+        /// otherwise, it will redirect them to 'Not_Logged_In.aspx'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (User.IsInRole("Engineer"))
@@ -26,6 +33,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             }
         }
 
+        /// <summary>
+        /// This method will retrieve the list of client of the engineer
+        /// </summary>
+        /// <param name="username">username of the logged in user</param>
         private void fillClientListForUser(string username)
         {
             List<string> clients = new ClientTableWrapper().getClientIdAndNameListForEngineer(username);
@@ -44,6 +55,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
         }
 
+        /// <summary>
+        /// This button click event will store the details of the client in a session and
+        /// pass them to the next page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void selectedClient_Click(object sender, EventArgs e)
         {
             if (ListBox_Clients.SelectedIndex != -1)
