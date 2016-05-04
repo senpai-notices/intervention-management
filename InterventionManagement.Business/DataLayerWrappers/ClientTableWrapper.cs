@@ -65,9 +65,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return new ClientTableAdapter().GetClientById(id);
         }
 
-        public void InsertClient(string name, string location, int districtId)
+        public string InsertClient(string name, string location, int districtId)
         {
-            new ClientTableAdapter().InsertClient(name, location, districtId);
+            return new ClientTableAdapter().InsertClient(name, location, districtId).ToString();
         }
 
         public void DeleteClient(int id)

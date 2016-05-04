@@ -1,4 +1,6 @@
 ﻿using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
@@ -6,17 +8,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
     [TestClass]
     public class InterventionTests
     {
-        private string _username1;
-        private string _engineerName1;
-        private int _engineerHour1;
-        private int _engineerCost1;
-        private int _engineeDistrictId1;
+        private string _username;
+        private string _engineerName;
+        private int _engineerHour;
+        private int _engineerCost;
+        private int _engineeDistrictId;
 
-        private string _username2;
-        private string _engineerName2;
-        private int _engineerHour2;
-        private int _engineerCost2;
-        private int _engineeDistrictId2;
+        private string _clientName;
+        private string _clientLocation;
+        private int _clientDistrictId;
 
         private int _interventionTemplateId;
         DateTime _datePerformed;
@@ -28,22 +28,23 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
         private int _clientId;
         private string _notes;
         private int _remainingLife;
-        private DateTime _dateOfLastVisit;
+        private DateTime? _dateOfLastVisit;
+
+        private ClientTableWrapper _clientTw;
+        private InterventionTableWrapper _interventionTw;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _username1 = "alex";
-            _engineerName1="Alex T";
-            _engineerHour1 = 10;
-            _engineerCost1 = 11;
-            _engineeDistrictId1 = 1;
+            _username = "alex";
+            _engineerName="Alex T";
+            _engineerHour = 10;
+            _engineerCost = 11;
+            _engineeDistrictId = 1;
 
-            _username2 = "jane";
-            _engineerName2 = "Jane";
-            _engineerHour2 = 13;
-            _engineerCost2 = 14;
-            _engineeDistrictId2 = 1;
+            _clientName = "the client";
+            _clientLocation = "Main Road";
+            _clientDistrictId = 1;
 
             _interventionTemplateId = 2;
             _datePerformed = new DateTime(2016,04,01);
@@ -52,10 +53,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
             _cost = 5;
             _proposerUsername = "alex";
             _approverUsername = "alex";
-            _clientId = 99;
             _notes = "";
             _remainingLife = 100;
             _dateOfLastVisit = null;
+
+            _clientTw.InsertClient(_clientName,_clientLocation,_clientDistrictId);
+            //var x = _clientTw.get
+            //_interventionTw.InsertIntervention(_interventionTemplateId,_datePerformed,_interventionStateId,_hours,_cost,_proposerUsername,_approverUsername,);
         }
 
         [TestCleanup]
