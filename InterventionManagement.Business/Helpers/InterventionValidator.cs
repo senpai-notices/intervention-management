@@ -31,6 +31,21 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
             return true;
         }
 
+        internal static bool ValidNote(string notes)
+        {
+            //TODO: Refactor Note length into variables file
+            if (notes.Length > 2000) throw new ArgumentException("Notes must contain less that 2000 characters");
+
+            return true;
+        }
+
+        internal static bool ValidLife(int remainingLife)
+        {
+            if(remainingLife < 0 || remainingLife > 100) throw new ArgumentException("Remaining estimated lifetime of product must be between 0-100");
+
+            return true;
+        }
+
         internal static bool ValidHoursAndCost(int hours, int cost)
         {
             if (hours < 0) throw new ArgumentException("Hours must be not be a negative number");

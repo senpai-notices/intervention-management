@@ -27,10 +27,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         public static bool UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
         {
 
-
-            if (remainingLife > 100 || remainingLife < 0) return false;
-            if (notes.Length > 2000) return false;
+            if(InterventionValidator.ValidLife(remainingLife));
+            if(InterventionValidator.ValidNote(notes));
     
+
             DateTime today = DateTime.Today;
 
             _intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
