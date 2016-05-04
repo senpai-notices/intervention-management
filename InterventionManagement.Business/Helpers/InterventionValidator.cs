@@ -15,7 +15,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
         {
             //TODO: Finish RequiresApproval. (Uncomment when Methods are implemented)
             EngineerTableWrapper engineerWrapper = new EngineerTableWrapper();
-           // InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
+            // InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
 
             var engineers = engineerWrapper.GetEngineerByEngineerUsername(username);
             // var intervention = interventionWrapper.GetInterventionByID(interventionID);
@@ -26,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
             // int costMin = (int)intervention[0]["EstimatedCost"];
 
 
-           // if (hoursLimit > hoursMin || costLimit > costMin)   return false;
+            // if (hoursLimit > hoursMin || costLimit > costMin)   return false;
 
             return true;
         }
@@ -39,7 +39,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
             //string proposer = (string)intervention[0]["ProposerUsername"];
 
-           // if (username.Equals(proposer)) return true;
+            // if (username.Equals(proposer)) return true;
 
             return false;
         }

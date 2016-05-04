@@ -8,7 +8,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 {
     public static class InterventionManager
     {
-        //private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
+        private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
 
 
         public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
@@ -18,7 +18,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             if (cost >= 0 && hours >= 0)
             {
                 // TODO: Add State to new Intervention
-                // _intervention.AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string engineerUsername);
+                DateTime date = DateTime.Today;
+
+                _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, "", 100, date);
             }
 
         }
@@ -29,10 +31,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
             if (remainingLife > 100 || remainingLife < 0) return false;
             if (notes.Length > 2000) return false;
-
+    
             DateTime today = DateTime.Today;
 
-            // _intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
+            _intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
 
             return true;
         }

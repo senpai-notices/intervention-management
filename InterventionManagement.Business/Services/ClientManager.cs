@@ -15,7 +15,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         {
             try
             {
-
                 if (ClientValidator.ValidateName(name) && ClientValidator.ValidateLocation(location) && districtID == engineerDistrict)
                 {
                     //TODO: AddNewClient(Stub)
