@@ -44,6 +44,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             new InterventionTableAdapter().Update(interventions);
         }
 
+        /// <summary>
+        /// This method will return the interventions that needed to be approved by the manager
+        /// It will put the data of the intervention into a dictionary which takes 3 values and return it.   
+        /// </summary>
+        /// <param name="username">Username of the manager</param>
+        /// <returns>Dictionary that contains intervention data</returns>
         public Dictionary<int, KeyValuePair<string, string>> getInterventionsByManager(string username)
         {
 
