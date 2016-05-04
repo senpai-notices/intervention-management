@@ -31,6 +31,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
             return true;
         }
 
+        internal static bool ValidHoursAndCost(int hours, int cost)
+        {
+            if (hours < 0) throw new ArgumentException("Hours must be not be a negative number");
+            if (cost < 0)  throw new ArgumentException("Cost must be not be a negative number");
+
+            return true;
+        }
+
         public static bool VerifyProposerUsername(int interventionID, string username)
         {
             //TODO: Uncomment When Intervention Wrapper is done.

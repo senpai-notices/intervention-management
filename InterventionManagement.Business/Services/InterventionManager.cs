@@ -13,11 +13,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
         public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
         {
-            //TODO: Finish AddNewIntervention.
-
-            if (cost >= 0 && hours >= 0)
+            
+            if (InterventionValidator.ValidHoursAndCost(hours, cost))
             {
-                // TODO: Add State to new Intervention
+                // TODO: Refactor Add New Intervention
                 DateTime date = DateTime.Today;
 
                 _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, "", 100, date);
@@ -27,7 +26,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
         public static bool UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
         {
-            // return False if invalid inputs
+
 
             if (remainingLife > 100 || remainingLife < 0) return false;
             if (notes.Length > 2000) return false;
