@@ -6,8 +6,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class UserTableWrapper
     {
-        #region DEPRECATED
-        [Obsolete()]
+
         public void addUser(string username, string name)
         {
             // add a new user
@@ -22,7 +21,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             // update the database
             new UserTableAdapter().Update(users);
         }
-        #endregion
 
         public MainDataSet.UserDataTable GetUsers()
         {

@@ -44,7 +44,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                         lblMessage.Text = "Your current password is incorrect.";
                 }
             }
-            catch (Exception empty_or_null_Password)
+            catch (Exception)
             {
                 lblMessage.Text = "New password is empty.";
             }

@@ -15,7 +15,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void Page_Load(object sender, EventArgs e)
-        {           
+        {
             if (!IsPostBack)
             {
 
@@ -42,41 +42,35 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int approvalCost = Convert.ToInt32(txtCost.Text);
             int districtID = DistrictDropDownList.SelectedIndex + 1;
 
-            string name = txtName.Text;      
+            string name = txtName.Text;
             string username = txtUsername.Text;
             string password = txtPassword.Text;
             string roleName = DropDownList_Roles.SelectedItem.ToString();
 
-            try
-            {
-                IdentityWrapper identity = new IdentityWrapper();
-                identity.CreateUser(username, password, roleName);
 
-                // create additional tables required
-                if (roleName == "Engineer")
-                {
-                    new EngineerTableWrapper().InsertEngineer(username, name,approvalHours, approvalCost, districtID);
-                }
-                else if (roleName == "Manager")
-                {
-                    new ManagerTableWrapper().InsertManager(username,name, approvalHours, approvalCost, districtID);
-                }
-                else if (roleName == "Accountant")
-                {
-                    new UserTableWrapper().InsertUser(username,name);
-                }
+            IdentityWrapper identity = new IdentityWrapper();
+            identity.CreateUser(username, password, roleName);
 
-                // sign in this new user
-                var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-                identity.SignIn(userManager, signInManager, username, password);
-                Response.Redirect("/WebForms/UserRoleCheck.aspx");
-            }
-            catch (Exception exception)
+            // create additional tables required
+            if (roleName == "Engineer")
             {
-                // catch error exception
-                
+                new EngineerTableWrapper().InsertEngineer(username, name, approvalHours, approvalCost, districtID);
             }
+            else if (roleName == "Manager")
+            {
+                new ManagerTableWrapper().InsertManager(username, name, approvalHours, approvalCost, districtID);
+            }
+            else if (roleName == "Accountant")
+            {
+                new UserTableWrapper().InsertUser(username, name);
+            }
+
+            // sign in this new user
+            var userManager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var signInManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
+            identity.SignIn(userManager, signInManager, username, password);
+            Response.Redirect("/WebForms/UserRoleCheck.aspx");
+
         }
     }
 }
