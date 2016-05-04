@@ -13,43 +13,92 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
         public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
         {
-            
-            if (InterventionValidator.ValidHoursAndCost(hours, cost))
-            {
-                // TODO: Refactor Add New Intervention
-                DateTime date = DateTime.Today;
 
-                _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, "", 100, date);
+            try
+            {
+                if (InterventionValidator.ValidHoursAndCost(hours, cost))
+                {
+                    // TODO: Refactor Add New Intervention
+                    DateTime date = DateTime.Today;
+
+                    _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, "", 100, date);
+                }
+            }
+            catch (ArgumentException e)
+            {
+
+                throw;
             }
 
         }
 
         public static void UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
         {
-
-            if (InterventionValidator.ValidLife(remainingLife) && InterventionValidator.ValidNote(notes))
+            try {
+                if (InterventionValidator.ValidLife(remainingLife) && InterventionValidator.ValidNote(notes))
+                {
+                    DateTime today = DateTime.Today;
+                    _intervention.UpdateQualityManagement(InterventionID, notes, remainingLife);
+                }
+            }
+            catch (ArgumentException e)
             {
-
-                DateTime today = DateTime.Today;
-
-                //_intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
-
+                throw;
             }
         }
 
-        public static void ApproveIntervention(int InterventionID, string username, string userRole)
+        public static void UpdateInterventionState(int interventionID, int newState, string username, string userRole)
         {
-            // Users from same district can interact with an Interventions. (Webforms ensures this)
-            // 
-            if (userRole.Equals("Manager") || InterventionValidator.VerifyProposerUsername(InterventionID, username))
+            try {
+                if (userRole.Equals("Manager")) managerUpdateInterventionState(interventionID, newState, username);
+                if (userRole.Equals("Engineer")) engineerUpdateInterventionState(interventionID, newState, username);
+            }
+            catch (ArgumentException e)
             {
-                if (InterventionValidator.CanUserApprove(InterventionID, username, userRole))
-                {
+                throw;
+            }
+            
+        }
 
-                }
-                // _intervention.ApproveInterventionByID(InterventionID, DateTime.Today);
+        private static void managerUpdateInterventionState(int interventionID, int newState, string username)
+        { 
+            if (newState == 2 && InterventionValidator.CanManagerApprove(interventionID, username))
+            {
+                //Approve
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
+            }
+            if (newState == 3 && InterventionValidator.CanUserComplete(interventionID, username))
+            {
+                // Complete
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
+            }
+            if (newState == 4 && InterventionValidator.CanManagerCancel(interventionID, username))
+            {
+                // Cancell
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
             }
 
+
+        }
+
+        private static void engineerUpdateInterventionState(int interventionID, int newState, string username)
+        {
+            
+            if (newState == 2 && InterventionValidator.CanEngineerApprove(interventionID, username))
+            {
+                //Approve
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
+            }
+            if (newState == 3 && InterventionValidator.CanUserComplete(interventionID, username))
+            {
+                // Complete
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
+            }
+            if (newState == 4 && InterventionValidator.CanEngineerCancel(interventionID, username))
+            {
+                // Cancell
+                _intervention.UpdateInterventionManagementState(interventionID, newState);
+            }
         }
 
     }
