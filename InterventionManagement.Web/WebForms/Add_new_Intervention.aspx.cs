@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -87,14 +88,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int hours = Convert.ToInt32(txtHours.Text);
             string notes = txtNote.Text;
             int remainingLife = Convert.ToInt32(txtRemaining.Text);
-            DateTime datePerformed = getDateFromTextBox();
+            //DateTime datePerformed = getDateFromTextBox();
 
             int interventionTemplateId = getIdFromIdAndNameString(DropDownListIntervention.SelectedItem.ToString());
             int interventionStateId = getIdFromIdAndNameString(DropDownListStatus.SelectedItem.ToString());
             int clientId = getIdFromIdAndNameString(DropDownListClient.SelectedItem.ToString());
 
             string username = User.Identity.Name;
-            new InterventionTableWrapper().addInterventionWithNoDateOfLastVisit(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife);
+            //    new InterventionTableWrapper().addInterventionWithNoDateOfLastVisit(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife);
+            string message = InterventionManager.AddNewIntervention(interventionTemplateId, cost, hours, clientId, username);
+            showMessage(message);
+
         }
 
         /// <summary>
@@ -120,6 +124,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         private int getIdFromIdAndNameString(string idAndName)
         {
             return Convert.ToInt32(idAndName.Split(null)[0]);
+        }
+
+        /// <summary>
+        /// User message
+        /// </summary>
+        /// <param name="message"></param>
+        private void showMessage(string message)
+        {
+            Response.Write("<script>alert('" + message + "')</script>");
         }
     }
 }

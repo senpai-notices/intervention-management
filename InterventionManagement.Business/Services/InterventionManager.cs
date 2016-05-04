@@ -11,7 +11,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
 
 
-        public static void AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
+        public static string AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
         {
 
             try
@@ -27,12 +27,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             catch (ArgumentException e)
             {
 
-                throw;
+                return e.Message;
             }
 
+            return "Intervention has been added to the Database";
         }
 
-        public static void UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
+        public static string UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
         {
             try {
                 if (InterventionValidator.ValidLife(remainingLife) && InterventionValidator.ValidNote(notes))
@@ -43,11 +44,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             }
             catch (ArgumentException e)
             {
-                throw;
+                return e.Message;
             }
+
+            return "Intervention Quality/Lifetime has been updated";
         }
 
-        public static void UpdateInterventionState(int interventionID, int newState, string username, string userRole)
+        public static string UpdateInterventionState(int interventionID, int newState, string username, string userRole)
         {
             try {
                 if (userRole.Equals("Manager")) managerUpdateInterventionState(interventionID, newState, username);
@@ -55,9 +58,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             }
             catch (ArgumentException e)
             {
-                throw;
+                return e.Message;
             }
-            
+
+            return "Intervention State has been updated";
         }
 
         private static void managerUpdateInterventionState(int interventionID, int newState, string username)

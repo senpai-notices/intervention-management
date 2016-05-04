@@ -41,7 +41,7 @@
                         <asp:Label ID="lblCost" runat="server" Text="Cost: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
-                        <asp:TextBox ID="txtCost" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCost" runat="server" TextMode="Number"></asp:TextBox>
                     </td>
 
                 </tr>
@@ -50,7 +50,7 @@
                         <asp:Label ID="lblHours" runat="server" Text="Hours: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
-                        <asp:TextBox ID="txtHours" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtHours" runat="server" TextMode="Number"></asp:TextBox>
                     </td>
                 </tr>
 
@@ -59,7 +59,7 @@
                         <asp:Label ID="lblRemaining" runat="server" Text="Remaining Life: " Font-Bold="True"></asp:Label>
                     </td>
                     <td class="auto-style1">
-                        <asp:TextBox ID="txtRemaining" runat="server">100</asp:TextBox>
+                        <asp:TextBox ID="txtRemaining" runat="server" TextMode="Number">100</asp:TextBox>
                     </td>
                 </tr>
 
@@ -68,7 +68,7 @@
                         <asp:Label ID="lblDate" runat="server" Text="Date performed: " Font-Bold="True"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtDate" runat="server" TextMode="Date"></asp:TextBox>
                     </td>
                 </tr>
 
