@@ -11,17 +11,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
         private static InterventionTableWrapper _intervention = new InterventionTableWrapper();
 
 
-        public static string AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username)
+        public static string AddNewIntervention(int InterventionTypeID, int cost, int hours, int clientID, string username, int remainingLife, string notes, DateTime date)
         {
 
             try
             {
-                if (InterventionValidator.ValidHoursAndCost(hours, cost))
-                {
-                    // TODO: Refactor Add New Intervention
-                    DateTime date = DateTime.Today;
-
-                    _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, "", 100, date);
+                if (InterventionValidator.ValidHoursAndCost(hours, cost) && InterventionValidator.ValidLife(remainingLife) && InterventionValidator.ValidNote(notes))
+                { 
+                    _intervention.addIntervention(InterventionTypeID, date, 1, hours, cost, username, null, clientID, notes, remainingLife, date);
                 }
             }
             catch (ArgumentException e)

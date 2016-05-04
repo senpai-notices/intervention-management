@@ -88,34 +88,18 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int hours = Convert.ToInt32(txtHours.Text);
             string notes = txtNote.Text;
             int remainingLife = Convert.ToInt32(txtRemaining.Text);
-            //DateTime datePerformed = getDateFromTextBox();
-
+            DateTime datePerformed = Convert.ToDateTime(txtDate.Text);
+               
             int interventionTemplateId = getIdFromIdAndNameString(DropDownListIntervention.SelectedItem.ToString());
             int interventionStateId = getIdFromIdAndNameString(DropDownListStatus.SelectedItem.ToString());
             int clientId = getIdFromIdAndNameString(DropDownListClient.SelectedItem.ToString());
 
             string username = User.Identity.Name;
-            //    new InterventionTableWrapper().addInterventionWithNoDateOfLastVisit(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife);
-            string message = InterventionManager.AddNewIntervention(interventionTemplateId, cost, hours, clientId, username);
+            string message = InterventionManager.AddNewIntervention(interventionTemplateId, cost, hours, clientId, username, remainingLife, notes, datePerformed);
             showMessage(message);
 
         }
-
-        /// <summary>
-        /// Convert to datatype Date
-        /// </summary>
-        /// <returns></returns>
-        private DateTime getDateFromTextBox()
-        {
-            string dateString = txtDate.Text;
-            string[] dateSplit = dateString.Split('-');
-            int day = Convert.ToInt32(dateSplit[0]);
-            int month = Convert.ToInt32(dateSplit[1]);
-            int year = Convert.ToInt32(dateSplit[2]);
-            //Response.Write("<script>alert('" + day.ToString() + month.ToString() + year.ToString() + "')</script>");
-            return new DateTime(year, month, day);
-        }
-
+        
         /// <summary>
         /// Get Id From Id and Name of client
         /// </summary>
