@@ -94,7 +94,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             int clientId = getIdFromIdAndNameString(DropDownListClient.SelectedItem.ToString());
 
             string username = User.Identity.Name;
-            new InterventionTableWrapper().addIntervention(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife, datePerformed);
+            new InterventionTableWrapper().addInterventionWithNoDateOfLastVisit(interventionTemplateId, datePerformed, interventionStateId, hours, cost, username, null, clientId, notes, remainingLife);
         }
 
         /// <summary>
