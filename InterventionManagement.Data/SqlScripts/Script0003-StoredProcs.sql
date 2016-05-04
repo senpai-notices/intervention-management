@@ -216,6 +216,8 @@ AS
 		INSERT INTO [dbo].[Client](Name, Location, DistrictId)
 		VALUES(@name, @location, @districtId)
 
+		SELECT SCOPE_IDENTITY()
+
 		COMMIT TRAN Main
 	END TRY
 	BEGIN CATCH
@@ -273,6 +275,8 @@ AS
 		INSERT INTO [dbo].[Intervention](InterventionTemplateId, DatePerformed, InterventionStateId, Hours, Cost, ProposerUsername, ApproverUsername, ClientId, Notes, RemainingLife, DateOfLastVisit)
 
 		VALUES(@templateId, @datePerformed, @stateId, @hours, @cost, @proposerUser, @approverUser, @clientId, @notes, @remainingLife, @dateOfLastVisit)
+
+		SELECT SCOPE_IDENTITY()
 
 		COMMIT TRAN Main
 	END TRY

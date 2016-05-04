@@ -88,12 +88,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return new InterventionTableAdapter().GetDataBy_InterventionId(id);
         }
 
-        public void InsertIntervention(int templateId, DateTime datePerformed, int stateId, int hours, int cost, 
+        public string InsertIntervention(int templateId, DateTime datePerformed, int stateId, int hours, int cost, 
             string proposerUsername, string approverUsername, int clientId, string notes, int remainingLife, 
             DateTime dateOfLastVisit)
         {
-            new InterventionTableAdapter().InsertIntervention(templateId, datePerformed.Date, stateId, hours, 
-                cost, proposerUsername, approverUsername, clientId, notes, remainingLife, dateOfLastVisit.Date);
+            return new InterventionTableAdapter().InsertIntervention(templateId, datePerformed.Date, stateId, hours, 
+                cost, proposerUsername, approverUsername, clientId, notes, remainingLife, dateOfLastVisit.Date).ToString();
         }
 
         public void DeleteIntervention(int id)

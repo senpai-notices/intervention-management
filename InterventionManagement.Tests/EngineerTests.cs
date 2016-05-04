@@ -117,5 +117,53 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Tests
                 engineerTableWrapper.DeleteEngineer(username2);
             }
         }
+
+        [TestMethod]
+        public void GetEngineerByUsername_Normal_Success()
+        {
+            const string username = "joeblogs";
+            const string name = "Joe Blogs";
+            const int hours = 4;
+            const int cost = 5;
+            const int districtId = 3;
+
+            var engineerTw = new EngineerTableWrapper();           
+            engineerTw.InsertEngineer(username, name, hours, cost, districtId);
+
+            var engineerDt = engineerTw.GetEngineerByEngineerUsername(username);
+            var engineerRow = engineerDt.FindByEngineerUsername(username);
+
+            Assert.AreEqual(username, engineerRow.EngineerUsername);
+            Assert.AreEqual(hours, engineerRow.HoursApprovalLimit);
+            Assert.AreEqual(cost, engineerRow.CostApprovalLimit);
+            Assert.AreEqual(districtId, engineerRow.DistrictId);
+
+            engineerTw.DeleteEngineer(username);
+        }
+
+        [TestMethod]
+        public void UpdateEngineerDistrict_Normal_Success()
+        {
+            const string username = "joeblogs";
+            const string name = "Joe Blogs";
+            const int hours = 4;
+            const int cost = 5;
+            const int districtId = 3;
+            const int targetDistrict = 1;
+
+            var engineerTw = new EngineerTableWrapper();
+            engineerTw.InsertEngineer(username, name, hours, cost, districtId);
+            engineerTw.UpdateEngineerDistrict(username, targetDistrict);
+
+            var engineerDt = engineerTw.GetEngineerByEngineerUsername(username);
+            var engineerRow = engineerDt.FindByEngineerUsername(username);
+
+            Assert.AreEqual(username, engineerRow.EngineerUsername);
+            Assert.AreEqual(hours, engineerRow.HoursApprovalLimit);
+            Assert.AreEqual(cost, engineerRow.CostApprovalLimit);
+            Assert.AreEqual(targetDistrict, engineerRow.DistrictId);
+
+            engineerTw.DeleteEngineer(username);
+        }
     }
 }
