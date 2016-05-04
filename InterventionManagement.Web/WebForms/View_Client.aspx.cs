@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Diagnostics;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -21,25 +22,30 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             
             if (!IsPostBack)
             {
-                var interventions = new InterventionTableAdapter().GetDataBy_ClientId(1);
-
                 if (Session["ClientId"] != null)
                 {
-                    lblName.Text = Session["ClientId"].ToString();
+                    int clientId = Convert.ToInt32(Session["ClientId"]);
+
+                    lblName.Text = new ClientTableWrapper().getClientNameByClientId(clientId);
+                    var interventions = new InterventionTableAdapter().GetDataBy_ClientId(clientId);
+
+                    foreach (var intervention in interventions)
+                    {
+                        InterventionTable.Rows.Add(addTableRow(intervention.InterventionId, intervention.Notes,
+                             "Cost: " + intervention.Cost.ToString() + "<br>" + "Hours: " + intervention.Hours.ToString()));
+                    }
                 }
                 else
                 {
-                    lblName.Text = User.Identity.Name;
-                    lblLocation.Text = User.IsInRole("Accountant") ? "true" : "false";
-                    lblDistrict.Text = "sydney";
-                }
-                
-                foreach (var intervention in interventions)
-                {
-                    InterventionTable.Rows.Add(addTableRow(intervention.InterventionId, intervention.Notes,
-                         "Cost: "+ intervention.Cost.ToString()+"<br>" +"Hours: "+ intervention.Hours.ToString()));
+                    showMessage("No client selected, redirecting");
                 }
             }          
+        }
+
+        private void showMessage(string message)
+        {
+            Response.Write("<script>alert('" + message + "')</script>");
+            Response.Redirect("/WebForms/Login.aspx");
         }
 
         /// <summary>
