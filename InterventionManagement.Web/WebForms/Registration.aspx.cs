@@ -55,15 +55,15 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 // create additional tables required
                 if (roleName == "Engineer")
                 {
-                    new EngineerTableWrapper().addEngineer(username, approvalHours, approvalCost, districtID, name);
+                    new EngineerTableWrapper().InsertEngineer(username, name,approvalHours, approvalCost, districtID);
                 }
                 else if (roleName == "Manager")
                 {
-                    new ManagerTableWrapper().addManager(username, approvalHours, approvalCost, districtID, name);
+                    new ManagerTableWrapper().InsertManager(username,name, approvalHours, approvalCost, districtID);
                 }
                 else if (roleName == "Accountant")
                 {
-                    new UserTableWrapper().addUser(username, name);
+                    new UserTableWrapper().InsertUser(username,name);
                 }
 
                 // sign in this new user
