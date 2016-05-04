@@ -26,7 +26,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 {
                     int clientId = Convert.ToInt32(Session["ClientId"]);
 
-                    lblName.Text = new ClientTableWrapper().getClientNameByClientId(clientId);
+                    var ctw = new ClientTableWrapper();
+                    lblName.Text = ctw.getClientNameByClientId(clientId);
+                    lblLocation.Text = ctw.getClientLocationByClientId(clientId);
+                    lblDistrict.Text = ctw.getClientDistrictIdByClientId(clientId);
                     var interventions = new InterventionTableAdapter().GetDataBy_ClientId(clientId);
 
                     foreach (var intervention in interventions)

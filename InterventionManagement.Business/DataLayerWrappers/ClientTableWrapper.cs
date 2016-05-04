@@ -41,6 +41,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return client;
         }
 
+        public string getClientLocationByClientId(int clientId)
+        {
+            var clientDataTable = new ClientTableAdapter().GetClientById(clientId);
+            var client = clientDataTable.Rows[0]["Location"].ToString();
+            return client;
+        }
+
+        public string getClientDistrictIdByClientId(int clientId)
+        {
+            var clientDataTable = new ClientTableAdapter().GetClientById(clientId);
+            var client = clientDataTable.Rows[0]["DistrictId"].ToString();
+            return client;
+        }
 
         public MainDataSet.ClientDataTable GetClients()
         {
