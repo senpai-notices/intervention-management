@@ -6,7 +6,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class ClientTableWrapper
     {
-        #region deprecated
         public void addClient(string name, string location, int districtId)
         {
             MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
@@ -35,13 +34,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return clientNames;
         }
 
-        /*        public string getClientNameByClientId(int clientId)
-                {
-                    var clientDataTable = new ClientTableAdapter().GetDataBy_ClientId(clientId);
-                    var client = clientDataTable.Rows[0]["Name"].ToString();
-                    return client;
-                }*/
-        #endregion
+        public string getClientNameByClientId(int clientId)
+        {
+            var clientDataTable = new ClientTableAdapter().GetClientById(clientId);
+            var client = clientDataTable.Rows[0]["Name"].ToString();
+            return client;
+        }
+
 
         public MainDataSet.ClientDataTable GetClients()
         {
