@@ -19,12 +19,16 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
         {
             if (!IsPostBack)
             {
-                Dictionary<int, KeyValuePair<string, string>> interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);               
+                /*Dictionary<int, KeyValuePair<string, string>> interventions = new InterventionTableWrapper().getInterventionsByManager(User.Identity.Name);               
                 foreach (var details in interventions)
                 {
                     InterventionTable.Rows.Add(addTableRow(details.Key, details.Value.Key,details.Value.Value));
+                }*/
+                
+                for (int i = 0; i < 4; i++)
+                {
+                    InterventionTable.Rows.Add(addTableRow(i, "", ""));
                 }
-
             }
         }
 
@@ -57,9 +61,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
             name.Text = InterventionName;
             details.Text = InterventionDetails;
-            update.Controls.Add(approveButton);
+            /*update.Controls.Add(approveButton);
             update.Controls.Add(removeButton);
-
+            */
             tr.Height = 30;
             tr.Cells.Add(name);
             tr.Cells.Add(details);

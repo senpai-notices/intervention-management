@@ -31,11 +31,11 @@
         <br />
         <br />
         <asp:Label ID="lblHours" runat="server" Text="Hour approval "></asp:Label>
-        <asp:TextBox ID="txtHours" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtHours" runat="server" TextMode="Number"></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="lblCost" runat="server" Text="Cost approval "></asp:Label>
-        <asp:TextBox ID="txtCost" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtCost" runat="server" TextMode="Number"></asp:TextBox>
         <br />
         <br />
         <asp:Label ID="lblDistrict" runat="server" Text="District: "></asp:Label>
