@@ -11,13 +11,24 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
     {
         private static ClientTableWrapper _clients = new ClientTableWrapper();
 
-        public static void AddNewClient(string name, string location, int districtID, int engineerDistrict)
+        public static string AddNewClient(string name, string location, int districtID)
         {
-            if (ClientValidator.ValidateName(name) && ClientValidator.ValidateLocation(location) && districtID == engineerDistrict)
+            try
+            {
+                if (ClientValidator.ValidateName(name) && ClientValidator.ValidateLocation(location))
                 {
                     _clients.addClient(name, location, districtID);
                 }
-                //Invalid Client Data
+
+            }
+            catch (ArgumentException e)
+            {
+                return e.Message;
+            }
+
+            return "Client was sucessfully added to the Databae";
+            
+            //Invalid Client Data
                 //Console.WriteLine(e.Message);
         }
     }

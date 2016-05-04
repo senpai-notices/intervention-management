@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 {
@@ -53,8 +54,9 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
 
             if (validName)
             {
-                new ClientTableWrapper().addClient(name, location, districtId);
-                showMessage("Client created successfully");
+                string message = ClientManager.AddNewClient(name, location, districtId);
+                // new ClientTableWrapper().addClient(name, location, districtId);
+                showMessage(message);
             }
             else
             {
