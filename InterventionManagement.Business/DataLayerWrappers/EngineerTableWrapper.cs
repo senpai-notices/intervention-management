@@ -57,5 +57,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
         {
             new EngineerTableAdapter().DeleteEngineer(username);
         }
+
+        public void UpdateEngineerDistrict(string username, int targetDistrict)
+        {
+            new EngineerTableAdapter().UpdateEngineerDistrict(username, targetDistrict);
+        }
     }
 }

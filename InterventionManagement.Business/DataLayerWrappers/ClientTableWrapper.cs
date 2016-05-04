@@ -6,6 +6,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
 {
     public class ClientTableWrapper
     {
+        #region deprecated
         public void addClient(string name, string location, int districtId)
         {
             MainDataSet.ClientDataTable clients = new ClientTableAdapter().GetData();
@@ -34,11 +35,37 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrap
             return clientNames;
         }
 
-        public string getClientNameByClientId(int clientId)
+        /*        public string getClientNameByClientId(int clientId)
+                {
+                    var clientDataTable = new ClientTableAdapter().GetDataBy_ClientId(clientId);
+                    var client = clientDataTable.Rows[0]["Name"].ToString();
+                    return client;
+                }*/
+        #endregion
+
+        public MainDataSet.ClientDataTable GetClients()
         {
-            var clientDataTable = new ClientTableAdapter().GetDataBy_ClientId(clientId);
-            var client = clientDataTable.Rows[0]["Name"].ToString();
-            return client;
+            return new ClientTableAdapter().GetData();
+        }
+
+        public MainDataSet.ClientDataTable GetClientById(int id)
+        {
+            return new ClientTableAdapter().GetClientById(id);
+        }
+
+        public void InsertClient(string name, string location, int districtId)
+        {
+            new ClientTableAdapter().InsertClient(name, location, districtId);
+        }
+
+        public void DeleteClient(int id)
+        {
+            new ClientTableAdapter().DeleteClient(id);
+        }
+
+        public MainDataSet.ClientDataTable GetClientByDistrictId(int districtId)
+        {
+            return new ClientTableAdapter().GetDataBy_DistrictId(districtId);
         }
     }
 }

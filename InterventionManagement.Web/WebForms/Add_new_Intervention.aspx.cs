@@ -61,10 +61,10 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
             if(Session["ClientId"] != null)
             {
                 int clientId = Convert.ToInt32(Session["ClientId"]);
-                string name = new ClientTableWrapper().getClientNameByClientId(clientId);
-                string idAndName = clientId.ToString() + " " + name;
+                // string name = new ClientTableWrapper().getClientNameByClientId(clientId);
+                // string idAndName = clientId.ToString() + " " + name;
 
-                contents = new List<string>() { idAndName };
+                // contents = new List<string>() { idAndName };
             }
             else
             {
@@ -72,7 +72,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Web.WebForms
                 contents = new ClientTableWrapper().getClientIdAndNameListForEngineer(username);
             }
 
-            DropDownListClient.DataSource = contents;
+            // DropDownListClient.DataSource = contents;
             DropDownListClient.DataBind();
         }
 
