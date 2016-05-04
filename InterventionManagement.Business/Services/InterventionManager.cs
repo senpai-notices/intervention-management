@@ -24,18 +24,17 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
 
         }
 
-        public static bool UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
+        public static void UpdateInterventionLife(int InterventionID, int remainingLife, string notes)
         {
 
-            if(InterventionValidator.ValidLife(remainingLife));
-            if(InterventionValidator.ValidNote(notes));
-    
+            if (InterventionValidator.ValidLife(remainingLife) && InterventionValidator.ValidNote(notes))
+            {
 
-            DateTime today = DateTime.Today;
+                DateTime today = DateTime.Today;
 
-            _intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
+                //_intervention.UpdateIntervention(InterventionID, remainingLife, notes, today);
 
-            return true;
+            }
         }
 
         public static void ApproveIntervention(int InterventionID, string username, string userRole)
@@ -44,7 +43,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
             // 
             if (userRole.Equals("Manager") || InterventionValidator.VerifyProposerUsername(InterventionID, username))
             {
-                if (InterventionValidator.CanApprove(InterventionID, username, userRole))
+                if (InterventionValidator.CanUserApprove(InterventionID, username, userRole))
                 {
 
                 }

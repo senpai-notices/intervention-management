@@ -11,26 +11,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
     public static class InterventionValidator
     {
 
-        public static bool RequiresApproval(string username, int interventionID)
-        {
-            //TODO: Finish RequiresApproval. (Uncomment when Methods are implemented)
-            EngineerTableWrapper engineerWrapper = new EngineerTableWrapper();
-            // InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-
-            var engineers = engineerWrapper.GetEngineerByEngineerUsername(username);
-            // var intervention = interventionWrapper.GetInterventionByID(interventionID);
-
-            int hoursLimit = (int)engineers[0]["HoursApprovalLimit"];
-            int costLimit = (int)engineers[0]["CostApprovalLimit"];
-            // int hoursMin = (int)intervention[0]["EstimatedHours"];
-            // int costMin = (int)intervention[0]["EstimatedCost"];
-
-
-            // if (hoursLimit > hoursMin || costLimit > costMin)   return false;
-
-            return true;
-        }
-
         internal static bool ValidNote(string notes)
         {
             //TODO: Refactor Note length into variables file
@@ -41,6 +21,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
         internal static bool ValidLife(int remainingLife)
         {
+            //0-100% life remaining
             if(remainingLife < 0 || remainingLife > 100) throw new ArgumentException("Remaining estimated lifetime of product must be between 0-100");
 
             return true;
@@ -56,18 +37,19 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
         public static bool VerifyProposerUsername(int interventionID, string username)
         {
+            throw new NotImplementedException();
             //TODO: Uncomment When Intervention Wrapper is done.
-            // InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-            // var intervention = interventionWrapper.GetInterventionByID(interventionID);
+            //InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
+            //var intervention = interventionWrapper.GetInterventionByID(interventionID);
 
             //string proposer = (string)intervention[0]["ProposerUsername"];
 
-            // if (username.Equals(proposer)) return true;
+            //if (!username.Equals(proposer)) throw new ArgumentException("Insufficient Permissions to perform this action");
 
-            return false;
+            return true;
         }
 
-        internal static bool CanApprove(int interventionID, string username, string userRole)
+        internal static bool CanUserApprove(int interventionID, string username, string userRole)
         {
             throw new NotImplementedException();
 
