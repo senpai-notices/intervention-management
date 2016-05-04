@@ -6,13 +6,6 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 {
     public static class ClientValidator
     {
-        //public static int ValidateClientId(int clientId)
-        //{
-        //    if (IsNegative(clientId))
-        //        throw new ClientIdIsNegativeException("ClientId is negative");
-
-        //    return clientId;
-        //}
 
         public static bool ValidateName(string name)
         {
@@ -26,17 +19,13 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
         public static bool ValidateLocation(string location)
         {
+            //TODO: Extract StringLength and Place into Config/Variable File
             if (string.IsNullOrWhiteSpace(location))
                 throw new ArgumentException("Please enter a location description.");
-            if (location.Length >= 100)
+            if (location.Length >= 150)
                 throw new ArgumentException("Please enter a valid Location. Must contain less that 150 characters.");
 
             return true;
         }
-
-        //private static bool IsNegative(int userId)
-        //{
-        //    return userId < 0;
-        //}
     }
 }

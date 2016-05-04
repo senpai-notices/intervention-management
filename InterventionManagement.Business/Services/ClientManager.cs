@@ -11,34 +11,14 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Services
     {
         private static ClientTableWrapper _clients = new ClientTableWrapper();
 
-        public static bool AddNewClient(string name, string location, int districtID, int engineerDistrict)
+        public static void AddNewClient(string name, string location, int districtID, int engineerDistrict)
         {
-            try
-            {
-                if (ClientValidator.ValidateName(name) && ClientValidator.ValidateLocation(location) && districtID == engineerDistrict)
+            if (ClientValidator.ValidateName(name) && ClientValidator.ValidateLocation(location) && districtID == engineerDistrict)
                 {
-                    //TODO: AddNewClient(Stub)
-                    //Valid Client Entry
-                    //_clients.AddNewClient(name, location, districtID
+                    _clients.addClient(name, location, districtID);
                 }
-            }
-            catch (System.Exception e)
-            {
                 //Invalid Client Data
                 Console.WriteLine(e.Message);
-                return false;
-            }
-
-            //Valid Client has beed added
-            return true;
-
-
         }
-
-        //TODO: GetClientByID (Required Get Client In Wrapper)
-        //public static Client GetClientById(int clientId)
-        //{
-        //    return _clients.FirstOrDefault(c => c.ClientId == clientId);
-        //}
     }
 }
