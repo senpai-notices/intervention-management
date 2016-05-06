@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UTS.ASDF.ENETCare.InterventionManagement.Tests
+namespace UTS.ASDF.ENETCare.InterventionManagement.Test
 {
     [TestClass]
     public class UnitTest1
