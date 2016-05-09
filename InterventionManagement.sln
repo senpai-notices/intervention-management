@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Busi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Web", "InterventionManagement.Web\InterventionManagement.Web.csproj", "{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Web.Tests", "InterventionManagement.Web.Tests\InterventionManagement.Web.Tests.csproj", "{1C0E3B34-D405-4498-9121-B324F2021536}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Test", "InterventionManagement.Test\InterventionManagement.Test.csproj", "{1C0E3B34-D405-4498-9121-B324F2021536}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

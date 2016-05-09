@@ -9,8 +9,8 @@
     <ProjectGuid>{1C0E3B34-D405-4498-9121-B324F2021536}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ASDF.ENETCare.InterventionManagement.Web.Tests</RootNamespace>
-    <AssemblyName>InterventionManagement.Web.Tests</AssemblyName>
+    <RootNamespace>ASDF.ENETCare.InterventionManagement.Test</RootNamespace>
+    <AssemblyName>InterventionManagement.Test</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -82,6 +82,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientTests.cs" />
+    <Compile Include="DataStartupTests.cs" />
+    <Compile Include="DistrictTests.cs" />
+    <Compile Include="EngineerTests.cs" />
+    <Compile Include="MiscTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -89,7 +94,9 @@
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterventionManagement.Web\InterventionManagement.Web.csproj">

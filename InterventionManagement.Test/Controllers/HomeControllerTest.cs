@@ -2,7 +2,7 @@
 using ASDF.ENETCare.InterventionManagement.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ASDF.ENETCare.InterventionManagement.Web.Tests.Controllers
+namespace ASDF.ENETCare.InterventionManagement.Test.Controllers
 {
     [TestClass]
     public class HomeControllerTest
