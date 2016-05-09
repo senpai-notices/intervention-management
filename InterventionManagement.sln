@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.WebF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.WebForms.Tests", "InterventionManagement.WebForms.Tests\InterventionManagement.WebForms.Tests.csproj", "{1C0E3B34-D405-4498-9121-B324F2021536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Data", "InterventionManagement.Data\InterventionManagement.Data.csproj", "{BBE4B9F1-7306-40D8-93E8-8D2732CE2A85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Business", "InterventionManagement.Business\InterventionManagement.Business.csproj", "{B10A8BB1-C8AD-4848-BCFF-0951A2ECF589}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{1C0E3B34-D405-4498-9121-B324F2021536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C0E3B34-D405-4498-9121-B324F2021536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C0E3B34-D405-4498-9121-B324F2021536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBE4B9F1-7306-40D8-93E8-8D2732CE2A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBE4B9F1-7306-40D8-93E8-8D2732CE2A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBE4B9F1-7306-40D8-93E8-8D2732CE2A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBE4B9F1-7306-40D8-93E8-8D2732CE2A85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10A8BB1-C8AD-4848-BCFF-0951A2ECF589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10A8BB1-C8AD-4848-BCFF-0951A2ECF589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10A8BB1-C8AD-4848-BCFF-0951A2ECF589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10A8BB1-C8AD-4848-BCFF-0951A2ECF589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
