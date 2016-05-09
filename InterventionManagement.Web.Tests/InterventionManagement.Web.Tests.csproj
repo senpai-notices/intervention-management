@@ -9,8 +9,8 @@
     <ProjectGuid>{1C0E3B34-D405-4498-9121-B324F2021536}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>InterventionManagement.WebForms.Tests</RootNamespace>
-    <AssemblyName>InterventionManagement.WebForms.Tests</AssemblyName>
+    <RootNamespace>ASDF.ENETCare.InterventionManagement.Web.Tests</RootNamespace>
+    <AssemblyName>InterventionManagement.Web.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.WebForms\InterventionManagement.WebForms.csproj">
-      <Project>{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}</Project>
-      <Name>InterventionManagement.WebForms</Name>
+    <ProjectReference Include="..\InterventionManagement.Web\InterventionManagement.Web.csproj">
+      <Project>{7cbd7ee0-6c1f-4b78-90b4-c95d1e07ffd2}</Project>
+      <Name>InterventionManagement.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

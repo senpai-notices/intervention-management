@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using ASDF.ENETCare.InterventionManagement.Web.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using InterventionManagement.WebForms;
-using InterventionManagement.WebForms.Controllers;
 
-namespace InterventionManagement.WebForms.Tests.Controllers
+namespace ASDF.ENETCare.InterventionManagement.Web.Tests.Controllers
 {
     [TestClass]
     public class HomeControllerTest
