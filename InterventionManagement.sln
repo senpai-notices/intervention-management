@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.Test", "InterventionManagement.Test\InterventionManagement.Test.csproj", "{E1F583D6-32F3-4F7D-A7E6-C6E10B1DF0AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.WebForms", "InterventionManagement.WebForms\InterventionManagement.WebForms.csproj", "{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterventionManagement.WebForms.Tests", "InterventionManagement.WebForms.Tests\InterventionManagement.WebForms.Tests.csproj", "{1C0E3B34-D405-4498-9121-B324F2021536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{E1F583D6-32F3-4F7D-A7E6-C6E10B1DF0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1F583D6-32F3-4F7D-A7E6-C6E10B1DF0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1F583D6-32F3-4F7D-A7E6-C6E10B1DF0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBD7EE0-6C1F-4B78-90B4-C95D1E07FFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C0E3B34-D405-4498-9121-B324F2021536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0E3B34-D405-4498-9121-B324F2021536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0E3B34-D405-4498-9121-B324F2021536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0E3B34-D405-4498-9121-B324F2021536}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
