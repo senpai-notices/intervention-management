@@ -7,6 +7,11 @@ namespace ASDF.ENETCare.InterventionManagement.Data
     {
         protected override void Seed(MainContext context)
         {
+            SeedInterventionState(context);
+        }
+
+        private void SeedInterventionState(MainContext context)
+        {
             var interventionStates = new List<InterventionState>
             {
                 new InterventionState{ Name="Proposed"},

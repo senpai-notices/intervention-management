@@ -12,7 +12,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         public DbSet<Intervention> Intervention { get; set; }
         public DbSet<InterventionState> InterventionState { get; set; }
-        //public DbSet<Course> Courses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
