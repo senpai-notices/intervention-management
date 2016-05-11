@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASDF.ENETCare.InterventionManagement.Data;
+using System;
 using System.IO;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,6 +17,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             SetDataDirectory();
+            InitializeDatabase();
         }
 
         private void SetDataDirectory()
@@ -23,6 +25,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             // Set DataDirectory for the connection string in Web.config
             string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\InterventionManagement.Data"));
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
+        }
+
+        private void InitializeDatabase()
+        {
+            new Startup();
         }
     }
 }
