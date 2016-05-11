@@ -16,6 +16,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            // Additional custom startup methods
             SetDataDirectory();
             InitializeDatabase();
         }
@@ -29,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web
 
         private void InitializeDatabase()
         {
-            new Startup();
+            InterventionManagement.Data.Startup.InitializeDatabase();
         }
     }
 }

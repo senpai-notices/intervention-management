@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ASDF.ENETCare.InterventionManagement.Data
 {
-    public class Startup
+    public static class Startup
     {
-        public Startup()
+        public static void InitializeDatabase()
         {
             Database.SetInitializer(new DatabaseInitializer());
-            using (var db = new MainContext())
+            using (var mainContext = new MainContext())
             {
-                db.Database.Initialize(false);
+                mainContext.Database.Initialize(false);
             }
         }
     }
