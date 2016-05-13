@@ -50,8 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client.cs" />
+    <Compile Include="District.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
+    <Compile Include="InterventionTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

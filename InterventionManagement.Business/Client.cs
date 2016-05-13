@@ -1,7 +1,6 @@
-﻿
-namespace ASDF.ENETCare.InterventionManagement.Business
+﻿namespace ASDF.ENETCare.InterventionManagement.Business
 {
-    class Client
+    public class Client
     {
         public int ClientID { get; set; }
         public string Name { get; set; }
