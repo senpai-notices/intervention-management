@@ -66,5 +66,11 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             interventionTemplates.ForEach(s => context.InterventionTemplate.Add(s));
             context.SaveChanges();
         }
+
+        // TODO
+        private void SeedInterventions()
+        {
+            
+        }
     }
 }
