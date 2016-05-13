@@ -8,7 +8,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
 {
     public class InterventionTemplate
     {
-        public int InterventionTemplateID { get; set; }
+        public int InterventionTemplateId { get; set; }
         public string Name { get; set; }
         public int Hours { get; set; }
         public decimal Cost { get; set; }

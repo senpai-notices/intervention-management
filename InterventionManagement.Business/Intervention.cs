@@ -4,7 +4,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
 {
     public class Intervention
     {
-        public int InterventionID { get; set; }
+        public int InterventionId { get; set; }
         public DateTime DatePerformed { get; set; }
         public int Hours { get; set; }
         public decimal Cost { get; set; }
@@ -13,10 +13,10 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public DateTime DateOfLastVisit { get; set; }
 
         // foreign keys
-        public int InterventionTemplateID { get; set; }
-        public int InterventionStateID { get; set; }
-        public int ClientID { get; set; }
-        public int EngineerID { get; set; }
-        public int ManagerID { get; set; }
+        public int InterventionTemplateId { get; set; }
+        public int InterventionStateId { get; set; }
+        public int ClientId { get; set; }
+        public int EngineerId { get; set; }
+        public int ManagerId { get; set; }
     }
 }
