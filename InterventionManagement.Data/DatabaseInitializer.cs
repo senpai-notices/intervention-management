@@ -17,10 +17,10 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             var clients = new List<Client>
             {
-                new Client{ ClientID=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictID=6 },
-                new Client{ ClientID=2, Name="Bambang Bima", Location="1 Agung Road", DistrictID=1 },
-                new Client{ ClientID=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictID=1 },
-                new Client{ ClientID=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictID=6 }
+                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId=6 },
+                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId=1 },
+                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId=1 },
+                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
             };
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
