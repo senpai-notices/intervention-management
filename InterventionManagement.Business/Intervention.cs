@@ -12,6 +12,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public int RemainingLife { get; set; }
         public DateTime DateOfLastVisit { get; set; }
 
+        // foreign keys
         public int InterventionTemplateID { get; set; }
         public int InterventionStateID { get; set; }
         public int ClientID { get; set; }
