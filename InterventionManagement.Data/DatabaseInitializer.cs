@@ -17,7 +17,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         private void SeedClients(MainContext context)
         {
-            var clientFaker = new Faker<Client>()
+            var clientFaker = new Faker<Client>("en_AU")
                             .RuleFor(c => c.Name, f => f.Name.FirstName() + " " + f.Name.LastName())
                             .RuleFor(c => c.Location, f => f.Address.StreetAddress())
                             .RuleFor(c => c.DistrictId, f => f.Random.Number(1, 6));
@@ -30,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
                             new Client{ Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
                         };*/
             #endregion
-            var clients = clientFaker.Generate(20).ToList();
+            var clients = clientFaker.Generate(75).ToList();
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
         }
