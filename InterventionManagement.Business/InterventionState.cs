@@ -1,8 +1,10 @@
 ﻿namespace ASDF.ENETCare.InterventionManagement.Business
 {
-    public class InterventionState
+    public enum InterventionState
     {
-        public int InterventionStateId { get; set; }
-        public string Name { get; set; }
+        Proposed = 1,
+        Approved,
+        Completed,
+        Cancelled
     }
 }

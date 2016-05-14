@@ -11,7 +11,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             SeedClients(context);
             SeedInterventionTemplates(context);
-            SeedInterventionStates(context);
         }
 
         private void SeedClients(MainContext context)
@@ -31,19 +30,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             #endregion
             var clients = clientFaker.Generate(75).ToList();
             clients.ForEach(s => context.Client.Add(s));
-            context.SaveChanges();
-        }
-
-        private void SeedInterventionStates(MainContext context)
-        {
-            var interventionStates = new List<InterventionState>
-            {
-                new InterventionState{ InterventionStateId=1, Name="Proposed" },
-                new InterventionState{ InterventionStateId=2, Name="Approved" },
-                new InterventionState{ InterventionStateId=3, Name="Cancelled" },
-                new InterventionState{ InterventionStateId=4, Name="Completed" }
-            };
-            interventionStates.ForEach(s => context.InterventionState.Add(s));
             context.SaveChanges();
         }
 
