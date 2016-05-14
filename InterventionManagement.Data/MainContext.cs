@@ -16,6 +16,15 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            /*            modelBuilder.Entity<Intervention>()
+                            .HasRequired(m => m.Proposer)
+                            .WithMany(m => m.ProposedInterventions)
+                            .HasForeignKey(m => m.ProposerId);
+                        modelBuilder.Entity<Intervention>()
+                            .HasRequired(m => m.Approver)
+                            .WithMany(m => m.ApprovedInterventions)
+                            .HasForeignKey(m => m.ApproverId);*/
         }
     }
 }
