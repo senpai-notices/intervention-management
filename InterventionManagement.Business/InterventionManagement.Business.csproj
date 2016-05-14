@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="District.cs" />
+    <Compile Include="DraftAppUser.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
     <Compile Include="InterventionTemplate.cs" />
