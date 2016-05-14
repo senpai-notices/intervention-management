@@ -28,7 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
                             new Client{ Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
                         };*/
             #endregion
-            var clients = clientFaker.Generate(75).ToList();
+            var clients = clientFaker.Generate(20).ToList();
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
         }
