@@ -1,8 +1,12 @@
 ﻿namespace ASDF.ENETCare.InterventionManagement.Business
 {
-    public class District
+    public enum District
     {
-        public int DistrictId { get; set; }
-        public string Name { get; set; }
+        UrbanIndonesia = 1,
+        RuralIndonesia,
+        UrbanPapuaNewGuinea,
+        RuralPapuaNewGuinea,
+        Sydney,
+        RuralNewSouthWales
     }
 }

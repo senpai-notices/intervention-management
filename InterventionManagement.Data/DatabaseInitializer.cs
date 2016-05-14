@@ -10,7 +10,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         protected override void Seed(MainContext context)
         {
             SeedClients(context);
-            SeedDistricts(context);
             SeedInterventionTemplates(context);
             SeedInterventionStates(context);
         }
@@ -20,7 +19,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             var clientFaker = new Faker<Client>("en_AU")
                             .RuleFor(c => c.Name, f => f.Name.FirstName() + " " + f.Name.LastName())
                             .RuleFor(c => c.Location, f => f.Address.StreetAddress())
-                            .RuleFor(c => c.DistrictId, f => f.Random.Number(1, 6));
+                            .RuleFor(c => c.District, f => f.PickRandom<District>());
             #region previous data
             /*            var clients = new List<Client>
                         {
@@ -32,21 +31,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             #endregion
             var clients = clientFaker.Generate(75).ToList();
             clients.ForEach(s => context.Client.Add(s));
-            context.SaveChanges();
-        }
-
-        private void SeedDistricts(MainContext context)
-        {
-            var districts = new List<District>
-            {
-                new District{ DistrictId=1, Name="Urban Indonesia" },
-                new District{ DistrictId=2, Name="Rural Indonesia" },
-                new District{ DistrictId=3, Name="Urban Papua New Guinea" },
-                new District{ DistrictId=4, Name="Rural Papua New Guinea" },
-                new District{ DistrictId=5, Name="Sydney" },
-                new District{ DistrictId=6, Name="Rural New South Wales" }
-            };
-            districts.ForEach(s => context.District.Add(s));
             context.SaveChanges();
         }
 
