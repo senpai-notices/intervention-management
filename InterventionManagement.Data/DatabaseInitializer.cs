@@ -1,5 +1,7 @@
 ﻿using ASDF.ENETCare.InterventionManagement.Business;
 using System.Collections.Generic;
+using System.Linq;
+using Bogus;
 
 namespace ASDF.ENETCare.InterventionManagement.Data
 {
@@ -15,13 +17,20 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         private void SeedClients(MainContext context)
         {
-            var clients = new List<Client>
-            {
-                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId=6 },
-                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId=1 },
-                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId=1 },
-                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
-            };
+            var clientFaker = new Faker<Client>()
+                            .RuleFor(c => c.Name, f => f.Name.FirstName() + " " + f.Name.LastName())
+                            .RuleFor(c => c.Location, f => f.Address.StreetAddress())
+                            .RuleFor(c => c.DistrictId, f => f.Random.Number(1, 6));
+            #region previous data
+            /*            var clients = new List<Client>
+                        {
+                            new Client{ Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId=6 },
+                            new Client{ Name="Bambang Bima", Location="1 Agung Road", DistrictId=1 },
+                            new Client{ Name="Susilo Sinta", Location="25 Wira Street", DistrictId=1 },
+                            new Client{ Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
+                        };*/
+            #endregion
+            var clients = clientFaker.Generate(20).ToList();
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
         }
@@ -58,10 +67,13 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             var interventionTemplates = new List<InterventionTemplate>
             {
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply Mosquito Net", Hours=1, Cost=60.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply and Install Storm-proof Home Kit", Hours=40, Cost=1000.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply and Install Portable Toilet", Hours=4, Cost=150.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Hepatitis Avoidance Training", Hours=3, Cost=80.00M }
+                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply and Install Portable Toilet", Hours=2, Cost=600.00M },
+                new InterventionTemplate{ InterventionTemplateId=2, Name="Hepatitis Avoidance Training", Hours=3, Cost=0.00M },
+                new InterventionTemplate{ InterventionTemplateId=3, Name="Supply and Install Storm-proof Home Kit", Hours=8, Cost=500.00M },
+                new InterventionTemplate{ InterventionTemplateId=4, Name="Supply Mosquito Net", Hours=0, Cost=25.00M },
+                new InterventionTemplate{ InterventionTemplateId=5, Name="Install Water Pump", Hours=80, Cost=1200.00M },
+                new InterventionTemplate{ InterventionTemplateId=6, Name="Supply High-Volume Water Filter and Train Users", Hours=1, Cost=1.00M },
+                new InterventionTemplate{ InterventionTemplateId=7, Name="Prepare Sewerage Trench", Hours=50, Cost=0.00M }
             };
             interventionTemplates.ForEach(s => context.InterventionTemplate.Add(s));
             context.SaveChanges();
