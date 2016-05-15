@@ -94,7 +94,6 @@
   <ItemGroup>
     <Content Include="Database.mdf" />
     <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
   </ItemGroup>
