@@ -69,11 +69,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             var users = context.DraftAppUser.ToList();
             var clients = context.Client.ToList();
             var templates = context.InterventionTemplate.ToList();
-            List<string> names = new List<string>();
-            foreach (var template in templates)
-            {
-                names.Add(template.Name);
-            }
+            var names = templates.Select(template => template.Name).ToList();
 
             var interventionFaker = new Faker<Intervention>("en_AU")
                 .RuleFor(u => u.Name, f => f.PickRandom(names))
