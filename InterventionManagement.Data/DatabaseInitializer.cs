@@ -81,6 +81,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
                 .RuleFor(u => u.Hours, f => f.Random.Number(0, 10))
                 .RuleFor(u => u.Cost, f => f.Random.Number(0, 100))
                 .RuleFor(u => u.Proposer, f => f.PickRandom(users))
+                .RuleFor(u => u.Approver, f => f.PickRandom(users))
                 .RuleFor(u => u.Client, f => f.PickRandom(clients));
 
             var interventions = interventionFaker.Generate(10).ToList();
