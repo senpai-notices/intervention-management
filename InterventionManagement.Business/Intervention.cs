@@ -27,11 +27,11 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         // Because Proposer and Approver are from the same table (User), we need to disambiguiate it.
         // http://stackoverflow.com/questions/28570916/defining-multiple-foreign-key-for-the-same-table-in-entity-framework-code-first
 
-/*        [ForeignKey("ProposerId")]
-        [InverseProperty("ProposedInterventions")]*/
+        [ForeignKey("ProposerId")]
+        [InverseProperty("ProposedInterventions")]
         public virtual DraftAppUser Proposer { get; set; }
-/*        [ForeignKey("ApproverId")]
-        [InverseProperty("ApprovedInterventions")]*/
+        [ForeignKey("ApproverId")]
+        [InverseProperty("ApprovedInterventions")]
         public virtual DraftAppUser Approver { get; set; }
     }
 }
