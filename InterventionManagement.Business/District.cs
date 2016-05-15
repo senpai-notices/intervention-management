@@ -2,7 +2,7 @@
 {
     public class District
     {
-        public int DistrictID { get; set; }
+        public int DistrictId { get; set; }
         public string Name { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class InterventionState
     {
-        public int InterventionStateID { get; set; }
+        public int InterventionStateId { get; set; }
         public string Name { get; set; }
     }
 }
