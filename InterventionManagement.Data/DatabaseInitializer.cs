@@ -10,6 +10,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data
     {
         protected override void Seed(MainContext context)
         {
+            Randomizer.Seed = new Random(1);
             SeedClients(context);
             SeedInterventionTemplates(context);
             SeedDraftAppUsers(context);
@@ -18,7 +19,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         private void SeedClients(MainContext context)
         {
-            Randomizer.Seed = new Random(1);
             var clientFaker = new Faker<Client>("en_AU")
                             .RuleFor(c => c.Name, f => f.Name.FirstName() + " " + f.Name.LastName())
                             .RuleFor(c => c.Location, f => f.Address.StreetAddress())
@@ -55,7 +55,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
 
         private void SeedDraftAppUsers(MainContext context)
         {
-            Randomizer.Seed = new Random(1);
             var appUserFaker = new Faker<DraftAppUser>("en_AU")
                 .RuleFor(u => u.Username, f => f.Name.FirstName())
                 .RuleFor(u => u.AppUserRole, f => f.PickRandom<DraftAppUserRole>());
@@ -67,7 +66,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         // not smart enough
         private void SeedInterventions(MainContext context)
         {
-            Randomizer.Seed = new Random(1);
             var users = context.DraftAppUser.ToList();
             var clients = context.Client.ToList();
             var templates = context.InterventionTemplate.ToList();
