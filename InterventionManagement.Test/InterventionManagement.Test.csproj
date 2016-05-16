@@ -106,12 +106,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Web\InterventionManagement.Web.csproj">
-      <Project>{7cbd7ee0-6c1f-4b78-90b4-c95d1e07ffd2}</Project>
-      <Name>InterventionManagement.Web</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

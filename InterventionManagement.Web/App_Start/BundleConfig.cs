@@ -1,6 +1,7 @@
-﻿using System.Web.Optimization;
+﻿using System.Web;
+using System.Web.Optimization;
 
-namespace ASDF.ENETCare.InterventionManagement.Web
+namespace InterventionManagement.Web
 {
     public class BundleConfig
     {

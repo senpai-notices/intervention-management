@@ -1,6 +1,7 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 
-namespace ASDF.ENETCare.InterventionManagement.Web
+namespace InterventionManagement.Web
 {
     public class FilterConfig
     {
