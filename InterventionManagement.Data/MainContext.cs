@@ -8,7 +8,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
     {
         public DbSet<Client> Client { get; set; }
         public DbSet<District> District { get; set; }
-
         public DbSet<InterventionTemplate> InterventionTemplate { get; set; }
         public DbSet<Intervention> Intervention { get; set; }
         public DbSet<InterventionState> InterventionState { get; set; }
