@@ -56,12 +56,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Client newClient = new Client();
-                newClient.Name = client.Name;
-                newClient.Location = client.Location;
-                newClient.DistrictId = 6;// Assume 6 is the DistrictID of the engineer. Engineer can only add client to
+                client.DistrictId = 6;// Assume 6 is the DistrictID of the engineer. Engineer can only add client to
                                          // his/her own district. To avoid trouble selecting the wrong district, we input it here    
-                db.Client.Add(newClient);
+                db.Client.Add(client);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -95,6 +92,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                client.DistrictId = 6; // Assume 6 id the DistrictID of the engineer               
                 db.Entry(client).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
