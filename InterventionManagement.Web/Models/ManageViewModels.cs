@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace InterventionManagement.Web.Models
+namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
     public class IndexViewModel
     {

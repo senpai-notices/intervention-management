@@ -1,14 +1,13 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using InterventionManagement.Web.Models;
 
-namespace InterventionManagement.Web.Controllers
+namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     [Authorize]
     public class ManageController : Controller
