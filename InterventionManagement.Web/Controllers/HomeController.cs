@@ -26,5 +26,7 @@ namespace InterventionManagement.Web.Controllers
 
             return View();
         }
+
+
     }
 }
