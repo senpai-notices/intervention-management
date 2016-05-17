@@ -1,8 +1,9 @@
-﻿using Microsoft.Owin;
+﻿using ASDF.ENETCare.InterventionManagement.Web;
+using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(InterventionManagement.Web.Startup))]
-namespace InterventionManagement.Web
+[assembly: OwinStartup(typeof(Startup))]
+namespace ASDF.ENETCare.InterventionManagement.Web
 {
     public partial class Startup
     {

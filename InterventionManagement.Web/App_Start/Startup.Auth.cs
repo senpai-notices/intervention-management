@@ -1,13 +1,12 @@
 ﻿using System;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using InterventionManagement.Web.Models;
 
-namespace InterventionManagement.Web
+namespace ASDF.ENETCare.InterventionManagement.Web
 {
     public partial class Startup
     {
