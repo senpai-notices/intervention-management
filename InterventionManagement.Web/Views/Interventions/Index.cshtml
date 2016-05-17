@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Data.Intervention>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePerformed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingLife)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfLastVisit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionTemplateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionStateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EngineerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManagerId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePerformed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingLife)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfLastVisit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionTemplateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionStateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClientId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EngineerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManagerId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InterventionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.InterventionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.InterventionId })
+        </td>
+    </tr>
+}
+
+</table>

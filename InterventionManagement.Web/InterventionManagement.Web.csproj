@@ -199,6 +199,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EngineerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InterventionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -287,6 +288,11 @@
     <Content Include="Views\Engineer\Details.cshtml" />
     <Content Include="Views\Engineer\Edit.cshtml" />
     <Content Include="Views\Engineer\Index.cshtml" />
+    <Content Include="Views\Interventions\Create.cshtml" />
+    <Content Include="Views\Interventions\Delete.cshtml" />
+    <Content Include="Views\Interventions\Details.cshtml" />
+    <Content Include="Views\Interventions\Edit.cshtml" />
+    <Content Include="Views\Interventions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
