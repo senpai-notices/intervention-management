@@ -15,8 +15,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     {
         private MainContext db = new MainContext();
 
-        // GET: Engineer
-        public ActionResult Index()
+        // GET: Engineer views clients in his/her own district
+        public ActionResult Index() //Add int id as parameter to retrieve engineer id. Currently, we assume id is 6
         {
             
             var query = from client in db.Client where client.DistrictId == 6 select client; //Assume 6 is the DistrictID of the engineer
@@ -24,7 +24,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(query); //db.Client.ToList() => This will show all clients
         }
 
-        // GET: Engineer/Details/5
+        // GET: Engineer views details of a single client
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,7 +45,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View();
         }
 
-        // POST: Engineer/Create
+        // POST: Engineer create new client
+        // NOTE: Engineer can only add client to
+        // his/her own district
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -57,8 +59,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Client newClient = new Client();
                 newClient.Name = client.Name;
                 newClient.Location = client.Location;
-                newClient.DistrictId = 6;// Assume 6 is the DistrictID of the engineer
-
+                newClient.DistrictId = 6;// Assume 6 is the DistrictID of the engineer. Engineer can only add client to
+                                         // his/her own district. To avoid trouble selecting the wrong district, we input it here    
                 db.Client.Add(newClient);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -68,6 +70,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,6 +86,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // POST: Engineer/Edit/5
+        // Engineer edit client details, Name, Location
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -114,6 +118,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // POST: Engineer/Delete/5
+        // Engineer delete a client (out of scope but nice to have)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
