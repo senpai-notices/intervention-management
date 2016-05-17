@@ -1,30 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
+using ASDF.ENETCare.InterventionManagement.Data;
 
-
-namespace InterventionManagement.Web.Controllers
+namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
+        private MainContext db = new MainContext();
+
         // GET: Engineer
         public ActionResult Index()
         {
             
-            return View();
+            var query = from client in db.Client where client.DistrictId == 6 select client; //Assume 6 is the DistrictID of the engineer
+
+            return View(query); //db.Client.ToList() => This will show all clients
         }
 
         // GET: Engineer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
-        }
-
-        public ActionResult DashBoard()
-        {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Client.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
         }
 
         // GET: Engineer/Create
@@ -34,63 +46,91 @@ namespace InterventionManagement.Web.Controllers
         }
 
         // POST: Engineer/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                Client newClient = new Client();
+                newClient.Name = client.Name;
+                newClient.Location = client.Location;
+                newClient.DistrictId = 6;// Assume 6 is the DistrictID of the engineer
 
+                db.Client.Add(newClient);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(client);
         }
 
         // GET: Engineer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Client.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
         }
 
         // POST: Engineer/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                db.Entry(client).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(client);
         }
 
         // GET: Engineer/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Client client = db.Client.Find(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
         }
 
         // POST: Engineer/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            Client client = db.Client.Find(id);
+            db.Client.Remove(client);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
             {
-                return View();
+                db.Dispose();
             }
+            base.Dispose(disposing);
         }
     }
 }

@@ -1,0 +1,49 @@
+﻿@using ASDF.ENETCare.InterventionManagement.Data
+@model IEnumerable<ASDF.ENETCare.InterventionManagement.Data.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>My Clients</h2>
+
+<br/>
+<br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            Select action
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {id = item.ClientId}) |
+                @Html.ActionLink("Details", "Details", new {id = item.ClientId}) |
+                @Html.ActionLink("Delete", "Delete", new {id = item.ClientId})
+            </td>
+        </tr>
+    }
+
+</table>
+<br/>
+<p>
+    <input type="button" value="Create New Client" onclick="location.href='@Url.Action("Create")'"/>
+    
+    
+</p>
