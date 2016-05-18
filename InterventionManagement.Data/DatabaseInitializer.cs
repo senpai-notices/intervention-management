@@ -11,16 +11,17 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             SeedDistricts(context);
             SeedInterventionTemplates(context);
             SeedInterventionStates(context);
+            SeedAppUsers(context);
         }
 
         private void SeedClients(MainContext context)
         {
             var clients = new List<Client>
             {
-                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId=6 },
-                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId=1 },
-                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId=1 },
-                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
+                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId = 1},
+                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId = 2  },
+                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId = 3 },
+                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId = 4 }
             };
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
@@ -67,7 +68,23 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             context.SaveChanges();
         }
 
-        // TODO
+        private void SeedAppUsers(MainContext context)
+        {
+            var engineers = new List<Engineer>
+            {
+                new Engineer {Username = "alpha"},
+                new Engineer {Username = "bravo"}
+            };
+            engineers.ForEach(e => context.AppUser.Add(e));
+            context.SaveChanges();
+            var managers = new List<Manager>
+            {
+                new Manager {Username = "charlie"},
+                new Manager {Username = "delta"}
+            };
+            managers.ForEach(m => context.AppUser.Add(m));
+            context.SaveChanges();
+        }
         private void SeedInterventions()
         {
             

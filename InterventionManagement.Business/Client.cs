@@ -6,7 +6,9 @@
         public string Name { get; set; }
         public string Location { get; set; }
 
-        // foreign keys
         public int DistrictId { get; set; }
+
+        // foreign keys
+        public virtual District District { get; set; }
     }
 }
