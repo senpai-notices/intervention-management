@@ -74,12 +74,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterventionManagement.Business\InterventionManagement.Business.csproj">
-      <Project>{b10a8bb1-c8ad-4848-bcff-0951a2ecf589}</Project>
-      <Name>InterventionManagement.Business</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -96,6 +90,12 @@
     <Content Include="Database_log.ldf">
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InterventionManagement.Business\InterventionManagement.Business.csproj">
+      <Project>{b10a8bb1-c8ad-4848-bcff-0951a2ecf589}</Project>
+      <Name>InterventionManagement.Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

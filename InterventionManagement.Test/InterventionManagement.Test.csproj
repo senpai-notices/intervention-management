@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InterventionManagement.Web\InterventionManagement.Web.csproj">
-      <Project>{F6303062-649F-496A-B037-CC777DE5B1F7}</Project>
+      <Project>{f6303062-649f-496a-b037-cc777de5b1f7}</Project>
       <Name>InterventionManagement.Web</Name>
     </ProjectReference>
   </ItemGroup>

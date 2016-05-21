@@ -291,6 +291,10 @@
     <Content Include="Scripts\jquery-2.2.3.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\InterventionManagement.Business\InterventionManagement.Business.csproj">
+      <Project>{b10a8bb1-c8ad-4848-bcff-0951a2ecf589}</Project>
+      <Name>InterventionManagement.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InterventionManagement.Data\InterventionManagement.Data.csproj">
       <Project>{bbe4b9f1-7306-40d8-93e8-8d2732ce2a85}</Project>
       <Name>InterventionManagement.Data</Name>
