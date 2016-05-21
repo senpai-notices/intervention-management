@@ -6,7 +6,7 @@ using System.Data.Entity;
 using ASDF.ENETCare.InterventionManagement.Business;
 using System.Collections.Generic;
 
-namespace ASDF.ENETCare.InterventionManagement.Web.Models
+namespace ASDF.ENETCare.InterventionManagement.Business
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
@@ -50,9 +50,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
 
-            modelBuilder.Entity<Intervention>()
-                .HasRequired(i => i.EngineerId)
-                .WithMany(a => a.);
+            //modelBuilder.Entity<Intervention>()
+            //    .HasRequired(i => i.EngineerId)
+            //    .WithMany(a => a.);
         }
 
         public static ApplicationDbContext Create()

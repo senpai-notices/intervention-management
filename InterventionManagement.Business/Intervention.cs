@@ -19,6 +19,8 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public int EngineerId { get; set; }
         public int ManagerId { get; set; }
 
+        public virtual ApplicationUser Engineer { get; set; }
+        public virtual ApplicationUser Manager { get; set; } 
         public virtual InterventionTemplate InterventionTemplate { get; set; }
         public virtual InterventionState InterventionState { get; set; }
         public virtual Client Client { get; set; }
