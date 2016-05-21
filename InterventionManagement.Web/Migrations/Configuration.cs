@@ -31,6 +31,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
 
             SeedRoles(context);
             SeedUsers(context);
+            SeedDistricts(context);
+            SeedClients(context);
         }
 
         private void SeedRoles(ApplicationDbContext context)
@@ -79,6 +81,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
             var manager = new ApplicationUser { UserName = "manager@test.com", Email = "manager@test.com" };
 
             context.Users.AddOrUpdate(u => u.UserName, engineer, accountant, manager);
+            context.SaveChanges(); // important for adding to roles
 
             if (context.Users.Any())
             {
@@ -89,28 +92,29 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
                 userManager.AddToRole(manager.Id, "Manager");
             }
         }
-        //private void SeedDistricts(ApplicationDbContext context)
-        //{
-        //    context.District.AddOrUpdate(
-        //        d => d.Name,
-        //        new District { Name = "Urban Indonesia" },
-        //        new District { Name = "Rural Indonesia" },
-        //        new District { Name = "Urban Papua New Guinea" },
-        //        new District { Name = "Rural Papua New Guinea" },
-        //        new District { Name = "Sydney" },
-        //        new District { Name = "Rural New South Wales" }
-        //        );
-        //}
 
-        //private void SeedClients(ApplicationDbContext context)
-        //{
-        //    context.Client.AddOrUpdate(
-        //        c => c.Name,
-        //        new Client { Name = "Family of Josiah and Ruth", Location = "Blue tin shack, underneath wooden bridge", DistrictId = 1 },
-        //        new Client { Name = "Bambang Bima", Location = "1 Agung Road", DistrictId = 2 },
-        //        new Client { Name = "Susilo Sinta", Location = "25 Wira Street", DistrictId = 3 },
-        //        new Client { Name = "Rodney McDonald", Location = "100 Nelson Highway, Wagga Wagga", DistrictId = 4 }
-        //        );
-        //}
+        private void SeedDistricts(ApplicationDbContext context)
+        {
+            context.District.AddOrUpdate(
+                d => d.Name,
+                new District { Name = "Urban Indonesia" },
+                new District { Name = "Rural Indonesia" },
+                new District { Name = "Urban Papua New Guinea" },
+                new District { Name = "Rural Papua New Guinea" },
+                new District { Name = "Sydney" },
+                new District { Name = "Rural New South Wales" }
+                );
+        }
+
+        private void SeedClients(ApplicationDbContext context)
+        {
+            context.Client.AddOrUpdate(
+                c => c.Name,
+                new Client { Name = "Family of Josiah and Ruth", Location = "Blue tin shack, underneath wooden bridge", DistrictId = 1 },
+                new Client { Name = "Bambang Bima", Location = "1 Agung Road", DistrictId = 2 },
+                new Client { Name = "Susilo Sinta", Location = "25 Wira Street", DistrictId = 3 },
+                new Client { Name = "Rodney McDonald", Location = "100 Nelson Highway, Wagga Wagga", DistrictId = 4 }
+                );
+        }
     }
 }
