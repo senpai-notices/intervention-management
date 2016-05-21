@@ -49,11 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppUser.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="District.cs" />
+    <Compile Include="Engineer.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionState.cs" />
     <Compile Include="InterventionTemplate.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,20 +7,22 @@ namespace ASDF.ENETCare.InterventionManagement.Data
     {
         protected override void Seed(MainContext context)
         {
-            SeedClients(context);
             SeedDistricts(context);
+            SeedClients(context);
+            
             SeedInterventionTemplates(context);
             SeedInterventionStates(context);
+            SeedAppUsers(context);
         }
 
         private void SeedClients(MainContext context)
         {
             var clients = new List<Client>
             {
-                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId=6 },
-                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId=1 },
-                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId=1 },
-                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId=6 }
+                new Client{ ClientId=1, Name="Family of Josiah and Ruth", Location="Blue tin shack, underneath wooden bridge", DistrictId = 1},
+                new Client{ ClientId=2, Name="Bambang Bima", Location="1 Agung Road", DistrictId = 2  },
+                new Client{ ClientId=3, Name="Susilo Sinta", Location="25 Wira Street", DistrictId = 3 },
+                new Client{ ClientId=4, Name="Rodney McDonald", Location="100 Nelson Highway, Wagga Wagga", DistrictId = 4 }
             };
             clients.ForEach(s => context.Client.Add(s));
             context.SaveChanges();
@@ -30,12 +32,12 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             var districts = new List<District>
             {
-                new District{ DistrictId=1, Name="Urban Indonesia" },
-                new District{ DistrictId=2, Name="Rural Indonesia" },
-                new District{ DistrictId=3, Name="Urban Papua New Guinea" },
-                new District{ DistrictId=4, Name="Rural Papua New Guinea" },
-                new District{ DistrictId=5, Name="Sydney" },
-                new District{ DistrictId=6, Name="Rural New South Wales" }
+                new District{ Name="Urban Indonesia" },
+                new District{ Name="Rural Indonesia" },
+                new District{ Name="Urban Papua New Guinea" },
+                new District{ Name="Rural Papua New Guinea" },
+                new District{ Name="Sydney" },
+                new District{ Name="Rural New South Wales" }
             };
             districts.ForEach(s => context.District.Add(s));
             context.SaveChanges();
@@ -67,7 +69,23 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             context.SaveChanges();
         }
 
-        // TODO
+        private void SeedAppUsers(MainContext context)
+        {
+            var engineers = new List<Engineer>
+            {
+                new Engineer {Username = "alpha", DistrictId = 1},
+                new Engineer {Username = "bravo", DistrictId = 1}
+            };
+            engineers.ForEach(e => context.AppUser.Add(e));
+            context.SaveChanges();
+            var managers = new List<Manager>
+            {
+                new Manager {Username = "charlie", DistrictId = 2},
+                new Manager {Username = "delta", DistrictId = 2}
+            };
+            managers.ForEach(m => context.AppUser.Add(m));
+            context.SaveChanges();
+        }
         private void SeedInterventions()
         {
             

@@ -11,6 +11,8 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         public DbSet<InterventionTemplate> InterventionTemplate { get; set; }
         public DbSet<Intervention> Intervention { get; set; }
         public DbSet<InterventionState> InterventionState { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
+        
 
         public MainContext() : base("MainContext")
         {
