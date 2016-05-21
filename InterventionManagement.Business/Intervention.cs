@@ -16,11 +16,11 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public int InterventionTemplateId { get; set; }
         public int InterventionStateId { get; set; }
         public int ClientId { get; set; }
-        public int EngineerId { get; set; }
-        public int ManagerId { get; set; }
+        public string ProposerId { get; set; }
+        public string ApproverId { get; set; }
 
-        public virtual ApplicationUser Engineer { get; set; }
-        public virtual ApplicationUser Manager { get; set; } 
+        public virtual ApplicationUser Proposer { get; set; }
+        public virtual ApplicationUser Approver { get; set; } 
         public virtual InterventionTemplate InterventionTemplate { get; set; }
         public virtual InterventionState InterventionState { get; set; }
         public virtual Client Client { get; set; }

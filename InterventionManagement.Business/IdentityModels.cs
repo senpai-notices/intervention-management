@@ -50,9 +50,17 @@ namespace ASDF.ENETCare.InterventionManagement.Business
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
 
-            //modelBuilder.Entity<Intervention>()
-            //    .HasRequired(i => i.EngineerId)
-            //    .WithMany(a => a.);
+            modelBuilder.Entity<Intervention>()
+                .HasRequired(i => i.Proposer)
+                .WithMany(a => a.ProposedInterventions)
+                .HasForeignKey(a => a.ProposerId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Intervention>()
+                .HasRequired(i => i.Approver)
+                .WithMany(a => a.ApprovedInterventions)
+                .HasForeignKey(a => a.ApproverId)
+                .WillCascadeOnDelete(false);
         }
 
         public static ApplicationDbContext Create()
