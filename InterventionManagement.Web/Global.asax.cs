@@ -22,8 +22,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web
 
             // Additional custom startup methods
             SetDataDirectory();
-            InitializeDatabase();
-            CreateRoles(new List<string> { "Engineer", "Manager", "Accountant" });
         }
 
         private void SetDataDirectory()
