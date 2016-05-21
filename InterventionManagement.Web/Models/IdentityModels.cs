@@ -13,7 +13,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     {
         public int? Hours { get; set; }
         public decimal? Cost { get; set; }
-        public int DistrictId { get; set; }
+        public int? DistrictId { get; set; }
         public virtual ICollection<Intervention> ProposedInterventions { get; set; }
         public virtual ICollection<Intervention> ApprovedInterventions { get; set; }
 
@@ -49,6 +49,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+
+            modelBuilder.Entity<Intervention>()
+                .HasRequired(i => i.EngineerId)
+                .WithMany(a => a.);
         }
 
         public static ApplicationDbContext Create()
