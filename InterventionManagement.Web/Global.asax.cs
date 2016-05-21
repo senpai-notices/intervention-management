@@ -20,7 +20,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Additional custom startup methods
-            SetDataDirectory();
+            //SetDataDirectory();
+            InitializeDatabase();
         }
 
         private void SetDataDirectory()
@@ -30,10 +31,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
         }
 
-        //private void InitializeDatabase()
-        //{
-        //    ASDF.ENETCare.InterventionManagement.Data.Startup.InitializeDatabase();
-        //}
+        private void InitializeDatabase()
+        {
+            //ASDF.ENETCare.InterventionManagement.Data.Startup.InitializeDatabase();
+
+        }
 
         //public void CreateRoles(List<string> roleNames)
         //{
