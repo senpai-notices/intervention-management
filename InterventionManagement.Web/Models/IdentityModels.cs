@@ -30,6 +30,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Client> Client { get; set; }
+        public DbSet<District> District { get; set; }
+        public DbSet<InterventionTemplate> InterventionTemplate { get; set; }
+        public DbSet<Intervention> Intervention { get; set; }
+        public DbSet<InterventionState> InterventionState { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -45,11 +51,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
 
             // Custom entities
-            modelBuilder.Entity<Client>().ToTable("Clients");
-            modelBuilder.Entity<District>().ToTable("Districts");
-            modelBuilder.Entity<Intervention>().ToTable("Interventions");
-            modelBuilder.Entity<InterventionState>().ToTable("InterventionStates");
-            modelBuilder.Entity<InterventionTemplate>().ToTable("InterventionTemplates");
+            //modelBuilder.Entity<Client>().ToTable("Clients");
+            //modelBuilder.Entity<District>().ToTable("Districts");
+            //modelBuilder.Entity<Intervention>().ToTable("Interventions");
+            //modelBuilder.Entity<InterventionState>().ToTable("InterventionStates");
+            //modelBuilder.Entity<InterventionTemplate>().ToTable("InterventionTemplates");
         }
 
         public static ApplicationDbContext Create()

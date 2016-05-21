@@ -1,5 +1,4 @@
-﻿using ASDF.ENETCare.InterventionManagement.Data;
-using ASDF.ENETCare.InterventionManagement.Web.Models;
+﻿using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -31,26 +30,26 @@ namespace ASDF.ENETCare.InterventionManagement.Web
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
         }
 
-        private void InitializeDatabase()
-        {
-            ASDF.ENETCare.InterventionManagement.Data.Startup.InitializeDatabase();
-        }
+        //private void InitializeDatabase()
+        //{
+        //    ASDF.ENETCare.InterventionManagement.Data.Startup.InitializeDatabase();
+        //}
 
-        public void CreateRoles(List<string> roleNames)
-        {
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-            foreach (string roleName in roleNames)
-            {
-                CreateRole(roleName, roleManager);
-            }
-        }
+        //public void CreateRoles(List<string> roleNames)
+        //{
+        //    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+        //    foreach (string roleName in roleNames)
+        //    {
+        //        CreateRole(roleName, roleManager);
+        //    }
+        //}
 
-        public void CreateRole(string roleName, RoleManager<IdentityRole> roleManager)
-        {
-            if (!roleManager.RoleExists(roleName))
-            {
-                roleManager.Create(new IdentityRole(roleName));
-            }
-        }
+        //public void CreateRole(string roleName, RoleManager<IdentityRole> roleManager)
+        //{
+        //    if (!roleManager.RoleExists(roleName))
+        //    {
+        //        roleManager.Create(new IdentityRole(roleName));
+        //    }
+        //}
     }
 }
