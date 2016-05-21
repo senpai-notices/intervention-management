@@ -49,13 +49,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
-
-            // Custom entities
-            //modelBuilder.Entity<Client>().ToTable("Clients");
-            //modelBuilder.Entity<District>().ToTable("Districts");
-            //modelBuilder.Entity<Intervention>().ToTable("Interventions");
-            //modelBuilder.Entity<InterventionState>().ToTable("InterventionStates");
-            //modelBuilder.Entity<InterventionTemplate>().ToTable("InterventionTemplates");
         }
 
         public static ApplicationDbContext Create()
