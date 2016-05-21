@@ -1,5 +1,3 @@
-using ASDF.ENETCare.InterventionManagement.Web.Models;
-
 namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
 {
     using Business;
