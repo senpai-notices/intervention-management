@@ -7,8 +7,9 @@ namespace ASDF.ENETCare.InterventionManagement.Data
     {
         protected override void Seed(MainContext context)
         {
-            SeedClients(context);
             SeedDistricts(context);
+            SeedClients(context);
+            
             SeedInterventionTemplates(context);
             SeedInterventionStates(context);
             SeedAppUsers(context);
@@ -31,12 +32,12 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             var districts = new List<District>
             {
-                new District{ DistrictId=1, Name="Urban Indonesia" },
-                new District{ DistrictId=2, Name="Rural Indonesia" },
-                new District{ DistrictId=3, Name="Urban Papua New Guinea" },
-                new District{ DistrictId=4, Name="Rural Papua New Guinea" },
-                new District{ DistrictId=5, Name="Sydney" },
-                new District{ DistrictId=6, Name="Rural New South Wales" }
+                new District{ Name="Urban Indonesia" },
+                new District{ Name="Rural Indonesia" },
+                new District{ Name="Urban Papua New Guinea" },
+                new District{ Name="Rural Papua New Guinea" },
+                new District{ Name="Sydney" },
+                new District{ Name="Rural New South Wales" }
             };
             districts.ForEach(s => context.District.Add(s));
             context.SaveChanges();
@@ -72,15 +73,15 @@ namespace ASDF.ENETCare.InterventionManagement.Data
         {
             var engineers = new List<Engineer>
             {
-                new Engineer {Username = "alpha"},
-                new Engineer {Username = "bravo"}
+                new Engineer {Username = "alpha", DistrictId = 1},
+                new Engineer {Username = "bravo", DistrictId = 1}
             };
             engineers.ForEach(e => context.AppUser.Add(e));
             context.SaveChanges();
             var managers = new List<Manager>
             {
-                new Manager {Username = "charlie"},
-                new Manager {Username = "delta"}
+                new Manager {Username = "charlie", DistrictId = 2},
+                new Manager {Username = "delta", DistrictId = 2}
             };
             managers.ForEach(m => context.AppUser.Add(m));
             context.SaveChanges();
