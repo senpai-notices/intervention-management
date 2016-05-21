@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using ASDF.ENETCare.InterventionManagement.Business;
+using System.Collections.Generic;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
@@ -12,6 +14,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public int Hours { get; set; }
         public decimal Cost { get; set; }
         public int DistrictId { get; set; }
+        public virtual ICollection<Intervention> ProposedInterventions { get; set; }
+        public virtual ICollection<Intervention> ApprovedInterventions { get; set; }
+
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
