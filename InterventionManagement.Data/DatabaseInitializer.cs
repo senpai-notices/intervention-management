@@ -12,7 +12,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             
             SeedInterventionTemplates(context);
             SeedInterventionStates(context);
-            SeedAppUsers(context);
         }
 
         private void SeedClients(MainContext context)
@@ -69,23 +68,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data
             context.SaveChanges();
         }
 
-        private void SeedAppUsers(MainContext context)
-        {
-            var engineers = new List<Engineer>
-            {
-                new Engineer {Username = "alpha", DistrictId = 1},
-                new Engineer {Username = "bravo", DistrictId = 1}
-            };
-            engineers.ForEach(e => context.AppUser.Add(e));
-            context.SaveChanges();
-            var managers = new List<Manager>
-            {
-                new Manager {Username = "charlie", DistrictId = 2},
-                new Manager {Username = "delta", DistrictId = 2}
-            };
-            managers.ForEach(m => context.AppUser.Add(m));
-            context.SaveChanges();
-        }
         private void SeedInterventions()
         {
             

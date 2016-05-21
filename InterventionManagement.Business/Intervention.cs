@@ -22,7 +22,5 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public virtual InterventionTemplate InterventionTemplate { get; set; }
         public virtual InterventionState InterventionState { get; set; }
         public virtual Client Client { get; set; }
-        public virtual Engineer Engineer { get; set; }
-        public virtual Manager Manager { get; set; }
     }
 }
