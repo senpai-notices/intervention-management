@@ -12,9 +12,9 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
         private ApplicationDbContext _context;
         private bool _disposed = false;
 
-        public ClientRepository(ApplicationDbContext appcontext)
+        public ClientRepository(ApplicationDbContext appContext)
         {
-            _context = appcontext;
+            _context = appContext;
         }
 
         public void DeleteClient(int clientId)
