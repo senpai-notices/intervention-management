@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ASDF.ENETCare.InterventionManagement.Test
@@ -40,3 +41,4 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         }
     }
 }
+*/
