@@ -9,12 +9,12 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
-        private ApplicationDbContext context;
-        private bool disposed = false;
+        private ApplicationDbContext _context;
+        private bool _disposed = false;
 
         public ClientRepository(ApplicationDbContext appcontext)
         {
-            context = appcontext;
+            _context = appcontext;
         }
 
         public void DeleteClient(int clientId)
@@ -30,39 +30,39 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!this._disposed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
-            this.disposed = true;
+            this._disposed = true;
         }
 
         public Client GetClientById(int clientId)
         {
-            return context.Client.Find(clientId);
+            return _context.Client.Find(clientId);
         }
 
         public IEnumerable<Client> GetClients()
         {
-            return context.Client.ToList();
+            return _context.Client.ToList();
         }
 
         public void InsertClient(Client client)
         {
-            context.Client.Add(client);
+            _context.Client.Add(client);
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
         public void UpdateClient(Client client)
         {
-            context.Entry(client).State = EntityState.Modified;
+            _context.Entry(client).State = EntityState.Modified;
         }
     }
 }
