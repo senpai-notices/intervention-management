@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
@@ -19,14 +20,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = clientRepository.GetClients().Where(x=>x.DistrictId==1);
+            var clients = clientRepository.GetClients();//.Where(x=>x.DistrictId==1);
             return View(clients.ToList());
         }
 
         // GET: Engineer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Client client = clientRepository.GetClientById(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+            
         }
 
         // GET: Engineer/Create
