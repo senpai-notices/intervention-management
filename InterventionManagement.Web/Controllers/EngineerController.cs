@@ -44,18 +44,18 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Engineer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                //client.DistrictId = 6;   
+                clientRepository.InsertClient(client);
+                clientRepository.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(client);
         }
 
         // GET: Engineer/Edit/5
