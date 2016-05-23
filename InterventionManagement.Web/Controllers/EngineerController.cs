@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -25,9 +26,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ViewDetails(int id)
         {
+            
             Client client = clientRepository.GetClientById(id);
+
             if (client == null)
             {
                 return HttpNotFound();
@@ -37,7 +40,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Create
-        public ActionResult Create()
+        public ActionResult CreateClient()
         {
             return View();
         }
@@ -45,7 +48,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
+        public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
             if (ModelState.IsValid)
             {
