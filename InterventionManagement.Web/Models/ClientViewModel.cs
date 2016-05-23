@@ -10,7 +10,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     }
 
-    public class ViewClientViewModel
+    public class ClientDetailsViewModel
     {
         public string Name { get; set; }
         public string Location { get; set; }

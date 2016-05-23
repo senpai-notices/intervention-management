@@ -30,12 +30,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             
             Client client = clientRepository.GetClientById(id);
+            var clientModel = new ClientDetailsViewModel
+            {
+                Name = client.Name,
+                Location = client.Location
+            };
 
             if (client == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(clientModel);
             
         }
 
