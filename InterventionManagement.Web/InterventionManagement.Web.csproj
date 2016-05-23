@@ -285,6 +285,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Engineer\Index.cshtml" />
+    <Content Include="Views\Engineer\Details.cshtml" />
+    <Content Include="Views\Engineer\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

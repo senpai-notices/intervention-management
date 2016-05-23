@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
@@ -19,14 +20,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = clientRepository.GetClients().Where(x=>x.DistrictId==1);
+            var clients = clientRepository.GetClients();//.Where(x=>x.DistrictId==1);
             return View(clients.ToList());
         }
 
         // GET: Engineer/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Client client = clientRepository.GetClientById(id);
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(client);
+            
         }
 
         // GET: Engineer/Create
@@ -37,18 +44,18 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Engineer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                //client.DistrictId = 6;   
+                clientRepository.InsertClient(client);
+                clientRepository.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(client);
         }
 
         // GET: Engineer/Edit/5
