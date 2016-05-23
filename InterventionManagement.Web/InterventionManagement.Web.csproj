@@ -288,6 +288,7 @@
     <Content Include="Views\Engineer\Index.cshtml" />
     <Content Include="Views\Engineer\CreateClient.cshtml" />
     <Content Include="Views\Engineer\ViewDetails.cshtml" />
+    <Content Include="Views\Engineer\EditDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

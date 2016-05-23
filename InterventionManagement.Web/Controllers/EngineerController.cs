@@ -55,15 +55,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
+            var c = new CreateClientViewModel();
+            
             if (ModelState.IsValid)
             {
-                //client.DistrictId = 6;   
+                client.DistrictId = 6; //change this
+                c.Name = client.Name;
+                c.Location = client.Location;
+                  
                 clientRepository.InsertClient(client);
                 clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
+            return View(c);
         }
 
         // GET: Engineer/Edit/5
@@ -74,7 +79,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Engineer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditDetails(int id, FormCollection collection)
         {
             try
             {
