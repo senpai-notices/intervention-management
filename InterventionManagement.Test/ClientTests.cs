@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -7,6 +7,40 @@ namespace ASDF.ENETCare.InterventionManagement.Test
     [TestClass]
     public class ClientTests
     {
+
+        [TestMethod]
+        public void Invalid_Client_Name_When_NULL()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_Name_When_WhiteSpace()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_Name_When_Numbers()
+        {
+            Assert.Fail();
+        }
+    
+        [TestMethod]
+        public void Invalid_Client_Name_When_AlphaNumeric()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_Name_When_Over_Character_Limit()
+        {
+            Assert.Fail();
+        }
+
+
+
+        /*
         [TestMethod]
         public void InsertClient_ValidData_Success()
         {
@@ -41,7 +75,6 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             }
         }
 
-
         [TestMethod]
         public void GetClientFields_ValidData_Success()
         {
@@ -56,6 +89,8 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             Assert.AreEqual(location, "1 Main Street, (Blue House)");
             Assert.AreEqual(districtId, 1);
         }
+    */
     }
+    
 }
-*/
+
