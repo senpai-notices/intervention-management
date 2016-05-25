@@ -38,6 +38,48 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             Assert.Fail();
         }
 
+        [TestMethod]
+        public void Invalid_Client_Location_When_NULL()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_Location_When_Whitespace()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_Location_When_Over_Character_Limit()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_District_When_NULL()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_District_When_Text()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_District_When_Negative()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Invalid_Client_District_When_Out_Of_Range()
+        {
+            //Above the assigned 4(?) districts.
+            Assert.Fail();
+        }
 
 
         /*
@@ -91,6 +133,6 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         }
     */
     }
-    
+
 }
 
