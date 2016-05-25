@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -25,19 +26,26 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ViewDetails(int id)
         {
+            
             Client client = clientRepository.GetClientById(id);
+            var clientModel = new ClientDetailsViewModel
+            {
+                Name = client.Name,
+                Location = client.Location
+            };
+
             if (client == null)
             {
                 return HttpNotFound();
             }
-            return View(client);
+            return View(clientModel);
             
         }
 
         // GET: Engineer/Create
-        public ActionResult Create()
+        public ActionResult CreateClient()
         {
             return View();
         }
@@ -45,17 +53,22 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
+        public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
+            var c = new CreateClientViewModel();
+            
             if (ModelState.IsValid)
             {
-                //client.DistrictId = 6;   
+                client.DistrictId = 6; //change this
+                c.Name = client.Name;
+                c.Location = client.Location;
+                  
                 clientRepository.InsertClient(client);
                 clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(client);
+            return View(c);
         }
 
         // GET: Engineer/Edit/5
@@ -66,7 +79,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Engineer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditDetails(int id, FormCollection collection)
         {
             try
             {

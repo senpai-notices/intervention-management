@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -24,6 +21,19 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             Assert.IsTrue(mock.Object.GetClients().Count() == 2);
         }
 
+        [TestMethod]
+        public void InsertNoClients()
+        {
+            
+        }
+
+        [TestMethod]
+        public void GetClientById()
+        { }
+
+        [TestMethod]
+        public void GetClients() { }
+
         private Mock<IClientRepository> ClientRepositoryFake()
         {
             var allClients = new List<Client>();
@@ -34,6 +44,12 @@ namespace ASDF.ENETCare.InterventionManagement.Test
                     allClients.Add(c);
                 });
             mock.Setup(x => x.GetClients()).Returns(allClients);
+            mock.Setup(x => x.GetClientById(It.IsAny<int>()))
+                .Callback((int id) =>
+                {
+                    allClients.Find(c => id == c.ClientId);
+                });
+            
             return mock;
         }
     }
