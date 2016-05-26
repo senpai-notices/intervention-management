@@ -79,7 +79,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditDetails(int id)
         {
             return View();
         }
