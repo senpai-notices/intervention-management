@@ -21,8 +21,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = clientRepository.GetClients();//.Where(x=>x.DistrictId==1);
-            return View(clients.ToList());
+            var listModel = new ClientListsViewModel {Clients = clientRepository.GetClients()};
+            //.Where(x=>x.DistrictId==1);
+            return View(listModel.Clients);
         }
 
         // GET: Engineer/Details/5
