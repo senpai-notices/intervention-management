@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
@@ -23,6 +24,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var listModel = new ClientListsViewModel {Clients = clientRepository.GetClients()};
             //.Where(x=>x.DistrictId==1);
+            
             return View(listModel.Clients);
         }
 
@@ -54,22 +56,26 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
+        public ActionResult CreateClient(CreateClientViewModel createClientViewModel)
         {
-            var c = new CreateClientViewModel();
+            //var c = new CreateClientViewModel();
             
             if (ModelState.IsValid)
             {
-                client.DistrictId = 6; //change this
-                c.Name = client.Name;
-                c.Location = client.Location;
-                  
+                Client client = new Client
+                {
+                    DistrictId = 6,//change this
+                    Name = createClientViewModel.Name,
+                    Location = createClientViewModel.Location
+                };
+                
+
                 clientRepository.InsertClient(client);
                 clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(c);
+            return View(createClientViewModel);
         }
 
         // GET: Engineer/Edit/5
