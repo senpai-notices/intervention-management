@@ -78,6 +78,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(createClientViewModel);
         }
 
+        public ActionResult ViewInterventions(int id)
+        {
+            return RedirectToAction("Index", "Intervention", new { id }); //Move to different page. id is equal to client ID. See Engineer/Details.cshtml
+
+        }
+
         // GET: Engineer/Edit/5
         public ActionResult EditDetails(int id)
         {
