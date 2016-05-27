@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -19,36 +21,54 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = clientRepository.GetClients().Where(x=>x.DistrictId==1);
+            var clients = clientRepository.GetClients();//.Where(x=>x.DistrictId==1);
             return View(clients.ToList());
         }
 
         // GET: Engineer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult ViewDetails(int id)
         {
-            return View();
+            
+            Client client = clientRepository.GetClientById(id);
+            var clientModel = new ClientDetailsViewModel
+            {
+                Name = client.Name,
+                Location = client.Location
+            };
+
+            if (client == null)
+            {
+                return HttpNotFound();
+            }
+            return View(clientModel);
+            
         }
 
         // GET: Engineer/Create
-        public ActionResult Create()
+        public ActionResult CreateClient()
         {
             return View();
         }
 
         // POST: Engineer/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
         {
-            try
+            var c = new CreateClientViewModel();
+            
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
+                client.DistrictId = 6; //change this
+                c.Name = client.Name;
+                c.Location = client.Location;
+                  
+                clientRepository.InsertClient(client);
+                clientRepository.Save();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(c);
         }
 
         // GET: Engineer/Edit/5
@@ -59,7 +79,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Engineer/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditDetails(int id, FormCollection collection)
         {
             try
             {
