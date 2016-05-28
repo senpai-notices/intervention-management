@@ -88,6 +88,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="District.cs" />
+    <Compile Include="IApplicationDbContext.cs" />
     <Compile Include="IdentityConfig.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Intervention.cs" />
@@ -96,7 +97,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClientR.cs" />
     <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\IClientR.cs" />
     <Compile Include="Repositories\IClientRepository.cs" />
+    <Compile Include="Repositories\IInterventionRepository.cs" />
+    <Compile Include="Repositories\InterventionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

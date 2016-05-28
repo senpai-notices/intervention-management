@@ -28,7 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public DbSet<Client> Client { get; set; }
         public DbSet<District> District { get; set; }

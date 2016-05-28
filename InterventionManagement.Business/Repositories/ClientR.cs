@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
-    public class ClientR
+    public class ClientR : IClientR
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public ClientR(ApplicationDbContext context)
+        public ClientR(IApplicationDbContext context)
         {
             _context = context;
         }
@@ -18,6 +18,11 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
         public IEnumerable<Client> GetClients()
         {
             return _context.Client.ToList();
+        }
+
+        public void InsertClient(Client client)
+        {
+            _context.Client.Add(client);
         }
     }
 }
