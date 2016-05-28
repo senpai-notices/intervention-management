@@ -11,6 +11,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
     {
         private readonly ApplicationDbContext _context;
         private readonly DbSet<TEntity> _dbSet;
+        private bool _disposed = false;
 
         public GenericRepository(ApplicationDbContext appContext)
         {
@@ -49,6 +50,16 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+       
+        public void Dispose()
+        {
+            if (!this._disposed)
+            {             
+               _context.Dispose();               
+            }
+            this._disposed = true;
         }
     }
 }

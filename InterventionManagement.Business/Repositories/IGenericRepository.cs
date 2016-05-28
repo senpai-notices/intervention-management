@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
-    public interface IGenericRepository<TEntity> where TEntity:class
+    public interface IGenericRepository<TEntity>: IDisposable where TEntity:class
     {
         IEnumerable<TEntity> SelectAll();
 
