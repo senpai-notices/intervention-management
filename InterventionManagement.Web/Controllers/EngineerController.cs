@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
@@ -21,8 +22,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index()
         {
-            var clients = clientRepository.GetClients();//.Where(x=>x.DistrictId==1);
-            return View(clients.ToList());
+            var listModel = new ClientListsViewModel {Clients = clientRepository.GetClients()};
+            //.Where(x=>x.DistrictId==1);
+            
+            return View(listModel.Clients);
         }
 
         // GET: Engineer/Details/5
@@ -53,26 +56,36 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateClient([Bind(Include = "ClientId,Name,Location,DistrictId")] Client client)
+        public ActionResult CreateClient(CreateClientViewModel createClientViewModel)
         {
-            var c = new CreateClientViewModel();
+            //var c = new CreateClientViewModel();
             
             if (ModelState.IsValid)
             {
-                client.DistrictId = 6; //change this
-                c.Name = client.Name;
-                c.Location = client.Location;
-                  
+                Client client = new Client
+                {
+                    DistrictId = 6,//change this
+                    Name = createClientViewModel.Name,
+                    Location = createClientViewModel.Location
+                };
+                
+
                 clientRepository.InsertClient(client);
                 clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
-            return View(c);
+            return View(createClientViewModel);
+        }
+
+        public ActionResult ViewInterventions(int id)
+        {
+            return RedirectToAction("Index", "Intervention", new { id }); //Move to different page. id is equal to client ID. See Engineer/Details.cshtml
+
         }
 
         // GET: Engineer/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditDetails(int id)
         {
             return View();
         }
