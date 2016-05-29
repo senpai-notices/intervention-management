@@ -8,27 +8,25 @@ using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private readonly IGenericRepository<Client> _clientRepository;
+        private readonly IGenericRepository<Client> clientRepository;
         
-        private int _engineerDistrictId;
         // GET: Engineer
         public EngineerController()
         {
-            
-            this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
+            this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            _engineerDistrictId = id;
-            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == _engineerDistrictId)};
-            //.Where(x=>x.DistrictId==1);
-            
+            int districtId = GetDistrictId();
+            var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll().Where(x => x.DistrictId == districtId)};
             return View(listModel);
         }
 
@@ -36,7 +34,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ViewDetails(int id)
         {
             
-            Client client = _clientRepository.GetById(id);
+            Client client = clientRepository.GetById(id);
             var clientModel = new ClientDetailsViewModel
             {
                 Id = id,
@@ -64,19 +62,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult CreateClient(CreateClientViewModel createClientViewModel)
         {
             //var c = new CreateClientViewModel();
-            
+
             if (ModelState.IsValid)
             {
                 Client client = new Client
                 {
-                    DistrictId = _engineerDistrictId,
+                    DistrictId = GetDistrictId(),
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };
                 
 
-                _clientRepository.Insert(client);
-                _clientRepository.Save();
+                clientRepository.Insert(client);
+                clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
@@ -131,6 +129,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 return View();
             }
+        }
+
+        private int GetDistrictId()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            int districtId = user.DistrictId.GetValueOrDefault();
+            return districtId;
         }
     }
 }

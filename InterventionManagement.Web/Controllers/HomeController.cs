@@ -25,7 +25,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View();
         }
 
-        public ActionResult RedirectToRoleHome(int id)
+        public ActionResult RedirectToRoleHome()
         {
             if (User.IsInRole("Accountant"))
             {
@@ -34,7 +34,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
             else if (User.IsInRole("Engineer"))
             {
-                return RedirectToAction("Index", "Engineer",new {id});
+                return RedirectToAction("Index", "Engineer");
             }
             else if (User.IsInRole("Manager"))
             {
