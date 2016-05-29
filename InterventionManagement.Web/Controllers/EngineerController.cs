@@ -15,20 +15,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private int districtId;
         private readonly IGenericRepository<Client> clientRepository;
         
         // GET: Engineer
         public EngineerController()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            districtId = user.DistrictId.GetValueOrDefault();
             this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
+            int districtId = GetDistrictId();
             var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll().Where(x => x.DistrictId == districtId)};
             return View(listModel);
         }
@@ -65,12 +62,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult CreateClient(CreateClientViewModel createClientViewModel)
         {
             //var c = new CreateClientViewModel();
-            
+
             if (ModelState.IsValid)
             {
                 Client client = new Client
                 {
-                    DistrictId = this.districtId,
+                    DistrictId = GetDistrictId(),
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };
@@ -132,6 +129,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 return View();
             }
+        }
+
+        private int GetDistrictId()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            int districtId = user.DistrictId.GetValueOrDefault();
+            return districtId;
         }
     }
 }
