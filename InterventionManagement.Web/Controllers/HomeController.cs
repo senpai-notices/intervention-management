@@ -25,30 +25,26 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View();
         }
 
-        public ActionResult Home()
+        public ActionResult RedirectToRoleHome()
         {
-            var test = HttpContext.User.IsInRole("Engineer");
-            //var user = await userManager.FindAsync(model.Email, model.Password);
-            //var roles = await UserManager.GetRolesAsync(user.Id);
-            //if (roles.Contains("Engineer"))
-            //{
-            //    return RedirectToAction("Index", "Engineer");
-            //}
-            //else if (roles.Contains("Accountant"))
-            //{
-            //    // To Do: replace when accountant controller is complete
-            //    return RedirectToLocal(returnUrl);
-            //}
-            //else if (roles.Contains("Manager"))
-            //{
-            //    // To Do: replace when manager controller is complete
-            //    return RedirectToLocal(returnUrl);
-            //}
-            //else
-            //{
-            //    return RedirectToLocal(returnUrl);
-            //}
-            return View();
+            if (User.IsInRole("Accountant"))
+            {
+                // To Do: replace when accountant controller is complete
+                return RedirectToAction("Index", "Home");
+            }
+            else if (User.IsInRole("Engineer"))
+            {
+                return RedirectToAction("Index", "Engineer");
+            }
+            else if (User.IsInRole("Manager"))
+            {
+                // To Do: replace when manager controller is complete
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

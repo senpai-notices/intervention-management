@@ -78,26 +78,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = await UserManager.FindAsync(model.Email, model.Password);
-                    var roles = await UserManager.GetRolesAsync(user.Id);
-                    if (roles.Contains("Engineer"))
-                    {
-                        return RedirectToAction("Index", "Engineer");
-                    }
-                    else if (roles.Contains("Accountant"))
-                    {
-                        // To Do: replace when accountant controller is complete
-                        return RedirectToLocal(returnUrl);
-                    }
-                    else if (roles.Contains("Manager"))
-                    {
-                        // To Do: replace when manager controller is complete
-                        return RedirectToLocal(returnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToLocal(returnUrl);
-                    }
+                    return RedirectToAction("RedirectToRoleHome", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
