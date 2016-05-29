@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Business.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -25,9 +27,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Index(int id)
         {
-            _engineerDistrictId = id;
-            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == _engineerDistrictId)};
-            //.Where(x=>x.DistrictId==1);
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            var districtId = user.DistrictId;
+            var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll().Where(x => x.DistrictId == districtId)};
             
             return View(listModel);
         }
