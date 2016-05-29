@@ -17,11 +17,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     {
         private readonly IGenericRepository<Client> _clientRepository;
         
-        private int _engineerDistrictId;
         // GET: Engineer
         public EngineerController()
         {
-            
             this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
