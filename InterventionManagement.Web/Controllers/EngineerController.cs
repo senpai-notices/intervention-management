@@ -25,7 +25,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll()};
             //.Where(x=>x.DistrictId==1);
             
-            return View(listModel.Clients);
+            return View(listModel);
         }
 
         // GET: Engineer/Details/5
