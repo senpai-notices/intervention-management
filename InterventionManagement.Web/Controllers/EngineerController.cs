@@ -13,28 +13,33 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private IGenericRepository<Client> clientRepository;
+        private readonly IGenericRepository<Client> _clientRepository;
+        
+        private int _engineerDistrictId;
         // GET: Engineer
         public EngineerController()
         {
-            this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
+            
+            this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll()};
+            _engineerDistrictId = id;
+            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == _engineerDistrictId)};
             //.Where(x=>x.DistrictId==1);
             
-            return View(listModel.Clients);
+            return View(listModel);
         }
 
         // GET: Engineer/Details/5
         public ActionResult ViewDetails(int id)
         {
             
-            Client client = clientRepository.GetById(id);
+            Client client = _clientRepository.GetById(id);
             var clientModel = new ClientDetailsViewModel
             {
+                Id = id,
                 Name = client.Name,
                 Location = client.Location
             };
@@ -64,14 +69,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 Client client = new Client
                 {
-                    DistrictId = 6,//change this
+                    DistrictId = _engineerDistrictId,
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };
                 
 
-                clientRepository.Insert(client);
-                clientRepository.Save();
+                _clientRepository.Insert(client);
+                _clientRepository.Save();
                 return RedirectToAction("Index");
             }
 

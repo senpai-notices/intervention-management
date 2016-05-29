@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Business.Client>
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.ClientListsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -16,14 +16,11 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DistrictId)
-        </th>
+        </th>      
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Clients) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -31,9 +28,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DistrictId)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "EditDetails", new { id=item.ClientId }) |
             @Html.ActionLink("Details", "ViewDetails", new { id=item.ClientId }) 

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ASDF.ENETCare.InterventionManagement.Business;
+using System.Web.Security;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -77,7 +78,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = UserManager.FindByEmail(model.Email);
+                    return RedirectToAction("RedirectToRoleHome", "Home", new {id = user.DistrictId});
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
