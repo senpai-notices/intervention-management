@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using ASDF.ENETCare.InterventionManagement.Business;
+using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -20,6 +22,32 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Home()
+        {
+            var test = HttpContext.User.IsInRole("Engineer");
+            //var user = await userManager.FindAsync(model.Email, model.Password);
+            //var roles = await UserManager.GetRolesAsync(user.Id);
+            //if (roles.Contains("Engineer"))
+            //{
+            //    return RedirectToAction("Index", "Engineer");
+            //}
+            //else if (roles.Contains("Accountant"))
+            //{
+            //    // To Do: replace when accountant controller is complete
+            //    return RedirectToLocal(returnUrl);
+            //}
+            //else if (roles.Contains("Manager"))
+            //{
+            //    // To Do: replace when manager controller is complete
+            //    return RedirectToLocal(returnUrl);
+            //}
+            //else
+            //{
+            //    return RedirectToLocal(returnUrl);
+            //}
             return View();
         }
     }
