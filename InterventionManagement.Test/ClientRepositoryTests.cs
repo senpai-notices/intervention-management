@@ -10,47 +10,82 @@ namespace ASDF.ENETCare.InterventionManagement.Test
     [TestClass]
     public class ClientRepositoryTests
     {
-        [TestMethod]
-        public void InsertClient_Two_Success()
+        private Mock<IClientRepository> _mock;
+
+        [TestInitialize]
+        public void TestInitialize()
         {
-            var mock = ClientRepositoryFake();
-
-            mock.Object.InsertClient(new Client { Name = "John Smith", Location = "53 Main St", DistrictId = 1});
-            mock.Object.InsertClient(new Client { Name = "Donald", Location = "332 First Ave", DistrictId = 1});
-
-            Assert.IsTrue(mock.Object.GetClients().Count() == 2);
+            _mock = new Mock<IClientRepository>();
         }
 
         [TestMethod]
-        public void InsertNoClients()
+        public void InsertClient_Zero_Exists()
         {
-            
+            var allClients = new List<Client>();
+            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+                .Callback((Client c) => { allClients.Add(c); });
+            _mock.Setup(x => x.GetClients()).Returns(allClients);
+
+            Assert.IsTrue(!_mock.Object.GetClients().Any());
+        }
+
+        [TestMethod]
+        public void InsertClient_One_Exists()
+        {
+            var allClients = new List<Client>();
+            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+                .Callback((Client c) => { allClients.Add(c); });
+            _mock.Setup(x => x.GetClients()).Returns(allClients);
+
+            _mock.Object.InsertClient(new Client { Name = "Donald", Location = "332 First Ave", DistrictId = 1 });
+
+            Assert.IsTrue(_mock.Object.GetClients().Count() == 1);
+            _mock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void InsertClient_Two_Exists()
+        {
+            var allClients = new List<Client>();
+            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+                .Callback((Client c) => { allClients.Add(c); });
+            _mock.Setup(x => x.GetClients()).Returns(allClients);
+
+            _mock.Object.InsertClient(new Client {Name = "John Smith", Location = "53 Main St", DistrictId = 1});
+            _mock.Object.InsertClient(new Client {Name = "Donald", Location = "332 First Ave", DistrictId = 1});
+
+            Assert.IsTrue(_mock.Object.GetClients().Count() == 2);
+            _mock.VerifyAll();
         }
 
         [TestMethod]
         public void GetClientById()
-        { }
+        {
+            _mock.Setup(x => x.GetClientById(It.IsAny<int>())).Returns(new Client());
+
+            _mock.Object.GetClientById(2);
+
+            _mock.VerifyAll();
+        }
 
         [TestMethod]
-        public void GetClients() { }
-
-        private Mock<IClientRepository> ClientRepositoryFake()
+        public void GetClients()
         {
-            var allClients = new List<Client>();
-            var mock = new Mock<IClientRepository>();
-            mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
-                .Callback((Client c) =>
-                {
-                    allClients.Add(c);
-                });
-            mock.Setup(x => x.GetClients()).Returns(allClients);
-            mock.Setup(x => x.GetClientById(It.IsAny<int>()))
-                .Callback((int id) =>
-                {
-                    allClients.Find(c => id == c.ClientId);
-                });
-            
-            return mock;
+            _mock.Setup(x => x.GetClients()).Returns(new List<Client>());
+
+            _mock.Object.GetClients();
+
+            _mock.VerifyAll();
+        }
+
+        [TestMethod]
+        public void UpdateClient()
+        {
+            _mock.Setup(x => x.UpdateClient(It.IsAny<Client>()));
+
+            _mock.Object.UpdateClient(new Client());
+
+            _mock.VerifyAll();
         }
     }
 }
