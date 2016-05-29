@@ -37,7 +37,7 @@ namespace ASDF.ENETCare.InterventionManagement.Test
                 .Callback((Client c) => { allClients.Add(c); });
             _mock.Setup(x => x.GetClients()).Returns(allClients);
 
-            _mock.Object.InsertClient(new Client { Name = "Donald", Location = "332 First Ave", DistrictId = 1 });
+            _mock.Object.InsertClient(new Client());
 
             Assert.IsTrue(_mock.Object.GetClients().Count() == 1);
             _mock.VerifyAll();
@@ -51,8 +51,8 @@ namespace ASDF.ENETCare.InterventionManagement.Test
                 .Callback((Client c) => { allClients.Add(c); });
             _mock.Setup(x => x.GetClients()).Returns(allClients);
 
-            _mock.Object.InsertClient(new Client {Name = "John Smith", Location = "53 Main St", DistrictId = 1});
-            _mock.Object.InsertClient(new Client {Name = "Donald", Location = "332 First Ave", DistrictId = 1});
+            _mock.Object.InsertClient(new Client());
+            _mock.Object.InsertClient(new Client());
 
             Assert.IsTrue(_mock.Object.GetClients().Count() == 2);
             _mock.VerifyAll();
