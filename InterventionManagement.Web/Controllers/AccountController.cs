@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ASDF.ENETCare.InterventionManagement.Business;
+using System.Web.Security;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -77,7 +78,26 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = await UserManager.FindAsync(model.Email, model.Password);
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+                    if (roles.Contains("Engineer"))
+                    {
+                        return RedirectToAction("Index", "Engineer");
+                    }
+                    else if (roles.Contains("Accountant"))
+                    {
+                        // To Do: replace when accountant controller is complete
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else if (roles.Contains("Manager"))
+                    {
+                        // To Do: replace when manager controller is complete
+                        return RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
