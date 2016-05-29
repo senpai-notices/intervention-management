@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Web.Models.ListInterventionsViewModel>
+﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Business.Intervention>
 
 @{
     ViewBag.Title = "Index";
@@ -11,17 +11,11 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.InterventionName)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.InterventionName)
-        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

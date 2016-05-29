@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ASDF.ENETCare.InterventionManagement.Business;
+using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class InterventionController : Controller
     {
+        private readonly IGenericRepository<Intervention> _interventionRepository;
+
+        public InterventionController()
+        {
+            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
+        }
+
         // GET: Intervention
         public ActionResult Index(int id)
         {
-            return View();
+            var listModel = new InterventionsListViewModel()
+            {
+                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id)
+            };
+
+            return View(listModel.Interventions);
         }
 
         // GET: Intervention/Details/5

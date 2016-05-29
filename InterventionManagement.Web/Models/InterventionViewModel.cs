@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ASDF.ENETCare.InterventionManagement.Business;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
@@ -9,13 +10,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     {
     }
 
-    public class ListInterventionsViewModel
+    public class InterventionsListViewModel
     {
-        public string InterventionName { get; set; }
-
-       
+        public IEnumerable<Intervention> Interventions { get; set; }
 
     }
+    
 
 
 }
