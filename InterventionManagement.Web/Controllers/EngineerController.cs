@@ -15,21 +15,21 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private readonly IGenericRepository<Client> _clientRepository;
+        private int districtId;
+        private readonly IGenericRepository<Client> clientRepository;
         
         // GET: Engineer
         public EngineerController()
         {
-            this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            districtId = user.DistrictId.GetValueOrDefault();
+            this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
         public ActionResult Index(int id)
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            var districtId = user.DistrictId;
             var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll().Where(x => x.DistrictId == districtId)};
-            
             return View(listModel);
         }
 
@@ -37,7 +37,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ViewDetails(int id)
         {
             
-            Client client = _clientRepository.GetById(id);
+            Client client = clientRepository.GetById(id);
             var clientModel = new ClientDetailsViewModel
             {
                 Id = id,
@@ -70,14 +70,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 Client client = new Client
                 {
-                    DistrictId = _engineerDistrictId,
+                    DistrictId = this.districtId,
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };
                 
 
-                _clientRepository.Insert(client);
-                _clientRepository.Save();
+                clientRepository.Insert(client);
+                clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
