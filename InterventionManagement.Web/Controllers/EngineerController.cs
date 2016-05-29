@@ -14,15 +14,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class EngineerController : Controller
     {
         private readonly IGenericRepository<Client> _clientRepository;
+        private int _engineerDistrictId;
         // GET: Engineer
         public EngineerController()
         {
             this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll()};
+            _engineerDistrictId = id;
+            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == id)};
             //.Where(x=>x.DistrictId==1);
             
             return View(listModel);
@@ -65,7 +67,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 Client client = new Client
                 {
-                    DistrictId = 6,//change this
+                    DistrictId = _engineerDistrictId,
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };

@@ -82,7 +82,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     var roles = await UserManager.GetRolesAsync(user.Id);
                     if (roles.Contains("Engineer"))
                     {
-                        return RedirectToAction("Index", "Engineer");
+                        return RedirectToAction("Index", "Engineer", new {id =user.DistrictId});
                     }
                     else if (roles.Contains("Accountant"))
                     {
