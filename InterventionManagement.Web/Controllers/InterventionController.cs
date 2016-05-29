@@ -9,7 +9,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class InterventionController : Controller
     {
         // GET: Intervention
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
             return View();
         }

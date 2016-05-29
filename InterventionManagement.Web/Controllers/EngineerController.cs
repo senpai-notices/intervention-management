@@ -13,16 +13,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private IGenericRepository<Client> clientRepository;
+        private readonly IGenericRepository<Client> _clientRepository;
         // GET: Engineer
         public EngineerController()
         {
-            this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
+            this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
         public ActionResult Index()
         {
-            var listModel = new ClientListsViewModel {Clients = clientRepository.SelectAll()};
+            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll()};
             //.Where(x=>x.DistrictId==1);
             
             return View(listModel.Clients);
@@ -32,9 +32,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ViewDetails(int id)
         {
             
-            Client client = clientRepository.GetById(id);
+            Client client = _clientRepository.GetById(id);
             var clientModel = new ClientDetailsViewModel
             {
+                Id = id,
                 Name = client.Name,
                 Location = client.Location
             };
@@ -70,8 +71,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 };
                 
 
-                clientRepository.Insert(client);
-                clientRepository.Save();
+                _clientRepository.Insert(client);
+                _clientRepository.Save();
                 return RedirectToAction("Index");
             }
 
