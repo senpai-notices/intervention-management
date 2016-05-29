@@ -19,13 +19,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public IEnumerable<Client> Clients { get; set; }
     }
 
-    public class ClientDetailsViewModel
+    public class ClientDetailsViewModel:CreateClientViewModel
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
-
-        public string Name { get; set; }
-        public string Location { get; set; }
     }
 
     public class CreateClientViewModel
