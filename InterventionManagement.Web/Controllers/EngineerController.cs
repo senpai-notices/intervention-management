@@ -14,17 +14,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class EngineerController : Controller
     {
         private readonly IGenericRepository<Client> _clientRepository;
+        
         private int _engineerDistrictId;
         // GET: Engineer
         public EngineerController()
         {
+            
             this._clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
         }
 
         public ActionResult Index(int id)
         {
             _engineerDistrictId = id;
-            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == id)};
+            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x=>x.DistrictId == _engineerDistrictId)};
             //.Where(x=>x.DistrictId==1);
             
             return View(listModel);

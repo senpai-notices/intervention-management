@@ -78,7 +78,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("RedirectToRoleHome", "Home");
+                    var user = UserManager.FindByEmail(model.Email);
+                    return RedirectToAction("RedirectToRoleHome", "Home", new {id = user.DistrictId});
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

@@ -50,5 +50,27 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             //}
             return View();
         }
+
+        public ActionResult RedirectToRoleHome(int id)
+        {
+            if (User.IsInRole("Accountant"))
+            {
+                // To Do: replace when accountant controller is complete
+                return RedirectToAction("Index", "Home");
+            }
+            else if (User.IsInRole("Engineer"))
+            {
+                return RedirectToAction("Index", "Engineer",new {id});
+            }
+            else if (User.IsInRole("Manager"))
+            {
+                // To Do: replace when manager controller is complete
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }
