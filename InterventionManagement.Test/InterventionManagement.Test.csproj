@@ -128,6 +128,7 @@
     <Compile Include="DataStartupTests.cs" />
     <Compile Include="DistrictTests.cs" />
     <Compile Include="EngineerTests.cs" />
+    <Compile Include="InterventionRepositoryTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
