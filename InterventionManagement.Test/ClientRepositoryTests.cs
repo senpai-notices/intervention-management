@@ -15,8 +15,8 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         {
             var mock = ClientRepositoryFake();
 
-            mock.Object.InsertClient(new Client() { Name = "John Smith", Location = "53 Main St", DistrictId = 1});
-            mock.Object.InsertClient(new Client() { Name = "Donald", Location = "332 First Ave", DistrictId = 1});
+            mock.Object.InsertClient(new Client { Name = "John Smith", Location = "53 Main St", DistrictId = 1});
+            mock.Object.InsertClient(new Client { Name = "Donald", Location = "332 First Ave", DistrictId = 1});
 
             Assert.IsTrue(mock.Object.GetClients().Count() == 2);
         }
