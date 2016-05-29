@@ -10,36 +10,36 @@ namespace ASDF.ENETCare.InterventionManagement.Test
     [TestClass]
     public class ClientRepositoryTests
     {
-        private Mock<IClientRepository> _mock;
+        private Mock<IGenericRepository<Client>> _mock;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            _mock = new Mock<IClientRepository>();
+            _mock = new Mock<IGenericRepository<Client>>();
         }
 
         [TestMethod]
         public void InsertClient_Zero_Exists()
         {
             var allClients = new List<Client>();
-            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+            _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.GetClients()).Returns(allClients);
+            _mock.Setup(x => x.SelectAll()).Returns(allClients);
 
-            Assert.IsTrue(!_mock.Object.GetClients().Any());
+            Assert.IsTrue(!_mock.Object.SelectAll().Any());
         }
 
         [TestMethod]
         public void InsertClient_One_Exists()
         {
             var allClients = new List<Client>();
-            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+            _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.GetClients()).Returns(allClients);
+            _mock.Setup(x => x.SelectAll()).Returns(allClients);
 
-            _mock.Object.InsertClient(new Client());
+            _mock.Object.Insert(new Client());
 
-            Assert.IsTrue(_mock.Object.GetClients().Count() == 1);
+            Assert.IsTrue(_mock.Object.SelectAll().Count() == 1);
             _mock.VerifyAll();
         }
 
@@ -47,23 +47,23 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         public void InsertClient_Two_Exists()
         {
             var allClients = new List<Client>();
-            _mock.Setup(x => x.InsertClient(It.IsAny<Client>()))
+            _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.GetClients()).Returns(allClients);
+            _mock.Setup(x => x.SelectAll()).Returns(allClients);
 
-            _mock.Object.InsertClient(new Client());
-            _mock.Object.InsertClient(new Client());
+            _mock.Object.Insert(new Client());
+            _mock.Object.Insert(new Client());
 
-            Assert.IsTrue(_mock.Object.GetClients().Count() == 2);
+            Assert.IsTrue(_mock.Object.SelectAll().Count() == 2);
             _mock.VerifyAll();
         }
 
         [TestMethod]
         public void GetClientById()
         {
-            _mock.Setup(x => x.GetClientById(It.IsAny<int>())).Returns(new Client());
+            _mock.Setup(x => x.GetById(It.IsAny<int>())).Returns(new Client());
 
-            _mock.Object.GetClientById(2);
+            _mock.Object.GetById(2);
 
             _mock.VerifyAll();
         }
@@ -71,9 +71,9 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         [TestMethod]
         public void GetClients()
         {
-            _mock.Setup(x => x.GetClients()).Returns(new List<Client>());
+            _mock.Setup(x => x.SelectAll()).Returns(new List<Client>());
 
-            _mock.Object.GetClients();
+            _mock.Object.SelectAll();
 
             _mock.VerifyAll();
         }
@@ -81,9 +81,9 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         [TestMethod]
         public void UpdateClient()
         {
-            _mock.Setup(x => x.UpdateClient(It.IsAny<Client>()));
+            _mock.Setup(x => x.Update(It.IsAny<Client>()));
 
-            _mock.Object.UpdateClient(new Client());
+            _mock.Object.Update(new Client());
 
             _mock.VerifyAll();
         }
