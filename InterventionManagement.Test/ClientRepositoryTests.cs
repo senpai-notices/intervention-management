@@ -15,7 +15,7 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         [TestInitialize]
         public void TestInitialize()
         {
-            _mock = new Mock<IGenericRepository<Client>>();
+            _mock = new Mock<IGenericRepository<Client>>(MockBehavior.Strict);
         }
 
         [TestMethod]
@@ -24,22 +24,22 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             var allClients = new List<Client>();
             _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.SelectAll()).Returns(allClients);
 
-            Assert.IsTrue(!_mock.Object.SelectAll().Any());
+            Assert.IsTrue(!allClients.Any());
         }
-
+        //take out selectall() and test getall
         [TestMethod]
         public void InsertClient_One_Exists()
         {
             var allClients = new List<Client>();
             _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.SelectAll()).Returns(allClients);
+            //_mock.Setup(x => x.SelectAll()).Returns(allClients);
 
             _mock.Object.Insert(new Client());
 
-            Assert.IsTrue(_mock.Object.SelectAll().Count() == 1);
+            //Assert.IsTrue(_mock.Object.SelectAll().Count() == 1);
+            Assert.IsTrue(allClients.Count == 1);
             _mock.VerifyAll();
         }
 
@@ -49,12 +49,13 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             var allClients = new List<Client>();
             _mock.Setup(x => x.Insert(It.IsAny<Client>()))
                 .Callback((Client c) => { allClients.Add(c); });
-            _mock.Setup(x => x.SelectAll()).Returns(allClients);
+            //_mock.Setup(x => x.SelectAll()).Returns(allClients);
 
             _mock.Object.Insert(new Client());
             _mock.Object.Insert(new Client());
 
-            Assert.IsTrue(_mock.Object.SelectAll().Count() == 2);
+            //Assert.IsTrue(_mock.Object.SelectAll().Count() == 2);
+            Assert.IsTrue(allClients.Count == 2);
             _mock.VerifyAll();
         }
 
