@@ -30,10 +30,10 @@
             @Html.DisplayNameFor(model => model.DateOfLastVisit)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InterventionTemplateId)
+            @Html.DisplayNameFor(model => model.InterventionTemplate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InterventionStateId)
+            @Html.DisplayNameFor(model => model.InterventionState)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProposerId)
@@ -65,16 +65,16 @@
             @Html.DisplayFor(modelItem => item.DateOfLastVisit)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterventionTemplateId)
+            @Html.DisplayFor(modelItem => item.InterventionTemplate.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterventionStateId)
+            @Html.DisplayFor(modelItem => item.InterventionState.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProposerId)
+            @Html.DisplayFor(modelItem => item.Proposer.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ApproverId)
+            @Html.DisplayFor(modelItem => item.Approver.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

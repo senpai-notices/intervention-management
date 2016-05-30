@@ -16,6 +16,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public InterventionController()
         {
             _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
+           
         }
 
         // GET: Intervention

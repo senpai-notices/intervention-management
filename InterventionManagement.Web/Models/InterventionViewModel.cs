@@ -30,10 +30,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public DateTime DateOfLastVisit { get; set; }
 
         // foreign keys
-        
-        public int InterventionTemplateId { get; set; }
-        public int InterventionStateId { get; set; }
+        [DisplayName("Intervention type")]
+        public string InterventionTemplate { get; set; }
+
+        [DisplayName("Current State")]
+        public string InterventionState { get; set; }
+
+        [DisplayName("Proposer")]
         public string ProposerId { get; set; }
+
+        [DisplayName("Approver")]
         public string ApproverId { get; set; }
 
     }
