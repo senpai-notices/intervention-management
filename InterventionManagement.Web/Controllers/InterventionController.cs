@@ -26,7 +26,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id)
             };
 
-            return View(listModel.Interventions);
+            return View(listModel);
         }
 
         // GET: Intervention/Details/5

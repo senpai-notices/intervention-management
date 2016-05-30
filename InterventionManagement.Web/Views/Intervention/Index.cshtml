@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Business.Intervention>
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.InterventionsListViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -11,11 +11,71 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePerformed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingLife)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfLastVisit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionTemplateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionStateId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProposerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApproverId)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Interventions) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePerformed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingLife)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfLastVisit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionTemplateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionStateId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProposerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApproverId)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
