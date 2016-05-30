@@ -24,6 +24,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public DateTime DatePerformed { get; set; }
         public int Hours { get; set; }
         public decimal Cost { get; set; }
+        /*Quality management*/
         public string Notes { get; set; }
         public int RemainingLife { get; set; }
         [DisplayName("Date of Last Visit")]
