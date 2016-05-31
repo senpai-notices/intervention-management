@@ -195,6 +195,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountantController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EngineerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -293,6 +294,7 @@
     <Content Include="Views\Engineer\ViewDetails.cshtml" />
     <Content Include="Views\Engineer\EditDetails.cshtml" />
     <Content Include="Views\Intervention\Index.cshtml" />
+    <Content Include="Views\Accountant\TotalCostsByEngineerReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

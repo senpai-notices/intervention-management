@@ -7,7 +7,7 @@ using ASDF.ENETCare.InterventionManagement.Business;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
-    public class TotalCostByEngineerViewModel
+    public class TotalCostsByEngineerViewModel : TotalCostByEngineerRow
     {
         public IEnumerable<TotalCostByEngineerRow> Engineers { get; }
     }
