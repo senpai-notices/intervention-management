@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
@@ -11,7 +12,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     {
     }
 
-    public class InterventionsListViewModel:CreateInterventionViewModel
+    public class InterventionsListViewModel:InterventionDetailsViewModel
     {
 
         
@@ -19,7 +20,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     }
 
-    public class CreateInterventionViewModel
+    public class InterventionDetailsViewModel
     {      
         public DateTime DatePerformed { get; set; }
         public int Hours { get; set; }
@@ -43,6 +44,15 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [DisplayName("Approver")]
         public string ApproverId { get; set; }
 
+    }
+
+    public class CreateInterventionViewModel :InterventionDetailsViewModel
+    {
+       public IEnumerable<InterventionTemplate> TemplateList { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        [DisplayName("Current State")]
+        public new string InterventionState { get; set; }
     }
 
 

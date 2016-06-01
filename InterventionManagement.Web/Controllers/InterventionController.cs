@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
@@ -12,11 +9,15 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class InterventionController : Controller
     {
         private readonly IGenericRepository<Intervention> _interventionRepository;
+        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
+        private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
+        private int _clientId;
 
         public InterventionController()
         {
             _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
-           
+            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
+            _interventionTemplateRepository = new GenericRepository<InterventionTemplate>(new ApplicationDbContext());
         }
 
         // GET: Intervention
@@ -26,7 +27,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id)
             };
-
+            _clientId = id;
             return View(listModel);
         }
 
@@ -39,7 +40,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Create
         public ActionResult Create()
         {
-            return View();
+            var createModel = new CreateInterventionViewModel
+            {
+               TemplateList = _interventionTemplateRepository.SelectAll(),
+               
+               
+            };
+            return View(createModel);
         }
 
         // POST: Intervention/Create
@@ -48,9 +55,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                //Intervention i = new Intervention();
+                //i.DatePerformed = collection["DatePerformed"];
+               
+               // _interventionRepository.Save();
+                return RedirectToAction("Index",new {id =_clientId});
             }
             catch
             {

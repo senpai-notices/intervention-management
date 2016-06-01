@@ -6,7 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

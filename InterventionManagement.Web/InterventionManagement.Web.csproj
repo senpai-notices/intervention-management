@@ -292,6 +292,7 @@
     <Content Include="Views\Engineer\ViewDetails.cshtml" />
     <Content Include="Views\Engineer\EditDetails.cshtml" />
     <Content Include="Views\Intervention\Index.cshtml" />
+    <Content Include="Views\Intervention\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

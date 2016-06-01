@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
+namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
     public interface IGenericRepository<TEntity>: IDisposable where TEntity:class
     {

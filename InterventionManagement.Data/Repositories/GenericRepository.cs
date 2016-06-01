@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ASDF.ENETCare.InterventionManagement.Business;
 
-namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
+namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity:class
     {
