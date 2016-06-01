@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ASDF.ENETCare.InterventionManagement.Test
 {
+    [Ignore]
     [TestClass]
     public class DataStartupTests
     {

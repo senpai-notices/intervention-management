@@ -14,9 +14,8 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
         public GenericRepository(ApplicationDbContext appContext)
         {
             _context = appContext;
-            this._dbSet = appContext.Set<TEntity>();
+            _dbSet = appContext.Set<TEntity>();
         }
-
 
         public IEnumerable<TEntity> SelectAll()
         {
@@ -41,7 +40,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 
         public void Delete(object id)
         {
-            TEntity existing = _dbSet.Find(id);
+            var existing = _dbSet.Find(id);
             _dbSet.Remove(existing);
         }
 
@@ -53,11 +52,11 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
        
         public void Dispose()
         {
-            if (!this._disposed)
+            if (!_disposed)
             {             
                _context.Dispose();               
             }
-            this._disposed = true;
+            _disposed = true;
         }
     }
 }

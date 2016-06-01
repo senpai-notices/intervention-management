@@ -10,7 +10,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private bool _disposed = false;
 
         public ClientRepository(ApplicationDbContext appContext)
