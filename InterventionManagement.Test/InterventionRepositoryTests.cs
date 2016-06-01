@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ASDF.ENETCare.InterventionManagement.Business;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
