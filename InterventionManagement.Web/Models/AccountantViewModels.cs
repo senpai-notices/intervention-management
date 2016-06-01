@@ -17,14 +17,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
         public TotalCostsByEngineerViewModel()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var users = new GenericRepository<ApplicationUser>(new ApplicationDbContext());
-            foreach (var user in users.SelectAll())
+            //var context = new ApplicationDbContext();
+            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            //var users = new GenericRepository<ApplicationUser>(context);
+            //foreach (var user in users.SelectAll())
+            //{
+            //    if (userManager.IsInRole(user.Id, "Engineer"))
+            //    {
+            //        Debug.WriteLine(user.Name);
+            //    }
+            //}
+            var engineerReportsRepository = new EngineerReportsRepository();
+            foreach (var id in engineerReportsRepository.GetEngineerIds())
             {
-                if (userManager.IsInRole(user.Id, "Engineer"))
-                {
-                    Debug.WriteLine(user.Id, user.Email, user.Na);
-                }
+
             }
         }
     }
