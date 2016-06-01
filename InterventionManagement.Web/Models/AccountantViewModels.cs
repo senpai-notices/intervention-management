@@ -23,7 +23,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
             {
                 if (userManager.IsInRole(user.Id, "Engineer"))
                 {
-                    Debug.WriteLine(user.Id, user.Email);
+                    Debug.WriteLine(user.Id, user.Email, user.Na);
                 }
             }
         }

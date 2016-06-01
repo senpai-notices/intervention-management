@@ -50,9 +50,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
             string password = hasher.HashPassword("testTEST12-");
             string securityStamp = "a09sXOsthox90oeE"; // needed to prevent null error http://stackoverflow.com/questions/21918000/mvc5-vs2012-identity-createidentityasync-value-cannot-be-null
 
-            var accountant = new ApplicationUser { UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = null, Cost = null, DistrictId = null };
-            var engineer = new ApplicationUser { UserName = "test@test.com", Email = "test@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 25, Cost = 1000.00M, DistrictId = 1 };
-            var manager = new ApplicationUser { UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 100, Cost = 5000.00M, DistrictId = 1 };
+            var accountant = new ApplicationUser { UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = null, Cost = null, DistrictId = null, Name = "Anthony Mackay" };
+            var engineer = new ApplicationUser { UserName = "test@test.com", Email = "test@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 25, Cost = 1000.00M, DistrictId = 1, Name = "John Smith" };
+            var manager = new ApplicationUser { UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 100, Cost = 5000.00M, DistrictId = 1, Name = "Alex Tan" };
 
             // add them, or update them if necessary
             context.Users.AddOrUpdate(u => u.UserName, engineer, accountant, manager);
