@@ -23,7 +23,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult TotalCostsByEngineerReport()
         {
             var test = new TotalCostsByEngineerViewModel();
-            return View(test);
+            return View(test.Engineers);
         }
 
         //[HttpPost]
