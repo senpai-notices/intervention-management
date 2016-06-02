@@ -34,6 +34,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(listModel);
         }
 
+        public ActionResult ViewAllInterventions()
+        {
+            var list = new InterventionsListViewModel()
+            {
+                Interventions = _interventionRepository.SelectAll().Where(x => x.ProposerId == User.Identity.GetUserId())
+            };
+
+            return View(list);
+        }
+
         // GET: Intervention/Details/5
         public ActionResult Details(int id)
         {

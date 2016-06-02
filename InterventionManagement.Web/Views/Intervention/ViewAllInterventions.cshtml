@@ -1,15 +1,12 @@
 ﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.InterventionsListViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ViewAllInterventions";
 }
 
-<h2>Index</h2>
+<h2>List of Interventions</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", new {id = Model.ClientId})
 
-</p>
 <table class="table">
     <tr>
         <th>
@@ -34,13 +31,16 @@
             @Html.DisplayNameFor(model => model.InterventionTemplate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InterventionState)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.ProposerId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ApproverId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionState)
         </th>
         <th></th>
     </tr>
@@ -69,19 +69,18 @@
             @Html.DisplayFor(modelItem => item.InterventionTemplate.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterventionState.Name)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Proposer.UserName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Approver.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.ClientId)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionState.Name)
+        </td>
+       
     </tr>
 }
 

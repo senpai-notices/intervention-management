@@ -31,6 +31,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(listModel);
         }
 
+        public ActionResult ViewAllInterventions()
+        {
+            return RedirectToAction("ViewAllInterventions", "Intervention");
+        }
+
         // GET: Engineer/Details/5
         public ActionResult ViewDetails(int id)
         {
