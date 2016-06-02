@@ -73,5 +73,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     }
 
+    public class ChangeStateViewModel
+    {
+        [DisplayName("Current Intervention State")]
+        public string CurrentInterventionState { get; set; }
+
+        [DisplayName("Select action")]
+        public string NextInterventionState { get; set; }
+        public IEnumerable<InterventionState> StateList { get; set; }
+    }
 
 }

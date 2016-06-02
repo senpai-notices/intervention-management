@@ -13,11 +13,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     {
         private readonly IGenericRepository<Intervention> _interventionRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
-
+        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
         public InterventionController()
         {
             _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());         
             _interventionTemplateRepository = new GenericRepository<InterventionTemplate>(new ApplicationDbContext());
+            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
         }
 
         // GET: Intervention
@@ -25,7 +26,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var listModel = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id),
+                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id && x.InterventionStateId !=3),
                 ClientId = id
             };
             //_clientId = id;
@@ -40,6 +41,43 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             };
 
             return View(list);
+        }
+
+        public ActionResult ChangeState(int id)
+        {
+
+            var i = _interventionRepository.GetById(id);
+            var model = new ChangeStateViewModel
+            {
+                CurrentInterventionState = i.InterventionState.Name,
+                StateList = _interventionStateRepository.SelectAll()
+            };
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ChangeState(int id, ChangeStateViewModel model)
+        {
+            var i = _interventionRepository.GetById(id);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
+                    i.ApproverId = User.Identity.GetUserId();
+
+                    _interventionRepository.Update(i);
+                    _interventionRepository.Save();
+                }
+            }
+            catch (Exception)
+            {
+                
+                return View();
+            }
+            return RedirectToAction("Index",new {id = i.ClientId});
         }
 
         // GET: Intervention/Details/5
