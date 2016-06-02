@@ -49,11 +49,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     public class CreateInterventionViewModel :InterventionDetailsViewModel
     {
-       public IEnumerable<InterventionTemplate> TemplateList { get; set; }
+        /*Hide base class members*/
+        [HiddenInput(DisplayValue = false)]
+        public new string ProposerId { get; set; } 
 
+        [HiddenInput(DisplayValue = false)]
+        public new string ApproverId { get; set; }
 
-
-
+        public IEnumerable<InterventionTemplate> TemplateList { get; set; }
     }
 
 
