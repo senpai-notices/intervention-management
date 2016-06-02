@@ -12,13 +12,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class InterventionController : Controller
     {
         private readonly IGenericRepository<Intervention> _interventionRepository;
-        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
 
         public InterventionController()
         {
-            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
-            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
+            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());         
             _interventionTemplateRepository = new GenericRepository<InterventionTemplate>(new ApplicationDbContext());
         }
 
@@ -104,10 +102,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
+            var i = _interventionRepository.GetById(id);
             var model = new EditInterventionViewModel
             {
-                InterventionId = id
+                Notes = i.Notes,
+                DateOfLastVisit = i.DateOfLastVisit,
+                RemainingLife = i.RemainingLife,
+                InterventionId = i.InterventionId,
+                ClientId = i.ClientId
             };
+
             return View(model);
         }
 
@@ -115,12 +119,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult Edit(EditInterventionViewModel model)
         {
-            try
-            {
+            //try
+            //{
                 if (ModelState.IsValid)
                 {
                     Intervention i = _interventionRepository.GetById(model.InterventionId);
-
+                    
                     i.Notes = model.Notes;
                     i.RemainingLife = model.RemainingLife;
                     i.DateOfLastVisit = model.DateOfLastVisit;
@@ -130,12 +134,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 }
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index", new {id = 1});
-            }
+                return RedirectToAction("Index", new {id =model.ClientId});
+           /* }
             catch
             {
-                return RedirectToAction("Index");
-            }
+                return View();
+            }*/
         }
 
         // GET: Intervention/Delete/5
