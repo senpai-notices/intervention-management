@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -56,15 +57,35 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             try
             {
-                //Intervention i = new Intervention();
-                //i.DatePerformed = collection["DatePerformed"];
-               
-               // _interventionRepository.Save();
+                if (ModelState.IsValid)
+                {
+
+                    Intervention i = new Intervention();
+                    i.DatePerformed = model.DatePerformed;
+                    i.Hours = model.Hours;
+                    i.Cost = model.Cost;
+                    i.Notes = model.Notes;
+                    i.RemainingLife = model.RemainingLife;
+                    i.DateOfLastVisit = model.DateOfLastVisit;
+                    i.ClientId = model.ClientId;
+
+
+                    i.InterventionStateId = 1;
+                    i.InterventionTemplateId = 1;
+
+                    i.ProposerId = User.Identity.GetUserId();
+                    i.ApproverId = User.Identity.GetUserId();
+
+
+                    _interventionRepository.Insert(i);
+                    _interventionRepository.Save();
+                }
+
                 return RedirectToAction("Index",new {id = model.ClientId});
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", new { id = model.ClientId });
             }
         }
 
