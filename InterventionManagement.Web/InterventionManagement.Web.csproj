@@ -294,6 +294,7 @@
     <Content Include="Views\Intervention\Index.cshtml" />
     <Content Include="Views\Intervention\Create.cshtml" />
     <Content Include="Views\Intervention\ViewAllInterventions.cshtml" />
+    <Content Include="Views\Intervention\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

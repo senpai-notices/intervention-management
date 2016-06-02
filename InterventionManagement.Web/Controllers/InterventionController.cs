@@ -72,10 +72,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             try
             {
                 if (ModelState.IsValid)
-                {
-                   
-
-
+                {                   
                     Intervention i = new Intervention();
                     i.DatePerformed = model.DatePerformed;
                     i.Hours = model.Hours;
@@ -107,22 +104,34 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var model = new EditInterventionViewModel {InterventionId = id};
+            return View(model);
         }
 
         // POST: Intervention/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EditInterventionViewModel model)
         {
             try
             {
+                if (ModelState.IsValid)
+                {
+                    Intervention i = _interventionRepository.GetById(model.InterventionId);
+
+                    i.Notes = model.Notes;
+                    i.RemainingLife = model.RemainingLife;
+                    i.DateOfLastVisit = model.DateOfLastVisit;
+
+                    _interventionRepository.Update(i);
+                    _interventionRepository.Save();
+                }
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new {id = model.ClientId});
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
 

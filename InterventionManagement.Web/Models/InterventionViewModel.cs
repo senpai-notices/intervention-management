@@ -27,10 +27,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public int Hours { get; set; }
         public decimal Cost { get; set; }
         /*Quality management*/
-        public string Notes { get; set; }
+        /*public string Notes { get; set; }
         public int RemainingLife { get; set; }
         [DisplayName("Date of Last Visit")]
-        public DateTime DateOfLastVisit { get; set; }
+        public DateTime DateOfLastVisit { get; set; }*/
 
         // foreign keys
         [DisplayName("Intervention type")]
@@ -44,6 +44,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
         [HiddenInput(DisplayValue = false)]
         public int ClientId { get; set; }
+
+        public string Notes { get; set; }
+        public int RemainingLife { get; set; }
+        [DisplayName("Date of Last Visit")]
+        public DateTime DateOfLastVisit { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int InterventionId { get; set; }
 
     }
 
@@ -59,6 +67,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public IEnumerable<InterventionTemplate> TemplateList { get; set; }
     }
 
+    public class EditInterventionViewModel: InterventionDetailsViewModel
+    {
+
+    }
 
 
 }
