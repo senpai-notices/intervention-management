@@ -25,9 +25,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var listModel = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id)
+                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id),
+                ClientId = id
             };
-            _clientId = id;
+            //_clientId = id;
             return View(listModel);
         }
 
@@ -38,12 +39,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Intervention/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
             var createModel = new CreateInterventionViewModel
             {
                TemplateList = _interventionTemplateRepository.SelectAll(),
-               
+               ClientId = id
                
             };
             return View(createModel);
@@ -51,7 +52,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Intervention/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(CreateInterventionViewModel model)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 //i.DatePerformed = collection["DatePerformed"];
                
                // _interventionRepository.Save();
-                return RedirectToAction("Index",new {id =_clientId});
+                return RedirectToAction("Index",new {id = model.ClientId});
             }
             catch
             {

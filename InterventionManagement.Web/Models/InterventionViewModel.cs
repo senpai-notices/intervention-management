@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using ASDF.ENETCare.InterventionManagement.Business;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
@@ -15,7 +16,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     public class InterventionsListViewModel:InterventionDetailsViewModel
     {
 
-        
+        public string InterventionState { get; set; }
         public IEnumerable<Intervention> Interventions { get; set; }
 
     }
@@ -35,14 +36,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [DisplayName("Intervention type")]
         public string InterventionTemplate { get; set; }
 
-        [DisplayName("Current State")]
-        public string InterventionState { get; set; }
-
         [DisplayName("Proposer")]
         public string ProposerId { get; set; }
 
         [DisplayName("Approver")]
         public string ApproverId { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int ClientId { get; set; }
 
     }
 
@@ -50,9 +51,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     {
        public IEnumerable<InterventionTemplate> TemplateList { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        [DisplayName("Current State")]
-        public new string InterventionState { get; set; }
+
+
+
     }
 
 
