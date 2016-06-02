@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
@@ -12,7 +14,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         private readonly IGenericRepository<Intervention> _interventionRepository;
         private readonly IGenericRepository<InterventionState> _interventionStateRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
-        private int _clientId;
 
         public InterventionController()
         {
@@ -42,12 +43,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Create
         public ActionResult Create(int id)
         {
+            
             var createModel = new CreateInterventionViewModel
             {
                TemplateList = _interventionTemplateRepository.SelectAll(),
                ClientId = id
                
             };
+
             return View(createModel);
         }
 
@@ -55,10 +58,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
         {
+            
             try
             {
                 if (ModelState.IsValid)
                 {
+                   
+
 
                     Intervention i = new Intervention();
                     i.DatePerformed = model.DatePerformed;
@@ -70,12 +76,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     i.ClientId = model.ClientId;
 
 
-                    i.InterventionStateId = 1;
-                    i.InterventionTemplateId = 1;
+                    i.InterventionStateId = 1; //New intervention will always have a state of Proposed
+                    i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
+                    i.ApproverId = User.Identity.GetUserId(); //<---
                     i.ProposerId = User.Identity.GetUserId();
-                    i.ApproverId = User.Identity.GetUserId();
-
 
                     _interventionRepository.Insert(i);
                     _interventionRepository.Save();
@@ -85,7 +90,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", new { id = model.ClientId });
+                return RedirectToAction("Index", new { id = model.ClientId});
             }
         }
 
