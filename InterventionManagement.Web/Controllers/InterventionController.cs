@@ -104,7 +104,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
-            var model = new EditInterventionViewModel {InterventionId = id};
+            var model = new EditInterventionViewModel
+            {
+                InterventionId = id
+            };
             return View(model);
         }
 
@@ -127,11 +130,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 }
                 // TODO: Add update logic here
 
-                return RedirectToAction("Index", new {id = model.ClientId});
+                return RedirectToAction("Index", new {id = 1});
             }
             catch
             {
-                return View("Index");
+                return RedirectToAction("Index");
             }
         }
 
