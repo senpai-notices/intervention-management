@@ -43,6 +43,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public string ApproverId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
+        [DisplayName("Client")]
         public int ClientId { get; set; }
 
         public string Notes { get; set; }

@@ -62,16 +62,16 @@
             @Html.DisplayFor(modelItem => item.Cost)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterventionTemplate)
+            @Html.DisplayFor(modelItem => item.InterventionTemplate.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProposerId)
+            @Html.DisplayFor(modelItem => item.Proposer.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ApproverId)
+            @Html.DisplayFor(modelItem => item.Approver.UserName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ClientId)
+            @Html.DisplayFor(modelItem => item.Client.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
@@ -86,7 +86,7 @@
             @Html.DisplayFor(modelItem => item.InterventionId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.InterventionState)
+            @Html.DisplayFor(modelItem => item.InterventionState.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
