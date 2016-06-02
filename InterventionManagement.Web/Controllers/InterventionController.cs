@@ -108,8 +108,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Notes = i.Notes,
                 DateOfLastVisit = i.DateOfLastVisit,
                 RemainingLife = i.RemainingLife,
-                InterventionId = i.InterventionId,
-                ClientId = i.ClientId
+                InterventionId = i.InterventionId,                
             };
 
             return View(model);
@@ -117,29 +116,32 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         // POST: Intervention/Edit/5
         [HttpPost]
-        public ActionResult Edit(EditInterventionViewModel model)
+        public ActionResult Edit(int id,EditInterventionViewModel model)
         {
-            //try
-            //{
+            try
+            {
+                var i = _interventionRepository.GetById(id);
                 if (ModelState.IsValid)
                 {
-                    Intervention i = _interventionRepository.GetById(model.InterventionId);
+                    
                     
                     i.Notes = model.Notes;
                     i.RemainingLife = model.RemainingLife;
                     i.DateOfLastVisit = model.DateOfLastVisit;
-
+                    
                     _interventionRepository.Update(i);
                     _interventionRepository.Save();
-                }
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index", new {id =model.ClientId});
-           /* }
+                
+                }
+
+                return RedirectToAction("Index", new { id = i.ClientId });
+
+            }
             catch
             {
                 return View();
-            }*/
+            }
         }
 
         // GET: Intervention/Delete/5
