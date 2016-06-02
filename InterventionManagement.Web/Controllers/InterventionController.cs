@@ -22,6 +22,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Intervention
+        /// <summary>
+        /// This ActionResult will list all the interventions associated with a client and are not deleted
+        /// </summary>
+        /// <param name="id">Client Id</param>
+        /// <returns></returns>
         public ActionResult Index(int id)
         {
             var listModel = new InterventionsListViewModel()
@@ -33,6 +38,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(listModel);
         }
 
+        /// <summary>
+        /// This ActionResult will list all the interventions that the engineer has created
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ViewAllInterventions()
         {
             var list = new InterventionsListViewModel()
@@ -43,6 +52,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// This ActionResult will allow an Engineer to update the state of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention - InterventionId</param>
+        /// <returns></returns>
         public ActionResult ChangeState(int id)
         {
 
@@ -56,7 +70,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// This ActionResult will update the intervention state of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention to be updated</param>
+        /// <param name="model">view model to be checked</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
@@ -86,6 +105,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to create an intervention
+        /// </summary>
+        /// <param name="id">ClientId</param>
+        /// <returns></returns>
         // GET: Intervention/Create
         public ActionResult Create(int id)
         {
@@ -100,6 +124,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(createModel);
         }
 
+        /// <summary>
+        /// This AcrionResult will create an intervention according to the model
+        /// </summary>
+        /// <param name="model">The model to be checked</param>
+        /// <returns></returns>
         // POST: Intervention/Create
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
@@ -137,6 +166,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to edit the quality management of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention to be edited - InterventionId</param>
+        /// <returns></returns>
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
@@ -152,6 +186,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to edit the quality management of the intervention based on the model
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         // POST: Intervention/Edit/5
         [HttpPost]
         public ActionResult Edit(int id,EditInterventionViewModel model)

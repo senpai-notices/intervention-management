@@ -23,6 +23,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
         }
 
+        /// <summary>
+        /// This ActionResult will list all the interventions that the Manager can approve
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             //var i = _ClientRepository.SelectAll().Where(x => x.DistrictId == GetDistrictId());
@@ -34,7 +38,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
 
-
+        /// <summary>
+        /// This ActionResult will allow the manager to update the state of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention to be updated - InterfventionId</param>
+        /// <returns></returns>
         public ActionResult ChangeState(int id)
         {
 
@@ -49,6 +57,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// This ActionResult will allow the manager to update the state of the intervention based on the model and then 
+        /// redirect back to the index page
+        /// </summary>
+        /// <param name="id">Id of the intervention to be updated - InterventionId</param>
+        /// <param name="model">Model to be checked</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
