@@ -1,5 +1,6 @@
 ﻿
 using System;
+using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Validatores;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ASDF.ENETCare.InterventionManagement.Test
@@ -11,51 +12,84 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         [TestMethod]
         public void Invalid_Client_Name_When_NULL()
         {
-            Assert.Fail();
+            string name = null;
+            bool results = ClientValidator.ValidateName(name);
+
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_WhiteSpace()
         {
-            Assert.Fail();
+            string name = " ";
+            bool results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
+
+            name = "               ";
+            results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_Numbers()
         {
-            Assert.Fail();
+            string name = "123456";
+            bool results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
         }
     
         [TestMethod]
         public void Invalid_Client_Name_When_AlphaNumeric()
         {
-            Assert.Fail();
+            string name = "Nathan123456";
+            bool results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
+
+            name = "123456Nathan";
+            results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_Over_Character_Limit()
         {
-            Assert.Fail();
+            // TODO: Replace string length with max name variable from config file.
+            string name = new String('A',101);
+            bool results = ClientValidator.ValidateName(name);
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_NULL()
         {
-            Assert.Fail();
+            string loc = null;
+            bool results = ClientValidator.ValidateName(loc);
+
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_Whitespace()
         {
-            Assert.Fail();
+            string loc = " ";
+            bool results = ClientValidator.ValidateName(loc);
+            Assert.IsFalse(results);
+
+            loc = "               ";
+            results = ClientValidator.ValidateName(loc);
+            Assert.IsFalse(results);
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_Over_Character_Limit()
         {
-            Assert.Fail();
+            // TODO: Replace string length with location char limit variable from config file.
+            string loc = new String('A', 10000);
+            bool results = ClientValidator.ValidateName(loc);
+            Assert.IsFalse(results);
         }
 
+        /* Are these required anymore?
         [TestMethod]
         public void Invalid_Client_District_When_NULL()
         {
@@ -80,58 +114,7 @@ namespace ASDF.ENETCare.InterventionManagement.Test
             //Above the assigned 4(?) districts.
             Assert.Fail();
         }
-
-
-        /*
-        [TestMethod]
-        public void InsertClient_ValidData_Success()
-        {
-            // properties we need
-            int clientId = -1;
-            bool clientSuccessfullyAdded = false;
-
-            // add a new client
-            string name = "Unit Test Man";
-            string location = "Mom's Basement";
-            int districtId = 1;
-
-            var ctw = new ClientTableWrapper();
-            ctw.addClient(name, location, districtId);
-
-            // check if client was added
-            foreach (var client in ctw.GetClients())
-            {
-                if (client.Name == name)
-                {
-                    clientId = client.ClientId;
-                    clientSuccessfullyAdded = true;
-                }
-            }
-
-            Assert.AreEqual(clientSuccessfullyAdded, true);
-
-            // delete the test client
-            if (clientSuccessfullyAdded)
-            {
-                ctw.DeleteClient(clientId);
-            }
-        }
-
-        [TestMethod]
-        public void GetClientFields_ValidData_Success()
-        {
-            var ctw = new ClientTableWrapper();
-            int clientId = 1;
-
-            string name = ctw.getClientNameByClientId(clientId);
-            string location = ctw.getClientLocationByClientId(clientId);
-            int districtId = Convert.ToInt32(ctw.getClientDistrictIdByClientId(clientId));
-
-            Assert.AreEqual(name, "Jane Doe");
-            Assert.AreEqual(location, "1 Main Street, (Blue House)");
-            Assert.AreEqual(districtId, 1);
-        }
-    */
+        */
     }
 
 }
