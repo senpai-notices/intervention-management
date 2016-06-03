@@ -97,6 +97,7 @@
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\IClientRepository.cs" />
     <Compile Include="Validators\ClientValidator.cs" />
+    <Compile Include="Validators\InterventionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
