@@ -156,6 +156,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             
             try
             {
+                GetApprovalInfo();
                 if (ModelState.IsValid)
                 {                   
                     Intervention i = new Intervention();
