@@ -154,8 +154,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult Create(CreateInterventionViewModel model)
         {
             
-            try
-            {
+/*            try
+            {*/
                 if (ModelState.IsValid)
                 {                   
                     Intervention i = new Intervention();
@@ -172,7 +172,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
                     i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
-                    i.ApproverId = i.Cost > 5000? -1 : User.Identity.GetUserId<int>();
+                    i.ApproverId = i.Cost > 5000? (int?) null : User.Identity.GetUserId<int>();
                     i.ProposerId = User.Identity.GetUserId<int>();
 
                     _interventionRepository.Insert(i);
@@ -180,11 +180,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 }
 
                 return RedirectToAction("Index",new {id = model.ClientId});
-            }
+/*            }
             catch
             {
                 return RedirectToAction("Index", new { id = model.ClientId});
-            }
+            }*/
         }
 
         /// <summary>
