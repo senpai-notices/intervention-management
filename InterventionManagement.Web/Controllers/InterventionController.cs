@@ -14,11 +14,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         private readonly IGenericRepository<Intervention> _interventionRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
         private readonly IGenericRepository<InterventionState> _interventionStateRepository;
+
         public InterventionController()
+            : this (new GenericRepository<Intervention>(new ApplicationDbContext()), 
+                  new GenericRepository<InterventionTemplate>(new ApplicationDbContext()),
+                  new GenericRepository<InterventionState>(new ApplicationDbContext()))
         {
-            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());         
-            _interventionTemplateRepository = new GenericRepository<InterventionTemplate>(new ApplicationDbContext());
-            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
+
+        }
+        public InterventionController(IGenericRepository<Intervention> interventionRepo, IGenericRepository<InterventionTemplate> interventionTemplateRepo, IGenericRepository<InterventionState> interventionStateRepo)
+        {
+            _interventionRepository = interventionRepo;
+            _interventionTemplateRepository = interventionTemplateRepo;
+            _interventionStateRepository = interventionStateRepo;
         }
 
         // GET: Intervention
