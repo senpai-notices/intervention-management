@@ -20,8 +20,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         
         // GET: Engineer
         public EngineerController()
+            : this (new GenericRepository<Client>(new ApplicationDbContext()))
         {
-            this.clientRepository = new GenericRepository<Client>(new ApplicationDbContext());
+        }
+
+        public EngineerController(IGenericRepository<Client> repo)
+        {
+            this.clientRepository = repo;
         }
 
         public ActionResult Index()
