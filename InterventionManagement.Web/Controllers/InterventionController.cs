@@ -157,25 +157,27 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 /*            try
             {*/
                 if (ModelState.IsValid)
-                {                   
-                    Intervention i = new Intervention();
-                    i.DatePerformed = model.DatePerformed;
-                    i.Hours = model.Hours;
-                    i.Cost = model.Cost;
-                    i.Notes = model.Notes;
-                    i.RemainingLife = model.RemainingLife;
-                    i.DateOfLastVisit = model.DateOfLastVisit;
-                    i.ClientId = model.ClientId;
+                {
+                    var intervention = new Intervention
+                    {
+                        DatePerformed = model.DatePerformed,
+                        Hours = model.Hours,
+                        Cost = model.Cost,
+                        Notes = model.Notes,
+                        RemainingLife = model.RemainingLife,
+                        DateOfLastVisit = model.DateOfLastVisit,
+                        ClientId = model.ClientId
+                    };
 
 
-                    i.InterventionStateId = i.Cost >5000? 1:2; 
+                    intervention.InterventionStateId = intervention.Cost >5000? 1:2; 
 
-                    i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
+                    intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
-                    i.ApproverId = i.Cost > 5000? (int?) null : User.Identity.GetUserId<int>();
-                    i.ProposerId = User.Identity.GetUserId<int>();
+                    intervention.ApproverId = intervention.Cost > 5000? (int?) null : User.Identity.GetUserId<int>();
+                    intervention.ProposerId = User.Identity.GetUserId<int>();
 
-                    _interventionRepository.Insert(i);
+                    _interventionRepository.Insert(intervention);
                     _interventionRepository.Save();
                 }
 
