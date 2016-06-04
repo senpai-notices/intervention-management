@@ -92,8 +92,8 @@ namespace ASDF.ENETCare.InterventionManagement.Business
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
             modelBuilder.Entity<CustomRole>().ToTable("Roles");
             modelBuilder.Entity<CustomUserRole>().HasKey(r => new {r.UserId, r.RoleId}).ToTable("UserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId}).ToTable("UserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+            modelBuilder.Entity<CustomUserLogin>().HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId}).ToTable("UserLogins");
+            modelBuilder.Entity<CustomUserClaim>().ToTable("UserClaims");
 
             modelBuilder.Entity<Intervention>()
                 .HasRequired(i => i.Proposer)
