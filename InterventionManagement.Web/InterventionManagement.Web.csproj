@@ -200,6 +200,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InterventionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -294,6 +295,10 @@
     <Content Include="Views\Intervention\Index.cshtml" />
     <Content Include="Views\Intervention\Create.cshtml" />
     <Content Include="Views\Intervention\ViewAllInterventions.cshtml" />
+    <Content Include="Views\Intervention\Edit.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Intervention\ChangeState.cshtml" />
+    <Content Include="Views\Manager\ChangeState.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

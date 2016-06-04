@@ -12,28 +12,36 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class InterventionController : Controller
     {
         private readonly IGenericRepository<Intervention> _interventionRepository;
-        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
-
+        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
         public InterventionController()
         {
-            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
-            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
+            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());         
             _interventionTemplateRepository = new GenericRepository<InterventionTemplate>(new ApplicationDbContext());
+            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
         }
 
         // GET: Intervention
+        /// <summary>
+        /// This ActionResult will list all the interventions associated with a client and are not deleted
+        /// </summary>
+        /// <param name="id">Client Id</param>
+        /// <returns></returns>
         public ActionResult Index(int id)
         {
             var listModel = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id),
+                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id && x.InterventionStateId !=3),
                 ClientId = id
             };
             //_clientId = id;
             return View(listModel);
         }
 
+        /// <summary>
+        /// This ActionResult will list all the interventions that the engineer has created
+        /// </summary>
+        /// <returns></returns>
         public ActionResult ViewAllInterventions()
         {
             var list = new InterventionsListViewModel()
@@ -44,12 +52,64 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(list);
         }
 
+        /// <summary>
+        /// This ActionResult will allow an Engineer to update the state of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention - InterventionId</param>
+        /// <returns></returns>
+        public ActionResult ChangeState(int id)
+        {
+
+            var i = _interventionRepository.GetById(id);
+            var model = new ChangeStateViewModel
+            {
+                CurrentInterventionState = i.InterventionState.Name,
+                StateList = _interventionStateRepository.SelectAll()
+            };
+
+
+            return View(model);
+        }
+        /// <summary>
+        /// This ActionResult will update the intervention state of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention to be updated</param>
+        /// <param name="model">view model to be checked</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ChangeState(int id, ChangeStateViewModel model)
+        {
+            var i = _interventionRepository.GetById(id);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
+                    i.ApproverId = User.Identity.GetUserId();
+
+                    _interventionRepository.Update(i);
+                    _interventionRepository.Save();
+                }
+            }
+            catch (Exception)
+            {
+                
+                return View();
+            }
+            return RedirectToAction("Index",new {id = i.ClientId});
+        }
+
         // GET: Intervention/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to create an intervention
+        /// </summary>
+        /// <param name="id">ClientId</param>
+        /// <returns></returns>
         // GET: Intervention/Create
         public ActionResult Create(int id)
         {
@@ -64,6 +124,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(createModel);
         }
 
+        /// <summary>
+        /// This AcrionResult will create an intervention according to the model
+        /// </summary>
+        /// <param name="model">The model to be checked</param>
+        /// <returns></returns>
         // POST: Intervention/Create
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
@@ -72,10 +137,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             try
             {
                 if (ModelState.IsValid)
-                {
-                   
-
-
+                {                   
                     Intervention i = new Intervention();
                     i.DatePerformed = model.DatePerformed;
                     i.Hours = model.Hours;
@@ -104,21 +166,55 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to edit the quality management of the intervention
+        /// </summary>
+        /// <param name="id">Id of the intervention to be edited - InterventionId</param>
+        /// <returns></returns>
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var i = _interventionRepository.GetById(id);
+            var model = new EditInterventionViewModel
+            {
+                Notes = i.Notes,
+                DateOfLastVisit = i.DateOfLastVisit,
+                RemainingLife = i.RemainingLife,
+                InterventionId = i.InterventionId,                
+            };
+
+            return View(model);
         }
 
+        /// <summary>
+        /// This ActionResult will allow the Engineer to edit the quality management of the intervention based on the model
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="model"></param>
+        /// <returns></returns>
         // POST: Intervention/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id,EditInterventionViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
+                var i = _interventionRepository.GetById(id);
+                if (ModelState.IsValid)
+                {
+                    
+                    
+                    i.Notes = model.Notes;
+                    i.RemainingLife = model.RemainingLife;
+                    i.DateOfLastVisit = model.DateOfLastVisit;
+                    
+                    _interventionRepository.Update(i);
+                    _interventionRepository.Save();
 
-                return RedirectToAction("Index");
+                
+                }
+
+                return RedirectToAction("Index", new { id = i.ClientId });
+
             }
             catch
             {

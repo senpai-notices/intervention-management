@@ -27,10 +27,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public int Hours { get; set; }
         public decimal Cost { get; set; }
         /*Quality management*/
-        public string Notes { get; set; }
+        /*public string Notes { get; set; }
         public int RemainingLife { get; set; }
         [DisplayName("Date of Last Visit")]
-        public DateTime DateOfLastVisit { get; set; }
+        public DateTime DateOfLastVisit { get; set; }*/
 
         // foreign keys
         [DisplayName("Intervention type")]
@@ -43,7 +43,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public string ApproverId { get; set; }
 
         [HiddenInput(DisplayValue = false)]
+        [DisplayName("Client")]
         public int ClientId { get; set; }
+
+        public string Notes { get; set; }
+        public int RemainingLife { get; set; }
+        [DisplayName("Date of Last Visit")]
+        public DateTime DateOfLastVisit { get; set; }
+
+        [HiddenInput(DisplayValue = false)]
+        public int InterventionId { get; set; }
 
     }
 
@@ -59,6 +68,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public IEnumerable<InterventionTemplate> TemplateList { get; set; }
     }
 
+    public class EditInterventionViewModel: InterventionDetailsViewModel
+    {
 
+    }
+
+    public class ChangeStateViewModel
+    {
+        [DisplayName("Current Intervention State")]
+        public string CurrentInterventionState { get; set; }
+
+        [DisplayName("Select action")]
+        public string NextInterventionState { get; set; }
+        public IEnumerable<InterventionState> StateList { get; set; }
+    }
 
 }

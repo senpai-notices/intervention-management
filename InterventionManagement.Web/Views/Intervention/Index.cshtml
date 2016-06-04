@@ -78,9 +78,9 @@
             @Html.DisplayFor(modelItem => item.Approver.UserName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.InterventionId }) |
+            @Html.ActionLink("Change state", "ChangeState", new {  id= item.InterventionId}) |
+           
         </td>
     </tr>
 }

@@ -39,7 +39,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             else if (User.IsInRole("Manager"))
             {
                 // To Do: replace when manager controller is complete
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Manager");
             }
             else
             {
