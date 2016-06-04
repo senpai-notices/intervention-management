@@ -93,10 +93,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
-                    i.ApproverId = User.Identity.GetUserId();
-
-                    _interventionRepository.Update(i);
-                    _interventionRepository.Save();
+                    if (i.Cost > 5000 && User.IsInRole("Engineer") && i.InterventionStateId !=3)
+                    {
+                        return View("ErrorApprove");
+                    }
+                    else
+                    {                       
+                        i.ApproverId = User.Identity.GetUserId();
+                        _interventionRepository.Update(i);
+                        _interventionRepository.Save();
+                    }
                 }
             }
             catch (Exception)
@@ -106,6 +112,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
             return RedirectToAction("Index",new {id = i.ClientId});
         }
+
 
         // GET: Intervention/Details/5
         public ActionResult Details(int id)
@@ -156,10 +163,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     i.ClientId = model.ClientId;
 
 
-                    i.InterventionStateId = 1; //New intervention will always have a state of Proposed
+                    i.InterventionStateId = i.Cost >5000? 1:2; 
+
                     i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
-                    i.ApproverId = User.Identity.GetUserId(); //<---
+                    i.ApproverId = i.Cost > 5000? null : User.Identity.GetUserId();
                     i.ProposerId = User.Identity.GetUserId();
 
                     _interventionRepository.Insert(i);

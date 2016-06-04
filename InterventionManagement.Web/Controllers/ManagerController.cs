@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -45,13 +46,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <returns></returns>
         public ActionResult ChangeState(int id)
         {
-
+            
             var i = _interventionRepository.GetById(id);
-            var model = new ChangeStateViewModel
-            {
-                CurrentInterventionState = i.InterventionState.Name,
-                StateList = _interventionStateRepository.SelectAll()
-            };
+                      
+                var model = new ChangeStateViewModel
+                {
+                    CurrentInterventionState = i.InterventionState.Name,
+                    StateList = _interventionStateRepository.SelectAll().Where(x => x != i.InterventionState)
+                };
 
 
             return View(model);
@@ -72,6 +74,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    
                     i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
                     i.ApproverId = User.Identity.GetUserId();
 
