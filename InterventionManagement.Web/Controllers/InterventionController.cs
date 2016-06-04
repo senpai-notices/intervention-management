@@ -152,6 +152,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {*/
                 if (ModelState.IsValid)
                 {
+                GetApprovalInfo();
                     var intervention = new Intervention
                     {
                         DatePerformed = model.DatePerformed,
@@ -163,14 +164,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                         ClientId = model.ClientId
                     };
 
-
-                    intervention.InterventionStateId = intervention.Cost >3000? 1:2; 
-
-                    intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
-
-                    intervention.ApproverId = intervention.Cost > 3000? (int?) null : User.Identity.GetUserId<int>();
+                    if (intervention.Cost > _cost || intervention.Hours > _hours)
+                    {
+                        intervention.InterventionStateId = 1;
+                        intervention.ApproverId = (int?) null;
+                    }
+                    else
+                    {
+                        intervention.InterventionStateId = 2;
+                        intervention.ApproverId = User.Identity.GetUserId<int>();
+                }
+                    
+                    intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);                    
                     intervention.ProposerId = User.Identity.GetUserId<int>();
-
                     _interventionRepo.Insert(intervention);
                 }
 
