@@ -73,8 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\GenericRepository.cs" />
-    <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Repositories\ClientRepository.cs" />
+    <Compile Include="Repositories\IClientRepository.cs" />
+    <Compile Include="Repositories\IInterventionRepository.cs" />
+    <Compile Include="Repositories\IInterventionStateRepository.cs" />
+    <Compile Include="Repositories\IInterventionTemplateRepository.cs" />
+    <Compile Include="Repositories\InterventionRepository.cs" />
+    <Compile Include="Repositories\InterventionStateRepository.cs" />
+    <Compile Include="Repositories\InterventionTemplateRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\Repository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

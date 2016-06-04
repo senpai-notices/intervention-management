@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.EnterpriseServices;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
@@ -14,16 +10,22 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class ManagerController : Controller
     {
-        private readonly IGenericRepository<Intervention> _interventionRepository;
-        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
-        private decimal? cost;
-        private int? hours;
-        // GET: Manager
+        private readonly IInterventionRepository _interventionRepo;
+        private readonly IInterventionStateRepository _interventionStateRepo;
+        private int? _hours;
+        private decimal? _cost;
 
+        // GET: Manager
         public ManagerController()
+            : this (new InterventionRepository(new ApplicationDbContext()), 
+                  new InterventionStateRepository(new ApplicationDbContext()))
         {
-            _interventionRepository = new GenericRepository<Intervention>(new ApplicationDbContext());
-            _interventionStateRepository = new GenericRepository<InterventionState>(new ApplicationDbContext());
+        }
+
+        public ManagerController(IInterventionRepository interventionRepo, IInterventionStateRepository interventionStateRepo)
+        {
+            _interventionRepo = interventionRepo;
+            _interventionStateRepo = interventionStateRepo;
         }
 
         /// <summary>
@@ -33,9 +35,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult Index()
         {
             //var i = _ClientRepository.SelectAll().Where(x => x.DistrictId == GetDistrictId());
+            GetApprovalInfo();
             var listViewModel = new InterventionsListViewModel
             {
-                Interventions = _interventionRepository.SelectAll().Where(x => x.InterventionStateId == 1)
+                Interventions = _interventionRepo.GetProposedInterventions(GetDistrictId(), _hours, _cost)
             };
             return View(listViewModel);
         }
@@ -49,14 +52,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ChangeState(int id)
         {
             
-            var i = _interventionRepository.GetById(id);
+            var i = _interventionRepo.GetById(id);
                       
                 var model = new ChangeStateViewModel
                 {
                     CurrentInterventionState = i.InterventionState.Name,
-                    StateList = _interventionStateRepository.SelectAll().Where(x => x != i.InterventionState)
+                    StateList = _interventionStateRepo.GetRemainingInterventionStates(i.InterventionState)
                 };
-
 
             return View(model);
         }
@@ -71,22 +73,21 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
-            var i = _interventionRepository.GetById(id);
+            var i = _interventionRepo.GetById(id);
             GetApprovalInfo();
             try
             {
                 if (ModelState.IsValid)
                 {
 
-                    if (i.Cost > cost || i.Hours > hours)
+                    if (i.Cost > _cost || i.Hours > _hours)
                     {
                         return View("ErrorApprove");
                     }
                     else
                     {
                         i.ApproverId = User.Identity.GetUserId<int>();
-                        _interventionRepository.Update(i);
-                        _interventionRepository.Save();
+                        _interventionRepo.Update(i);
                     }
                 }
             }
@@ -181,8 +182,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
             var user = userManager.FindById(User.Identity.GetUserId<int>());
-            cost = user.Cost;
-            hours = user.Hours;
+            _cost = user.Cost;
+            _hours = user.Hours;
         }
     }
 }

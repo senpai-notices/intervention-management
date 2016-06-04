@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
-
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
@@ -16,17 +9,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class EngineerController : Controller
     {
-        private readonly IGenericRepository<Client> _clientRepository;
+        private readonly IClientRepository _clientRepo;
         
         // GET: Engineer
         public EngineerController()
-            : this (new GenericRepository<Client>(new ApplicationDbContext()))
+            : this (new ClientRepository(new ApplicationDbContext()))
         {
         }
 
-        public EngineerController(IGenericRepository<Client> repo)
+        public EngineerController(IClientRepository clientRepo)
         {
-            this._clientRepository = repo;
+            _clientRepo = clientRepo;
         }
 
         /// <summary>
@@ -35,8 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            int districtId = GetDistrictId();
-            var listModel = new ClientListsViewModel {Clients = _clientRepository.SelectAll().Where(x => x.DistrictId == districtId)};
+            var listModel = new ClientListsViewModel {Clients = _clientRepo.GetClientsOfDistrict(GetCurrentDistrictId())};
             return View(listModel);
         }
 
@@ -58,7 +50,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ViewDetails(int id)
         {
             
-            Client client = _clientRepository.GetById(id);
+            var client = _clientRepo.GetById(id);
             var clientModel = new ClientDetailsViewModel
             {
                 Id = id,
@@ -98,16 +90,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                Client client = new Client
+                var client = new Client
                 {
-                    DistrictId = GetDistrictId(),
+                    DistrictId = GetCurrentDistrictId(),
                     Name = createClientViewModel.Name,
                     Location = createClientViewModel.Location
                 };
                 
-
-                _clientRepository.Insert(client);
-                _clientRepository.Save();
+                _clientRepo.Insert(client);
                 return RedirectToAction("Index");
             }
 
@@ -116,7 +106,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         /// <summary>
         /// This ActionResult will redirect to Intervention Controller and then it allows the Engineer to view the 
-        /// interfventions associated with this client
+        /// interventions associated with this client
         /// </summary>
         /// <param name="id">id of the client to be viewed - ClientId</param>
         /// <returns></returns>
@@ -174,7 +164,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// This method is used to get the district id of the user
         /// </summary>
         /// <returns></returns>
-        private int GetDistrictId()
+        private int GetCurrentDistrictId()
         {
             var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
             var user = userManager.FindById(User.Identity.GetUserId<int>());
