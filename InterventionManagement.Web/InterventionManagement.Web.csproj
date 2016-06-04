@@ -299,7 +299,7 @@
     <Content Include="Views\Manager\Index.cshtml" />
     <Content Include="Views\Intervention\ChangeState.cshtml" />
     <Content Include="Views\Manager\ChangeState.cshtml" />
-    <Content Include="Views\Intervention\ErrorApprove.cshtml" />
+    <Content Include="Views\Shared\ErrorApprove.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

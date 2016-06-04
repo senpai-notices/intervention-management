@@ -16,6 +16,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     {
         private readonly IGenericRepository<Intervention> _interventionRepository;
         private readonly IGenericRepository<InterventionState> _interventionStateRepository;
+        private decimal? cost;
+        private int? hours;
         // GET: Manager
 
         public ManagerController()
@@ -70,16 +72,22 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
             var i = _interventionRepository.GetById(id);
+            GetApprovalInfo();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    
-                    i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
-                    i.ApproverId = User.Identity.GetUserId();
 
-                    _interventionRepository.Update(i);
-                    _interventionRepository.Save();
+                    if (i.Cost > cost || i.Hours > hours)
+                    {
+                        return View("ErrorApprove");
+                    }
+                    else
+                    {
+                        i.ApproverId = User.Identity.GetUserId();
+                        _interventionRepository.Update(i);
+                        _interventionRepository.Save();
+                    }
                 }
             }
             catch (Exception)
@@ -167,6 +175,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             var user = userManager.FindById(User.Identity.GetUserId());
             int districtId = user.DistrictId.GetValueOrDefault();
             return districtId;
+        }
+
+        private void GetApprovalInfo()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            cost = user.Cost;
+            hours = user.Hours;
         }
     }
 }

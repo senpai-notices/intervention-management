@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -14,7 +16,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         private readonly IGenericRepository<Intervention> _interventionRepository;
         private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
         private readonly IGenericRepository<InterventionState> _interventionStateRepository;
-
+        private decimal? cost;
+        private int? hours;
         public InterventionController()
             : this (new GenericRepository<Intervention>(new ApplicationDbContext()), 
                   new GenericRepository<InterventionTemplate>(new ApplicationDbContext()),
@@ -27,6 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             _interventionRepository = interventionRepo;
             _interventionTemplateRepository = interventionTemplateRepo;
             _interventionStateRepository = interventionStateRepo;
+            
         }
 
         // GET: Intervention
@@ -87,13 +91,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
+            GetApprovalInfo();
             var i = _interventionRepository.GetById(id);
             try
             {
                 if (ModelState.IsValid)
                 {
                     i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
-                    if (i.Cost > 5000 && User.IsInRole("Engineer") && i.InterventionStateId !=3)
+                    if (i.Cost > cost || i.Hours > hours)
                     {
                         return View("ErrorApprove");
                     }
@@ -258,6 +263,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 return View();
             }
+        }
+
+
+
+
+        private void GetApprovalInfo()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId());
+            cost = user.Cost;
+            hours = user.Hours;
         }
     }
 }
