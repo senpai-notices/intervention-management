@@ -58,7 +58,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var list = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x => x.ProposerId == User.Identity.GetUserId())
+                Interventions = _interventionRepository.SelectAll().Where(x => x.ProposerId == User.Identity.GetUserId<int>())
             };
 
             return View(list);
@@ -104,7 +104,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     }
                     else
                     {                       
-                        i.ApproverId = User.Identity.GetUserId();
+                        i.ApproverId = User.Identity.GetUserId<int>();
                         _interventionRepository.Update(i);
                         _interventionRepository.Save();
                     }
@@ -172,8 +172,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
                     i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
-                    i.ApproverId = i.Cost > 5000? null : User.Identity.GetUserId();
-                    i.ProposerId = User.Identity.GetUserId();
+                    i.ApproverId = i.Cost > 5000? -1 : User.Identity.GetUserId<int>();
+                    i.ProposerId = User.Identity.GetUserId<int>();
 
                     _interventionRepository.Insert(i);
                     _interventionRepository.Save();
@@ -270,8 +270,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         private void GetApprovalInfo()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
+            var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId<int>());
             cost = user.Cost;
             hours = user.Hours;
         }

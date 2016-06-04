@@ -84,7 +84,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     }
                     else
                     {
-                        i.ApproverId = User.Identity.GetUserId();
+                        i.ApproverId = User.Identity.GetUserId<int>();
                         _interventionRepository.Update(i);
                         _interventionRepository.Save();
                     }
@@ -171,16 +171,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
         private int GetDistrictId()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
+            var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId<int>());
             int districtId = user.DistrictId.GetValueOrDefault();
             return districtId;
         }
 
         private void GetApprovalInfo()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
+            var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId<int>());
             cost = user.Cost;
             hours = user.Hours;
         }

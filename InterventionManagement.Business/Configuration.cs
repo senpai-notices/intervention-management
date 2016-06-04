@@ -30,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
         {
             if (!context.Roles.Any())
             {
-                var roleStore = new RoleStore<IdentityRole>(context);
+                /*var roleStore = new RoleStore<IdentityRole>(context);
                 var roleManager = new RoleManager<IdentityRole>(roleStore);
 
                 var accountantRole = new IdentityRole { Name = "Accountant" };
@@ -39,7 +39,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
 
                 roleManager.Create(accountantRole);
                 roleManager.Create(engineerRole);
+                roleManager.Create(managerRole);*/
+
+                var roleStore = new RoleStore<CustomRole, int, CustomUserRole>(context);
+                var roleManager = new ApplicationRoleManager(roleStore);
+
+                var accountantRole = new CustomRole { Name = "Accountant" };
+                var engineerRole = new CustomRole { Name = "Engineer" };
+                var managerRole = new CustomRole { Name = "Manager" };
+
+                roleManager.Create(accountantRole);
+                roleManager.Create(engineerRole);
                 roleManager.Create(managerRole);
+
             }
         }
 
@@ -61,8 +73,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
             if (context.Users.Any())
             {
                 // add users to roles
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
+                var userStore = new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context);
+                var userManager = new UserManager<ApplicationUser, int>(userStore);
                 userManager.AddToRole(accountant.Id, "Accountant");
                 userManager.AddToRole(engineer.Id, "Engineer");
                 userManager.AddToRole(manager.Id, "Manager");

@@ -176,8 +176,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <returns></returns>
         private int GetDistrictId()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
+            var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId<int>());
             int districtId = user.DistrictId.GetValueOrDefault();
             return districtId;
         }
