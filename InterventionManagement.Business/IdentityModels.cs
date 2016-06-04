@@ -19,8 +19,6 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public virtual ICollection<Intervention> ProposedInterventions { get; set; }
         public virtual ICollection<Intervention> ApprovedInterventions { get; set; }
 
-
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
