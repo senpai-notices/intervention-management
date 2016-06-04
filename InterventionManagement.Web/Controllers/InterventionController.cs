@@ -168,11 +168,21 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     i.ClientId = model.ClientId;
 
 
-                    i.InterventionStateId = i.Cost >5000? 1:2; 
+                    if (i.Hours > hours || i.Cost > cost)
+                    {
+                        i.ApproverId = null;
+                        i.InterventionStateId = 1;
+                    }
+                    else
+                    {
+                        i.ApproverId = User.Identity.GetUserId();
+                        i.InterventionStateId = 2;
+                    }
+                    
 
                     i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
 
-                    i.ApproverId = i.Cost > 5000? null : User.Identity.GetUserId();
+                    
                     i.ProposerId = User.Identity.GetUserId();
 
                     _interventionRepository.Insert(i);
