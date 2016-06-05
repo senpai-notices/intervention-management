@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -22,9 +23,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     }
 
     public class InterventionDetailsViewModel
-    {      
+    {
+        [DisplayName("Date Performed")]
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePerformed { get; set; }
+
+        [Required]
+        [Range(0, 9999)]
         public int Hours { get; set; }
+
+        [Required]
+        [Range(0, 99999999)]
+        [DataType(DataType.Currency)]
         public decimal Cost { get; set; }
         /*Quality management*/
         /*public string Notes { get; set; }
@@ -33,7 +45,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public DateTime DateOfLastVisit { get; set; }*/
 
         // foreign keys
-        [DisplayName("Intervention type")]
+        [DisplayName("Type")]
+        [Required]
         public string InterventionTemplate { get; set; }
 
         [DisplayName("Proposer")]
@@ -47,8 +60,15 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public int ClientId { get; set; }
 
         public string Notes { get; set; }
+
+        [DisplayName("Remaining Life")]
+        [Required]
+        [Range(0,100)]
         public int RemainingLife { get; set; }
-        [DisplayName("Date of Last Visit")]
+
+        [DisplayName("Last Visit")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfLastVisit { get; set; }
 
         [HiddenInput(DisplayValue = false)]

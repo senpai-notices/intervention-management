@@ -65,7 +65,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InterventionTemplate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.InterventionTemplate,new SelectList(Model.TemplateList,"InterventionTemplateId","Name"))
+                @Html.DropDownListFor(model => model.InterventionTemplate,new SelectList(Model.TemplateList,"InterventionTemplateId","Name"), "Please select")
                 
                 @Html.ValidationMessageFor(model => model.InterventionTemplate, "", new {@class = "text-danger"})
             </div>
@@ -91,3 +91,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index", new {id = Model.ClientId})
 </div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

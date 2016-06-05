@@ -1,15 +1,21 @@
 ﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASDF.ENETCare.InterventionManagement.Business
 {
     public class Intervention
     {
         public int InterventionId { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DatePerformed { get; set; }
         public int Hours { get; set; }
         public decimal Cost { get; set; }
         public string Notes { get; set; }
         public int RemainingLife { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DateOfLastVisit { get; set; }
 
         // foreign keys
