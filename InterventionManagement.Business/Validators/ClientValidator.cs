@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Validatores
+namespace ASDF.ENETCare.InterventionManagement.Business.Validators
 {
     public static class ClientValidator
     {

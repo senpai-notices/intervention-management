@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 
-namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
+namespace ASDF.ENETCare.InterventionManagement.Business.Validators
 {
     
     public static class InterventionValidator
@@ -43,7 +44,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
         private static bool VerifyProposerUsername(int interventionID, string username)
         {
             //TODO: Uncomment When Intervention Wrapper is done.
-            var interventionRepo = new InterventionTableWrapper();
+            var interventionRepo = new interventionRepository();
             var intervention = interventionWrapper.GetInterventionById(interventionID);
 
             string proposer = (string)intervention[0]["ProposerUsername"];

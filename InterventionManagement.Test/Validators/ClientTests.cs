@@ -1,6 +1,6 @@
 ﻿
 using System;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Validatores;
+using ASDF.ENETCare.InterventionManagement.Business.Validators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ASDF.ENETCare.InterventionManagement.Test
