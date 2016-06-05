@@ -1,6 +1,4 @@
-﻿using au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.DataLayerWrappers;
-using au.edu.uts.ASDF.ENETCare.InterventionManagement.Data.DataSets.MainDataSetTableAdapters;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 {
+    /*
     public static class InterventionValidator
     {
 
@@ -121,13 +120,12 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
         internal static bool CanEngineerCancel(int interventionID, string username)
         {
-            /* 
-            If Intervention state = Pending 
-                User that can Aprove can cancel
-                User that proposed can cancel
-            If Intervention state =  Approved
-                User that proposed can cancel
-            */
+            //If Intervention state = Pending 
+            //    User that can Aprove can cancel
+            //    User that proposed can cancel
+            //If Intervention state =  Approved
+            //    User that proposed can cancel
+            
 
             InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
             var intervention = interventionWrapper.GetInterventionById(interventionID);
@@ -168,4 +166,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
             return false;
         }
     }
+*/
 }

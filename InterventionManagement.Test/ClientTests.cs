@@ -12,81 +12,131 @@ namespace ASDF.ENETCare.InterventionManagement.Test
         [TestMethod]
         public void Invalid_Client_Name_When_NULL()
         {
-            string name = null;
-            bool results = ClientValidator.ValidateName(name);
+            try
+            {
+                string name = null;
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
 
-            Assert.IsFalse(results);
+            }
+            catch (ArgumentException)
+            { }
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_WhiteSpace()
         {
-            string name = " ";
-            bool results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            string name;
 
-            name = "               ";
-            results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            try
+            {
+                name = " ";
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){ }
+
+            try
+            {
+                name = "               ";
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){ }
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_Numbers()
         {
-            string name = "123456";
-            bool results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            try
+            {
+                string name = "123456";
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){ }
         }
     
         [TestMethod]
         public void Invalid_Client_Name_When_AlphaNumeric()
         {
-            string name = "Nathan123456";
-            bool results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            string name;
+            try
+            {
+                name = "Nathan123456";
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
 
-            name = "123456Nathan";
-            results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            try
+            {
+                name = "123456Nathan";
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
         }
 
         [TestMethod]
         public void Invalid_Client_Name_When_Over_Character_Limit()
         {
             // TODO: Replace string length with max name variable from config file.
-            string name = new String('A',101);
-            bool results = ClientValidator.ValidateName(name);
-            Assert.IsFalse(results);
+            try
+            {
+                string name = new String('A', 101);
+                ClientValidator.ValidateName(name);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_NULL()
         {
-            string loc = null;
-            bool results = ClientValidator.ValidateName(loc);
-
-            Assert.IsFalse(results);
+            try
+            {
+                string loc = null;
+                ClientValidator.ValidateName(loc);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_Whitespace()
         {
-            string loc = " ";
-            bool results = ClientValidator.ValidateName(loc);
-            Assert.IsFalse(results);
+            string loc;
 
-            loc = "               ";
-            results = ClientValidator.ValidateName(loc);
-            Assert.IsFalse(results);
+            try
+            {
+                loc = " ";
+                ClientValidator.ValidateName(loc);
+                Assert.Fail();
+
+            }
+            catch (ArgumentException){}
+
+            try
+            {
+                loc = "               ";
+                ClientValidator.ValidateName(loc);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
         }
 
         [TestMethod]
         public void Invalid_Client_Location_When_Over_Character_Limit()
         {
             // TODO: Replace string length with location char limit variable from config file.
-            string loc = new String('A', 10000);
-            bool results = ClientValidator.ValidateName(loc);
-            Assert.IsFalse(results);
+            try
+            {
+                string loc = new String('A', 10000);
+                ClientValidator.ValidateName(loc);
+                Assert.Fail();
+            }
+            catch (ArgumentException){}
         }
 
         /* Are these required anymore?
