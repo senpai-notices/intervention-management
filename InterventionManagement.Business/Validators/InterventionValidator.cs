@@ -3,13 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 
 namespace ASDF.ENETCare.InterventionManagement.Business.Validators
 {
     
     public static class InterventionValidator
     {
+
+        internal static bool ValidIntervention(Intervention intervention)
+        {
+            ValidNote(intervention.Notes);
+            ValidLife(intervention.RemainingLife);
+            ValidHours(intervention.Hours);
+            ValidCost(intervention.Cost);
+
+            return true;
+        }
+
+        internal static bool ValidStateChange(Intervention intervention)
+        {
+            // If Pending -> Approved.
+            // IF manager or Proposer
+            // If valid hours/cost approval limit.
+
+            // if Pending -> Canceled
+            // If manager or Proposer
+
+            // If approved -> Completed/Canceled
+            // If Proposer
+            return true;
+        }
 
         internal static bool ValidNote(string notes)
         {
@@ -27,12 +50,21 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
             return true;
         }
 
-        internal static bool ValidHoursAndCost(int hours, int cost)
+        internal static bool ValidHours(int hours)
         {
             //TODO: Exract max limit and place within config file
-            if (hours < 0 || hours > 1000000) throw new ArgumentException("Hours must be not be a negative number");
-            if (cost < 0 || cost > 1000000) throw new ArgumentException("Cost must be not be a negative number");
+            if (hours < 0)          throw new ArgumentException("Hours must be not be a negative number");
+            if (hours > 1000000)    throw new ArgumentException("Hours must be below 1,000,000");
 
+            return true;
+        }
+
+        internal static bool ValidCost(decimal cost)
+        {
+            //TODO: Exract max limit and place within config file
+            if (cost < 0) throw new ArgumentException("Cost must be not be a negative number");
+            if (cost > 1000000) throw new ArgumentException("Cost must be below $1,000,000");
+            
             return true;
         }
 
@@ -40,6 +72,15 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
         {
             return VerifyProposerUsername(interventionID, username);
         }
+
+
+        private static bool validUserHourCost(int userHours, int userCost, int interventionHours, int interventionCost)
+        {
+            if (userHours > interventionHours || userCost > interventionCost) return false;
+
+            return true;
+        }
+
 
         private static bool VerifyProposerUsername(int interventionID, string username)
         {
@@ -51,26 +92,6 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
 
             if (!username.Equals(proposer)) throw new ArgumentException("Insufficient Permissions to perform this action");
             return true;
-        }
-
-
-        
-
-
-        private static bool VerifyEngineerApprovalLimit(int interventionID, string username)
-        {
-            EngineerTableWrapper engineerWrapper = new EngineerTableWrapper();
-            InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-
-            var engineers = engineerWrapper.GetEngineerByEngineerUsername(username);
-            var intervention = interventionWrapper.GetInterventionById(interventionID);
-
-            int userHours = (int)engineers[0]["HoursApprovalLimit"];
-            int userCost = (int)engineers[0]["CostApprovalLimit"];
-            int intHours = (int)intervention[0]["EstimatedHours"];
-            int intCost = (int)intervention[0]["EstimatedCost"];
-
-            return validUserHourCost(userHours, userCost, intHours, intCost);
         }
 
 
@@ -91,27 +112,6 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
         }
 
 
-        private static bool validUserHourCost(int userHours, int userCost, int interventionHours, int interventionCost)
-        {
-            if (userHours > interventionHours || userCost > interventionCost) return false;
-
-            return true;
-        }
-
-
-        public static bool CanEngineerApprove(int interventionID, string username)
-        {
-            if (VerifyProposerUsername(interventionID, username))
-            {
-                if (VerifyEngineerApprovalLimit(interventionID, username))
-                {
-                    return true;
-                }
-            }
-
-            return false; // Insufficient permissions
-        }
-
         public static bool CanManagerApprove(int interventionID, string username)
         {
             if (VerifyManagerApprovalLimit(interventionID, username))
@@ -121,35 +121,6 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
 
             return false; //inuficcient permissions (not enough cost/hours)
         }
-
-        internal static bool CanEngineerCancel(int interventionID, string username)
-        {
-            //If Intervention state = Pending 
-            //    User that can Aprove can cancel
-            //    User that proposed can cancel
-            //If Intervention state =  Approved
-            //    User that proposed can cancel
-            
-
-            InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-            var intervention = interventionWrapper.GetInterventionById(interventionID);
-
-            int stateID = (int)intervention[0]["InterventionStateId"];
-
-            //Proposed
-            if (stateID == 1 && CanEngineerApprove(interventionID, username))
-            {
-                return true;
-            }
-            // Approved
-            if (stateID == 2 && CanUserComplete(interventionID, username))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         internal static bool CanManagerCancel(int interventionID, string username)
         {
             InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
