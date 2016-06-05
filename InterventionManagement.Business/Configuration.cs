@@ -1,11 +1,10 @@
-namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
-{
-    using Business;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
+namespace ASDF.ENETCare.InterventionManagement.Business
+{
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
