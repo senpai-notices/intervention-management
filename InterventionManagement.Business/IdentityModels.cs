@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using ASDF.ENETCare.InterventionManagement.Business;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
