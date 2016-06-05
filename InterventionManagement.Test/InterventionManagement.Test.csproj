@@ -98,14 +98,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientRepositoryTests.cs" />
-    <Compile Include="ClientTests.cs" />
+    <Compile Include="Validators\ClientTests.cs" />
     <Compile Include="DataStartupTests.cs" />
     <Compile Include="DistrictTests.cs" />
     <Compile Include="EngineerTests.cs" />
     <Compile Include="MiscTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="InterventionTests.cs" />
+    <Compile Include="Validators\InterventionTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

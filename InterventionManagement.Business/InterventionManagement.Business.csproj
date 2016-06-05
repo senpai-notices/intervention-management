@@ -94,8 +94,6 @@
     <Compile Include="InterventionState.cs" />
     <Compile Include="InterventionTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ClientRepository.cs" />
-    <Compile Include="Repositories\IClientRepository.cs" />
     <Compile Include="Validators\ClientValidator.cs" />
     <Compile Include="Validators\InterventionValidator.cs" />
   </ItemGroup>

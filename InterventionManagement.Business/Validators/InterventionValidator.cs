@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 {
-    /*
+    
     public static class InterventionValidator
     {
 
@@ -28,16 +28,22 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
 
         internal static bool ValidHoursAndCost(int hours, int cost)
         {
-            if (hours < 0) throw new ArgumentException("Hours must be not be a negative number");
-            if (cost < 0) throw new ArgumentException("Cost must be not be a negative number");
+            //TODO: Exract max limit and place within config file
+            if (hours < 0 || hours > 1000000) throw new ArgumentException("Hours must be not be a negative number");
+            if (cost < 0 || cost > 1000000) throw new ArgumentException("Cost must be not be a negative number");
 
             return true;
+        }
+
+        public static bool CanUserComplete(int interventionID, string username)
+        {
+            return VerifyProposerUsername(interventionID, username);
         }
 
         private static bool VerifyProposerUsername(int interventionID, string username)
         {
             //TODO: Uncomment When Intervention Wrapper is done.
-            InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
+            var interventionRepo = new InterventionTableWrapper();
             var intervention = interventionWrapper.GetInterventionById(interventionID);
 
             string proposer = (string)intervention[0]["ProposerUsername"];
@@ -47,10 +53,7 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
         }
 
 
-        public static bool CanUserComplete(int interventionID, string username)
-        {
-            return VerifyProposerUsername(interventionID, username);
-        }
+        
 
 
         private static bool VerifyEngineerApprovalLimit(int interventionID, string username)
@@ -166,5 +169,5 @@ namespace au.edu.uts.ASDF.ENETCare.InterventionManagement.Business.Helpers
             return false;
         }
     }
-*/
+
 }
