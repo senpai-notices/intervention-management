@@ -147,45 +147,45 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
         {
-            
-/*            try
-            {*/
-                if (ModelState.IsValid)
-                {
-                GetApprovalInfo();
-                    var intervention = new Intervention
-                    {
-                        DatePerformed = model.DatePerformed,
-                        Hours = model.Hours,
-                        Cost = model.Cost,
-                        Notes = model.Notes,
-                        RemainingLife = model.RemainingLife,
-                        DateOfLastVisit = model.DateOfLastVisit,
-                        ClientId = model.ClientId
-                    };
 
-                    if (intervention.Cost > _cost || intervention.Hours > _hours)
-                    {
-                        intervention.InterventionStateId = 1;
-                        intervention.ApproverId = (int?) null;
-                    }
-                    else
-                    {
-                        intervention.InterventionStateId = 2;
-                        intervention.ApproverId = User.Identity.GetUserId<int>();
-                }
-                    
-                    intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);                    
-                    intervention.ProposerId = User.Identity.GetUserId<int>();
-                    _interventionRepo.Insert(intervention);
-                }
-
-                return RedirectToAction("Index",new {id = model.ClientId});
-/*            }
-            catch
+            /*            try
+                        {*/
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", new { id = model.ClientId});
-            }*/
+                GetApprovalInfo();
+                var intervention = new Intervention
+                {
+                    DatePerformed = model.DatePerformed,
+                    Hours = model.Hours,
+                    Cost = model.Cost,
+                    Notes = model.Notes,
+                    RemainingLife = model.RemainingLife,
+                    DateOfLastVisit = model.DateOfLastVisit,
+                    ClientId = model.ClientId
+                };
+
+                if (intervention.Cost > _cost || intervention.Hours > _hours)
+                {
+                    intervention.InterventionStateId = 1;
+                    intervention.ApproverId = (int?)null;
+                }
+                else
+                {
+                    intervention.InterventionStateId = 2;
+                    intervention.ApproverId = User.Identity.GetUserId<int>();
+                }
+
+                intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
+                intervention.ProposerId = User.Identity.GetUserId<int>();
+                _interventionRepo.Insert(intervention);
+            }
+
+            return RedirectToAction("Index", new { id = model.ClientId });
+            /*            }
+                        catch
+                        {
+                            return RedirectToAction("Index", new { id = model.ClientId});
+                        }*/
         }
 
         /// <summary>
