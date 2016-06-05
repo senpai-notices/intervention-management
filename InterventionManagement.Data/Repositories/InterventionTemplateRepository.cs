@@ -7,10 +7,10 @@ using ASDF.ENETCare.InterventionManagement.Business;
 
 namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
-    public interface IClientRepository: IRepository<Client>
+    public class InterventionTemplateRepository : Repository<InterventionTemplate>, IInterventionTemplateRepository
     {
-        IEnumerable<Client> GetClientsOfDistrict(int districtId);
-
-        //IEnumerable<Client> GetPreviousClients(int currentUserId);
+        public InterventionTemplateRepository(ApplicationDbContext appContext) : base(appContext)
+        {
+        }
     }
 }

@@ -1,11 +1,12 @@
-namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
-{
-    using Business;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
+namespace ASDF.ENETCare.InterventionManagement.Business
+{
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
@@ -30,7 +31,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
         {
             if (!context.Roles.Any())
             {
-                var roleStore = new RoleStore<IdentityRole>(context);
+                /*var roleStore = new RoleStore<IdentityRole>(context);
                 var roleManager = new RoleManager<IdentityRole>(roleStore);
 
                 var accountantRole = new IdentityRole { Name = "Accountant" };
@@ -39,7 +40,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
 
                 roleManager.Create(accountantRole);
                 roleManager.Create(engineerRole);
+                roleManager.Create(managerRole);*/
+
+                var roleStore = new RoleStore<CustomRole, int, CustomUserRole>(context);
+                var roleManager = new ApplicationRoleManager(roleStore);
+
+                var accountantRole = new CustomRole { Name = "Accountant" };
+                var engineerRole = new CustomRole { Name = "Engineer" };
+                var managerRole = new CustomRole { Name = "Manager" };
+
+                roleManager.Create(accountantRole);
+                roleManager.Create(engineerRole);
                 roleManager.Create(managerRole);
+
             }
         }
 
@@ -47,25 +60,34 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Migrations
         {
             // define users
             var hasher = new PasswordHasher();
-            string password = hasher.HashPassword("testTEST12-");
-            string securityStamp = "a09sXOsthox90oeE"; // needed to prevent null error http://stackoverflow.com/questions/21918000/mvc5-vs2012-identity-createidentityasync-value-cannot-be-null
+            const string password = "testTEST12-";
 
-            var accountant = new ApplicationUser { UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = null, Cost = null, DistrictId = null };
-            var engineer = new ApplicationUser { UserName = "test@test.com", Email = "test@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 25, Cost = 1000.00M, DistrictId = 1 };
-            var manager = new ApplicationUser { UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = password, SecurityStamp = securityStamp, Hours = 100, Cost = 5000.00M, DistrictId = 1 };
+            var newUsers = new List<ApplicationUser>
+            {
+                new ApplicationUser { Name = "Adam", UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
+                new ApplicationUser { Name = "Edward", UserName = "test@test.com", Email = "test@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 1000.00M, DistrictId = 1 },
+                new ApplicationUser { Name = "Mike", UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 5000.00M, DistrictId = 1 },
+                new ApplicationUser { Name = "Anna", UserName = "accountant2@test.com", Email = "accountant2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
+                new ApplicationUser { Name = "Edgar", UserName = "test2@test.com", Email = "test2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 2000.00M, DistrictId = 2 },
+                new ApplicationUser { Name = "Mark", UserName = "manager2@test.com", Email = "manager2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 7500.00M, DistrictId = 2 }
+            };
 
-            // add them, or update them if necessary
-            context.Users.AddOrUpdate(u => u.UserName, engineer, accountant, manager);
-            context.SaveChanges(); // explicity save users, so context.Users.Any() returns true below
+            context.Users.AddOrUpdate(u => u.UserName, newUsers.ToArray());
+            context.SaveChanges();
 
             if (context.Users.Any())
             {
                 // add users to roles
-                var userStore = new UserStore<ApplicationUser>(context);
-                var userManager = new UserManager<ApplicationUser>(userStore);
-                userManager.AddToRole(accountant.Id, "Accountant");
-                userManager.AddToRole(engineer.Id, "Engineer");
-                userManager.AddToRole(manager.Id, "Manager");
+                var userStore = new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(context);
+                var userManager = new UserManager<ApplicationUser, int>(userStore);
+
+                userManager.AddToRole(newUsers.ElementAt(0).Id, "Accountant");
+                userManager.AddToRole(newUsers.ElementAt(1).Id, "Engineer");
+                userManager.AddToRole(newUsers.ElementAt(2).Id, "Manager");
+
+                userManager.AddToRole(newUsers.ElementAt(3).Id, "Accountant");
+                userManager.AddToRole(newUsers.ElementAt(4).Id, "Engineer");
+                userManager.AddToRole(newUsers.ElementAt(5).Id, "Manager");
             }
         }
 

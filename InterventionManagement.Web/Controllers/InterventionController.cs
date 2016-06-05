@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.EnterpriseServices;
-using System.Linq;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
@@ -13,24 +10,24 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
     public class InterventionController : Controller
     {
-        private readonly IGenericRepository<Intervention> _interventionRepository;
-        private readonly IGenericRepository<InterventionTemplate> _interventionTemplateRepository;
-        private readonly IGenericRepository<InterventionState> _interventionStateRepository;
-        private decimal? cost;
-        private int? hours;
-        public InterventionController()
-            : this (new GenericRepository<Intervention>(new ApplicationDbContext()), 
-                  new GenericRepository<InterventionTemplate>(new ApplicationDbContext()),
-                  new GenericRepository<InterventionState>(new ApplicationDbContext()))
-        {
+        private readonly IInterventionRepository _interventionRepo;
+        private readonly IInterventionTemplateRepository _interventionTemplateRepo;
+        private readonly IInterventionStateRepository _interventionStateRepo;
+        private int? _hours;
+        private decimal? _cost;
 
-        }
-        public InterventionController(IGenericRepository<Intervention> interventionRepo, IGenericRepository<InterventionTemplate> interventionTemplateRepo, IGenericRepository<InterventionState> interventionStateRepo)
+        public InterventionController()
+            : this (new InterventionRepository(new ApplicationDbContext()),
+                  new InterventionTemplateRepository(new ApplicationDbContext()),
+                  new InterventionStateRepository(new ApplicationDbContext()))
         {
-            _interventionRepository = interventionRepo;
-            _interventionTemplateRepository = interventionTemplateRepo;
-            _interventionStateRepository = interventionStateRepo;
-            
+        }
+
+        public InterventionController(IInterventionRepository interventionRepo, IInterventionTemplateRepository interventionTemplateRepo, IInterventionStateRepository interventionStateRepo)
+        {
+            _interventionRepo = interventionRepo;
+            _interventionTemplateRepo = interventionTemplateRepo;
+            _interventionStateRepo = interventionStateRepo;
         }
 
         // GET: Intervention
@@ -43,7 +40,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var listModel = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x=>x.ClientId == id && x.InterventionStateId !=3),
+                Interventions = _interventionRepo.GetInterventionsOfClient(id),
                 ClientId = id
             };
             //_clientId = id;
@@ -58,7 +55,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             var list = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepository.SelectAll().Where(x => x.ProposerId == User.Identity.GetUserId())
+                Interventions = _interventionRepo.GetInterventionsOfUser(User.Identity.GetUserId<int>())
             };
 
             return View(list);
@@ -72,14 +69,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ChangeState(int id)
         {
 
-            var i = _interventionRepository.GetById(id);
+            var i = _interventionRepo.GetById(id);
             var model = new ChangeStateViewModel
             {
                 CurrentInterventionState = i.InterventionState.Name,
-                StateList = _interventionStateRepository.SelectAll()
+                StateList = _interventionStateRepo.SelectAll()
             };
-
-
             return View(model);
         }
         /// <summary>
@@ -92,21 +87,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         public ActionResult ChangeState(int id, ChangeStateViewModel model)
         {
             GetApprovalInfo();
-            var i = _interventionRepository.GetById(id);
+            var i = _interventionRepo.GetById(id);
             try
             {
                 if (ModelState.IsValid)
                 {
                     i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
-                    if (i.Cost > cost || i.Hours > hours)
+                    if (i.Cost > _cost || i.Hours > _hours)
                     {
                         return View("ErrorApprove");
                     }
                     else
                     {                       
-                        i.ApproverId = User.Identity.GetUserId();
-                        _interventionRepository.Update(i);
-                        _interventionRepository.Save();
+                        i.ApproverId = User.Identity.GetUserId<int>();
+                        _interventionRepo.Update(i);
                     }
                 }
             }
@@ -136,7 +130,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             
             var createModel = new CreateInterventionViewModel
             {
-               TemplateList = _interventionTemplateRepository.SelectAll(),
+               TemplateList = _interventionTemplateRepo.SelectAll(),
                ClientId = id
                
             };
@@ -153,49 +147,45 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
         {
-            
-            try
+
+            /*            try
+                        {*/
+            if (ModelState.IsValid)
             {
                 GetApprovalInfo();
-                if (ModelState.IsValid)
-                {                   
-                    Intervention i = new Intervention();
-                    i.DatePerformed = model.DatePerformed;
-                    i.Hours = model.Hours;
-                    i.Cost = model.Cost;
-                    i.Notes = model.Notes;
-                    i.RemainingLife = model.RemainingLife;
-                    i.DateOfLastVisit = model.DateOfLastVisit;
-                    i.ClientId = model.ClientId;
+                var intervention = new Intervention
+                {
+                    DatePerformed = model.DatePerformed,
+                    Hours = model.Hours,
+                    Cost = model.Cost,
+                    Notes = model.Notes,
+                    RemainingLife = model.RemainingLife,
+                    DateOfLastVisit = model.DateOfLastVisit,
+                    ClientId = model.ClientId
+                };
 
-
-                    if (i.Hours > hours || i.Cost > cost)
-                    {
-                        i.ApproverId = null;
-                        i.InterventionStateId = 1;
-                    }
-                    else
-                    {
-                        i.ApproverId = User.Identity.GetUserId();
-                        i.InterventionStateId = 2;
-                    }
-                    
-
-                    i.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
-
-                    
-                    i.ProposerId = User.Identity.GetUserId();
-
-                    _interventionRepository.Insert(i);
-                    _interventionRepository.Save();
+                if (intervention.Cost > _cost || intervention.Hours > _hours)
+                {
+                    intervention.InterventionStateId = 1;
+                    intervention.ApproverId = (int?)null;
+                }
+                else
+                {
+                    intervention.InterventionStateId = 2;
+                    intervention.ApproverId = User.Identity.GetUserId<int>();
                 }
 
-                return RedirectToAction("Index",new {id = model.ClientId});
+                intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
+                intervention.ProposerId = User.Identity.GetUserId<int>();
+                _interventionRepo.Insert(intervention);
             }
-            catch
-            {
-                return RedirectToAction("Index", new { id = model.ClientId});
-            }
+
+            return RedirectToAction("Index", new { id = model.ClientId });
+            /*            }
+                        catch
+                        {
+                            return RedirectToAction("Index", new { id = model.ClientId});
+                        }*/
         }
 
         /// <summary>
@@ -206,7 +196,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Edit/5
         public ActionResult Edit(int id)
         {
-            var i = _interventionRepository.GetById(id);
+            var i = _interventionRepo.GetById(id);
             var model = new EditInterventionViewModel
             {
                 Notes = i.Notes,
@@ -230,7 +220,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             try
             {
-                var i = _interventionRepository.GetById(id);
+                var i = _interventionRepo.GetById(id);
                 if (ModelState.IsValid)
                 {
                     
@@ -239,10 +229,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     i.RemainingLife = model.RemainingLife;
                     i.DateOfLastVisit = model.DateOfLastVisit;
                     
-                    _interventionRepository.Update(i);
-                    _interventionRepository.Save();
-
-                
+                    _interventionRepo.Update(i);
                 }
 
                 return RedirectToAction("Index", new { id = i.ClientId });
@@ -276,15 +263,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
         }
 
-
-
-
         private void GetApprovalInfo()
         {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var user = userManager.FindById(User.Identity.GetUserId());
-            cost = user.Cost;
-            hours = user.Hours;
+            var userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            var user = userManager.FindById(User.Identity.GetUserId<int>());
+            _cost = user.Cost;
+            _hours = user.Hours;
         }
     }
 }

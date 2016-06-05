@@ -3,23 +3,23 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using ASDF.ENETCare.InterventionManagement.Business;
 using System.Collections.Generic;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 
 namespace ASDF.ENETCare.InterventionManagement.Business
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
+        public string Name { get; set; }
         public int? Hours { get; set; }
         public decimal? Cost { get; set; }
         public int? DistrictId { get; set; }
         public virtual ICollection<Intervention> ProposedInterventions { get; set; }
         public virtual ICollection<Intervention> ApprovedInterventions { get; set; }
 
-
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
@@ -28,7 +28,50 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class CustomRoleStore : RoleStore<CustomRole, int, CustomUserRole>
+    {
+        public CustomRoleStore(ApplicationDbContext context)
+            : base(context)
+        {
+        }
+    }
+
+    public class CustomUserStore : UserStore<ApplicationUser, CustomRole, int,
+        CustomUserLogin, CustomUserRole, CustomUserClaim>
+    {
+        public CustomUserStore(ApplicationDbContext context)
+            : base(context)
+        {
+        }
+    }
+
+    public class CustomRole : IdentityRole<int, CustomUserRole>
+    {
+        public CustomRole() { }
+        public CustomRole(string name) { Name = name; }
+    }
+
+    public class CustomUserLogin : IdentityUserLogin<int> { }
+
+    public class CustomUserClaim : IdentityUserClaim<int> { }
+
+    public class CustomUserRole : IdentityUserRole<int> { }
+
+    public class ApplicationRoleManager : RoleManager<CustomRole, int>
+    {
+        public ApplicationRoleManager(IRoleStore<CustomRole, int> roleStore)
+            : base(roleStore)
+        {
+        }
+
+        public static ApplicationRoleManager Create(IdentityFactoryOptions<ApplicationRoleManager> options, IOwinContext context)
+        {
+            return new ApplicationRoleManager(new RoleStore<CustomRole, int, CustomUserRole>(context.Get<ApplicationDbContext>()));
+        }
+    }
+
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
         public DbSet<Client> Client { get; set; }
         public DbSet<District> District { get; set; }
@@ -37,7 +80,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public DbSet<InterventionState> InterventionState { get; set; }
 
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
         }
 
@@ -45,10 +88,10 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+            modelBuilder.Entity<CustomRole>().ToTable("Roles");
+            modelBuilder.Entity<CustomUserRole>().HasKey(r => new {r.UserId, r.RoleId}).ToTable("UserRoles");
+            modelBuilder.Entity<CustomUserLogin>().HasKey(l => new {l.LoginProvider, l.ProviderKey, l.UserId}).ToTable("UserLogins");
+            modelBuilder.Entity<CustomUserClaim>().ToTable("UserClaims");
 
             modelBuilder.Entity<Intervention>()
                 .HasRequired(i => i.Proposer)
