@@ -4,12 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASDF.ENETCare.InterventionManagement.Business;
 
-namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
+namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
     public class ClientRepository : IClientRepository, IDisposable
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private bool _disposed = false;
 
         public ClientRepository(ApplicationDbContext appContext)

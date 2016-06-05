@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using ASDF.ENETCare.InterventionManagement.Business;
+using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -21,6 +23,28 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult RedirectToRoleHome()
+        {
+            if (User.IsInRole("Accountant"))
+            {
+                // To Do: replace when accountant controller is complete
+                return RedirectToAction("Index", "Home");
+            }
+            else if (User.IsInRole("Engineer"))
+            {
+                return RedirectToAction("Index", "Engineer");
+            }
+            else if (User.IsInRole("Manager"))
+            {
+                // To Do: replace when manager controller is complete
+                return RedirectToAction("Index", "Manager");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
     }
 }

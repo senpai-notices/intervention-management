@@ -57,7 +57,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Intervention>()
-                .HasRequired(i => i.Approver)
+                .HasOptional(i => i.Approver)
                 .WithMany(a => a.ApprovedInterventions)
                 .HasForeignKey(a => a.ApproverId)
                 .WillCascadeOnDelete(false);

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ASDF.ENETCare.InterventionManagement.Business;
 
-namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
+namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
-    public interface IClientRepository: IDisposable
+    public interface IClientRepository : IDisposable
     {
         IEnumerable<Client> GetClients();
 
@@ -20,4 +21,5 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 
         void Save();
     }
+
 }

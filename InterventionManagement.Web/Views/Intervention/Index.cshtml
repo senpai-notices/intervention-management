@@ -1,0 +1,88 @@
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.InterventionsListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new {id = Model.ClientId})
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatePerformed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemainingLife)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfLastVisit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionTemplate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InterventionState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProposerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApproverId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Interventions) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatePerformed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingLife)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfLastVisit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionTemplate.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InterventionState.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Proposer.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Approver.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.InterventionId }) |
+            @Html.ActionLink("Change state", "ChangeState", new {  id= item.InterventionId}) |
+           
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Business.Client>
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.ClientListsViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateClient") <br/><br/>
+    @Html.ActionLink("View All Created Interventions", "ViewAllInterventions")
 </p>
 <table class="table">
     <tr>
@@ -16,14 +17,11 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DistrictId)
-        </th>
+        </th>      
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Clients) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -31,13 +29,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.Location)
         </td>
+
         <td>
-            @Html.DisplayFor(modelItem => item.DistrictId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ClientId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ClientId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClientId })
+            @Html.ActionLink("Edit", "EditDetails", new { id=item.ClientId }) |
+            @Html.ActionLink("Details", "ViewDetails", new { id=item.ClientId }) 
+           
         </td>
     </tr>
 }
