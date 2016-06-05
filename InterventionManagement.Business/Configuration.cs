@@ -64,12 +64,12 @@ namespace ASDF.ENETCare.InterventionManagement.Business
 
             var newUsers = new List<ApplicationUser>
             {
-                new ApplicationUser { UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
-                new ApplicationUser { UserName = "test@test.com", Email = "test@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 1000.00M, DistrictId = 1 },
-                new ApplicationUser { UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 5000.00M, DistrictId = 1 },
-                new ApplicationUser { UserName = "accountant2@test.com", Email = "accountant2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
-                new ApplicationUser { UserName = "test2@test.com", Email = "test2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 2000.00M, DistrictId = 2 },
-                new ApplicationUser { UserName = "manager2@test.com", Email = "manager2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 7500.00M, DistrictId = 2 }
+                new ApplicationUser { Name = "Adam", UserName = "accountant@test.com", Email = "accountant@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
+                new ApplicationUser { Name = "Edward", UserName = "test@test.com", Email = "test@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 1000.00M, DistrictId = 1 },
+                new ApplicationUser { Name = "Mike", UserName = "manager@test.com", Email = "manager@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 5000.00M, DistrictId = 1 },
+                new ApplicationUser { Name = "Anna", UserName = "accountant2@test.com", Email = "accountant2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = null, Cost = null, DistrictId = null },
+                new ApplicationUser { Name = "Edgar", UserName = "test2@test.com", Email = "test2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 25, Cost = 2000.00M, DistrictId = 2 },
+                new ApplicationUser { Name = "Mark", UserName = "manager2@test.com", Email = "manager2@test.com", PasswordHash = hasher.HashPassword(password), SecurityStamp = Guid.NewGuid().ToString(), Hours = 100, Cost = 7500.00M, DistrictId = 2 }
             };
 
             context.Users.AddOrUpdate(u => u.UserName, newUsers.ToArray());

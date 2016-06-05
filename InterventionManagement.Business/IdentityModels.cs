@@ -12,6 +12,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
+        public string Name { get; set; }
         public int? Hours { get; set; }
         public decimal? Cost { get; set; }
         public int? DistrictId { get; set; }
