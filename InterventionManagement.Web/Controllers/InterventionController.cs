@@ -177,9 +177,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
                 intervention.ProposerId = User.Identity.GetUserId<int>();
                 _interventionRepo.Insert(intervention);
+
+                return RedirectToAction("Index", new { id = model.ClientId });
             }
 
-            return RedirectToAction("Index", new { id = model.ClientId });
+            model.TemplateList = _interventionTemplateRepo.SelectAll();
+            return View(model);
             /*            }
                         catch
                         {
