@@ -132,7 +132,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                TemplateList = _interventionTemplateRepo.SelectAll(),
                ClientId = id
-               
             };
 
             return View(createModel);
