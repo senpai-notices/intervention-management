@@ -13,6 +13,6 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 
         IEnumerable<Intervention> GetInterventionsOfUser(int userId);
 
-        IEnumerable<Intervention> GetProposedInterventions(int districtId, int? userHours, decimal? userCost);
+        IEnumerable<Intervention> GetPendingInterventions(int districtId, int? userHours, decimal? userCost);
     }
 }

@@ -38,7 +38,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             GetApprovalInfo();
             var listViewModel = new InterventionsListViewModel
             {
-                Interventions = _interventionRepo.GetProposedInterventions(GetDistrictId(), _hours, _cost)
+                Interventions = _interventionRepo.GetPendingInterventions(GetDistrictId(), _hours, _cost)
             };
             return View(listViewModel);
         }

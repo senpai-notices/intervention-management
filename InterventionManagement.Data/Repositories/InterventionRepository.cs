@@ -30,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
                 .ToList();
         }
 
-        public IEnumerable<Intervention> GetProposedInterventions(int districtId, int? userHours, decimal? userCost)
+        public IEnumerable<Intervention> GetPendingInterventions(int districtId, int? userHours, decimal? userCost)
         {
             return Context.Intervention.Where(
                 i => i.Client.DistrictId == districtId
