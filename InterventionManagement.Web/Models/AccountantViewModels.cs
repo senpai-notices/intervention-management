@@ -8,30 +8,44 @@ using ASDF.ENETCare.InterventionManagement.Business;
 using System.Diagnostics;//remove
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Collections;
+using System.Linq;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
-    public class TotalCostsByEngineerViewModel : TotalCostByEngineerRow
+    public class TotalCostsByEngineerViewModel : TotalCostByEngineerRow, IEnumerable<TotalCostByEngineerRow>
     {
-        public IEnumerable<TotalCostByEngineerRow> Engineers { get; set; }
+        public List<TotalCostByEngineerRow> Rows { get; set; }
 
         public TotalCostsByEngineerViewModel()
         {
-            //var context = new ApplicationDbContext();
-            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            //var users = new GenericRepository<ApplicationUser>(context);
-            //foreach (var user in users.SelectAll())
-            //{
-            //    if (userManager.IsInRole(user.Id, "Engineer"))
-            //    {
-            //        Debug.WriteLine(user.Name);
-            //    }
-            //}
             var engineerReportsRepository = new EngineerReportsRepository();
-            foreach (var id in engineerReportsRepository.GetEngineerIds())
-            {
+            Rows = new List<TotalCostByEngineerRow>();
 
+            // populate rows
+            foreach (var engineer in engineerReportsRepository.GetEngineers())
+            {
+                var row = new TotalCostByEngineerRow();
+                row.Name = engineer.Name;
+                row.TotalHours = engineer.Hours ?? default(int);
+                row.TotalCost = engineer.Cost ?? default(decimal);
+
+                Rows.Add(row);
             }
+
+            // sort alphabetically
+            Rows = Rows.OrderBy(o => o.Name).ToList();
+        }
+
+        
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Rows.GetEnumerator();
+        }
+
+        public IEnumerator<TotalCostByEngineerRow> GetEnumerator()
+        {
+            return Rows.GetEnumerator();
         }
     }
 
@@ -45,6 +59,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public int TotalHours { get; set; }
         [Required]
         [DisplayName("Total Cost")]
-        public double TotalCost { get; set; }
+        public decimal TotalCost { get; set; }
     }
 }

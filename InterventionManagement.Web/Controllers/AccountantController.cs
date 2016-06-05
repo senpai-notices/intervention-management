@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
+using System.Diagnostics;//remove
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -22,8 +23,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult TotalCostsByEngineerReport()
         {
-            var test = new TotalCostsByEngineerViewModel();
-            return View(test.Engineers);
+            var report = new TotalCostsByEngineerViewModel();
+            return View(report);
         }
 
         //[HttpPost]

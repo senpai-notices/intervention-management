@@ -10,8 +10,8 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
     public class EngineerReportsRepository
     {
-        ApplicationDbContext Context;
-        UserManager<ApplicationUser> UserManager;
+        private ApplicationDbContext Context;
+        private UserManager<ApplicationUser> UserManager;
         
         public EngineerReportsRepository()
         {
@@ -19,20 +19,20 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
             UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
         }
 
-        public IEnumerable<string> GetEngineerIds()
+        public IEnumerable<ApplicationUser> GetEngineers()
         {
-            var EngineerIds = new List<string>();
+            var Engineers = new List<ApplicationUser>();
             var users = new GenericRepository<ApplicationUser>(Context);
 
             foreach (var user in users.SelectAll())
             {
                 if (UserManager.IsInRole(user.Id, "Engineer"))
                 {
-                    EngineerIds.Add(user.Id);
+                    Engineers.Add(user);
                 }
             }
 
-            return EngineerIds;
+            return Engineers;
         }
     }
 }
