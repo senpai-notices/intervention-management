@@ -14,7 +14,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<District, CostHour_DistrictReport> DistrictReports { get; set; }
 
-        public void CostHourByEngineerReport(IEnumerable<Intervention> Interventions)
+        public void CostHourByDistrictReport(IEnumerable<Intervention> Interventions)
         {
             var Districts = new GenericRepository<District>(new ApplicationDbContext());
 
