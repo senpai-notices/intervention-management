@@ -72,7 +72,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public DateTime DateOfLastVisit { get; set; }
 
         [HiddenInput(DisplayValue = false)]
-        public int InterventionId { get; set; }
+        public int Id { get; set; }
 
     }
 

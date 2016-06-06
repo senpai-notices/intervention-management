@@ -116,7 +116,27 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // GET: Intervention/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var intervention = _interventionRepo.GetById(id);
+
+            if (intervention == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new InterventionDetailsViewModel
+            {
+                Id = id,
+                DatePerformed = intervention.DatePerformed,
+                InterventionTemplate = intervention.InterventionTemplate.Name,
+                ProposerId = intervention.Proposer.Name + " (" + intervention.Proposer.Email + ")",
+                ApproverId = intervention.Approver.Name + " (" + intervention.Approver.Email + ")",
+                ClientId = intervention.ClientId,
+                Notes = intervention.Notes,
+                RemainingLife = intervention.RemainingLife,
+                DateOfLastVisit = intervention.DateOfLastVisit
+            };
+
+            return View(viewModel);
         }
 
         /// <summary>
@@ -196,7 +216,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Notes = i.Notes,
                 DateOfLastVisit = i.DateOfLastVisit,
                 RemainingLife = i.RemainingLife,
-                InterventionId = i.InterventionId,                
+                Id = i.InterventionId,                
             };
 
             return View(model);

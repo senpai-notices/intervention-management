@@ -300,6 +300,7 @@
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Details.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
+    <Content Include="Views\Intervention\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
