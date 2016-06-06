@@ -14,23 +14,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<ApplicationUser, CostByEngineer> EngineersReport { get; set; }
 
-        public void AverageCostHourByEngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers)
-        {
-            CostHourByEngineerReport(Interventions, Engineers);
 
-            //Averages the amounts per engineer
-            foreach (var report in EngineersReport)
-            {
-                int completed = report.Value.Completed;
-                int hours = report.Value.TotalHours;
-                decimal cost = report.Value.TotalCost;
-
-                report.Value.TotalHours = hours/completed;
-                report.Value.TotalCost = cost/completed;
-            }
-        }
-
-        public void CostHourByEngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers )
+        public EngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers )
         {
             
             foreach (var engineer in Engineers)
@@ -56,6 +41,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 }
             }
 
+        }
+        public void AverageCostHour()
+        {
+            //Averages the amounts per engineer
+            foreach (var report in EngineersReport)
+            {
+                int completed = report.Value.Completed;
+                int hours = report.Value.TotalHours;
+                decimal cost = report.Value.TotalCost;
+
+                report.Value.TotalHours = hours / completed;
+                report.Value.TotalCost = cost / completed;
+            }
         }
 
         public class CostByEngineer
