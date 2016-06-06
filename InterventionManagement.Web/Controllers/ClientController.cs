@@ -47,7 +47,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <param name="id">Id of the client to be viewed - ClientId</param>
         /// <returns></returns>
         // GET: Engineer/Details/5
-        public ActionResult ViewDetails(int id)
+        public ActionResult Details(int id)
         {
             
             var client = _clientRepo.GetById(id);
@@ -71,7 +71,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// </summary>
         /// <returns></returns>
         // GET: Engineer/Create
-        public ActionResult CreateClient()
+        public ActionResult Create()
         {
             return View();
         }
@@ -84,7 +84,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateClient(CreateClientViewModel model)
+        public ActionResult Create(CreateClientViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
             var client = new Client
@@ -111,14 +111,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         }
 
         // GET: Engineer/Edit/5
-        public ActionResult EditDetails(int id)
+        public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Engineer/Edit/5
         [HttpPost]
-        public ActionResult EditDetails(int id, FormCollection collection)
+        public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {

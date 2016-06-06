@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateClient") <br/><br/>
+    @Html.ActionLink("Create New", "Create") <br/><br/>
     @Html.ActionLink("View All Created Interventions", "ViewAllInterventions")
 </p>
 <table class="table">
@@ -31,9 +31,9 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "EditDetails", new { id=item.ClientId }) |
-            @Html.ActionLink("Details", "ViewDetails", new { id=item.ClientId }) 
-           
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClientId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ClientId })
+
         </td>
     </tr>
 }
