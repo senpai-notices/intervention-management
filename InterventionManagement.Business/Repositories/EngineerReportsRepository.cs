@@ -35,18 +35,18 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
             return Engineers;
         }
 
-        public IEnumerable<Intervention> GetCompletedInterventionsForEngineer(ApplicationUser engineer)
-        {
-            var interventionRepository = new GenericRepository<Intervention>(Context);
-            var interventions = interventionRepository.SelectAll();
+        //public IEnumerable<Intervention> GetCompletedInterventionsForEngineer(ApplicationUser engineer)
+        //{
+        //    var interventionRepository = new GenericRepository<Intervention>(Context);
+        //    var interventions = interventionRepository.SelectAll();
             
-            foreach (var intervention in interventions)
-            {
-                if (intervention.ProposerId == engineer.Id && intervention.InterventionStateId == 4)
-                {
+        //    foreach (var intervention in interventions)
+        //    {
+        //        if (intervention.ProposerId == engineer.Id && intervention.InterventionStateId == 4)
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
 }

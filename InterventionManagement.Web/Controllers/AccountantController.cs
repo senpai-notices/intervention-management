@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using ASDF.ENETCare.InterventionManagement.Web.Models;
-using System.Diagnostics;//remove
+using ASDF.ENETCare.InterventionManagement.Business;
+using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Web.Models.Reports;
+
+//remove
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 {
@@ -23,7 +23,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult TotalCostsByEngineerReport()
         {
-            var report = new TotalCostsByEngineerViewModel();
+            
+            InterventionRepository iRepo = new InterventionRepository(new ApplicationDbContext());
+            EngineerReportsRepository eRepo = new EngineerReportsRepository();
+
+            var interventions = iRepo.GetInterventions();
+            var engineers = eRepo.GetEngineers();
+
+            var report = new EngineerReport(interventions, engineers);
             return View(report);
         }
 
@@ -62,4 +69,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         //    }
         //}
     }
+
+
 }

@@ -13,11 +13,11 @@ using System.Linq;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {
-    public class TotalCostsByEngineerViewModel : TotalCostByEngineerRow, IEnumerable<TotalCostByEngineerRow>
+    public class EngineerReport : TotalCostByEngineerRow, IEnumerable<TotalCostByEngineerRow>
     {
         public List<TotalCostByEngineerRow> Rows { get; set; }
 
-        public TotalCostsByEngineerViewModel()
+        public EngineerReport()
         {
             var engineerReportsRepository = new EngineerReportsRepository();
             Rows = new List<TotalCostByEngineerRow>();

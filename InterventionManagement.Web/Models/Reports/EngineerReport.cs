@@ -8,15 +8,22 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 {
     public class EngineerReport
     {
-        public Dictionary<ApplicationUser, CostByEngineer> EngineersReport { get; set; }
+        public List<CostByEngineer> _report { get; set; }
 
 
         public EngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers )
         {
-            
+            Dictionary<ApplicationUser, CostByEngineer> EngineersReport;
+            EngineersReport = new Dictionary<ApplicationUser, CostByEngineer>() ;
+
             foreach (var engineer in Engineers)
             {
-                EngineersReport.Add(engineer, new CostByEngineer());
+                var item = new CostByEngineer();
+                item.Name = engineer.Name;
+                item.TotalCost = 0;
+                item.TotalHours = 0;
+                item.Completed = 0;
+                EngineersReport.Add(engineer, item);
             }
 
             foreach (var intervention in Interventions)
@@ -37,18 +44,24 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 }
             }
 
+            _report = new List<CostByEngineer>();
+            foreach (var item in EngineersReport)
+            {
+                _report.Add(item.Value);
+            }
+
         }
         public void AverageCostHour()
         {
             //Averages the amounts per engineer
-            foreach (var report in EngineersReport)
+            foreach (var report in _report)
             {
-                int completed = report.Value.Completed;
-                int hours = report.Value.TotalHours;
-                decimal cost = report.Value.TotalCost;
+                int completed = report.Completed;
+                int hours = report.TotalHours;
+                decimal cost = report.TotalCost;
 
-                report.Value.TotalHours = hours / completed;
-                report.Value.TotalCost = cost / completed;
+                report.TotalHours = hours / completed;
+                report.TotalCost = cost / completed;
             }
         }
 
