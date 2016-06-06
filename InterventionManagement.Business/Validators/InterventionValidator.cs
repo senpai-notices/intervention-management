@@ -20,17 +20,38 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
             return true;
         }
 
-        internal static bool ValidStateChange(Intervention intervention)
+        internal static bool ValidStateChange(Intervention intervention, ApplicationUser user, InterventionState newInterventionState)
         {
-            // If Pending -> Approved.
-            // IF manager or Proposer
-            // If valid hours/cost approval limit.
 
-            // if Pending -> Canceled
-            // If manager or Proposer
+            int currentState = intervention.InterventionState.InterventionStateId;
+            int newState = newInterventionState.InterventionStateId;
 
-            // If approved -> Completed/Canceled
-            // If Proposer
+            if (currentState == 1) //Pending
+            {
+                if (newState == 2) //Approved
+                {
+                    return CanUserApprove(intervention, user);
+                }
+
+                if (newState == 4) //Canceled
+                {
+                    return CanUserCancelPending(intervention, user);
+                }
+            }
+            else if (currentState == 2) //Approved
+            {
+                if (newState == 3) //Completed
+                {
+                    return CanUserCancelOrComplete(intervention, user);
+                }
+
+                if (newState == 4) //Canceled
+                {
+                    return CanUserCancelOrComplete(intervention, user);
+                }
+            }
+            else return false;
+
             return true;
         }
 
@@ -68,78 +89,42 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Validators
             return true;
         }
 
-        public static bool CanUserComplete(int interventionID, string username)
+        internal static bool CanUserApproveCost(Intervention intervention, ApplicationUser user)
         {
-            return VerifyProposerUsername(interventionID, username);
-        }
+            decimal interventionCost = Math.Max(intervention.InterventionTemplate.Cost, intervention.Cost);
 
-
-        private static bool validUserHourCost(int userHours, int userCost, int interventionHours, int interventionCost)
-        {
-            if (userHours > interventionHours || userCost > interventionCost) return false;
-
-            return true;
-        }
-
-
-        private static bool VerifyProposerUsername(int interventionID, string username)
-        {
-            //TODO: Uncomment When Intervention Wrapper is done.
-            var interventionRepo = new interventionRepository();
-            var intervention = interventionWrapper.GetInterventionById(interventionID);
-
-            string proposer = (string)intervention[0]["ProposerUsername"];
-
-            if (!username.Equals(proposer)) throw new ArgumentException("Insufficient Permissions to perform this action");
-            return true;
-        }
-
-
-        private static bool VerifyManagerApprovalLimit(int interventionID, string username)
-        {
-            ManagerTableWrapper tableWrapper = new ManagerTableWrapper();
-            InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-
-            var managers = tableWrapper.GetManagerByManagerUsername(username);
-            var intervention = interventionWrapper.GetInterventionById(interventionID);
-
-            int userHours = (int)managers[0]["HoursApprovalLimit"];
-            int userCost = (int)managers[0]["CostApprovalLimit"];
-            int intHours = (int)intervention[0]["EstimatedHours"];
-            int intCost = (int)intervention[0]["EstimatedCost"];
-
-            return validUserHourCost(userHours, userCost, intHours, intCost);
-        }
-
-
-        public static bool CanManagerApprove(int interventionID, string username)
-        {
-            if (VerifyManagerApprovalLimit(interventionID, username))
-            {
-                return true;
-            }
-
-            return false; //inuficcient permissions (not enough cost/hours)
-        }
-        internal static bool CanManagerCancel(int interventionID, string username)
-        {
-            InterventionTableWrapper interventionWrapper = new InterventionTableWrapper();
-            var intervention = interventionWrapper.GetInterventionById(interventionID);
-
-            int stateID = (int)intervention[0]["InterventionStateId"];
-
-            //Proposed
-            if (stateID == 1 && CanManagerApprove(interventionID, username))
-            {
-                return true;
-            }
-            if (stateID == 2 && CanUserComplete(interventionID, username))
-            {
-                return true;
-            }
-
+            if (user.Cost >= interventionCost) return true;
             return false;
         }
+
+        internal static bool CanUserApproveHours(Intervention intervention, ApplicationUser user)
+        {
+            int interventionHours = Math.Max(intervention.InterventionTemplate.Hours, intervention.Hours);
+
+            if (user.Hours >= interventionHours) return true;
+            return false;
+        }
+
+        internal static bool CanUserApprove(Intervention intervention, ApplicationUser user)
+        {
+            //Proposer, Manager
+            if (intervention.Proposer == user || user.Roles.Contains)) return true;
+            return false;
+        }
+
+        internal static bool CanUserCancelPending(Intervention intervention, ApplicationUser user)
+        {
+            //Proposer, Manager
+            if (intervention.Proposer == user || user.Roles.Contains)) return true;
+            return false;
+        }
+
+        internal static bool CanUserCancelOrComplete(Intervention intervention, ApplicationUser user)
+        {
+            if (intervention.Proposer == user) return true;
+           return false;
+        }
+
     }
 
 }
