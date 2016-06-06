@@ -209,6 +209,8 @@
     <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\InterventionViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Reports\DistrictReport.cs" />
+    <Compile Include="Models\Reports\EngineerReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
