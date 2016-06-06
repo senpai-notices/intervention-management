@@ -1,4 +1,6 @@
-﻿namespace ASDF.ENETCare.InterventionManagement.Business
+﻿using System.Collections.Generic;
+
+namespace ASDF.ENETCare.InterventionManagement.Business
 {
     public class Client
     {
@@ -10,5 +12,7 @@
 
         // foreign keys
         public virtual District District { get; set; }
+
+        public virtual ICollection<Intervention> Interventions { get; set; }
     }
 }
