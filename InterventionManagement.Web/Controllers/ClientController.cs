@@ -11,18 +11,16 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepo;
-        private readonly IInterventionRepository _interventionRepo;
 
         // GET: Engineer
         public ClientController()
-            : this (new ClientRepository(new ApplicationDbContext()), new InterventionRepository(new ApplicationDbContext()))
+            : this (new ClientRepository(new ApplicationDbContext()))
         {
         }
 
-        public ClientController(IClientRepository clientRepo, IInterventionRepository interventionRepo)
+        public ClientController(IClientRepository clientRepo)
         {
             _clientRepo = clientRepo;
-            _interventionRepo = interventionRepo;
         }
 
         /// <summary>
@@ -66,7 +64,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Id = id,
                 Name = client.Name,
                 Location = client.Location,
-                ClientInterventions = _interventionRepo.GetInterventionsOfClient(id)
+                ClientInterventions = client.Interventions
             };
 
             return View(clientModel);
