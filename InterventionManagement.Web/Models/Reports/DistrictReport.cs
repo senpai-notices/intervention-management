@@ -14,7 +14,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<District, CostHour_DistrictReport> DistrictReports { get; set; }
 
-        public void CostHourByDistrictReport(IEnumerable<Intervention> Interventions, IEnumerable<District> Districts )
+        public DistrictReport(IEnumerable<Intervention> Interventions, IEnumerable<District> Districts )
         {
 
             foreach (var district in Districts)
