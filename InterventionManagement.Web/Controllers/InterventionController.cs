@@ -146,9 +146,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         [HttpPost]
         public ActionResult Create(CreateInterventionViewModel model)
         {
-
-            /*            try
-                        {*/
             if (ModelState.IsValid)
             {
                 GetApprovalInfo();
@@ -183,11 +180,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             model.TemplateList = _interventionTemplateRepo.SelectAll();
             return View(model);
-            /*            }
-                        catch
-                        {
-                            return RedirectToAction("Index", new { id = model.ClientId});
-                        }*/
         }
 
         /// <summary>
