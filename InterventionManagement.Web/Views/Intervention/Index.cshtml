@@ -37,10 +37,10 @@
             @Html.DisplayNameFor(model => model.InterventionState)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProposerId)
+            Proposer
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ApproverId)
+            Approver
         </th>
         <th></th>
     </tr>
@@ -72,10 +72,10 @@
             @Html.DisplayFor(modelItem => item.InterventionState.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Proposer.UserName)
+            @Html.DisplayFor(modelItem => item.Proposer.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Approver.UserName)
+            @Html.DisplayFor(modelItem => item.Approver.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.InterventionId }) |
