@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
@@ -10,16 +11,18 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
     public class ClientController : Controller
     {
         private readonly IClientRepository _clientRepo;
-        
+        private readonly IInterventionRepository _interventionRepo;
+
         // GET: Engineer
         public ClientController()
-            : this (new ClientRepository(new ApplicationDbContext()))
+            : this (new ClientRepository(new ApplicationDbContext()), new InterventionRepository(new ApplicationDbContext()))
         {
         }
 
-        public ClientController(IClientRepository clientRepo)
+        public ClientController(IClientRepository clientRepo, IInterventionRepository interventionRepo)
         {
             _clientRepo = clientRepo;
+            _interventionRepo = interventionRepo;
         }
 
         /// <summary>
@@ -28,10 +31,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            var listModel = new ClientListsViewModel {Clients = _clientRepo.GetClientsOfDistrict(GetCurrentDistrictId())};
+            var listModel = new ClientListViewModel {Clients = _clientRepo.GetClientsOfDistrict(GetCurrentDistrictId())};
             return View(listModel);
         }
 
+        //  smell: replace its HTML reference after refactoring IvC
         /// <summary>
         /// This ActionResult will redirect to Intervention Controller to list all the created interventions
         /// </summary>
@@ -51,17 +55,20 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             
             var client = _clientRepo.GetById(id);
-            var clientModel = new ClientDetailsViewModel
-            {
-                Id = id,
-                Name = client.Name,
-                Location = client.Location
-            };
 
             if (client == null)
             {
                 return HttpNotFound();
             }
+
+            var clientModel = new ClientDetailsViewModel
+            {
+                Id = id,
+                Name = client.Name,
+                Location = client.Location,
+                ClientInterventions = _interventionRepo.GetInterventionsOfClient(id)
+            };
+
             return View(clientModel);
             
         }

@@ -11,17 +11,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     }
 
-    public class ClientListsViewModel:ClientDetailsViewModel
-    {
-        public IEnumerable<Client> Clients { get; set; }
-    }
-
-    public class ClientDetailsViewModel:CreateClientViewModel
-    {
-        [HiddenInput(DisplayValue = false)]
-        public int Id { get; set; }
-    }
-
     public class CreateClientViewModel
     {
         [Required]
@@ -30,7 +19,21 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
         [Required]
         [DisplayName("Client location")]
-        public string Location { get; set; }        
+        public string Location { get; set; }
+
+        [DisplayName("Interventions")]
+        public IEnumerable<Intervention> ClientInterventions { get; set; }
+    }
+
+    public class ClientDetailsViewModel:CreateClientViewModel
+    {
+        [HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
+    }
+
+    public class ClientListViewModel:ClientDetailsViewModel
+    {
+        public IEnumerable<Client> Clients { get; set; }
     }
 
     public class EditClientsDetails : ClientDetailsViewModel
