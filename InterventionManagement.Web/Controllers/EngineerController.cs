@@ -79,29 +79,23 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <summary>
         /// This ActionResult will allow the Engineer to create a client based on the model
         /// </summary>
-        /// <param name="createClientViewModel">The model to be checked and used to create client</param>
+        /// <param name="model">The model to be checked and used to create client</param>
         /// <returns></returns>
         // POST: Engineer/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateClient(CreateClientViewModel createClientViewModel)
+        public ActionResult CreateClient(CreateClientViewModel model)
         {
-            //var c = new CreateClientViewModel();
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(model);
+            var client = new Client
             {
-                var client = new Client
-                {
-                    DistrictId = GetCurrentDistrictId(),
-                    Name = createClientViewModel.Name,
-                    Location = createClientViewModel.Location
-                };
+                DistrictId = GetCurrentDistrictId(),
+                Name = model.Name,
+                Location = model.Location
+            };
                 
-                _clientRepo.Insert(client);
-                return RedirectToAction("Index");
-            }
-
-            return View(createClientViewModel);
+            _clientRepo.Insert(client);
+            return RedirectToAction("Index");
         }
 
         /// <summary>
