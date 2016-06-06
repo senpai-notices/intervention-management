@@ -14,9 +14,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<ApplicationUser, CostByEngineer> EngineersReport { get; set; }
 
-        public void AverageCostHourByEngineerReport(IEnumerable<Intervention> Interventions)
+        public void AverageCostHourByEngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers)
         {
-            CostHourByEngineerReport(Interventions);
+            CostHourByEngineerReport(Interventions, Engineers);
 
             //Averages the amounts per engineer
             foreach (var report in EngineersReport)
@@ -30,11 +30,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
             }
         }
 
-        public void CostHourByEngineerReport(IEnumerable<Intervention> Interventions)
+        public void CostHourByEngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers )
         {
-            EngineerReportsRepository engineers = new EngineerReportsRepository();
-
-            foreach (var engineer in engineers.GetEngineers())
+            
+            foreach (var engineer in Engineers)
             {
                 EngineersReport.Add(engineer, new CostByEngineer());
             }

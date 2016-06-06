@@ -14,11 +14,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<District, CostHour_DistrictReport> DistrictReports { get; set; }
 
-        public void CostHourByDistrictReport(IEnumerable<Intervention> Interventions)
+        public void CostHourByDistrictReport(IEnumerable<Intervention> Interventions, IEnumerable<District> Districts )
         {
-            var Districts = new GenericRepository<District>(new ApplicationDbContext());
 
-            foreach (var district in Districts.SelectAll())
+            foreach (var district in Districts)
             {
                 DistrictReports.Add(district, new CostHour_DistrictReport());
             }
