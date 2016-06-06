@@ -16,7 +16,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public Dictionary<int,CostHour_District_Month_Report> MonthReports { get; set; }
 
-        public void DistrictMonthReport(IEnumerable<Intervention> Interventions, District District, int ReportYear)
+        public DistrictReport_Monthly(IEnumerable<Intervention> Interventions, District District, int ReportYear)
         {
             //Initialise Months
             for (int i=1; i <=12; i++ )
