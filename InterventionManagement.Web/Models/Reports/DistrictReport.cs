@@ -12,15 +12,15 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 {
     public class DistrictReport
     {
-        public Dictionary<ApplicationUser, DistrictReport> EngineersReport { get; set; }
+        public Dictionary<District, CostHour_DistrictReport> DistrictReports { get; set; }
 
         public void CostHourByEngineerReport(IEnumerable<Intervention> Interventions)
         {
-            var engineers = new GenericRepository<District>();
+            var Districts = new GenericRepository<District>(new ApplicationDbContext());
 
-            foreach (var district in engineers.GetEngineers())
+            foreach (var district in Districts.SelectAll())
             {
-                EngineersReport.Add(district, new DistrictReport());
+                DistrictReports.Add(district, new CostHour_DistrictReport());
             }
 
             foreach (var intervention in Interventions)
@@ -29,11 +29,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 if (intervention.InterventionState.InterventionStateId == 3)
                 {
                     CostHour_DistrictReport report = null;
-                    var responsible = intervention.Approver;
+                    var district = intervention.Client.District;
 
-                    if (EngineersReport.TryGetValue(responsible, out report))
+                    if (DistrictReports.TryGetValue(district, out report))
                     {
-                        report.Name = responsible.Name;
+                        report.Name = district.Name;
                         report.TotalCost = report.TotalCost + intervention.Cost;
                         report.TotalHours = report.TotalHours + intervention.Hours;
                     }
