@@ -74,6 +74,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
+        [DisplayName("ProposerNum")]
+        public int ProposerNum { get; set; }
+
+        [DisplayName("ApproverNum")]
+        public int? ApproverNum { get; set; }
+
+        [DisplayName("Proposer")]
+        public string ProposerNameEmail { get; set; }
+
+        [DisplayName("Approver")]
+        public string ApproverNameEmail { get; set; }
     }
 
     public class CreateInterventionViewModel :InterventionDetailsViewModel

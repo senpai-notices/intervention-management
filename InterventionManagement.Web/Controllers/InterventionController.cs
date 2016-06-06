@@ -128,9 +128,13 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Id = id,
                 DatePerformed = intervention.DatePerformed,
                 InterventionTemplate = intervention.InterventionTemplate.Name,
-                ProposerId = intervention.Proposer.Name + " (" + intervention.Proposer.Email + ")",
-                ApproverId = intervention.Approver.Name + " (" + intervention.Approver.Email + ")",
-                ClientId = intervention.ClientId,
+
+                ProposerNum = intervention.ProposerId,
+                ApproverNum = intervention.ApproverId,
+                ProposerNameEmail = intervention.Proposer.NameEmail,
+                ApproverNameEmail = intervention.Approver.NameEmail,
+
+                ClientId = intervention.ClientId, //currently Hidden
                 Notes = intervention.Notes,
                 RemainingLife = intervention.RemainingLife,
                 DateOfLastVisit = intervention.DateOfLastVisit
