@@ -34,7 +34,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             }
             else if (User.IsInRole("Engineer"))
             {
-                return RedirectToAction("Index", "Engineer");
+                return RedirectToAction("Index", "Client");
             }
             else if (User.IsInRole("Manager"))
             {
