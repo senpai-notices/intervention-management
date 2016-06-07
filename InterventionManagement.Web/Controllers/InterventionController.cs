@@ -132,13 +132,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 ProposerNum = intervention.ProposerId,
                 ApproverNum = intervention.ApproverId,
                 ProposerNameEmail = intervention.Proposer.NameEmail,
-                ApproverNameEmail = intervention.Approver.NameEmail,
 
                 ClientId = intervention.ClientId, //currently Hidden
                 Notes = intervention.Notes,
                 RemainingLife = intervention.RemainingLife,
                 DateOfLastVisit = intervention.DateOfLastVisit
             };
+
+            if (intervention.Approver != null)
+            {
+                viewModel.ApproverNameEmail = intervention.Approver.NameEmail;
+            }
 
             return View(viewModel);
         }
