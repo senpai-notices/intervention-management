@@ -25,11 +25,17 @@
 
         <dd>
             @Html.DisplayFor(model => model.Location)
-            <hr/>
+
         </dd>
+    </dl>
+    <hr />
+    <dl class="dl-horizontal">
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClientInterventions)
+            <p>@Html.DisplayNameFor(model => model.ClientInterventions)</p>
+            <p>
+                @Html.ActionLink("Create New", "Create", "Intervention", new { id = Model.Id }, new { @class = "btn btn-default" })
+            </p>
         </dt>
 
         @if (Model.ClientInterventions.Any())
@@ -55,8 +61,8 @@
                                 @Html.DisplayFor(modelItem => i.InterventionState.Name)
                             </td>
                             <td>
-                                @Html.ActionLink("Details", "Details", "Intervention", new {id = i.InterventionId}, null) |
-                                @Html.ActionLink("Edit", "Edit", "Intervention", new {id = i.InterventionId}, null)
+                                @Html.ActionLink("Details", "Details", "Intervention", new { id = i.InterventionId }, null) |
+                                @Html.ActionLink("Edit", "Edit", "Intervention", new { id = i.InterventionId }, null)
 
                             </td>
                         </tr>
@@ -68,14 +74,10 @@
         {
             <dd>This client does not have any interventions.</dd>
         }
-        <dd>
-            @Html.ActionLink("Create New", "Create", "Intervention", new { id = Model.Id }, new { @class = "btn btn-default" })
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("View Interventions", "ViewInterventions",new {id = Model.Id}) |
-   
+    @Html.ActionLink("View Interventions", "ViewInterventions", new { id = Model.Id }) |
+
     @Html.ActionLink("Back to List", "Index")
 </p>
