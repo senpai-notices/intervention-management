@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
@@ -53,10 +54,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <param name="id">Id of the client to be viewed - ClientId</param>
         /// <returns></returns>
         // GET: Engineer/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            
-            var client = _clientRepo.GetById(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var client = _clientRepo.GetById((int) id);
 
             if (client == null)
             {
@@ -65,10 +70,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             var clientModel = new ClientDetailsViewModel
             {
-                Id = id,
+                Id = (int) id,
                 Name = client.Name,
                 Location = client.Location,
-                ClientInterventions = _interventionRepo.GetInterventionsOfClient(id)
+                ClientInterventions = _interventionRepo.GetInterventionsOfClient((int) id)
             };
 
             return View(clientModel);
