@@ -26,8 +26,8 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
         {
             return Context.Intervention.Where(
                 i => i.ProposerId == userId 
-                || i.ApproverId == userId
-                && i.InterventionStateId != 3)
+                || i.ApproverId == userId)
+                .Where(i => i.InterventionStateId != 3)
                 .OrderByDescending(i => i.DatePerformed)
                 .ToList();
         }
