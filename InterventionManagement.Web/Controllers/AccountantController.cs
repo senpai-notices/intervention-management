@@ -30,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             var interventions = iRepo.SelectAll();
             var engineers = eRepo.GetEngineers();
 
-            var report = new EngineerReport(interventions, engineers)._report;
+            var report = new EngineerReport(interventions, engineers).Report;
             return View(report);
         }
 
