@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
-    class InterventionRepository : IInterventionRepository, IDisposable
+    public class InterventionRepository : IInterventionRepository, IDisposable
     {
         private ApplicationDbContext _context;
         private bool _disposed = false;
