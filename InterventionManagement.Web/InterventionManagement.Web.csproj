@@ -293,10 +293,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Engineer\Index.cshtml" />
-    <Content Include="Views\Engineer\CreateClient.cshtml" />
-    <Content Include="Views\Engineer\ViewDetails.cshtml" />
-    <Content Include="Views\Engineer\EditDetails.cshtml" />
     <Content Include="Views\Intervention\Index.cshtml" />
     <Content Include="Views\Intervention\Create.cshtml" />
     <Content Include="Views\Intervention\ViewAllInterventions.cshtml" />
