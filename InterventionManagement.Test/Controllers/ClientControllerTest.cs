@@ -45,7 +45,15 @@ namespace ASDF.ENETCare.InterventionManagement.Test.Controllers
             _userStoreMock = new Mock<IUserStore<ApplicationUser, int>>();
             _userManager = new UserManager<ApplicationUser, int>(_userStoreMock.Object);
         }
-        // http://techbrij.com/unit-testing-asp-net-mvc-controller-service
+        /* http://techbrij.com/unit-testing-asp-net-mvc-controller-service
+        *  http://www.asp.net/mvc/overview/older-versions/hands-on-labs/aspnet-mvc-4-dependency-injection
+        *  http://stackoverflow.com/questions/4287959/how-to-use-my-custom-authorizeattribute-in-my-view
+        *  http://stackoverflow.com/questions/23249887/mvc-dynamic-page-permissions-using-authorize-attribute
+        *  http://stackoverflow.com/questions/11037213/asp-net-mvc-attribute-to-only-let-user-edit-his-her-own-content
+        *  http://stackoverflow.com/questions/1562683/testing-asp-net-mvc-view-model
+        *  http://forums.asp.net/t/1993211.aspx?Mocking+the+IUserStore+UserManager+and+MOQ
+        *  
+        */
         [TestMethod]
         public void SelectAll()
         {
