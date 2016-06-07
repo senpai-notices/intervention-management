@@ -24,7 +24,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
         {
             var Engineers = new List<ApplicationUser>();
             
-            foreach (var user in UsersManager.Users)
+            foreach (var user in UsersManager.Users.ToArray())
             {
                 if (UsersManager.IsInRole(user.Id, "Engineer"))
                 {
