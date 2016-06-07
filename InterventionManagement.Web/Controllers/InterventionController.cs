@@ -111,13 +111,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
+                   
                     if (i.Cost > _cost || i.Hours > _hours)
                     {
                         return View("ErrorApprove");
                     }
                     else
-                    {                       
+                    {
+                        i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
                         i.ApproverId = User.Identity.GetUserId<int>();
                         _interventionRepo.Update(i);
                     }
