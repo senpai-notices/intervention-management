@@ -296,7 +296,6 @@
     <Content Include="Views\Intervention\ChangeState.cshtml" />
     <Content Include="Views\Manager\ChangeState.cshtml" />
     <Content Include="Views\Shared\ErrorApprove.cshtml" />
-    <Content Include="Views\Client\Edit.cshtml" />
     <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Details.cshtml" />
     <Content Include="Views\Client\Create.cshtml" />
