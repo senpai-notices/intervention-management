@@ -12,27 +12,27 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
     public class EngineerRepository
     {
         private ApplicationDbContext Context;
-        private UserManager<ApplicationUser, int> UsersManager;
+        private readonly UserManager<ApplicationUser, int> _usersManager;
 
         public EngineerRepository()
         {
             Context = new ApplicationDbContext();
-            UsersManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
+            _usersManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
         }
 
         public IEnumerable<ApplicationUser> GetEngineers()
         {
-            var Engineers = new List<ApplicationUser>();
+            var engineers = new List<ApplicationUser>();
             
-            foreach (var user in UsersManager.Users)
+            foreach (var user in _usersManager.Users.ToArray())
             {
-                if (UsersManager.IsInRole(user.Id, "Engineer"))
+                if (_usersManager.IsInRole(user.Id, "Engineer"))
                 {
-                    Engineers.Add(user);
+                    engineers.Add(user);
                 }
             }
 
-            return Engineers;
+            return engineers;
         }
     }
 }

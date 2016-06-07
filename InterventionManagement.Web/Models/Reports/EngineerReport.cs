@@ -8,25 +8,24 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 {
     public class EngineerReport
     {
-        public List<CostByEngineer> _report { get; set; }
+        public List<CostByEngineer> Report { get; set; }
 
 
-        public EngineerReport(IEnumerable<Intervention> Interventions, IEnumerable<ApplicationUser> Engineers )
+        public EngineerReport(IEnumerable<Intervention> interventions, IEnumerable<ApplicationUser> engineers )
         {
-            Dictionary<ApplicationUser, CostByEngineer> EngineersReport;
-            EngineersReport = new Dictionary<ApplicationUser, CostByEngineer>() ;
+            var engineersReport = new Dictionary<ApplicationUser, CostByEngineer>();
 
-            foreach (var engineer in Engineers)
+            foreach (var engineer in engineers)
             {
                 var item = new CostByEngineer();
                 item.Name = engineer.Name;
                 item.TotalCost = 0;
                 item.TotalHours = 0;
                 item.Completed = 0;
-                EngineersReport.Add(engineer, item);
+                engineersReport.Add(engineer, item);
             }
 
-            foreach (var intervention in Interventions)
+            foreach (var intervention in interventions)
             {
                 //TODO: Directly reference completed intervention state.
                 if (intervention.InterventionState.InterventionStateId == 3)
@@ -34,7 +33,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                     CostByEngineer report = null;
                     var responsible = intervention.Approver;
 
-                    if (EngineersReport.TryGetValue(responsible, out report))
+                    if (engineersReport.TryGetValue(responsible, out report))
                     {
                         report.Completed++;
                         report.Name = responsible.Name;
@@ -44,17 +43,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 }
             }
 
-            _report = new List<CostByEngineer>();
-            foreach (var item in EngineersReport)
+            Report = new List<CostByEngineer>();
+            foreach (var item in engineersReport)
             {
-                _report.Add(item.Value);
+                Report.Add(item.Value);
             }
 
         }
         public void AverageCostHour()
         {
             //Averages the amounts per engineer
-            foreach (var report in _report)
+            foreach (var report in Report)
             {
                 int completed = report.Completed;
                 int hours = report.TotalHours;
