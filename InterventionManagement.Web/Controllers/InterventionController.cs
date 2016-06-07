@@ -254,7 +254,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 return HttpNotFound();
             }
 
-            var viewModel = new EditInterventionViewModel
+            var viewModel = new EditQualityInfo
             {
                 Notes = i.Notes,
                 DateOfLastVisit = i.DateOfLastVisit,
@@ -274,19 +274,24 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         // POST: Intervention/Edit/5
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Edit(EditInterventionViewModel viewModel)
+        public ActionResult Edit(EditQualityInfo viewModel)
         {
+            var currentIntervention = _interventionRepo.GetById(viewModel.Id);
+
             if (ModelState.IsValid)
             {
-                var intervention = new Intervention()
+                currentIntervention.Notes = viewModel.Notes;
+                currentIntervention.RemainingLife = viewModel.RemainingLife;
+                currentIntervention.DateOfLastVisit = viewModel.DateOfLastVisit;
+                /*var intervention = new Intervention()
                 {
                     Notes = viewModel.Notes,
                     RemainingLife = viewModel.RemainingLife,
                     DateOfLastVisit = viewModel.DateOfLastVisit
-                };                 
-                _interventionRepo.Update(intervention);
+                };     */            
+                _interventionRepo.Update(currentIntervention);
 
-                return RedirectToAction("Details", new { id = intervention.ClientId });
+                return RedirectToAction("Details", new { id = currentIntervention.ClientId });
             }
             return View(viewModel);
         }

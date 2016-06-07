@@ -130,4 +130,22 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         public IEnumerable<InterventionState> StateList { get; set; }
     }
 
+    public class EditQualityInfo
+    {
+        [Required]
+        public string Notes { get; set; }
+
+        [DisplayName("Remaining Life")]
+        [Required]
+        [Range(0, 100)]
+        public int RemainingLife { get; set; }
+
+        [Required]
+        [DisplayName("Last Visit")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime? DateOfLastVisit { get; set; }
+        public int Id { get; set; }
+    }
+
 }
