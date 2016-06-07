@@ -136,6 +136,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     public class EditQualityInfo
     {
         [Required]
+        [StringLength(5000, MinimumLength = 3, ErrorMessage = "Invalid length.")]
         public string Notes { get; set; }
 
         [DisplayName("Remaining Life")]
