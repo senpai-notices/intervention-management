@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models.Reports;
 
 //remove
@@ -25,7 +25,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         {
             
             InterventionRepository iRepo = new InterventionRepository(new ApplicationDbContext());
-            EngineerReportsRepository eRepo = new EngineerReportsRepository();
+            EngineerRepository eRepo = new EngineerRepository();
 
             var interventions = iRepo.GetInterventions();
             var engineers = eRepo.GetEngineers();

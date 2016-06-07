@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Business;
 using System.Diagnostics;//remove
 using Microsoft.AspNet.Identity;
@@ -19,7 +19,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
         public EngineerReport()
         {
-            var engineerReportsRepository = new EngineerReportsRepository();
+            var engineerReportsRepository = new EngineerRepository();
             Rows = new List<TotalCostByEngineerRow>();
 
             // populate rows
