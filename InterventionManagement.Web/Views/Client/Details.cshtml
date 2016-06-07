@@ -32,10 +32,10 @@
     <dl class="dl-horizontal">
 
         <dt>
-            <p>@Html.DisplayNameFor(model => model.ClientInterventions)</p>
-            <p>
-                @Html.ActionLink("Create New", "Create", "Intervention", new { id = Model.Id }, new { @class = "btn btn-default" })
-            </p>
+            @Html.DisplayNameFor(model => model.ClientInterventions)
+            <br/><br/>
+            @Html.ActionLink("Create New", "Create", "Intervention", new { id = Model.Id }, new { @class = "btn btn-default" })
+
         </dt>
 
         @if (Model.ClientInterventions.Any())
