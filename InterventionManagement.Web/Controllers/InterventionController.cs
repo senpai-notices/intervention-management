@@ -283,12 +283,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 currentIntervention.Notes = viewModel.Notes;
                 currentIntervention.RemainingLife = viewModel.RemainingLife;
                 currentIntervention.DateOfLastVisit = viewModel.DateOfLastVisit;
-                /*var intervention = new Intervention()
-                {
-                    Notes = viewModel.Notes,
-                    RemainingLife = viewModel.RemainingLife,
-                    DateOfLastVisit = viewModel.DateOfLastVisit
-                };     */            
+           
                 _interventionRepo.Update(currentIntervention);
 
                 return RedirectToAction("Details", new { id = currentIntervention.ClientId });
