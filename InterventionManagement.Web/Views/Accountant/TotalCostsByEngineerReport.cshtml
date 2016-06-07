@@ -1,4 +1,4 @@
-﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.Reports.EngineerReport
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.Reports.EngineerReport.CostByEngineer
 
 @{
     ViewBag.Title = "EngineerReport";
@@ -23,16 +23,16 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@*@foreach (var item in Model) {*@
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => Model.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotalHours)
+            @Html.DisplayFor(modelItem => Model.TotalHours)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TotalCost)
+            @Html.DisplayFor(modelItem => Model.TotalCost)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
@@ -40,6 +40,6 @@
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
-}
+@*}*@
 
 </table>
