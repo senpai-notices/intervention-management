@@ -286,7 +286,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
            
                 _interventionRepo.Update(currentIntervention);
 
-                return RedirectToAction("Details", new { id = currentIntervention.ClientId });
+                return RedirectToAction("Details", "Intervention", new { id = currentIntervention.InterventionId });
             }
             return View(viewModel);
         }
