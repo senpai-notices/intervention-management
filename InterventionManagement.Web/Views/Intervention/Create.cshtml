@@ -89,7 +89,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new {id = Model.ClientId})
+@*    @Html.ActionLink("Back to List", "Index", new {id = Model.ClientId})*@
+    @Html.ActionLink("Back to Client", "Details", "Client", new {id = Model.ClientId})
 </div>
 @section scripts
 {

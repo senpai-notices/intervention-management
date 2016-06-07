@@ -227,7 +227,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 intervention.ProposerId = User.Identity.GetUserId<int>();
                 _interventionRepo.Insert(intervention);
 
-                return RedirectToAction("Index", new { id = model.ClientId });
+                return RedirectToAction("Details", "Client", new { id = model.ClientId });
             }
 
             model.TemplateList = _interventionTemplateRepo.SelectAll();
