@@ -27,6 +27,13 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ProposerNameEmail)
         </dt>
 
@@ -41,36 +48,28 @@
         <dd>
             @Html.DisplayFor(model => model.ApproverNameEmail)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ClientId)
-        </dt>
-
-    <dd>
-        @Html.DisplayFor(model => model.ClientId)
-    </dd>
-        </dl>
+    </dl>
     <hr/>
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Notes)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Notes)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.RemainingLife)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.RemainingLife)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.DateOfLastVisit)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.DateOfLastVisit)
-            </dd>
-        </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RemainingLife)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RemainingLife)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfLastVisit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfLastVisit)
+        </dd>
+    </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
