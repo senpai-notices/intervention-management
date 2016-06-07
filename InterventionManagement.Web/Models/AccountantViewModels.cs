@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
-using ASDF.ENETCare.InterventionManagement.Business;
-using System.Diagnostics;//remove
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections;
 using System.Linq;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models
 {

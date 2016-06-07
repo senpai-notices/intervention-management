@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
-using ASDF.ENETCare.InterventionManagement.Business.Repositories;
+using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models.Reports;
+using InterventionRepository = ASDF.ENETCare.InterventionManagement.Business.Repositories.InterventionRepository;
 
 //remove
 

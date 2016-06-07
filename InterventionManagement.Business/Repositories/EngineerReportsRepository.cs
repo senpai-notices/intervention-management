@@ -1,38 +1,35 @@
-﻿using Microsoft.AspNet.Identity;
+﻿/*
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
 {
     public class EngineerReportsRepository
     {
-        private ApplicationDbContext Context;
-        private UserManager<ApplicationUser> UserManager;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser, int> _userManager;
         
         public EngineerReportsRepository()
         {
-            Context = new ApplicationDbContext();
-            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
+            _context = new ApplicationDbContext();
+            _userManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
         }
 
         public IEnumerable<ApplicationUser> GetEngineers()
         {
-            var Engineers = new List<ApplicationUser>();
-            var users = new GenericRepository<ApplicationUser>(Context);
+            var engineers = new List<ApplicationUser>();
+            var users = new Repository<ApplicationUser>(_context);
 
             foreach (var user in users.SelectAll())
             {
-                if (UserManager.IsInRole(user.Id, "Engineer"))
+                if (_userManager.IsInRole(user.Id, "Engineer"))
                 {
-                    Engineers.Add(user);
+                    engineers.Add(user);
                 }
             }
 
-            return Engineers;
+            return engineers;
         }
 
         //public IEnumerable<Intervention> GetCompletedInterventionsForEngineer(ApplicationUser engineer)
@@ -50,3 +47,4 @@ namespace ASDF.ENETCare.InterventionManagement.Business.Repositories
         //}
     }
 }
+*/
