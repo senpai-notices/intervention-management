@@ -178,9 +178,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                     DatePerformed = model.DatePerformed,
                     Hours = model.Hours,
                     Cost = model.Cost,
-                    Notes = model.Notes,
+                    //Notes = model.Notes,
                     RemainingLife = model.RemainingLife,
-                    DateOfLastVisit = model.DateOfLastVisit,
+                    //DateOfLastVisit = model.DateOfLastVisit,
                     ClientId = model.ClientId
                 };
 
@@ -241,8 +241,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 var i = _interventionRepo.GetById(id);
                 if (ModelState.IsValid)
                 {
-                    
-                    
                     i.Notes = model.Notes;
                     i.RemainingLife = model.RemainingLife;
                     i.DateOfLastVisit = model.DateOfLastVisit;

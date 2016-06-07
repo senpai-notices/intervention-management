@@ -16,7 +16,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
         public int RemainingLife { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime DateOfLastVisit { get; set; }
+        public DateTime? DateOfLastVisit { get; set; }
 
         // foreign keys
         public int InterventionTemplateId { get; set; }
