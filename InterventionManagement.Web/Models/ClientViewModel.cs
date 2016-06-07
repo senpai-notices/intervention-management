@@ -14,11 +14,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
     public class CreateClientViewModel
     {
         [Required]
-        [DisplayName("Client Name")]
+        [DisplayName("Name")]
         public string Name { get; set; }
 
         [Required]
-        [DisplayName("Client location")]
+        [DisplayName("Location")]
         public string Location { get; set; }
 
         [DisplayName("Interventions")]

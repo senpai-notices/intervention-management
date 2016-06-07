@@ -5,7 +5,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>@Html.DisplayFor(model => model.Name)</h2>
 
 <div>
     <h4>Client Details</h4>
@@ -25,6 +25,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.Location)
+            <hr/>
         </dd>
 
         <dt>
@@ -65,6 +66,9 @@
         {
             <dd>This client does not have any interventions.</dd>
         }
+        <dd>
+            @Html.ActionLink("Create New", "Create", "Intervention", new { id = Model.Id }, new { @class = "btn btn-default" })
+        </dd>
 
     </dl>
 </div>
