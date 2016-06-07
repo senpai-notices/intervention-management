@@ -27,7 +27,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             InterventionRepository iRepo = new InterventionRepository(new ApplicationDbContext());
             EngineerRepository eRepo = new EngineerRepository();
 
-            var interventions = iRepo.GetInterventions();
+            var interventions = iRepo.SelectAll();
             var engineers = eRepo.GetEngineers();
 
             var report = new EngineerReport(interventions, engineers);
