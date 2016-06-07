@@ -8,7 +8,7 @@ namespace ASDF.ENETCare.InterventionManagement.Business
     {
         public int InterventionId { get; set; }
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)] //todo: take out and test 
         public DateTime DatePerformed { get; set; }
         public int Hours { get; set; }
         public decimal Cost { get; set; }
