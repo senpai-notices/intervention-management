@@ -133,9 +133,14 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
 
         // GET: Intervention/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            var intervention = _interventionRepo.GetById(id);
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var intervention = _interventionRepo.GetById((int) id);
 
             if (intervention == null)
             {
@@ -144,7 +149,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             var viewModel = new InterventionDetailsViewModel
             {
-                Id = id,
+                Id = (int) id,
                 DatePerformed = intervention.DatePerformed,
                 InterventionTemplate = intervention.InterventionTemplate.Name,
 
@@ -235,10 +240,21 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         /// <param name="id">Id of the intervention to be edited - InterventionId</param>
         /// <returns></returns>
         // GET: Intervention/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            var i = _interventionRepo.GetById(id);
-            var model = new EditInterventionViewModel
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var i = _interventionRepo.GetById((int) id);
+
+            if (i == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new EditInterventionViewModel
             {
                 Notes = i.Notes,
                 DateOfLastVisit = i.DateOfLastVisit,
@@ -246,38 +262,33 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Id = i.InterventionId,                
             };
 
-            return View(model);
+            return View(viewModel);
         }
 
         /// <summary>
         /// This ActionResult will allow the Engineer to edit the quality management of the intervention based on the model
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="model"></param>
+        /// <param name="viewModel"></param>
         /// <returns></returns>
         // POST: Intervention/Edit/5
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Edit(int id,EditInterventionViewModel model)
+        public ActionResult Edit(EditInterventionViewModel viewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var i = _interventionRepo.GetById(id);
-                if (ModelState.IsValid)
+                var intervention = new Intervention()
                 {
-                    i.Notes = model.Notes;
-                    i.RemainingLife = model.RemainingLife;
-                    i.DateOfLastVisit = model.DateOfLastVisit;
-                    
-                    _interventionRepo.Update(i);
-                }
+                    Notes = viewModel.Notes,
+                    RemainingLife = viewModel.RemainingLife,
+                    DateOfLastVisit = viewModel.DateOfLastVisit
+                };                 
+                _interventionRepo.Update(intervention);
 
-                return RedirectToAction("Index", new { id = i.ClientId });
-
+                return RedirectToAction("Details", new { id = intervention.ClientId });
             }
-            catch
-            {
-                return View();
-            }
+            return View(viewModel);
         }
 
         // GET: Intervention/Delete/5
