@@ -45,7 +45,7 @@ namespace ASDF.ENETCare.InterventionManagement.Test.Controllers
             _userStoreMock = new Mock<IUserStore<ApplicationUser, int>>();
             _userManager = new UserManager<ApplicationUser, int>(_userStoreMock.Object);
         }
-
+        // http://techbrij.com/unit-testing-asp-net-mvc-controller-service
         [TestMethod]
         public void SelectAll()
         {
