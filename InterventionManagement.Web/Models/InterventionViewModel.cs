@@ -63,6 +63,9 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [DisplayName("Client")]
         public int ClientId { get; set; }
 
+        [DisplayName("Client")]
+        public string ClientName { get; set; }
+
         public string Notes { get; set; }
 
         [DisplayName("Remaining Life")]
