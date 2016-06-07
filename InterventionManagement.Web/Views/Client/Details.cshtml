@@ -55,7 +55,9 @@
                                 @Html.DisplayFor(modelItem => i.InterventionState.Name)
                             </td>
                             <td>
-                                @Html.ActionLink("Details", "Details", "Intervention", new {id = i.InterventionId}, null)
+                                @Html.ActionLink("Details", "Details", "Intervention", new {id = i.InterventionId}, null) |
+                                @Html.ActionLink("Edit", "Edit", "Intervention", new {id = i.InterventionId}, null)
+
                             </td>
                         </tr>
                     }
