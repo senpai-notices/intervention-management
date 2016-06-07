@@ -28,7 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         {
             RemainingLife = 100;
         }
-        [DisplayName("Date Performed")]
+        [DisplayName("Date")]
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -105,7 +105,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
     public class EditInterventionViewModel: InterventionDetailsViewModel
     {
+        [Required]
+        public new string Notes { get; set; }
 
+        [DisplayName("Remaining Life")]
+        [Required]
+        [Range(0, 100)]
+        public new int RemainingLife { get; set; }
+
+        [Required]
+        [DisplayName("Last Visit")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public new DateTime? DateOfLastVisit { get; set; }
     }
 
     public class ChangeStateViewModel
