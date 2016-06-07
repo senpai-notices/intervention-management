@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models.Reports;
-using InterventionRepository = ASDF.ENETCare.InterventionManagement.Business.Repositories.InterventionRepository;
 
 //remove
 
@@ -28,7 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             InterventionRepository iRepo = new InterventionRepository(new ApplicationDbContext());
             EngineerReportsRepository eRepo = new EngineerReportsRepository();
 
-            var interventions = iRepo.GetInterventions();
+            var interventions = iRepo.SelectAll().Where(x => x.InterventionStateId == 4);
             var engineers = eRepo.GetEngineers();
 
             var report = new EngineerReport(interventions, engineers);
