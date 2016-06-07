@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
@@ -13,35 +14,53 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
         private readonly IInterventionRepository _interventionRepo;
         private readonly IInterventionTemplateRepository _interventionTemplateRepo;
         private readonly IInterventionStateRepository _interventionStateRepo;
+        private readonly IClientRepository _clientRepo;
         private int? _hours;
         private decimal? _cost;
 
         public InterventionController()
             : this (new InterventionRepository(new ApplicationDbContext()),
                   new InterventionTemplateRepository(new ApplicationDbContext()),
-                  new InterventionStateRepository(new ApplicationDbContext()))
+                  new InterventionStateRepository(new ApplicationDbContext()),
+                  new ClientRepository(new ApplicationDbContext()))
         {
         }
 
-        public InterventionController(IInterventionRepository interventionRepo, IInterventionTemplateRepository interventionTemplateRepo, IInterventionStateRepository interventionStateRepo)
+        public InterventionController(IInterventionRepository interventionRepo, 
+            IInterventionTemplateRepository interventionTemplateRepo, 
+            IInterventionStateRepository interventionStateRepo,
+            IClientRepository cilentRepo)
         {
             _interventionRepo = interventionRepo;
             _interventionTemplateRepo = interventionTemplateRepo;
             _interventionStateRepo = interventionStateRepo;
+            _clientRepo = cilentRepo;
         }
 
         // GET: Intervention
         /// <summary>
         /// This ActionResult will list all the interventions associated with a client and are not deleted
         /// </summary>
-        /// <param name="id">Client Id</param>
+        /// <param name="clientId">Client Id</param>
         /// <returns></returns>
-        public ActionResult Index(int id)
+        public ActionResult Index(int? clientId)
         {
+            if (clientId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (_clientRepo.GetById((int) clientId) == null)
+            {
+                return HttpNotFound();
+            }
+
+            var interventions = _interventionRepo.GetInterventionsOfClient((int)clientId);
+
             var listModel = new InterventionsListViewModel()
             {
-                Interventions = _interventionRepo.GetInterventionsOfClient(id),
-                ClientId = id
+                Interventions = interventions, //_interventionRepo.GetInterventionsOfClient(id),
+                ClientId = (int)clientId
             };
             //_clientId = id;
             return View(listModel);
