@@ -27,21 +27,23 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
         public void Insert(TEntity obj)
         {
             Context.Set<TEntity>().Add(obj);
-            Context.SaveChanges();
         }
 
         public void Update(TEntity obj)
         {
             Context.Set<TEntity>().Attach(obj);
             Context.Entry(obj).State = EntityState.Modified;
-            Context.SaveChanges();
         }
 
         public void Delete(int id)
         {
             var existing = Context.Set<TEntity>().Find(id);
             Context.Set<TEntity>().Remove(existing);
-            Context.SaveChanges();
+        }
+
+        public int Save()
+        {
+            return Context.SaveChanges();
         }
     }
 }

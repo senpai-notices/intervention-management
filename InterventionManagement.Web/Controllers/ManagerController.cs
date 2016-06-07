@@ -89,6 +89,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                         i.InterventionStateId = Convert.ToInt32(model.NextInterventionState); ;
                         i.ApproverId = User.Identity.GetUserId<int>();
                         _interventionRepo.Update(i);
+                        _interventionRepo.Save();
                     }
                 }
             }

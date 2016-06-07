@@ -109,6 +109,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             };
                 
             _clientRepo.Insert(client);
+            _clientRepo.Save();
             return RedirectToAction("Index");
         }
 

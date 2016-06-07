@@ -17,5 +17,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
         void Update(TEntity obj);
 
         void Delete(int id);
+
+        int Save();
     }
 }

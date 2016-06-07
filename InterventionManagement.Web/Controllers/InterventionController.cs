@@ -121,6 +121,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                         i.InterventionStateId = Convert.ToInt32(model.NextInterventionState);
                         i.ApproverId = User.Identity.GetUserId<int>();
                         _interventionRepo.Update(i);
+                        _interventionRepo.Save();
                     }
                 }
             }
@@ -228,6 +229,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 intervention.InterventionTemplateId = Convert.ToInt32(model.InterventionTemplate);
                 intervention.ProposerId = User.Identity.GetUserId<int>();
                 _interventionRepo.Insert(intervention);
+                _interventionRepo.Save();
 
                 return RedirectToAction("Details", "Client", new { id = model.ClientId });
             }
@@ -287,6 +289,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 currentIntervention.DateOfLastVisit = viewModel.DateOfLastVisit;
            
                 _interventionRepo.Update(currentIntervention);
+                _interventionRepo.Save();
 
                 return RedirectToAction("Details", "Intervention", new { id = currentIntervention.InterventionId });
             }
