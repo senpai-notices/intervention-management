@@ -1,4 +1,5 @@
-﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.ClientDetailsViewModel
+﻿@using Microsoft.Ajax.Utilities
+@model ASDF.ENETCare.InterventionManagement.Web.Models.ClientDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -29,29 +30,37 @@
         <dt>
             @Html.DisplayNameFor(model => model.ClientInterventions)
         </dt>
-        <dd>
-            <table class="table">
-                <tr>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th></th>
-                </tr>
-                @foreach (var i in Model.ClientInterventions)
-                {
+
+        @if (Model.ClientInterventions.Any())
+        {
+            <dd>
+                <table class="table">
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => i.DatePerformed)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => i.InterventionTemplate.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", "Intervention", new { id = i.InterventionId }, null)
-                        </td>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th></th>
                     </tr>
-                }
-            </table>
-        </dd>
+                    @foreach (var i in Model.ClientInterventions)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.DatePerformed)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => i.InterventionTemplate.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", "Intervention", new {id = i.InterventionId}, null)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        }
+        else
+        {
+            <dd>This client does not have any interventions.</dd>
+        }
 
     </dl>
 </div>
