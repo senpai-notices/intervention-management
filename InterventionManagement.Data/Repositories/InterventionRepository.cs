@@ -18,6 +18,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
             return Context.Intervention.Where(
                 i => i.ClientId == clientId
                 && i.InterventionStateId != 3)
+                .OrderByDescending(i => i.DatePerformed)
                 .ToList();
         }
 
@@ -27,6 +28,7 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
                 i => i.ProposerId == userId 
                 || i.ApproverId == userId
                 && i.InterventionStateId != 3)
+                .OrderByDescending(i => i.DatePerformed)
                 .ToList();
         }
 
@@ -36,8 +38,9 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
                 i => i.Client.DistrictId == districtId
                 && i.InterventionStateId == 1
                 && i.Hours <= userHours
-                && i.Cost <= userCost
-                ).ToList();
+                && i.Cost <= userCost)
+                .OrderBy(i => i.DatePerformed)
+                .ToList();
         }
     }
 }
