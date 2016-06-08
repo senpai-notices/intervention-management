@@ -63,10 +63,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [DisplayName("Client")]
         public int ClientId { get; set; }
 
-        [HiddenInput(DisplayValue = false)]
-        public int StateId { get; set; }
-        public string State { get; set; }
-
         [DisplayName("Client")]
         public string ClientName { get; set; }
 
