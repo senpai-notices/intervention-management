@@ -11,12 +11,12 @@ namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
     public class EngineerRepository
     {
-        private ApplicationDbContext Context;
+        private ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser, int> _usersManager;
 
         public EngineerRepository()
         {
-            Context = new ApplicationDbContext();
+            _context = new ApplicationDbContext();
             _usersManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
         }
 

@@ -131,9 +131,9 @@ namespace ASDF.ENETCare.InterventionManagement.Business
             context.InterventionTemplate.AddOrUpdate(
                 i => i.Name,  
                 new InterventionTemplate{ InterventionTemplateId=1, Name="Supply Mosquito Net", Hours=1, Cost=60.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply and Install Storm-proof Home Kit", Hours=40, Cost=1000.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Supply and Install Portable Toilet", Hours=4, Cost=150.00M },
-                new InterventionTemplate{ InterventionTemplateId=1, Name="Hepatitis Avoidance Training", Hours=3, Cost=80.00M }
+                new InterventionTemplate{ InterventionTemplateId=2, Name="Supply and Install Storm-proof Home Kit", Hours=40, Cost=1000.00M },
+                new InterventionTemplate{ InterventionTemplateId=3, Name="Supply and Install Portable Toilet", Hours=4, Cost=150.00M },
+                new InterventionTemplate{ InterventionTemplateId=4, Name="Hepatitis Avoidance Training", Hours=3, Cost=80.00M }
                 );
         }
     }
