@@ -55,12 +55,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
             //Averages the amounts per engineer
             foreach (var report in Report)
             {
-                int completed = report.Completed;
-                int hours = report.TotalHours;
-                decimal cost = report.TotalCost;
-
-                report.TotalHours = hours / completed;
-                report.TotalCost = cost / completed;
+                if (report.Completed != 0)
+                {
+                    report.TotalHours = report.TotalHours / report.Completed;
+                    report.TotalCost = report.TotalCost / report.Completed;
+                }
             }
         }
 
