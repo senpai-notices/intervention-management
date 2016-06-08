@@ -28,7 +28,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Change district", "Edit", new { id = User.Identity.GetUserId()})
+                @Html.ActionLink("Change district", "Index")
             </td>
 
         </tr>
@@ -56,7 +56,7 @@
             </td>
 
             <td>
-                @Html.ActionLink("Change district", "Edit", new { id = User.Identity.GetUserId() })
+                @Html.ActionLink("Change district", "Index")
             </td>
 
         </tr>
@@ -73,7 +73,9 @@
     <tr>
         <td>
    
-             @Html.ActionLink("Total costs by engineers", "TotalCostsByEngineerReport")
+            @Html.ActionLink("Total costs by engineers", "TotalCostsByEngineerReport")
+            <br/><br/>
+            @Html.ActionLink("Cost by district report", "CostsByDistrictReport")
         </td>
 
     </tr>
