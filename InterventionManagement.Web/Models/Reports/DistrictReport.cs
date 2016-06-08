@@ -14,10 +14,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
         private IEnumerable<Intervention> Interventions;
         public decimal GrandTotal { get; set; }
 
-        [Required]
-        [DisplayName("Grand Total")]
-        public string GrandTotalString { get; set; }
-
         public DistrictReport(IEnumerable<Intervention> interventions, IEnumerable<District> districts)
         {
             DistrictReports = new List<CostHour_DistrictReport>();
@@ -37,9 +33,8 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 DistrictReports.Add(report);
             }
 
+            // set up the grand total
             GrandTotal = CalcGrandTotal();
-            GrandTotalString = GrandTotal.ToString();
-            Debug.WriteLine("Yolo", GrandTotalString);
         }
 
         private decimal GetTotalCostForDistrict(int districtId)
