@@ -118,15 +118,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientRepositoryTests.cs" />
-    <Compile Include="ClientTests.cs" />
-    <Compile Include="Controllers\ClientControllerTest.cs" />
-    <Compile Include="DataStartupTests.cs" />
-    <Compile Include="DistrictTests.cs" />
-    <Compile Include="EngineerTests.cs" />
-    <Compile Include="InterventionRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Repositories\InterventionRepositoryTest.cs" />
+    <Compile Include="Repositories\ClientRepositoryTest.cs" />
+    <Compile Include="Repositories\InterventionStateRepositoryTest.cs" />
+    <Compile Include="Repositories\InterventionTemplateRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -150,9 +147,7 @@
       <Name>InterventionManagement.Web</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
