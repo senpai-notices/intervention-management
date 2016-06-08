@@ -1,10 +1,15 @@
 ﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.Reports.DistrictReport
 
 @{
-    ViewBag.Title = "CostsByDistrictReport";
+    ViewBag.Title = "Costs By District Report";
 }
 
-<h2>CostsByDistrictReport</h2>
+<h2>Costs By District Report</h2>
+
+<p>
+    Grand Total: $
+    @Html.DisplayFor(model => model.GrandTotalString)
+</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")

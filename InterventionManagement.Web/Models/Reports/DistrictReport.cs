@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ASDF.ENETCare.InterventionManagement.Business;
 using System.Collections;
+using System.Diagnostics;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 {
@@ -11,6 +12,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
     {
         public List<CostHour_DistrictReport> DistrictReports { get; set; }
         private IEnumerable<Intervention> Interventions;
+        public decimal GrandTotal { get; set; }
+
+        [Required]
+        [DisplayName("Grand Total")]
+        public string GrandTotalString { get; set; }
 
         public DistrictReport(IEnumerable<Intervention> interventions, IEnumerable<District> districts)
         {
@@ -30,6 +36,10 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 
                 DistrictReports.Add(report);
             }
+
+            GrandTotal = CalcGrandTotal();
+            GrandTotalString = GrandTotal.ToString();
+            Debug.WriteLine("Yolo", GrandTotalString);
         }
 
         private decimal GetTotalCostForDistrict(int districtId)
@@ -58,6 +68,17 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 }
             }
             return totalHours;
+        }
+
+        private decimal CalcGrandTotal()
+        {
+            decimal grandTotal = 0;
+            foreach (var report in DistrictReports)
+            {
+                grandTotal = grandTotal + report.TotalCost;
+            }
+
+            return grandTotal;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
