@@ -30,7 +30,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             if (User.IsInRole("Accountant"))
             {
                 // To Do: replace when accountant controller is complete
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Accountant");
             }
             else if (User.IsInRole("Engineer"))
             {

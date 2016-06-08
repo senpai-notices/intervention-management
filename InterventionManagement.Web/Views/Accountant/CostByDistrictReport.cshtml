@@ -1,10 +1,15 @@
-﻿@model IEnumerable<ASDF.ENETCare.InterventionManagement.Web.Models.Reports.EngineerReport.CostByEngineer>
+﻿@model ASDF.ENETCare.InterventionManagement.Web.Models.Reports.DistrictReport
 
 @{
-    ViewBag.Title = "EngineerReport";
+    ViewBag.Title = "Costs By District Report";
 }
 
-<h2>TotalCostsByEngineerReport</h2>
+<h2>Costs By District Report</h2>
+
+<p>
+    Grand Total: $
+    @Html.DisplayFor(model => model.GrandTotal)
+</p>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -36,12 +41,9 @@
                 @Html.DisplayFor(modelItem => item.TotalCost)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
             </td>
         </tr>
     }
- 
 
 </table>

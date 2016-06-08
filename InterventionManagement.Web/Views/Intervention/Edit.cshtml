@@ -46,7 +46,10 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index", new {id = Model.Id})
+    @if (Request.UrlReferrer != null)
+    {
+        <a class="bottomNav" onclick="history.go(-1); return false;" href="#">Back</a><br />
+    }
 </div>
 @section scripts
 {

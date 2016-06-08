@@ -13,7 +13,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 
         public EngineerReport(IEnumerable<Intervention> interventions, IEnumerable<ApplicationUser> engineers )
         {
-            var engineersReport = new Dictionary<ApplicationUser, CostByEngineer>();
+            var engineersReport = new Dictionary<int, CostByEngineer>();
 
             foreach (var engineer in engineers)
             {
@@ -22,7 +22,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                 item.TotalCost = 0;
                 item.TotalHours = 0;
                 item.Completed = 0;
-                engineersReport.Add(engineer, item);
+                engineersReport.Add(engineer.Id, item);
             }
 
             foreach (var intervention in interventions)
@@ -33,7 +33,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
                     CostByEngineer report = null;
                     var responsible = intervention.Approver;
 
-                    if (engineersReport.TryGetValue(responsible, out report))
+                    if (engineersReport.TryGetValue(responsible.Id, out report))
                     {
                         report.Completed++;
                         report.Name = responsible.Name;
@@ -55,12 +55,11 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
             //Averages the amounts per engineer
             foreach (var report in Report)
             {
-                int completed = report.Completed;
-                int hours = report.TotalHours;
-                decimal cost = report.TotalCost;
-
-                report.TotalHours = hours / completed;
-                report.TotalCost = cost / completed;
+                if (report.Completed != 0)
+                {
+                    report.TotalHours = report.TotalHours / report.Completed;
+                    report.TotalCost = report.TotalCost / report.Completed;
+                }
             }
         }
 

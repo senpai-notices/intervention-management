@@ -61,4 +61,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
         [DisplayName("Total Cost")]
         public decimal TotalCost { get; set; }
     }
+
+    public class AccountantIndexViewModel
+    {
+        public string Reports { get; set; }
+
+        public string Engineer { get; set; }
+        public string Manager { get; set; }
+
+        public string DistrictName { get; set; }
+        public string District { get; set; }
+        public IEnumerable<ApplicationUser> Engineers { get; set; }
+        public IEnumerable<ApplicationUser> Managers { get; set; }
+
+
+    }
 }

@@ -112,7 +112,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 if (ModelState.IsValid)
                 {
                    
-                    if (i.Cost > _cost || i.Hours > _hours)
+                    if (i.InterventionStateId !=2)
                     {
                         return View("ErrorApprove");
                     }
@@ -154,7 +154,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Id = (int) id,
                 DatePerformed = intervention.DatePerformed,
                 InterventionTemplate = intervention.InterventionTemplate.Name,
-
                 ProposerNum = intervention.ProposerId,
                 ApproverNum = intervention.ApproverId,
                 ProposerNameEmail = intervention.Proposer.NameEmail,

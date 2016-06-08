@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -83,8 +80,7 @@
             @Html.DisplayFor(modelItem => item.InterventionState.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Change State", "ChangeState", new {  id=item.InterventionId }) |
+            @Html.ActionLink("Change State", "ChangeState", new {  id=item.InterventionId }) 
           
         </td>
     </tr>

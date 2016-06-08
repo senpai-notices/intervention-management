@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+@model ASDF.ENETCare.InterventionManagement.Web.Models.AccountantIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Engineer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Engineers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem =>item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistrictId)
+            </td>
+
+            <td>
+                @Html.ActionLink("Change district", "Index")
+            </td>
+
+        </tr>
+    }
+</table>
+<br/><br/>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model.Managers)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistrictId)
+            </td>
+
+            <td>
+                @Html.ActionLink("Change district", "Index")
+            </td>
+
+        </tr>
+    }
+</table>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Reports)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+   
+            @Html.ActionLink("Total costs by engineers", "TotalCostsByEngineerReport")
+            <br/><br/>
+            @Html.ActionLink("Cost by district report", "CostsByDistrictReport")
+        </td>
+
+    </tr>
+    
+</table>

@@ -9,29 +9,30 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ASDF.ENETCare.InterventionManagement.Data.Repositories
 {
-    public class EngineerRepository
+    public class ManagerRepository
     {
-        private ApplicationDbContext _context;
+        private ApplicationDbContext Context;
         private readonly UserManager<ApplicationUser, int> _usersManager;
 
-        public EngineerRepository()
+        public ManagerRepository()
         {
-            _context = new ApplicationDbContext();
+            Context = new ApplicationDbContext();
             _usersManager = new UserManager<ApplicationUser, int>(new UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>(new ApplicationDbContext()));
         }
 
-        public IEnumerable<ApplicationUser> GetEngineers()
+        public IEnumerable<ApplicationUser> GetManagers()
         {
-            var engineers = new List<ApplicationUser>();
+            var managers = new List<ApplicationUser>();
             
             foreach (var user in _usersManager.Users.ToArray())
             {
-                if (_usersManager.IsInRole(user.Id, "Engineer"))
+                if (_usersManager.IsInRole(user.Id, "Manager"))
                 {
-                    engineers.Add(user);
+                    managers.Add(user);
                 }
             }
-            return engineers;
+
+            return managers;
         }
     }
 }
