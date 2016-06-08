@@ -19,7 +19,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
         public EngineerReport()
         {
-            var engineerReportsRepository = new EngineerRepository();
+            var engineerReportsRepository = new UserRepository();
             Rows = new List<TotalCostByEngineerRow>();
 
             // populate rows
