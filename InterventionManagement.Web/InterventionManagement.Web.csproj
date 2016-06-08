@@ -312,6 +312,7 @@
     <Content Include="Views\Accountant\TotalCostsByEngineerReport.cshtml" />
     <Content Include="Views\Accountant\EngineerReport.cshtml" />
     <Content Include="Views\Accountant\Index.cshtml" />
+    <Content Include="Views\Accountant\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

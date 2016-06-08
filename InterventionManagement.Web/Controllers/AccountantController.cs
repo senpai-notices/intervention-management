@@ -62,6 +62,7 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+
             return View();
         }
 

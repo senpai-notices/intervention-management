@@ -76,4 +76,12 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Models
 
 
     }
+
+    public class ChangeDistrictViewModel
+    {
+        public int NextDistrictId { get; set; }
+        public int CurrentDistrict { get; set; }
+
+        public IEnumerable<District> DistrictsList;
+    }
 }
