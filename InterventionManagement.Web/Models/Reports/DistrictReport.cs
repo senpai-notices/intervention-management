@@ -3,52 +3,84 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using ASDF.ENETCare.InterventionManagement.Business;
-
+using System.Collections;
 
 namespace ASDF.ENETCare.InterventionManagement.Web.Models.Reports
 {
-    public class DistrictReport
+    public class DistrictReport : CostHour_DistrictReport, IEnumerable<CostHour_DistrictReport>
     {
-        public Dictionary<District, CostHour_DistrictReport> DistrictReports { get; set; }
+        public List<CostHour_DistrictReport> DistrictReports { get; set; }
+        private IEnumerable<Intervention> Interventions;
 
-        public DistrictReport(IEnumerable<Intervention> Interventions, IEnumerable<District> Districts )
+        public DistrictReport(IEnumerable<Intervention> interventions, IEnumerable<District> districts)
         {
+            DistrictReports = new List<CostHour_DistrictReport>();
+            Interventions = interventions;
 
-            foreach (var district in Districts)
+            foreach (var district in districts)
             {
-                DistrictReports.Add(district, new CostHour_DistrictReport());
+                int districtId = district.DistrictId;
+                decimal totalCost = GetTotalCostForDistrict(districtId);
+                int totalHours = GetTotalHoursForDistrict(districtId);
+
+                var report = new CostHour_DistrictReport();
+                report.Name = district.Name;
+                report.TotalCost = totalCost;
+                report.TotalHours = totalHours;
+
+                DistrictReports.Add(report);
             }
+        }
+
+        private decimal GetTotalCostForDistrict(int districtId)
+        {
+            decimal totalCost = 0;
 
             foreach (var intervention in Interventions)
             {
-                //TODO: Directly reference completed intervention state.
-                if (intervention.InterventionState.InterventionStateId == 3)
+                if (intervention.InterventionStateId == 3)
                 {
-                    CostHour_DistrictReport report = null;
-                    var district = intervention.Client.District;
-
-                    if (DistrictReports.TryGetValue(district, out report))
-                    {
-                        report.Name = district.Name;
-                        report.TotalCost = report.TotalCost + intervention.Cost;
-                        report.TotalHours = report.TotalHours + intervention.Hours;
-                    }
+                    totalCost = totalCost + intervention.Cost;
                 }
             }
-
+            return totalCost;
         }
 
-        public class CostHour_DistrictReport
+        private int GetTotalHoursForDistrict(int districtId)
         {
-            [Required]
-            [DisplayName("District Name")]
-            public string Name { get; set; }
-            [Required]
-            [DisplayName("Total Labour Hours")]
-            public int TotalHours { get; set; }
-            [Required]
-            [DisplayName("Total Cost")]
-            public decimal TotalCost { get; set; }
+            int totalHours = 0;
+
+            foreach (var intervention in Interventions)
+            {
+                if (intervention.InterventionStateId == 3)
+                {
+                    totalHours = totalHours + intervention.Hours;
+                }
+            }
+            return totalHours;
         }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return DistrictReports.GetEnumerator();
+        }
+
+        public IEnumerator<CostHour_DistrictReport> GetEnumerator()
+        {
+            return DistrictReports.GetEnumerator();
+        }
+    }
+
+    public class CostHour_DistrictReport
+    {
+        [Required]
+        [DisplayName("District Name")]
+        public string Name { get; set; }
+        [Required]
+        [DisplayName("Total Labour Hours")]
+        public int TotalHours { get; set; }
+        [Required]
+        [DisplayName("Total Cost")]
+        public decimal TotalCost { get; set; }
     }
 }

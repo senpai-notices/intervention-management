@@ -311,6 +311,7 @@
     <Content Include="Views\Intervention\Details.cshtml" />
     <Content Include="Views\Accountant\TotalCostsByEngineerReport.cshtml" />
     <Content Include="Views\Accountant\EngineerReport.cshtml" />
+    <Content Include="Views\Accountant\CostsByDistrictReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />

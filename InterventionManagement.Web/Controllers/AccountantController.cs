@@ -34,6 +34,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
             return View(report);
         }
 
+        public ActionResult CostsByDistrictReport()
+        {
+            var context = new ApplicationDbContext();
+            InterventionRepository interventionRepo = new InterventionRepository(context);
+            var districtRepo = new Repository<District>(context);
+
+            var interventions = interventionRepo.SelectAll();
+            var districts = districtRepo.SelectAll();
+
+            var reports = new DistrictReport(interventions, districts);
+            return View(reports);
+        }
+
         //[HttpPost]
         //public ActionResult Create(FormCollection collection)
         //{
