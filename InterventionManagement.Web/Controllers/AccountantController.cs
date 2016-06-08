@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using ASDF.ENETCare.InterventionManagement.Business;
 using ASDF.ENETCare.InterventionManagement.Data.Repositories;
 using ASDF.ENETCare.InterventionManagement.Web.Models;
+using ASDF.ENETCare.InterventionManagement.Web.Models.Reports;
 using EngineerReport = ASDF.ENETCare.InterventionManagement.Web.Models.Reports.EngineerReport;
 
 //remove
@@ -43,6 +44,19 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
 
             var report = new EngineerReport(interventions, engineers).Report;
             return View(report);
+        }
+
+        public ActionResult CostsByDistrictReport()
+        {
+            var context = new ApplicationDbContext();
+            InterventionRepository interventionRepo = new InterventionRepository(context);
+            var districtRepo = new Repository<District>(context);
+
+            var interventions = interventionRepo.SelectAll();
+            var districts = districtRepo.SelectAll();
+
+            var reports = new DistrictReport(interventions, districts);
+            return View(reports);
         }
 
         //[HttpPost]
