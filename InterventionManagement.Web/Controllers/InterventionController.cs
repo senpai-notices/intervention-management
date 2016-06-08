@@ -154,7 +154,6 @@ namespace ASDF.ENETCare.InterventionManagement.Web.Controllers
                 Id = (int) id,
                 DatePerformed = intervention.DatePerformed,
                 InterventionTemplate = intervention.InterventionTemplate.Name,
-                State = intervention.InterventionState.Name,
                 ProposerNum = intervention.ProposerId,
                 ApproverNum = intervention.ApproverId,
                 ProposerNameEmail = intervention.Proposer.NameEmail,
