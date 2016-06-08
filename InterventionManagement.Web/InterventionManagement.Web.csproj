@@ -303,7 +303,7 @@
     <Content Include="Views\Intervention\Details.cshtml" />
     <Content Include="Views\Accountant\TotalCostsByEngineerReport.cshtml" />
     <Content Include="Views\Accountant\Index.cshtml" />
-    <Content Include="Views\Accountant\CostByDistrictReport.cshtml" />
+    <Content Include="Views\Accountant\CostsByDistrictReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
