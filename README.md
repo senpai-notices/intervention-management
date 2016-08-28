@@ -1,2 +1,2 @@
-# intervention-management
+# Intervention Management
 ASP.NET application group project
